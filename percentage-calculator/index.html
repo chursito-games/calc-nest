@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Percentage Calculator | Calc Nest</title>
+
+<meta name="description" content="Free percentage calculator. Calculate percentages, percentage increases, and percentage decreases quickly and easily." />
+
+<link rel="canonical" href="https://calc-nest.com/percentage-calculator/" />
+
+<style>
+
+body{
+font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+background:#0b1220;
+color:#e5e7eb;
+margin:0;
+line-height:1.6;
+}
+
+.container{
+max-width:1000px;
+margin:auto;
+padding:40px 20px;
+}
+
+h1{
+margin-top:0;
+font-size:42px;
+}
+
+h2{
+margin-top:40px;
+}
+
+.card{
+background:#111827;
+padding:30px;
+border-radius:16px;
+border:1px solid rgba(255,255,255,0.08);
+margin-top:20px;
+}
+
+input{
+width:100%;
+padding:14px;
+font-size:16px;
+border-radius:12px;
+border:1px solid #334155;
+background:#0b1220;
+color:#e5e7eb;
+}
+
+input:focus{
+outline:none;
+border-color:#38bdf8;
+}
+
+.grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:16px;
+margin-top:12px;
+}
+
+.result{
+margin-top:18px;
+font-size:22px;
+font-weight:700;
+}
+
+a{
+color:#38bdf8;
+text-decoration:none;
+}
+
+a:hover{
+text-decoration:underline;
+}
+
+footer{
+margin-top:50px;
+color:#94a3b8;
+font-size:14px;
+display:flex;
+justify-content:space-between;
+flex-wrap:wrap;
+gap:10px;
+}
+
+@media(max-width:700px){
+
+.grid{
+grid-template-columns:1fr;
+}
+
+h1{
+font-size:32px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Percentage Calculator</h1>
+
+<p>
+Use this free percentage calculator to quickly calculate percentages, percentage increases, and percentage decreases. This tool works instantly and is designed to be simple and mobile-friendly.
+</p>
+
+<p>
+Percentage calculations are commonly used for discounts, financial calculations, statistics, grades, and everyday math.
+</p>
+
+---
+
+<h2>What is X% of Y?</h2>
+
+<div class="card">
+
+<div class="grid">
+
+<div>
+<label>Percentage (%)</label>
+<input type="number" id="percent1" placeholder="e.g. 20">
+</div>
+
+<div>
+<label>Number</label>
+<input type="number" id="number1" placeholder="e.g. 150">
+</div>
+
+</div>
+
+<div class="result" id="result1">
+—
+</div>
+
+</div>
+
+---
+
+<h2>Percentage Increase</h2>
+
+<div class="card">
+
+<div class="grid">
+
+<div>
+<label>Original value</label>
+<input type="number" id="startValue">
+</div>
+
+<div>
+<label>New value</label>
+<input type="number" id="endValue">
+</div>
+
+</div>
+
+<div class="result" id="result2">
+—
+</div>
+
+</div>
+
+---
+
+<h2>Percentage Decrease</h2>
+
+<div class="card">
+
+<div class="grid">
+
+<div>
+<label>Original value</label>
+<input type="number" id="startValue2">
+</div>
+
+<div>
+<label>New value</label>
+<input type="number" id="endValue2">
+</div>
+
+</div>
+
+<div class="result" id="result3">
+—
+</div>
+
+</div>
+
+---
+
+<h2>How percentage calculations work</h2>
+
+<p>
+A percentage represents a proportion out of 100. For example, 20% means 20 out of every 100 units.
+</p>
+
+<p>
+To calculate what percentage of a number is, multiply the number by the percentage and divide by 100.
+</p>
+
+<p>
+Example:
+</p>
+
+<p>
+20% of 150 = 150 × 0.20 = 30
+</p>
+
+<p>
+Percentage increases and decreases compare the difference between two values relative to the original value.
+</p>
+
+---
+
+<h2>Common uses for percentage calculations</h2>
+
+<ul>
+<li>Calculating discounts during sales</li>
+<li>Determining tax amounts</li>
+<li>Tracking investment growth</li>
+<li>Comparing price changes</li>
+<li>Understanding statistics</li>
+</ul>
+
+---
+
+<footer>
+
+<div>© 2026 Calc Nest</div>
+
+<div>
+<a href="/">Home</a> |
+<a href="/about.html">About</a> |
+<a href="/privacy.html">Privacy</a> |
+<a href="mailto:churdomains@gmail.com">Contact</a>
+</div>
+
+</footer>
+
+</div>
+
+<script>
+
+const percent1=document.getElementById("percent1")
+const number1=document.getElementById("number1")
+const result1=document.getElementById("result1")
+
+const startValue=document.getElementById("startValue")
+const endValue=document.getElementById("endValue")
+const result2=document.getElementById("result2")
+
+const startValue2=document.getElementById("startValue2")
+const endValue2=document.getElementById("endValue2")
+const result3=document.getElementById("result3")
+
+function calcPercent(){
+
+const p=parseFloat(percent1.value)
+const n=parseFloat(number1.value)
+
+if(p>=0 && n>=0){
+
+const r=(p/100)*n
+result1.textContent=r.toFixed(2)
+
+}else{
+
+result1.textContent="—"
+
+}
+
+}
+
+function calcIncrease(){
+
+const start=parseFloat(startValue.value)
+const end=parseFloat(endValue.value)
+
+if(start>0){
+
+const change=((end-start)/start)*100
+result2.textContent=change.toFixed(2)+"%"
+
+}else{
+
+result2.textContent="—"
+
+}
+
+}
+
+function calcDecrease(){
+
+const start=parseFloat(startValue2.value)
+const end=parseFloat(endValue2.value)
+
+if(start>0){
+
+const change=((start-end)/start)*100
+result3.textContent=change.toFixed(2)+"%"
+
+}else{
+
+result3.textContent="—"
+
+}
+
+}
+
+percent1.addEventListener("input",calcPercent)
+number1.addEventListener("input",calcPercent)
+
+startValue.addEventListener("input",calcIncrease)
+endValue.addEventListener("input",calcIncrease)
+
+startValue2.addEventListener("input",calcDecrease)
+endValue2.addEventListener("input",calcDecrease)
+
+</script>
+
+</body>
+</html>
