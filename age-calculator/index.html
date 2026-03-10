@@ -7,7 +7,7 @@
 
 <title>Age Calculator | Calc Nest</title>
 
-<meta name="description" content="Free age calculator. Calculate your exact age in years, months, and days from your birth date." />
+<meta name="description" content="Free age calculator. Calculate your exact age in years, months, days, hours, minutes, and seconds from your birth date." />
 
 <link rel="canonical" href="https://calc-nest.com/age-calculator/" />
 
@@ -61,6 +61,42 @@ font-size:24px;
 font-weight:700;
 }
 
+.result-extra{
+margin-top:12px;
+font-size:16px;
+color:#94a3b8;
+line-height:1.8;
+}
+
+.stats-grid{
+display:grid;
+grid-template-columns:repeat(2, minmax(0, 1fr));
+gap:12px;
+margin-top:16px;
+}
+
+.stat-box{
+background:#0b1220;
+border:1px solid rgba(255,255,255,0.08);
+border-radius:14px;
+padding:14px;
+}
+
+.stat-label{
+display:block;
+font-size:13px;
+color:#94a3b8;
+margin-bottom:6px;
+}
+
+.stat-value{
+display:block;
+font-size:20px;
+font-weight:700;
+color:#e5e7eb;
+word-break:break-word;
+}
+
 a{
 color:#38bdf8;
 text-decoration:none;
@@ -86,6 +122,10 @@ h1{
 font-size:32px;
 }
 
+.stats-grid{
+grid-template-columns:1fr;
+}
+
 }
 
 </style>
@@ -99,55 +139,67 @@ font-size:32px;
 <h1>Age Calculator</h1>
 
 <p>
-Use this free age calculator to determine your exact age based on your birth date. The calculator will show your age in years, months, and days.
+Use this free age calculator to determine your exact age based on your birth date. The calculator shows your age in years, months, days, and also the total number of days, hours, minutes, and seconds.
 </p>
 
 <p>
-Age calculators are useful for forms, official documents, school requirements, and personal curiosity.
+Age calculators are useful for forms, official documents, school requirements, legal age checks, and personal curiosity.
 </p>
-
----
 
 <h2>Enter your birth date</h2>
 
 <div class="card">
 
-<label>Birth date</label>
+<label for="birthdate">Birth date</label>
 <input type="date" id="birthdate">
 
-<div class="result" id="result">
-—
+<div class="result" id="result">—</div>
+
+<div class="result-extra" id="resultExtra"></div>
+
+<div class="stats-grid" id="statsGrid" style="display:none;">
+  <div class="stat-box">
+    <span class="stat-label">Total days</span>
+    <span class="stat-value" id="totalDays">—</span>
+  </div>
+
+  <div class="stat-box">
+    <span class="stat-label">Total hours</span>
+    <span class="stat-value" id="totalHours">—</span>
+  </div>
+
+  <div class="stat-box">
+    <span class="stat-label">Total minutes</span>
+    <span class="stat-value" id="totalMinutes">—</span>
+  </div>
+
+  <div class="stat-box">
+    <span class="stat-label">Total seconds</span>
+    <span class="stat-value" id="totalSeconds">—</span>
+  </div>
 </div>
 
 </div>
-
----
 
 <h2>How the age calculation works</h2>
 
 <p>
-The age calculator compares your birth date with the current date and determines the difference in years, months, and days.
+This age calculator compares your birth date with the current date and determines the difference in years, months, and days. It also calculates the total amount of time that has passed in days, hours, minutes, and seconds.
 </p>
 
 <p>
 For example, if someone was born on January 1, 2000 and today is January 1, 2024, their age would be exactly 24 years.
 </p>
 
----
-
 <h2>Common uses for age calculators</h2>
 
 <ul>
-
 <li>Checking eligibility for age-based services</li>
 <li>School registration</li>
 <li>Legal age verification</li>
 <li>Insurance calculations</li>
 <li>Personal curiosity</li>
-
 </ul>
-
----
 
 <footer>
 
@@ -166,46 +218,90 @@ For example, if someone was born on January 1, 2000 and today is January 1, 2024
 
 <script>
 
-const birthdateInput=document.getElementById("birthdate")
-const result=document.getElementById("result")
+const birthdateInput = document.getElementById("birthdate");
+const result = document.getElementById("result");
+const resultExtra = document.getElementById("resultExtra");
+const statsGrid = document.getElementById("statsGrid");
 
-function calculateAge(){
+const totalDaysEl = document.getElementById("totalDays");
+const totalHoursEl = document.getElementById("totalHours");
+const totalMinutesEl = document.getElementById("totalMinutes");
+const totalSecondsEl = document.getElementById("totalSeconds");
 
-const birthDate=new Date(birthdateInput.value)
+let liveTimer = null;
 
-if(!birthdateInput.value){
-
-result.textContent="—"
-return
-
+function formatNumber(num){
+  return num.toLocaleString("en-US");
 }
 
-const today=new Date()
+function calculateAgeBreakdown(birthDate, now){
+  let years = now.getFullYear() - birthDate.getFullYear();
+  let months = now.getMonth() - birthDate.getMonth();
+  let days = now.getDate() - birthDate.getDate();
 
-let years=today.getFullYear()-birthDate.getFullYear()
-let months=today.getMonth()-birthDate.getMonth()
-let days=today.getDate()-birthDate.getDate()
+  if(days < 0){
+    months--;
+    const previousMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+    days += previousMonth.getDate();
+  }
 
-if(days<0){
+  if(months < 0){
+    years--;
+    months += 12;
+  }
 
-months--
-const previousMonth=new Date(today.getFullYear(),today.getMonth(),0)
-days+=previousMonth.getDate()
-
+  return { years, months, days };
 }
 
-if(months<0){
+function updateAge(){
+  if(!birthdateInput.value){
+    result.textContent = "—";
+    resultExtra.textContent = "";
+    statsGrid.style.display = "none";
+    return;
+  }
 
-years--
-months+=12
+  const birthDate = new Date(birthdateInput.value + "T00:00:00");
+  const now = new Date();
 
+  if(isNaN(birthDate.getTime()) || birthDate > now){
+    result.textContent = "Please enter a valid birth date";
+    resultExtra.textContent = "";
+    statsGrid.style.display = "none";
+    return;
+  }
+
+  const { years, months, days } = calculateAgeBreakdown(birthDate, now);
+  result.textContent = years + " years, " + months + " months, " + days + " days";
+  resultExtra.textContent = "Updated in real time";
+
+  const diffMs = now - birthDate;
+  const totalSeconds = Math.floor(diffMs / 1000);
+  const totalMinutes = Math.floor(totalSeconds / 60);
+  const totalHours = Math.floor(totalMinutes / 60);
+  const totalDays = Math.floor(totalHours / 24);
+
+  totalDaysEl.textContent = formatNumber(totalDays);
+  totalHoursEl.textContent = formatNumber(totalHours);
+  totalMinutesEl.textContent = formatNumber(totalMinutes);
+  totalSecondsEl.textContent = formatNumber(totalSeconds);
+
+  statsGrid.style.display = "grid";
 }
 
-result.textContent=years+" years, "+months+" months, "+days+" days"
+function startLiveUpdate(){
+  if(liveTimer){
+    clearInterval(liveTimer);
+  }
 
+  updateAge();
+
+  liveTimer = setInterval(() => {
+    updateAge();
+  }, 1000);
 }
 
-birthdateInput.addEventListener("input",calculateAge)
+birthdateInput.addEventListener("input", startLiveUpdate);
 
 </script>
 
