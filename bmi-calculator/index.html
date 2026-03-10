@@ -346,7 +346,54 @@
       color:var(--muted);
       font-size:13px;
     }
+    .bmi-scale{
+      margin-top:14px;
+    }
 
+    .bmi-scale-bar{
+      position:relative;
+      height:10px;
+      border-radius:999px;
+      background:rgba(255,255,255,.10);
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .bmi-scale-marker{
+      position:absolute;
+      top:50%;
+      transform:translate(-50%, -50%);
+      width:14px;
+      height:14px;
+      border-radius:999px;
+      background:#fff;
+      border:2px solid #0b1220;
+      box-shadow:0 0 0 2px rgba(255,255,255,.15);
+      left:0%;
+    }
+
+    .bmi-scale-ticks{
+      display:flex;
+      justify-content:space-between;
+      gap:8px;
+      margin-top:8px;
+      font-size:12px;
+      color:var(--muted);
+    }
+
+    .bmi-scale-labels{
+      display:grid;
+      grid-template-columns:18.5fr 6.5fr 5fr 10fr;
+      gap:6px;
+      margin-top:8px;
+      font-size:12px;
+      color:var(--muted);
+    }
+
+    .bmi-scale-labels span{
+      text-align:center;
+      white-space:nowrap;
+    }
     @media (max-width: 860px){
       .hero-grid{
         grid-template-columns:1fr;
@@ -437,10 +484,28 @@
             <h3>Your result</h3>
             <div class="result-main" id="bmiValue">—</div>
             <div class="result-category" id="bmiCategory">Enter your height and weight</div>
+
+            <div class="bmi-scale" aria-hidden="true">
+              <div class="bmi-scale-bar">
+                <div class="bmi-scale-marker" id="bmiMarker"></div>
+              </div>
+              <div class="bmi-scale-ticks">
+                <span>0</span>
+                <span>18.5</span>
+                <span>25</span>
+                <span>30</span>
+                <span>40+</span>
+              </div>
+              <div class="bmi-scale-labels">
+                <span>Underweight</span>
+                <span>Normal</span>
+                <span>Overweight</span>
+                <span>Obesity</span>
+              </div>
+            </div>
+
             <p class="helper" id="bmiHelper">Your BMI will be calculated automatically as you type.</p>
           </div>
-        </aside>
-      </div>
     </section>
 
     <section class="section">
@@ -592,6 +657,7 @@
     const bmiValue = document.getElementById("bmiValue");
     const bmiCategory = document.getElementById("bmiCategory");
     const bmiHelper = document.getElementById("bmiHelper");
+        const bmiMarker = document.getElementById("bmiMarker");
 
     let unitMode = "metric";
 
@@ -620,7 +686,16 @@
       if (bmi < 30) return "Overweight";
       return "Obesity";
     }
+    function updateBMIMarker(bmi) {
+      if (!bmi || !isFinite(bmi) || bmi <= 0) {
+        bmiMarker.style.left = "0%";
+        return;
+      }
 
+      const cappedBMI = Math.max(0, Math.min(bmi, 40));
+      const percent = (cappedBMI / 40) * 100;
+      bmiMarker.style.left = percent + "%";
+    }
     function calculateBMI() {
       let bmi = null;
 
@@ -643,15 +718,17 @@
         }
       }
 
-      if (bmi && isFinite(bmi)) {
+          if (bmi && isFinite(bmi)) {
         const rounded = bmi.toFixed(1);
         bmiValue.textContent = rounded;
         bmiCategory.textContent = getBMICategory(bmi);
         bmiHelper.textContent = "BMI is a general screening tool and should be interpreted in context.";
+        updateBMIMarker(bmi);
       } else {
         bmiValue.textContent = "—";
         bmiCategory.textContent = "Enter your height and weight";
         bmiHelper.textContent = "Your BMI will be calculated automatically as you type.";
+        updateBMIMarker(null);
       }
     }
 
