@@ -251,18 +251,17 @@
       font-size:14px;
     }
 
-.section{
-  padding:0;
-  margin-top:-120px;
-}
+    .section{
+      padding:14px 0 0;
+    }
 
-.content-grid{
-  display:grid;
-  gap:18px;
-  grid-template-columns:minmax(0, 760px);
-  justify-content:start;
-  margin:18px 0 0;
-}
+    .content-grid{
+      display:grid;
+      gap:18px;
+      grid-template-columns:1fr;
+      margin:18px 0 0;
+    }
+
     .content-card{
       padding:22px;
     }
@@ -347,6 +346,7 @@
       color:var(--muted);
       font-size:13px;
     }
+
     .bmi-scale{
       margin-top:14px;
     }
@@ -395,6 +395,7 @@
       text-align:center;
       white-space:nowrap;
     }
+
     @media (max-width: 860px){
       .hero-grid{
         grid-template-columns:1fr;
@@ -507,6 +508,8 @@
 
             <p class="helper" id="bmiHelper">Your BMI will be calculated automatically as you type.</p>
           </div>
+        </aside>
+      </div>
     </section>
 
     <section class="section">
@@ -658,7 +661,7 @@
     const bmiValue = document.getElementById("bmiValue");
     const bmiCategory = document.getElementById("bmiCategory");
     const bmiHelper = document.getElementById("bmiHelper");
-        const bmiMarker = document.getElementById("bmiMarker");
+    const bmiMarker = document.getElementById("bmiMarker");
 
     let unitMode = "metric";
 
@@ -687,6 +690,7 @@
       if (bmi < 30) return "Overweight";
       return "Obesity";
     }
+
     function updateBMIMarker(bmi) {
       if (!bmi || !isFinite(bmi) || bmi <= 0) {
         bmiMarker.style.left = "0%";
@@ -697,6 +701,7 @@
       const percent = (cappedBMI / 40) * 100;
       bmiMarker.style.left = percent + "%";
     }
+
     function calculateBMI() {
       let bmi = null;
 
@@ -719,7 +724,7 @@
         }
       }
 
-          if (bmi && isFinite(bmi)) {
+      if (bmi && isFinite(bmi)) {
         const rounded = bmi.toFixed(1);
         bmiValue.textContent = rounded;
         bmiCategory.textContent = getBMICategory(bmi);
