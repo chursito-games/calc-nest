@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>APR Calculator | Calc Nest</title>
+  <meta name="description" content="Free online APR Calculator. Estimate annual percentage rate, monthly payment, total interest, and effective loan amount after fees." />
+  <link rel="canonical" href="https://calc-nest.com/apr-calculator/" />
+  <meta name="theme-color" content="#0f172a" />
+
+  <meta property="og:title" content="APR Calculator | Calc Nest" />
+  <meta property="og:description" content="Estimate annual percentage rate, monthly payment, total interest, and effective loan amount after fees." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://calc-nest.com/apr-calculator/" />
+
+  <style>
+    :root{
+      --bg:#0b1220;
+      --panel:#111827;
+      --text:#e5e7eb;
+      --muted:#94a3b8;
+      --line:#334155;
+      --accent:#38bdf8;
+      --shadow: 0 18px 45px rgba(0,0,0,.28);
+      --radius: 18px;
+      --max: 1080px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: linear-gradient(180deg, #0b1220 0%, #111827 100%);
+      color:var(--text);
+      line-height:1.6;
+    }
+
+    a{
+      color:var(--accent);
+      text-decoration:none;
+    }
+    a:hover{text-decoration:underline}
+
+    .container{
+      width:min(var(--max), calc(100% - 32px));
+      margin:0 auto;
+    }
+
+    .topbar{
+      border-bottom:1px solid rgba(255,255,255,.08);
+      background:rgba(15,23,42,.75);
+      backdrop-filter: blur(8px);
+      position:sticky;
+      top:0;
+      z-index:20;
+    }
+
+    .topbar-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:14px 0;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight:700;
+      color:#fff;
+      letter-spacing:.2px;
+    }
+
+    .brand-badge{
+      width:34px;
+      height:34px;
+      border-radius:12px;
+      background:linear-gradient(135deg, var(--accent), #6366f1);
+      box-shadow:0 10px 24px rgba(56,189,248,.25);
+    }
+
+    .nav{
+      display:flex;
+      gap:18px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .nav a{
+      color:var(--text);
+      opacity:.92;
+      font-size:14px;
+    }
+
+    .hero{
+      padding:56px 0 28px;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.08fr .92fr;
+      gap:24px;
+      align-items:start;
+    }
+
+    .hero-copy h1{
+      margin:0 0 12px;
+      font-size:clamp(2rem, 4vw, 3.2rem);
+      line-height:1.08;
+      letter-spacing:-.03em;
+    }
+
+    .hero-copy p{
+      margin:0 0 16px;
+      color:var(--muted);
+      max-width:64ch;
+      font-size:1.03rem;
+    }
+
+    .hero-card,
+    .content-card{
+      background:rgba(17,24,39,.88);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+    }
+
+    .hero-card{
+      padding:22px;
+    }
+
+    .eyebrow{
+      display:inline-block;
+      margin-bottom:12px;
+      font-size:12px;
+      font-weight:700;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:var(--accent);
+    }
+
+    .tool-title{
+      margin:0 0 8px;
+      font-size:1.25rem;
+    }
+
+    .tool-subtitle{
+      margin:0 0 18px;
+      color:var(--muted);
+      font-size:.95rem;
+    }
+
+    .form-grid{
+      display:grid;
+      gap:14px;
+    }
+
+    .field{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+
+    label{
+      font-size:14px;
+      font-weight:600;
+    }
+
+    input{
+      width:100%;
+      padding:14px 14px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:#0b1220;
+      color:var(--text);
+      font-size:16px;
+      outline:none;
+    }
+
+    input:focus{
+      border-color:rgba(56,189,248,.7);
+      box-shadow:0 0 0 4px rgba(56,189,248,.14);
+    }
+
+    .result-box{
+      margin-top:18px;
+      padding:16px;
+      border-radius:16px;
+      background:linear-gradient(180deg, rgba(56,189,248,.10), rgba(99,102,241,.08));
+      border:1px solid rgba(255,255,255,.09);
+    }
+
+    .result-box h3{
+      margin:0 0 10px;
+      font-size:1rem;
+    }
+
+    .result-grid{
+      display:grid;
+      gap:12px;
+      margin-top:8px;
+    }
+
+    .result-card{
+      padding:14px;
+      border-radius:14px;
+      background:rgba(11,18,32,.65);
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .result-label{
+      display:block;
+      font-size:13px;
+      color:var(--muted);
+      margin-bottom:4px;
+    }
+
+    .result-value{
+      display:block;
+      font-size:1.35rem;
+      font-weight:800;
+      line-height:1.1;
+    }
+
+    .helper{
+      margin-top:10px;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .small-note{
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    .section{
+      padding:14px 0 0;
+    }
+
+    .content-grid{
+      display:grid;
+      gap:18px;
+      width:100%;
+      max-width:760px;
+      margin:18px auto 0;
+    }
+
+    .content-grid > *{
+      width:100%;
+    }
+
+    .content-card{
+      width:100%;
+      padding:22px;
+    }
+
+    .content-card h2{
+      margin:0 0 12px;
+      font-size:1.35rem;
+    }
+
+    .content-card h3{
+      margin:18px 0 8px;
+      font-size:1.02rem;
+    }
+
+    .content-card p{
+      margin:0 0 12px;
+      color:#d6dbe4;
+    }
+
+    .content-card ul{
+      margin:0 0 12px 20px;
+      color:#d6dbe4;
+    }
+
+    .faq-item{
+      padding:14px 0;
+      border-top:1px solid rgba(255,255,255,.08);
+    }
+
+    .faq-item:first-of-type{
+      border-top:none;
+      padding-top:0;
+    }
+
+    .footer{
+      padding:34px 0 48px;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .footer-inner{
+      display:flex;
+      justify-content:space-between;
+      gap:16px;
+      flex-wrap:wrap;
+      border-top:1px solid rgba(255,255,255,.08);
+      padding-top:18px;
+    }
+
+    .footer-links{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+    }
+
+    @media (max-width: 860px){
+      .hero-grid{
+        grid-template-columns:1fr;
+      }
+
+      .topbar-inner{
+        align-items:flex-start;
+        flex-direction:column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand">
+        <div class="brand-badge" aria-hidden="true"></div>
+        <span>Calc Nest</span>
+      </div>
+
+      <nav class="nav" aria-label="Primary">
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/privacy.html">Privacy</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">Free Online Calculators</span>
+          <h1>APR Calculator</h1>
+          <p>
+            Use this free APR Calculator to estimate the annual percentage rate of a loan based on the loan amount, nominal interest rate, term, and fees. It also shows the effective amount received after fees.
+          </p>
+          <p>
+            APR is often higher than the nominal interest rate because it includes financing costs beyond the base rate. This calculator helps illustrate the real cost of borrowing more clearly.
+          </p>
+          <p class="small-note">
+            Results are estimates for general informational use and do not replace official lender disclosures or legal APR calculations.
+          </p>
+        </div>
+
+        <aside class="hero-card" aria-label="APR calculator tool">
+          <h2 class="tool-title">Calculate APR</h2>
+          <p class="tool-subtitle">Enter your loan details and compare interest rate versus estimated APR instantly.</p>
+
+          <div class="form-grid">
+            <div class="field">
+              <label for="loanAmount">Loan amount</label>
+              <input id="loanAmount" type="number" min="0" step="0.01" placeholder="e.g. 10000" />
+            </div>
+
+            <div class="field">
+              <label for="interestRate">Interest rate (%)</label>
+              <input id="interestRate" type="number" min="0" step="0.01" placeholder="e.g. 8" />
+            </div>
+
+            <div class="field">
+              <label for="loanTerm">Loan term (years)</label>
+              <input id="loanTerm" type="number" min="0" step="0.1" placeholder="e.g. 5" />
+            </div>
+
+            <div class="field">
+              <label for="loanFees">Loan fees</label>
+              <input id="loanFees" type="number" min="0" step="0.01" placeholder="e.g. 300" />
+            </div>
+          </div>
+
+          <div class="result-box" aria-live="polite">
+            <h3>Your APR estimate</h3>
+
+            <div class="result-grid">
+              <div class="result-card">
+                <span class="result-label">Monthly payment</span>
+                <span class="result-value" id="monthlyPaymentValue">—</span>
+              </div>
+
+              <div class="result-card">
+                <span class="result-label">Interest rate vs APR</span>
+                <span class="result-value" id="aprComparisonValue">—</span>
+              </div>
+
+              <div class="result-card">
+                <span class="result-label">Total interest</span>
+                <span class="result-value" id="totalInterestValue">—</span>
+              </div>
+
+              <div class="result-card">
+                <span class="result-label">Effective amount received</span>
+                <span class="result-value" id="effectiveAmountValue">—</span>
+              </div>
+            </div>
+
+            <p class="helper" id="aprHelper">Your APR estimate will be calculated automatically as you type.</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container content-grid">
+        <article class="content-card">
+          <h2>What is APR?</h2>
+          <p>
+            APR stands for <strong>Annual Percentage Rate</strong>. It represents the broader cost of borrowing because it can include both interest and certain loan-related fees.
+          </p>
+          <p>
+            This makes APR a more complete measure than the nominal interest rate when comparing credit offers.
+          </p>
+
+          <h3>Interest rate vs APR</h3>
+          <p>
+            The interest rate is the base rate charged on the loan balance. APR goes further by factoring in fees, which means it often gives a better picture of the true cost of borrowing.
+          </p>
+        </article>
+
+        <article class="content-card">
+          <h2>How this APR calculator works</h2>
+          <p>
+            This calculator estimates the loan payment using the nominal interest rate, then compares the loan payment against the net amount actually received after fees. That difference is used to estimate an effective APR.
+          </p>
+          <p>
+            It is a practical educational estimate and not a substitute for regulated lender disclosures.
+          </p>
+        </article>
+
+        <article class="content-card">
+          <h2>How to use this calculator</h2>
+          <ul>
+            <li>Enter the loan amount.</li>
+            <li>Enter the nominal interest rate.</li>
+            <li>Enter the loan term in years.</li>
+            <li>Enter any upfront loan fees.</li>
+            <li>Review the monthly payment, APR comparison, total interest, and effective amount received.</li>
+          </ul>
+          <p>
+            This tool is designed to be fast, simple, and easy to use on desktop or mobile devices.
+          </p>
+        </article>
+
+        <article class="content-card">
+          <h2>Frequently asked questions</h2>
+
+          <div class="faq-item">
+            <h3>Why is APR usually higher than the interest rate?</h3>
+            <p>
+              APR may include loan fees and other financing costs, which increase the effective borrowing cost beyond the base interest rate.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>What is the effective amount received?</h3>
+            <p>
+              It is the loan amount minus fees. This represents the actual funds you receive if fees are deducted upfront.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>Is this the same as a legal lender APR disclosure?</h3>
+            <p>
+              No. This calculator provides a simplified APR estimate for educational use and does not replace official disclosures from lenders.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>Can I use this for any currency?</h3>
+            <p>
+              Yes. The calculator uses plain numbers, so it can work with dollars, euros, pounds, pesos, or other currencies.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>© 2026 Calc Nest</div>
+      <div class="footer-links">
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/privacy.html">Privacy</a>
+        <a href="mailto:churdomains@gmail.com">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const loanAmount = document.getElementById("loanAmount");
+    const interestRate = document.getElementById("interestRate");
+    const loanTerm = document.getElementById("loanTerm");
+    const loanFees = document.getElementById("loanFees");
+
+    const monthlyPaymentValue = document.getElementById("monthlyPaymentValue");
+    const aprComparisonValue = document.getElementById("aprComparisonValue");
+    const totalInterestValue = document.getElementById("totalInterestValue");
+    const effectiveAmountValue = document.getElementById("effectiveAmountValue");
+    const aprHelper = document.getElementById("aprHelper");
+
+    function formatMoney(value) {
+      return Number(value).toLocaleString("en-US", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+    }
+
+    function formatPercent(value) {
+      return `${value.toFixed(2)}%`;
+    }
+
+    function loanPayment(principal, annualRatePercent, years) {
+      const monthlyRate = (annualRatePercent / 100) / 12;
+      const totalPayments = years * 12;
+
+      if (monthlyRate === 0) {
+        return principal / totalPayments;
+      }
+
+      return principal * (monthlyRate * Math.pow(1 + monthlyRate, totalPayments)) /
+        (Math.pow(1 + monthlyRate, totalPayments) - 1);
+    }
+
+    function estimateAPR(payment, netReceived, years) {
+      const totalPayments = Math.round(years * 12);
+      let low = 0;
+      let high = 1;
+      let mid;
+
+      for (let i = 0; i < 100; i++) {
+        mid = (low + high) / 2;
+        const guessedPayment = netReceived * (mid * Math.pow(1 + mid, totalPayments)) /
+          (Math.pow(1 + mid, totalPayments) - 1);
+
+        if (!isFinite(guessedPayment)) break;
+
+        if (guessedPayment > payment) {
+          high = mid;
+        } else {
+          low = mid;
+        }
+      }
+
+      return mid * 12 * 100;
+    }
+
+    function calculateAPR() {
+      const principal = parseFloat(loanAmount.value);
+      const rate = parseFloat(interestRate.value);
+      const years = parseFloat(loanTerm.value);
+      const fees = parseFloat(loanFees.value) || 0;
+
+      if (principal > 0 && rate >= 0 && years > 0) {
+        const monthlyPayment = loanPayment(principal, rate, years);
+        const totalPayments = Math.round(years * 12);
+        const totalPaid = monthlyPayment * totalPayments;
+        const totalInterest = totalPaid - principal;
+        const effectiveAmount = Math.max(0, principal - fees);
+
+        monthlyPaymentValue.textContent = formatMoney(monthlyPayment);
+        totalInterestValue.textContent = formatMoney(totalInterest);
+        effectiveAmountValue.textContent = formatMoney(effectiveAmount);
+
+        if (effectiveAmount > 0) {
+          const estimatedAPR = estimateAPR(monthlyPayment, effectiveAmount, years);
+          aprComparisonValue.textContent = `${formatPercent(rate)} vs ${formatPercent(estimatedAPR)}`;
+        } else {
+          aprComparisonValue.textContent = "—";
+        }
+
+        aprHelper.textContent = "APR estimates are calculated automatically from your inputs.";
+      } else {
+        monthlyPaymentValue.textContent = "—";
+        aprComparisonValue.textContent = "—";
+        totalInterestValue.textContent = "—";
+        effectiveAmountValue.textContent = "—";
+        aprHelper.textContent = "Your APR estimate will be calculated automatically as you type.";
+      }
+    }
+
+    [loanAmount, interestRate, loanTerm, loanFees].forEach(input => {
+      input.addEventListener("input", calculateAPR);
+      input.addEventListener("change", calculateAPR);
+    });
+  </script>
+</body>
+</html>
