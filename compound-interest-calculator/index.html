@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Compound Interest Calculator | Calc Nest</title>
+  <meta name="description" content="Free online Compound Interest Calculator. Estimate investment growth, total contributions, interest earned, doubling time, and balance milestones." />
+  <link rel="canonical" href="https://calc-nest.com/compound-interest-calculator/" />
+  <meta name="theme-color" content="#0f172a" />
+
+  <meta property="og:title" content="Compound Interest Calculator | Calc Nest" />
+  <meta property="og:description" content="Estimate investment growth, total contributions, interest earned, doubling time, and balance milestones." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://calc-nest.com/compound-interest-calculator/" />
+
+  <style>
+    :root{
+      --bg:#0b1220;
+      --panel:#111827;
+      --text:#e5e7eb;
+      --muted:#94a3b8;
+      --line:#334155;
+      --accent:#38bdf8;
+      --shadow: 0 18px 45px rgba(0,0,0,.28);
+      --radius: 18px;
+      --max: 1080px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: linear-gradient(180deg, #0b1220 0%, #111827 100%);
+      color:var(--text);
+      line-height:1.6;
+    }
+
+    a{
+      color:var(--accent);
+      text-decoration:none;
+    }
+    a:hover{text-decoration:underline}
+
+    .container{
+      width:min(var(--max), calc(100% - 32px));
+      margin:0 auto;
+    }
+
+    .topbar{
+      border-bottom:1px solid rgba(255,255,255,.08);
+      background:rgba(15,23,42,.75);
+      backdrop-filter: blur(8px);
+      position:sticky;
+      top:0;
+      z-index:20;
+    }
+
+    .topbar-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:14px 0;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight:700;
+      color:#fff;
+      letter-spacing:.2px;
+    }
+
+    .brand-badge{
+      width:34px;
+      height:34px;
+      border-radius:12px;
+      background:linear-gradient(135deg, var(--accent), #6366f1);
+      box-shadow:0 10px 24px rgba(56,189,248,.25);
+    }
+
+    .nav{
+      display:flex;
+      gap:18px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .nav a{
+      color:var(--text);
+      opacity:.92;
+      font-size:14px;
+    }
+
+    .hero{
+      padding:56px 0 28px;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.08fr .92fr;
+      gap:24px;
+      align-items:start;
+    }
+
+    .hero-copy h1{
+      margin:0 0 12px;
+      font-size:clamp(2rem, 4vw, 3.2rem);
+      line-height:1.08;
+      letter-spacing:-.03em;
+    }
+
+    .hero-copy p{
+      margin:0 0 16px;
+      color:var(--muted);
+      max-width:64ch;
+      font-size:1.03rem;
+    }
+
+    .hero-card,
+    .content-card{
+      background:rgba(17,24,39,.88);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+    }
+
+    .hero-card{
+      padding:22px;
+    }
+
+    .eyebrow{
+      display:inline-block;
+      margin-bottom:12px;
+      font-size:12px;
+      font-weight:700;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:var(--accent);
+    }
+
+    .tool-title{
+      margin:0 0 8px;
+      font-size:1.25rem;
+    }
+
+    .tool-subtitle{
+      margin:0 0 18px;
+      color:var(--muted);
+      font-size:.95rem;
+    }
+
+    .form-grid{
+      display:grid;
+      gap:14px;
+    }
+
+    .field{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+
+    label{
+      font-size:14px;
+      font-weight:600;
+    }
+
+    input,
+    select{
+      width:100%;
+      padding:14px 14px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:#0b1220;
+      color:var(--text);
+      font-size:16px;
+      outline:none;
+    }
+
+    input:focus,
+    select:focus{
+      border-color:rgba(56,189,248,.7);
+      box-shadow:0 0 0 4px rgba(56,189,248,.14);
+    }
+
+    .result-box{
+      margin-top:18px;
+      padding:16px;
+      border-radius:16px;
+      background:linear-gradient(180deg, rgba(56,189,248,.10), rgba(99,102,241,.08));
+      border:1px solid rgba(255,255,255,.09);
+    }
+
+    .result-box h3{
+      margin:0 0 10px;
+      font-size:1rem;
+    }
+
+    .result-grid{
+      display:grid;
+      gap:12px;
+      margin-top:8px;
+    }
+
+    .result-card{
+      padding:14px;
+      border-radius:14px;
+      background:rgba(11,18,32,.65);
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .result-label{
+      display:block;
+      font-size:13px;
+      color:var(--muted);
+      margin-bottom:4px;
+    }
+
+    .result-value{
+      display:block;
+      font-size:1.35rem;
+      font-weight:800;
+      line-height:1.1;
+    }
+
+    .helper{
+      margin-top:10px;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .small-note{
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    .section{
+      padding:14px 0 0;
+    }
+
+    .content-grid{
+      display:grid;
+      gap:18px;
+      width:100%;
+      max-width:760px;
+      margin:18px auto 0;
+    }
+
+    .content-grid > *{
+      width:100%;
+    }
+
+    .content-card{
+      width:100%;
+      padding:22px;
+    }
+
+    .content-card h2{
+      margin:0 0 12px;
+      font-size:1.35rem;
+    }
+
+    .content-card h3{
+      margin:18px 0 8px;
+      font-size:1.02rem;
+    }
+
+    .content-card p{
+      margin:0 0 12px;
+      color:#d6dbe4;
+    }
+
+    .content-card ul{
+      margin:0 0 12px 20px;
+      color:#d6dbe4;
+    }
+
+    .faq-item{
+      padding:14px 0;
+      border-top:1px solid rgba(255,255,255,.08);
+    }
+
+    .faq-item:first-of-type{
+      border-top:none;
+      padding-top:0;
+    }
+
+    .milestones-list{
+      margin:10px 0 0 20px;
+      color:#d6dbe4;
+    }
+
+    .footer{
+      padding:34px 0 48px;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .footer-inner{
+      display:flex;
+      justify-content:space-between;
+      gap:16px;
+      flex-wrap:wrap;
+      border-top:1px solid rgba(255,255,255,.08);
+      padding-top:18px;
+    }
+
+    .footer-links{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+    }
+
+    @media (max-width: 860px){
+      .hero-grid{
+        grid-template-columns:1fr;
+      }
+
+      .topbar-inner{
+        align-items:flex-start;
+        flex-direction:column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand">
+        <div class="brand-badge" aria-hidden="true"></div>
+        <span>Calc Nest</span>
+      </div>
+
+      <nav class="nav" aria-label="Primary">
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/privacy.html">Privacy</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">Free Online Calculators</span>
+          <h1>Compound Interest Calculator</h1>
+          <p>
+            Use this free Compound Interest Calculator to estimate long-term investment growth. Enter your initial investment, monthly contribution, annual interest rate, number of years, and compounding frequency to see how your money could grow over time.
+          </p>
+          <p>
+            This tool also shows your total contributions, total interest earned, approximate doubling time using the Rule of 72, and a few balance milestones to help you understand how compounding works.
+          </p>
+          <p class="small-note">
+            Results are estimates for general informational use and do not replace financial advice or official investment projections.
+          </p>
+        </div>
+
+        <aside class="hero-card" aria-label="Compound interest calculator tool">
+          <h2 class="tool-title">Calculate investment growth</h2>
+          <p class="tool-subtitle">Enter your details and review the compound growth estimate instantly.</p>
+
+          <div class="form-grid">
+            <div class="field">
+              <label for="initialInvestment">Initial investment</label>
+              <input id="initialInvestment" type="number" min="0" step="0.01" placeholder="e.g. 1000" />
+            </div>
+
+            <div class="field">
+              <label for="monthlyContribution">Monthly contribution</label>
+              <input id="monthlyContribution" type="number" min="0" step="0.01" placeholder="e.g. 100" />
+            </div>
+
+            <div class="field">
+              <label for="interestRate">Annual interest rate (%)</label>
+              <input id="interestRate" type="number" min="0" step="0.01" placeholder="e.g. 7" />
+            </div>
+
+            <div class="field">
+              <label for="years">Years</label>
+              <input id="years" type="number" min="0" step="0.1" placeholder="e.g. 20" />
+            </div>
+
+            <div class="field">
+              <label for="compoundFrequency">Compounding frequency</label>
+              <select id="compoundFrequency">
+                <option value="1">Annually</option>
+                <option value="4">Quarterly</option>
+                <option value="12" selected>Monthly</option>
+                <option value="365">Daily</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="result-box" aria-live="polite">
+            <h3>Your compound interest estimate</h3>
+
+            <div class="result-grid">
+              <div class="result-card">
+                <span class="result-label">Final balance</span>
+                <span class="result-value" id="finalBalanceValue">—</span>
+              </div>
+
+              <div class="result-card">
+                <span class="result-label">Total contributions</span>
+                <span class="result-value" id="totalContributionsValue">—</span>
+              </div>
+
+              <div class="result-card">
+                <span class="result-label">Total interest earned</span>
+                <span class="result-value" id="interestEarnedValue">—</span>
+              </div>
+
+              <div class="result-card">
+                <span class="result-label">Approx. doubling time</span>
+                <span class="result-value" id="doublingTimeValue">—</span>
+              </div>
+            </div>
+
+            <p class="helper" id="compoundHelper">Your investment estimate will be calculated automatically as you type.</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container content-grid">
+        <article class="content-card">
+          <h2>What is compound interest?</h2>
+          <p>
+            Compound interest is the process of earning returns not only on your original investment but also on the interest that has already been added over time. This can lead to significantly higher growth compared with simple interest.
+          </p>
+          <p>
+            Compound growth becomes more powerful the longer your investment remains invested and the more frequently it compounds.
+          </p>
+
+          <h3>How this calculator works</h3>
+          <p>
+            This calculator estimates future value using an initial investment, recurring monthly contributions, an annual interest rate, and the selected compounding frequency. It then compares your total contributions with the final balance to estimate how much growth came from interest.
+          </p>
+        </article>
+
+        <article class="content-card">
+          <h2>Rule of 72</h2>
+          <p>
+            The Rule of 72 is a simple way to estimate how long it takes for an investment to double. Divide 72 by the annual interest rate.
+          </p>
+          <p>
+            For example, at 8% annual growth, an investment may roughly double in about 9 years.
+          </p>
+        </article>
+
+        <article class="content-card">
+          <h2>Balance milestones</h2>
+          <p>
+            This calculator also estimates how your balance may grow at different points in time:
+          </p>
+          <ul class="milestones-list" id="milestonesList">
+            <li>Enter values to see milestones.</li>
+          </ul>
+        </article>
+
+        <article class="content-card">
+          <h2>How to use this calculator</h2>
+          <ul>
+            <li>Enter your initial investment.</li>
+            <li>Enter your monthly contribution.</li>
+            <li>Enter the annual interest rate.</li>
+            <li>Enter the number of years.</li>
+            <li>Select the compounding frequency.</li>
+            <li>Review the final balance, contributions, interest earned, and doubling time.</li>
+          </ul>
+        </article>
+
+        <article class="content-card">
+          <h2>Frequently asked questions</h2>
+
+          <div class="faq-item">
+            <h3>What is the difference between contributions and interest earned?</h3>
+            <p>
+              Contributions are the total amount of money you personally add. Interest earned is the growth generated by compounding over time.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>Why does compounding frequency matter?</h3>
+            <p>
+              More frequent compounding can slightly increase the final balance because interest is added more often.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>Does this calculator include taxes or fees?</h3>
+            <p>
+              No. This calculator focuses on growth assumptions only and does not account for taxes, fund fees, or inflation.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>Can I use this for any currency?</h3>
+            <p>
+              Yes. The calculator uses plain numbers, so it can work with dollars, euros, pounds, pesos, or other currencies.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>© 2026 Calc Nest</div>
+      <div class="footer-links">
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/privacy.html">Privacy</a>
+        <a href="mailto:churdomains@gmail.com">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const initialInvestment = document.getElementById("initialInvestment");
+    const monthlyContribution = document.getElementById("monthlyContribution");
+    const interestRate = document.getElementById("interestRate");
+    const years = document.getElementById("years");
+    const compoundFrequency = document.getElementById("compoundFrequency");
+
+    const finalBalanceValue = document.getElementById("finalBalanceValue");
+    const totalContributionsValue = document.getElementById("totalContributionsValue");
+    const interestEarnedValue = document.getElementById("interestEarnedValue");
+    const doublingTimeValue = document.getElementById("doublingTimeValue");
+    const compoundHelper = document.getElementById("compoundHelper");
+    const milestonesList = document.getElementById("milestonesList");
+
+    function formatMoney(value) {
+      return Number(value).toLocaleString("en-US", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+    }
+
+    function futureValue(principal, monthlyAdd, annualRate, totalYears, compoundsPerYear) {
+      const r = annualRate / 100;
+      const n = compoundsPerYear;
+      const t = totalYears;
+
+      let balance = principal * Math.pow(1 + r / n, n * t);
+
+      if (monthlyAdd > 0) {
+        const monthlyRate = Math.pow(1 + r / n, n / 12) - 1;
+        const totalMonths = Math.floor(t * 12);
+
+        if (monthlyRate === 0) {
+          balance += monthlyAdd * totalMonths;
+        } else {
+          balance += monthlyAdd * ((Math.pow(1 + monthlyRate, totalMonths) - 1) / monthlyRate);
+        }
+      }
+
+      return balance;
+    }
+
+    function calculateCompoundInterest() {
+      const principal = parseFloat(initialInvestment.value) || 0;
+      const monthlyAdd = parseFloat(monthlyContribution.value) || 0;
+      const rate = parseFloat(interestRate.value);
+      const totalYears = parseFloat(years.value);
+      const freq = parseInt(compoundFrequency.value, 10);
+
+      if (rate >= 0 && totalYears > 0 && freq > 0 && (principal > 0 || monthlyAdd > 0)) {
+        const finalBalance = futureValue(principal, monthlyAdd, rate, totalYears, freq);
+        const contributions = principal + (monthlyAdd * Math.floor(totalYears * 12));
+        const interestEarned = finalBalance - contributions;
+
+        finalBalanceValue.textContent = formatMoney(finalBalance);
+        totalContributionsValue.textContent = formatMoney(contributions);
+        interestEarnedValue.textContent = formatMoney(interestEarned);
+
+        if (rate > 0) {
+          const doublingYears = 72 / rate;
+          doublingTimeValue.textContent = `${doublingYears.toFixed(1)} years`;
+        } else {
+          doublingTimeValue.textContent = "N/A";
+        }
+
+        const milestoneYears = [5, 10, 20];
+        milestonesList.innerHTML = "";
+
+        milestoneYears.forEach(yearMark => {
+          if (yearMark <= totalYears) {
+            const milestoneBalance = futureValue(principal, monthlyAdd, rate, yearMark, freq);
+            const li = document.createElement("li");
+            li.textContent = `Balance after ${yearMark} years: ${formatMoney(milestoneBalance)}`;
+            milestonesList.appendChild(li);
+          }
+        });
+
+        if (milestonesList.innerHTML.trim() === "") {
+          const li = document.createElement("li");
+          li.textContent = "Enter a longer time horizon to see milestone balances.";
+          milestonesList.appendChild(li);
+        }
+
+        compoundHelper.textContent = "Compound growth is estimated automatically from your inputs.";
+      } else {
+        finalBalanceValue.textContent = "—";
+        totalContributionsValue.textContent = "—";
+        interestEarnedValue.textContent = "—";
+        doublingTimeValue.textContent = "—";
+        milestonesList.innerHTML = "<li>Enter values to see milestones.</li>";
+        compoundHelper.textContent = "Your investment estimate will be calculated automatically as you type.";
+      }
+    }
+
+    [initialInvestment, monthlyContribution, interestRate, years, compoundFrequency].forEach(input => {
+      input.addEventListener("input", calculateCompoundInterest);
+      input.addEventListener("change", calculateCompoundInterest);
+    });
+  </script>
+</body>
+</html>
