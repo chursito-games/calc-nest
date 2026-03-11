@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mortgage Calculator | Calc Nest</title>
+  <meta name="description" content="Free online Mortgage Calculator. Estimate home loan amount, principal and interest, taxes, insurance, and total monthly mortgage payment." />
+  <link rel="canonical" href="https://calc-nest.com/mortgage-calculator/" />
+  <meta name="theme-color" content="#0f172a" />
+
+  <meta property="og:title" content="Mortgage Calculator | Calc Nest" />
+  <meta property="og:description" content="Estimate home loan amount, principal and interest, taxes, insurance, and total monthly mortgage payment." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://calc-nest.com/mortgage-calculator/" />
+
+  <style>
+    :root{
+      --bg:#0b1220;
+      --panel:#111827;
+      --text:#e5e7eb;
+      --muted:#94a3b8;
+      --line:#334155;
+      --accent:#38bdf8;
+      --shadow: 0 18px 45px rgba(0,0,0,.28);
+      --radius: 18px;
+      --max: 1080px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: linear-gradient(180deg, #0b1220 0%, #111827 100%);
+      color:var(--text);
+      line-height:1.6;
+    }
+
+    a{
+      color:var(--accent);
+      text-decoration:none;
+    }
+    a:hover{text-decoration:underline}
+
+    .container{
+      width:min(var(--max), calc(100% - 32px));
+      margin:0 auto;
+    }
+
+    .topbar{
+      border-bottom:1px solid rgba(255,255,255,.08);
+      background:rgba(15,23,42,.75);
+      backdrop-filter: blur(8px);
+      position:sticky;
+      top:0;
+      z-index:20;
+    }
+
+    .topbar-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:14px 0;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight:700;
+      color:#fff;
+      letter-spacing:.2px;
+    }
+
+    .brand-badge{
+      width:34px;
+      height:34px;
+      border-radius:12px;
+      background:linear-gradient(135deg, var(--accent), #6366f1);
+      box-shadow:0 10px 24px rgba(56,189,248,.25);
+    }
+
+    .nav{
+      display:flex;
+      gap:18px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .nav a{
+      color:var(--text);
+      opacity:.92;
+      font-size:14px;
+    }
+
+    .hero{
+      padding:56px 0 28px;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.08fr .92fr;
+      gap:24px;
+      align-items:start;
+    }
+
+    .hero-copy h1{
+      margin:0 0 12px;
+      font-size:clamp(2rem, 4vw, 3.2rem);
+      line-height:1.08;
+      letter-spacing:-.03em;
+    }
+
+    .hero-copy p{
+      margin:0 0 16px;
+      color:var(--muted);
+      max-width:64ch;
+      font-size:1.03rem;
+    }
+
+    .hero-card,
+    .content-card{
+      background:rgba(17,24,39,.88);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+    }
+
+    .hero-card{
+      padding:22px;
+    }
+
+    .eyebrow{
+      display:inline-block;
+      margin-bottom:12px;
+      font-size:12px;
+      font-weight:700;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:var(--accent);
+    }
+
+    .tool-title{
+      margin:0 0 8px;
+      font-size:1.25rem;
+    }
+
+    .tool-subtitle{
+      margin:0 0 18px;
+      color:var(--muted);
+      font-size:.95rem;
+    }
+
+    .form-grid{
+      display:grid;
+      gap:14px;
+    }
+
+    .field{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+
+    label{
+      font-size:14px;
+      font-weight:600;
+    }
+
+    input,
+    select{
+      width:100%;
+      padding:14px 14px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:#0b1220;
+      color:var(--text);
+      font-size:16px;
+      outline:none;
+    }
+
+    input:focus,
+    select:focus{
+      border-color:rgba(56,189,248,.7);
+      box-shadow:0 0 0 4px rgba(56,189,248,.14);
+    }
+
+    .toggle-row{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+      margin-bottom:10px;
+    }
+
+    .toggle-btn{
+      border:1px solid var(--line);
+      background:#0f172a;
+      color:var(--text);
+      border-radius:14px;
+      padding:12px 14px;
+      font-weight:700;
+      cursor:pointer;
+    }
+
+    .toggle-btn.active{
+      border-color:rgba(56,189,248,.55);
+      background:rgba(56,189,248,.12);
+      color:#fff;
+    }
+
+    .quick-buttons{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:4px;
+    }
+
+    .quick-btn{
+      border:1px solid var(--line);
+      background:#0f172a;
+      color:var(--text);
+      border-radius:999px;
+      padding:10px 12px;
+      font-weight:700;
+      cursor:pointer;
+      font-size:14px;
+    }
+
+    .quick-btn:hover{
+      border-color:rgba(56,189,248,.6);
+      color:#fff;
+    }
+
+    .result-box{
+      margin-top:18px;
+      padding:16px;
+      border-radius:16px;
+      background:linear-gradient(180deg, rgba(56,189,248,.10), rgba(99,102,241,.08));
+      border:1px solid rgba(255,255,255,.09);
+    }
+
+    .result-box h3{
+      margin:0 0 10px;
+      font-size:1rem;
+    }
+
+    .result-grid{
+      display:grid;
+      gap:12px;
+      margin-top:8px;
+    }
+
+    .result-card{
+      padding:14px;
+      border-radius:14px;
+      background:rgba(11,18,32,.65);
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .result-label{
+      display:block;
+      font-size:13px;
+      color:var(--muted);
+      margin-bottom:4px;
+    }
+
+    .result-value{
+      display:block;
+      font-size:1.35rem;
+      font-weight:800;
+      line-height:1.1;
+    }
+
+    .helper{
+      margin-top:10px;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .small-note{
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    .section{
+      padding:14px 0 0;
+    }
+
+    .content-grid{
+      display:grid;
+      gap:18px;
+      width:100%;
+      max-width:760px;
+      margin:18px auto 0;
+    }
+
+    .content-grid > *{
+      width:100%;
+    }
+
+    .content-card{
+      width:100%;
+      padding:22px;
+    }
+
+    .content-card h2{
+      margin:0 0 12px;
+      font-size:1.35rem;
+    }
+
+    .content-card h3{
+      margin:18px 0 8px;
+      font-size:1.02rem;
+    }
+
+    .content-card p{
+      margin:0 0 12px;
+      color:#d6dbe4;
+    }
+
+    .content-card ul{
+      margin:0 0 12px 20px;
+      color:#d6dbe4;
+    }
+
+    .faq-item{
+      padding:14px 0;
+      border-top:1px solid rgba(255,255,255,.08);
+    }
+
+    .faq-item:first-of-type{
+      border-top:none;
+      padding-top:0;
+    }
+
+    .footer{
+      padding:34px 0 48px;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .footer-inner{
+      display:flex;
+      justify-content:space-between;
+      gap:16px;
+      flex-wrap:wrap;
+      border-top:1px solid rgba(255,255,255,.08);
+      padding-top:18px;
+    }
+
+    .footer-links{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+    }
+
+    @media (max-width: 860px){
+      .hero-grid{
+        grid-template-columns:1fr;
+      }
+
+      .topbar-inner{
+        align-items:flex-start;
+        flex-direction:column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand">
+        <div class="brand-badge" aria-hidden="true"></div>
+        <span>Calc Nest</span>
+      </div>
+
+      <nav class="nav" aria-label="Primary">
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/privacy.html">Privacy</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">Free Online Calculators</span>
+          <h1>Mortgage Calculator</h1>
+          <p>
+            Use this free Mortgage Calculator to estimate your loan amount, principal and interest payment, property tax, insurance, and total monthly mortgage payment. It is designed to give a more realistic monthly housing estimate than a basic loan calculator.
+          </p>
+          <p>
+            Enter your home price, down payment, loan term, interest rate, annual property tax, and annual home insurance to see your monthly breakdown instantly.
+          </p>
+          <p class="small-note">
+            Results are estimates for general informational use and do not replace official lender calculations.
+          </p>
+        </div>
+
+        <aside class="hero-card" aria-label="Mortgage calculator tool">
+          <h2 class="tool-title">Calculate your mortgage</h2>
+          <p class="tool-subtitle">Enter your home and financing details to estimate your monthly payment.</p>
+
+          <div class="form-grid">
+            <div class="field">
+              <label for="homePrice">Home price</label>
+              <input id="homePrice" type="number" min="0" step="0.01" placeholder="e.g. 300000" />
+            </div>
+
+            <div class="field">
+              <label>Down payment</label>
+              <div class="toggle-row" role="tablist" aria-label="Down payment mode">
+                <button class="toggle-btn active" id="downAmountBtn" type="button">Amount</button>
+                <button class="toggle-btn" id="downPercentBtn" type="button">Percent</button>
+              </div>
+              <input id="downPayment" type="number" min="0" step="0.01" placeholder="e.g. 60000" />
+            </div>
+
+            <div class="field">
+              <label for="loanTerm">Loan term</label>
+              <div class="quick-buttons" aria-label="Quick term buttons">
+                <button class="quick-btn" type="button" data-term="15">15 years</button>
+                <button class="quick-btn" type="button" data-term="20">20 years</button>
+                <button class="quick-btn" type="button" data-term="30">30 years</button>
+              </div>
+              <input id="loanTerm" type="number" min="0" step="1" placeholder="e.g. 30" />
+            </div>
+
+            <div class="field">
+              <label for="interestRate">Interest rate (%)</label>
+              <input id="interestRate" type="number" min="0" step="0.01" placeholder="e.g. 6.5" />
+            </div>
+
+            <div class="field">
+              <label for="propertyTax">Annual property tax</label>
+              <input id="propertyTax" type="number" min="0" step="0.01" placeholder="e.g. 3000" />
+            </div>
+
+            <div class="field">
+              <label for="insurance">Annual home insurance</label>
+              <input id="insurance" type="number" min="0" step="0.01" placeholder="e.g. 1200" />
+            </div>
+          </div>
+
+          <div class="result-box" aria-live="polite">
+            <h3>Your mortgage estimate</h3>
+
+            <div class="result-grid">
+              <div class="result-card">
+                <span class="result-label">Loan amount</span>
+                <span class="result-value" id="loanAmountValue">—</span>
+              </div>
+
+              <div class="result-card">
+                <span class="result-label">Principal & interest</span>
+                <span class="result-value" id="principalInterestValue">—</span>
+              </div>
+
+              <div class="result-card">
+                <span class="result-label">Property tax (monthly)</span>
+                <span class="result-value" id="taxMonthlyValue">—</span>
+              </div>
+
+              <div class="result-card">
+                <span class="result-label">Insurance (monthly)</span>
+                <span class="result-value" id="insuranceMonthlyValue">—</span>
+              </div>
+
+              <div class="result-card">
+                <span class="result-label">Total monthly payment</span>
+                <span class="result-value" id="totalMonthlyValue">—</span>
+              </div>
+            </div>
+
+            <p class="helper" id="mortgageHelper">Your mortgage estimate will be calculated automatically as you type.</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container content-grid">
+        <article class="content-card">
+          <h2>What is a mortgage calculator?</h2>
+          <p>
+            A mortgage calculator estimates the monthly cost of buying a home based on the property price, down payment, mortgage term, and interest rate. A more complete mortgage calculator can also include property tax and homeowners insurance.
+          </p>
+          <p>
+            This provides a better view of what a monthly housing payment may actually look like.
+          </p>
+
+          <h3>How this mortgage calculator works</h3>
+          <p>
+            This calculator first determines the loan amount by subtracting the down payment from the home price. It then estimates the monthly principal and interest payment using a standard amortizing loan formula. Property tax and insurance are divided into monthly amounts and added to the result.
+          </p>
+        </article>
+
+        <article class="content-card">
+          <h2>How to use this calculator</h2>
+          <ul>
+            <li>Enter the home price.</li>
+            <li>Choose whether your down payment is entered as an amount or a percentage.</li>
+            <li>Enter the loan term and interest rate.</li>
+            <li>Optionally add annual property tax and annual home insurance.</li>
+            <li>Review the loan amount and total estimated monthly payment.</li>
+          </ul>
+          <p>
+            This tool is designed to be fast, simple, and easy to use on desktop or mobile devices.
+          </p>
+        </article>
+
+        <article class="content-card">
+          <h2>What is included in a monthly mortgage payment?</h2>
+          <p>
+            A monthly mortgage payment can include several parts: principal, interest, property taxes, and homeowners insurance. Some borrowers may also pay private mortgage insurance or HOA fees, but those are not included in this version of the calculator.
+          </p>
+        </article>
+
+        <article class="content-card">
+          <h2>Frequently asked questions</h2>
+
+          <div class="faq-item">
+            <h3>What is the difference between home price and loan amount?</h3>
+            <p>
+              The home price is the total purchase price of the property. The loan amount is the amount borrowed after subtracting the down payment.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>Does this calculator include PMI or HOA fees?</h3>
+            <p>
+              No. This version includes principal, interest, property tax, and homeowners insurance only.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>Can I use this for any currency?</h3>
+            <p>
+              Yes. The calculator uses plain numbers, so it can work with dollars, euros, pounds, pesos, or other currencies.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>Does this calculator store my data?</h3>
+            <p>
+              No. The values you enter are processed directly in your browser and are not stored on a server.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>© 2026 Calc Nest</div>
+      <div class="footer-links">
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/privacy.html">Privacy</a>
+        <a href="mailto:churdomains@gmail.com">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const homePrice = document.getElementById("homePrice");
+    const downPayment = document.getElementById("downPayment");
+    const loanTerm = document.getElementById("loanTerm");
+    const interestRate = document.getElementById("interestRate");
+    const propertyTax = document.getElementById("propertyTax");
+    const insurance = document.getElementById("insurance");
+
+    const downAmountBtn = document.getElementById("downAmountBtn");
+    const downPercentBtn = document.getElementById("downPercentBtn");
+    const quickTermButtons = document.querySelectorAll(".quick-btn");
+
+    const loanAmountValue = document.getElementById("loanAmountValue");
+    const principalInterestValue = document.getElementById("principalInterestValue");
+    const taxMonthlyValue = document.getElementById("taxMonthlyValue");
+    const insuranceMonthlyValue = document.getElementById("insuranceMonthlyValue");
+    const totalMonthlyValue = document.getElementById("totalMonthlyValue");
+    const mortgageHelper = document.getElementById("mortgageHelper");
+
+    let downMode = "amount";
+
+    function formatMoney(value) {
+      return Number(value).toLocaleString("en-US", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+    }
+
+    function setDownMode(mode) {
+      downMode = mode;
+
+      if (mode === "amount") {
+        downAmountBtn.classList.add("active");
+        downPercentBtn.classList.remove("active");
+        downPayment.placeholder = "e.g. 60000";
+      } else {
+        downPercentBtn.classList.add("active");
+        downAmountBtn.classList.remove("active");
+        downPayment.placeholder = "e.g. 20";
+      }
+
+      calculateMortgage();
+    }
+
+    function calculateMortgage() {
+      const price = parseFloat(homePrice.value);
+      const down = parseFloat(downPayment.value) || 0;
+      const years = parseFloat(loanTerm.value);
+      const annualRate = parseFloat(interestRate.value);
+      const annualTax = parseFloat(propertyTax.value) || 0;
+      const annualInsurance = parseFloat(insurance.value) || 0;
+
+      if (price > 0 && years > 0 && annualRate >= 0) {
+        let loanAmount;
+
+        if (downMode === "amount") {
+          loanAmount = price - down;
+        } else {
+          loanAmount = price - (price * (down / 100));
+        }
+
+        loanAmount = Math.max(0, loanAmount);
+
+        const monthlyRate = (annualRate / 100) / 12;
+        const totalPayments = years * 12;
+
+        let principalInterest;
+
+        if (monthlyRate === 0) {
+          principalInterest = loanAmount / totalPayments;
+        } else {
+          principalInterest = loanAmount *
+            (monthlyRate * Math.pow(1 + monthlyRate, totalPayments)) /
+            (Math.pow(1 + monthlyRate, totalPayments) - 1);
+        }
+
+        const monthlyTax = annualTax / 12;
+        const monthlyInsurance = annualInsurance / 12;
+        const totalMonthly = principalInterest + monthlyTax + monthlyInsurance;
+
+        loanAmountValue.textContent = formatMoney(loanAmount);
+        principalInterestValue.textContent = formatMoney(principalInterest);
+        taxMonthlyValue.textContent = formatMoney(monthlyTax);
+        insuranceMonthlyValue.textContent = formatMoney(monthlyInsurance);
+        totalMonthlyValue.textContent = formatMoney(totalMonthly);
+
+        mortgageHelper.textContent = "Mortgage estimates are calculated automatically from your inputs.";
+      } else {
+        loanAmountValue.textContent = "—";
+        principalInterestValue.textContent = "—";
+        taxMonthlyValue.textContent = "—";
+        insuranceMonthlyValue.textContent = "—";
+        totalMonthlyValue.textContent = "—";
+        mortgageHelper.textContent = "Your mortgage estimate will be calculated automatically as you type.";
+      }
+    }
+
+    downAmountBtn.addEventListener("click", () => setDownMode("amount"));
+    downPercentBtn.addEventListener("click", () => setDownMode("percent"));
+
+    quickTermButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        loanTerm.value = btn.dataset.term;
+        calculateMortgage();
+      });
+    });
+
+    [homePrice, downPayment, loanTerm, interestRate, propertyTax, insurance].forEach(input => {
+      input.addEventListener("input", calculateMortgage);
+      input.addEventListener("change", calculateMortgage);
+    });
+
+    setDownMode("amount");
+  </script>
+</body>
+</html>
