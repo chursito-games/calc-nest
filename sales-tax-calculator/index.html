@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sales Tax Calculator | Calc Nest</title>
+  <meta name="description" content="Free online Sales Tax Calculator. Add tax to a price or extract tax from a total amount, with optional quantity support." />
+  <link rel="canonical" href="https://calc-nest.com/sales-tax-calculator/" />
+  <meta name="theme-color" content="#0f172a" />
+
+  <meta property="og:title" content="Sales Tax Calculator | Calc Nest" />
+  <meta property="og:description" content="Add tax to a price or extract tax from a total amount, with optional quantity support." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://calc-nest.com/sales-tax-calculator/" />
+
+  <style>
+    :root{
+      --bg:#0b1220;
+      --panel:#111827;
+      --text:#e5e7eb;
+      --muted:#94a3b8;
+      --line:#334155;
+      --accent:#38bdf8;
+      --shadow: 0 18px 45px rgba(0,0,0,.28);
+      --radius: 18px;
+      --max: 1080px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: linear-gradient(180deg, #0b1220 0%, #111827 100%);
+      color:var(--text);
+      line-height:1.6;
+    }
+
+    a{
+      color:var(--accent);
+      text-decoration:none;
+    }
+    a:hover{text-decoration:underline}
+
+    .container{
+      width:min(var(--max), calc(100% - 32px));
+      margin:0 auto;
+    }
+
+    .topbar{
+      border-bottom:1px solid rgba(255,255,255,.08);
+      background:rgba(15,23,42,.75);
+      backdrop-filter: blur(8px);
+      position:sticky;
+      top:0;
+      z-index:20;
+    }
+
+    .topbar-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:14px 0;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight:700;
+      color:#fff;
+      letter-spacing:.2px;
+    }
+
+    .brand-badge{
+      width:34px;
+      height:34px;
+      border-radius:12px;
+      background:linear-gradient(135deg, var(--accent), #6366f1);
+      box-shadow:0 10px 24px rgba(56,189,248,.25);
+    }
+
+    .nav{
+      display:flex;
+      gap:18px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .nav a{
+      color:var(--text);
+      opacity:.92;
+      font-size:14px;
+    }
+
+    .hero{
+      padding:56px 0 28px;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.08fr .92fr;
+      gap:24px;
+      align-items:start;
+    }
+
+    .hero-copy h1{
+      margin:0 0 12px;
+      font-size:clamp(2rem, 4vw, 3.2rem);
+      line-height:1.08;
+      letter-spacing:-.03em;
+    }
+
+    .hero-copy p{
+      margin:0 0 16px;
+      color:var(--muted);
+      max-width:64ch;
+      font-size:1.03rem;
+    }
+
+    .hero-card,
+    .content-card{
+      background:rgba(17,24,39,.88);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+    }
+
+    .hero-card{
+      padding:22px;
+    }
+
+    .eyebrow{
+      display:inline-block;
+      margin-bottom:12px;
+      font-size:12px;
+      font-weight:700;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:var(--accent);
+    }
+
+    .tool-title{
+      margin:0 0 8px;
+      font-size:1.25rem;
+    }
+
+    .tool-subtitle{
+      margin:0 0 18px;
+      color:var(--muted);
+      font-size:.95rem;
+    }
+
+    .form-grid{
+      display:grid;
+      gap:14px;
+    }
+
+    .field{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+
+    label{
+      font-size:14px;
+      font-weight:600;
+    }
+
+    input{
+      width:100%;
+      padding:14px 14px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:#0b1220;
+      color:var(--text);
+      font-size:16px;
+      outline:none;
+    }
+
+    input:focus{
+      border-color:rgba(56,189,248,.7);
+      box-shadow:0 0 0 4px rgba(56,189,248,.14);
+    }
+
+    .toggle-row{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+      margin-bottom:10px;
+    }
+
+    .toggle-btn{
+      border:1px solid var(--line);
+      background:#0f172a;
+      color:var(--text);
+      border-radius:14px;
+      padding:12px 14px;
+      font-weight:700;
+      cursor:pointer;
+    }
+
+    .toggle-btn.active{
+      border-color:rgba(56,189,248,.55);
+      background:rgba(56,189,248,.12);
+      color:#fff;
+    }
+
+    .quick-buttons{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:4px;
+    }
+
+    .quick-btn{
+      border:1px solid var(--line);
+      background:#0f172a;
+      color:var(--text);
+      border-radius:999px;
+      padding:10px 12px;
+      font-weight:700;
+      cursor:pointer;
+      font-size:14px;
+    }
+
+    .quick-btn:hover{
+      border-color:rgba(56,189,248,.6);
+      color:#fff;
+    }
+
+    .result-box{
+      margin-top:18px;
+      padding:16px;
+      border-radius:16px;
+      background:linear-gradient(180deg, rgba(56,189,248,.10), rgba(99,102,241,.08));
+      border:1px solid rgba(255,255,255,.09);
+    }
+
+    .result-box h3{
+      margin:0 0 10px;
+      font-size:1rem;
+    }
+
+    .result-grid{
+      display:grid;
+      gap:12px;
+      margin-top:8px;
+    }
+
+    .result-card{
+      padding:14px;
+      border-radius:14px;
+      background:rgba(11,18,32,.65);
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .result-label{
+      display:block;
+      font-size:13px;
+      color:var(--muted);
+      margin-bottom:4px;
+    }
+
+    .result-value{
+      display:block;
+      font-size:1.35rem;
+      font-weight:800;
+      line-height:1.1;
+    }
+
+    .helper{
+      margin-top:10px;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .small-note{
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    .section{
+      padding:14px 0 0;
+    }
+
+    .content-grid{
+      display:grid;
+      gap:18px;
+      width:100%;
+      max-width:760px;
+      margin:18px auto 0;
+    }
+
+    .content-grid > *{
+      width:100%;
+    }
+
+    .content-card{
+      width:100%;
+      padding:22px;
+    }
+
+    .content-card h2{
+      margin:0 0 12px;
+      font-size:1.35rem;
+    }
+
+    .content-card h3{
+      margin:18px 0 8px;
+      font-size:1.02rem;
+    }
+
+    .content-card p{
+      margin:0 0 12px;
+      color:#d6dbe4;
+    }
+
+    .content-card ul{
+      margin:0 0 12px 20px;
+      color:#d6dbe4;
+    }
+
+    .faq-item{
+      padding:14px 0;
+      border-top:1px solid rgba(255,255,255,.08);
+    }
+
+    .faq-item:first-of-type{
+      border-top:none;
+      padding-top:0;
+    }
+
+    .footer{
+      padding:34px 0 48px;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .footer-inner{
+      display:flex;
+      justify-content:space-between;
+      gap:16px;
+      flex-wrap:wrap;
+      border-top:1px solid rgba(255,255,255,.08);
+      padding-top:18px;
+    }
+
+    .footer-links{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+    }
+
+    @media (max-width: 860px){
+      .hero-grid{
+        grid-template-columns:1fr;
+      }
+
+      .topbar-inner{
+        align-items:flex-start;
+        flex-direction:column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand">
+        <div class="brand-badge" aria-hidden="true"></div>
+        <span>Calc Nest</span>
+      </div>
+
+      <nav class="nav" aria-label="Primary">
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/privacy.html">Privacy</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">Free Online Calculators</span>
+          <h1>Sales Tax Calculator</h1>
+          <p>
+            Use this free Sales Tax Calculator to add tax to a price or extract tax from a total amount. You can also include quantity to estimate totals across multiple items.
+          </p>
+          <p>
+            This tool is useful for shopping, invoices, budgeting, retail pricing, and comparing tax-inclusive versus pre-tax prices. Switch between “Add tax” and “Extract tax” depending on what you need.
+          </p>
+          <p class="small-note">
+            Results are calculated instantly in your browser and are intended for general informational use.
+          </p>
+        </div>
+
+        <aside class="hero-card" aria-label="Sales tax calculator tool">
+          <h2 class="tool-title">Calculate sales tax</h2>
+          <p class="tool-subtitle">Enter an amount, tax rate, and optional quantity to estimate tax-inclusive or pre-tax totals.</p>
+
+          <div class="field">
+            <label>Calculation mode</label>
+            <div class="toggle-row" role="tablist" aria-label="Sales tax mode">
+              <button class="toggle-btn active" id="addTaxBtn" type="button">Add tax</button>
+              <button class="toggle-btn" id="extractTaxBtn" type="button">Extract tax</button>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="field">
+              <label for="amountInput" id="amountLabel">Price before tax</label>
+              <input id="amountInput" type="number" min="0" step="0.01" placeholder="e.g. 100" />
+            </div>
+
+            <div class="field">
+              <label for="taxRateInput">Sales tax (%)</label>
+              <input id="taxRateInput" type="number" min="0" step="0.01" placeholder="e.g. 8.5" />
+            </div>
+
+            <div class="quick-buttons" aria-label="Quick tax buttons">
+              <button class="quick-btn" type="button" data-tax="5">5%</button>
+              <button class="quick-btn" type="button" data-tax="8">8%</button>
+              <button class="quick-btn" type="button" data-tax="10">10%</button>
+              <button class="quick-btn" type="button" data-tax="15">15%</button>
+              <button class="quick-btn" type="button" data-tax="20">20%</button>
+            </div>
+
+            <div class="field">
+              <label for="quantityInput">Quantity (optional)</label>
+              <input id="quantityInput" type="number" min="1" step="1" placeholder="e.g. 3" />
+            </div>
+          </div>
+
+          <div class="result-box" aria-live="polite">
+            <h3>Your sales tax results</h3>
+
+            <div class="result-grid">
+              <div class="result-card">
+                <span class="result-label" id="subtotalLabel">Subtotal</span>
+                <span class="result-value" id="subtotalValue">—</span>
+              </div>
+
+              <div class="result-card">
+                <span class="result-label">Tax amount</span>
+                <span class="result-value" id="taxAmountValue">—</span>
+              </div>
+
+              <div class="result-card">
+                <span class="result-label" id="finalLabel">Final total</span>
+                <span class="result-value" id="finalTotalValue">—</span>
+              </div>
+            </div>
+
+            <p class="helper" id="taxHelper">Your sales tax estimate will be calculated automatically as you type.</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container content-grid">
+        <article class="content-card">
+          <h2>What is a sales tax calculator?</h2>
+          <p>
+            A sales tax calculator helps you estimate how much tax applies to a purchase or determine the pre-tax amount from a tax-inclusive total. This is useful for receipts, invoices, budgeting, and price comparisons.
+          </p>
+          <p>
+            Some users want to add tax to a base price, while others want to work backward from a final price. That is why this calculator supports both modes.
+          </p>
+
+          <h3>Add tax vs extract tax</h3>
+          <p>
+            In “Add tax” mode, the calculator starts with a pre-tax price and adds the sales tax amount. In “Extract tax” mode, the calculator starts with a total price that already includes tax and estimates the tax portion and pre-tax subtotal.
+          </p>
+        </article>
+
+        <article class="content-card">
+          <h2>How to use this sales tax calculator</h2>
+          <ul>
+            <li>Choose whether to add tax or extract tax.</li>
+            <li>Enter the amount.</li>
+            <li>Enter the sales tax rate.</li>
+            <li>Optionally enter quantity.</li>
+            <li>Review the subtotal, tax amount, and total result.</li>
+          </ul>
+          <p>
+            This tool is designed to be fast, simple, and easy to use on desktop or mobile devices.
+          </p>
+        </article>
+
+        <article class="content-card">
+          <h2>Common sales tax examples</h2>
+          <ul>
+            <li>Add 8% tax to 100 = 108</li>
+            <li>Add 10% tax to 50 = 55</li>
+            <li>Extract 8% tax from 108 = 100 before tax</li>
+            <li>Extract 10% tax from 55 = 50 before tax</li>
+          </ul>
+          <p>
+            These examples show how the same tax rate can be used in either forward or reverse calculations.
+          </p>
+        </article>
+
+        <article class="content-card">
+          <h2>Frequently asked questions</h2>
+
+          <div class="faq-item">
+            <h3>What is the difference between subtotal and total?</h3>
+            <p>
+              The subtotal is the amount before tax. The total is the amount after sales tax has been added.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>Why would I extract tax from a total?</h3>
+            <p>
+              This is useful when you already know the final price and want to estimate how much of that amount was tax.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>Can I use this calculator for any currency?</h3>
+            <p>
+              Yes. The calculator uses plain numbers, so it can work with dollars, euros, pounds, pesos, or other currencies.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>Does this calculator store my data?</h3>
+            <p>
+              No. The values you enter are processed directly in your browser and are not stored on a server.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>© 2026 Calc Nest</div>
+      <div class="footer-links">
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/privacy.html">Privacy</a>
+        <a href="mailto:churdomains@gmail.com">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const addTaxBtn = document.getElementById("addTaxBtn");
+    const extractTaxBtn = document.getElementById("extractTaxBtn");
+
+    const amountInput = document.getElementById("amountInput");
+    const taxRateInput = document.getElementById("taxRateInput");
+    const quantityInput = document.getElementById("quantityInput");
+
+    const amountLabel = document.getElementById("amountLabel");
+    const subtotalLabel = document.getElementById("subtotalLabel");
+    const finalLabel = document.getElementById("finalLabel");
+
+    const subtotalValue = document.getElementById("subtotalValue");
+    const taxAmountValue = document.getElementById("taxAmountValue");
+    const finalTotalValue = document.getElementById("finalTotalValue");
+    const taxHelper = document.getElementById("taxHelper");
+
+    const quickButtons = document.querySelectorAll(".quick-btn");
+
+    let mode = "add";
+
+    function formatMoney(value) {
+      return Number(value).toLocaleString("en-US", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+    }
+
+    function setMode(newMode) {
+      mode = newMode;
+
+      if (mode === "add") {
+        addTaxBtn.classList.add("active");
+        extractTaxBtn.classList.remove("active");
+        amountLabel.textContent = "Price before tax";
+        subtotalLabel.textContent = "Subtotal";
+        finalLabel.textContent = "Final total";
+        amountInput.placeholder = "e.g. 100";
+      } else {
+        extractTaxBtn.classList.add("active");
+        addTaxBtn.classList.remove("active");
+        amountLabel.textContent = "Total including tax";
+        subtotalLabel.textContent = "Pre-tax amount";
+        finalLabel.textContent = "Total including tax";
+        amountInput.placeholder = "e.g. 108";
+      }
+
+      calculateSalesTax();
+    }
+
+    function calculateSalesTax() {
+      const amount = parseFloat(amountInput.value);
+      const taxRate = parseFloat(taxRateInput.value);
+      const quantity = parseInt(quantityInput.value, 10) || 1;
+
+      if (amount >= 0 && taxRate >= 0 && quantity > 0) {
+        let subtotal;
+        let taxAmount;
+        let finalTotal;
+
+        if (mode === "add") {
+          subtotal = amount * quantity;
+          taxAmount = subtotal * (taxRate / 100);
+          finalTotal = subtotal + taxAmount;
+        } else {
+          finalTotal = amount * quantity;
+          subtotal = finalTotal / (1 + taxRate / 100);
+          taxAmount = finalTotal - subtotal;
+        }
+
+        subtotalValue.textContent = formatMoney(subtotal);
+        taxAmountValue.textContent = formatMoney(taxAmount);
+        finalTotalValue.textContent = formatMoney(finalTotal);
+        taxHelper.textContent = "Sales tax results are estimated automatically from your inputs.";
+      } else {
+        subtotalValue.textContent = "—";
+        taxAmountValue.textContent = "—";
+        finalTotalValue.textContent = "—";
+        taxHelper.textContent = "Your sales tax estimate will be calculated automatically as you type.";
+      }
+    }
+
+    addTaxBtn.addEventListener("click", () => setMode("add"));
+    extractTaxBtn.addEventListener("click", () => setMode("extract"));
+
+    [amountInput, taxRateInput, quantityInput].forEach(input => {
+      input.addEventListener("input", calculateSalesTax);
+      input.addEventListener("change", calculateSalesTax);
+    });
+
+    quickButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        taxRateInput.value = btn.dataset.tax;
+        calculateSalesTax();
+      });
+    });
+
+    setMode("add");
+  </script>
+</body>
+</html>
