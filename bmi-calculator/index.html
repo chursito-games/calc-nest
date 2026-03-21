@@ -6,12 +6,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>BMI Calculator | Calc Nest</title>
-  <meta name="description" content="Free online BMI Calculator with metric and imperial units. Calculate your Body Mass Index instantly, understand your BMI category, and learn how BMI works." />
+  <meta name="description" content="Free online BMI Calculator with metric and imperial units. Calculate your Body Mass Index instantly, understand your BMI category, review examples, and learn BMI limitations." />
   <link rel="canonical" href="https://calc-nest.com/bmi-calculator/" />
   <meta name="theme-color" content="#0f172a" />
 
   <meta property="og:title" content="BMI Calculator | Calc Nest" />
-  <meta property="og:description" content="Free online BMI Calculator with metric and imperial units. Find your BMI instantly and understand your result." />
+  <meta property="og:description" content="Free online BMI Calculator with metric and imperial units. Find your BMI instantly, understand your result, and review helpful BMI examples." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://calc-nest.com/bmi-calculator/" />
 
@@ -25,7 +25,6 @@
       --line:#334155;
       --accent:#38bdf8;
       --accent-2:#22c55e;
-      --danger:#ef4444;
       --shadow: 0 18px 45px rgba(0,0,0,.28);
       --radius: 18px;
       --max: 1080px;
@@ -258,19 +257,21 @@
     }
 
     .content-grid{
-  display:grid;
-  gap:18px;
-  width:100%;
-  max-width:760px;
-  margin:18px auto 0;
-}
-.content-grid > *{
-  width:100%;
-}
-  .content-card{
-  width:100%;
-  padding:22px;
-}
+      display:grid;
+      gap:18px;
+      width:100%;
+      max-width:760px;
+      margin:18px auto 0;
+    }
+
+    .content-grid > *{
+      width:100%;
+    }
+
+    .content-card{
+      width:100%;
+      padding:22px;
+    }
 
     .content-card h2{
       margin:0 0 12px;
@@ -317,6 +318,23 @@
       color:#fff;
     }
 
+    .two-col{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:16px;
+    }
+
+    .mini-card{
+      padding:16px;
+      border-radius:16px;
+      background:#0f172a;
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .mini-card h3{
+      margin-top:0;
+    }
+
     .faq-item{
       padding:14px 0;
       border-top:1px solid rgba(255,255,255,.08);
@@ -325,6 +343,32 @@
     .faq-item:first-of-type{
       border-top:none;
       padding-top:0;
+    }
+
+    .related-links{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:12px;
+    }
+
+    .related-links a{
+      display:inline-flex;
+      align-items:center;
+      padding:10px 12px;
+      border-radius:999px;
+      background:#0f172a;
+      border:1px solid rgba(255,255,255,.08);
+      color:#e5e7eb;
+      text-decoration:none;
+      font-size:14px;
+      font-weight:600;
+    }
+
+    .related-links a:hover{
+      border-color:rgba(56,189,248,.4);
+      color:#fff;
+      text-decoration:none;
     }
 
     .footer{
@@ -407,7 +451,8 @@
         grid-template-columns:1fr;
       }
 
-      .field-row{
+      .field-row,
+      .two-col{
         grid-template-columns:1fr;
       }
 
@@ -430,6 +475,7 @@
         <a href="/">Home</a>
         <a href="/about.html">About</a>
         <a href="/privacy.html">Privacy</a>
+        <a href="mailto:churdomains@gmail.com">Contact</a>
       </nav>
     </div>
   </header>
@@ -445,6 +491,9 @@
           </p>
           <p>
             BMI is a simple screening tool based on height and weight. While it does not measure body fat directly, it can be a useful starting point for understanding general weight status in adults.
+          </p>
+          <p>
+            For broader health planning, you can also compare your result with your estimated daily energy needs using the <a href="/calorie-calculator/">Calorie Calculator</a>.
           </p>
           <p class="small-note">
             This calculator is intended for general informational use and is not a substitute for medical advice.
@@ -530,13 +579,9 @@
           </p>
 
           <h3>How BMI is calculated</h3>
-          <p>
-            In metric units, the formula is:
-          </p>
+          <p>In metric units, the formula is:</p>
           <p><strong>BMI = weight (kg) ÷ height (m)²</strong></p>
-          <p>
-            In imperial units, the formula is:
-          </p>
+          <p>In imperial units, the formula is:</p>
           <p><strong>BMI = 703 × weight (lb) ÷ height (in)²</strong></p>
         </article>
 
@@ -581,6 +626,22 @@
         </article>
 
         <article class="content-card">
+          <h2>How to interpret your BMI result</h2>
+          <p>
+            A BMI result is best used as a general estimate, not as a full picture of health. A lower or higher BMI can be a helpful signal, but it should still be considered alongside factors such as muscle mass, activity level, age, and overall health context.
+          </p>
+          <ul>
+            <li><strong>Underweight:</strong> may suggest body weight is below the usual adult screening range.</li>
+            <li><strong>Normal weight:</strong> usually falls within the commonly used adult reference range.</li>
+            <li><strong>Overweight:</strong> may indicate body weight is above the standard adult screening range.</li>
+            <li><strong>Obesity:</strong> indicates a BMI above the standard adult obesity threshold.</li>
+          </ul>
+          <p>
+            BMI can be useful for general awareness, but it should not be treated as a diagnosis on its own.
+          </p>
+        </article>
+
+        <article class="content-card">
           <h2>How to use this BMI Calculator</h2>
           <ul>
             <li>Select either <strong>metric</strong> or <strong>imperial</strong> units.</li>
@@ -594,6 +655,36 @@
         </article>
 
         <article class="content-card">
+          <h2>BMI examples</h2>
+          <div class="two-col">
+            <div class="mini-card">
+              <h3>Metric example</h3>
+              <p>
+                If someone weighs <strong>70 kg</strong> and is <strong>175 cm</strong> tall, their height in meters is 1.75.
+              </p>
+              <p>
+                BMI = 70 ÷ (1.75 × 1.75) = <strong>22.9</strong>
+              </p>
+              <p>
+                A BMI of 22.9 falls within the <strong>normal weight</strong> category for adults.
+              </p>
+            </div>
+            <div class="mini-card">
+              <h3>Imperial example</h3>
+              <p>
+                If someone weighs <strong>154 lb</strong> and is <strong>5 ft 9 in</strong> tall, their total height is 69 inches.
+              </p>
+              <p>
+                BMI = 703 × 154 ÷ (69 × 69) = <strong>22.7</strong>
+              </p>
+              <p>
+                A BMI of 22.7 also falls within the <strong>normal weight</strong> category for adults.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <article class="content-card">
           <h2>Limitations of BMI</h2>
           <p>
             BMI is useful, but it has limitations. It does not directly measure body fat, muscle mass, bone density, or fat distribution. For example, an athlete with high muscle mass may have a high BMI without having excess body fat.
@@ -604,12 +695,54 @@
         </article>
 
         <article class="content-card">
+          <h2>Who should use BMI carefully?</h2>
+          <p>
+            BMI is most commonly used as a broad adult screening tool. Some groups may need more careful interpretation:
+          </p>
+          <ul>
+            <li><strong>Athletes and very muscular people:</strong> BMI can appear high even when body fat is not high.</li>
+            <li><strong>Older adults:</strong> BMI may not reflect changes in muscle mass and body composition.</li>
+            <li><strong>Pregnant women:</strong> BMI is not intended to evaluate pregnancy-related weight changes.</li>
+            <li><strong>Children and teens:</strong> BMI interpretation is different and usually uses age- and sex-specific growth charts.</li>
+          </ul>
+        </article>
+
+        <article class="content-card">
+          <h2>BMI and broader health planning</h2>
+          <p>
+            BMI can be a useful starting point, but it works best when considered with other information. For example, someone trying to manage weight may want to combine BMI with calorie planning, activity level, and longer-term habits rather than rely on a single number alone.
+          </p>
+          <p>
+            If your goal is practical day-to-day planning, you may also want to use the <a href="/calorie-calculator/">Calorie Calculator</a> to estimate energy needs or the <a href="/age-calculator/">Age Calculator</a> for age-based planning contexts.
+          </p>
+        </article>
+
+        <article class="content-card">
+          <h2>Related calculators</h2>
+          <p>
+            Explore other Calc Nest tools that are often useful alongside BMI.
+          </p>
+          <div class="related-links">
+            <a href="/calorie-calculator/">Calorie Calculator</a>
+            <a href="/age-calculator/">Age Calculator</a>
+            <a href="/">Browse all calculators</a>
+          </div>
+        </article>
+
+        <article class="content-card">
           <h2>Frequently asked questions</h2>
 
           <div class="faq-item">
             <h3>Is BMI accurate?</h3>
             <p>
               BMI is useful as a general estimate, but it is not a direct measure of body fat or overall health. It works best as a basic screening tool.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>Is BMI different for men and women?</h3>
+            <p>
+              The standard BMI formula is the same for adult men and women. However, body composition and health assessment can still differ between individuals.
             </p>
           </div>
 
@@ -630,7 +763,21 @@
           <div class="faq-item">
             <h3>Should children use the same BMI categories?</h3>
             <p>
-              No. BMI interpretation for children and teens is different and usually depends on age and sex-specific growth charts.
+              No. BMI interpretation for children and teens is different and usually depends on age- and sex-specific growth charts.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>Is BMI the same in metric and imperial units?</h3>
+            <p>
+              Yes. The result is the same in either system as long as the inputs are equivalent. The imperial version simply includes the 703 conversion factor.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>What is a healthy BMI range for adults?</h3>
+            <p>
+              The commonly used adult reference range for normal weight is 18.5 to 24.9. Even so, BMI should still be interpreted in context.
             </p>
           </div>
         </article>
