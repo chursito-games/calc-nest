@@ -1,312 +1,759 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9145068700780289"
      crossorigin="anonymous"></script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Age Calculator | Calc Nest</title>
+  <meta name="description" content="Free online Age Calculator. Calculate exact age in years, months, and days, plus total days, hours, minutes, seconds, and days until next birthday." />
+  <link rel="canonical" href="https://calc-nest.com/age-calculator/" />
+  <meta name="theme-color" content="#0f172a" />
 
-<title>Age Calculator | Calc Nest</title>
+  <meta property="og:title" content="Age Calculator | Calc Nest" />
+  <meta property="og:description" content="Free online Age Calculator to find exact age, total days lived, and time until next birthday." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://calc-nest.com/age-calculator/" />
 
-<meta name="description" content="Free age calculator. Calculate your exact age in years, months, days, hours, minutes, and seconds from your birth date." />
+  <style>
+    :root{
+      --bg:#0b1220;
+      --panel:#111827;
+      --panel-2:#1f2937;
+      --text:#e5e7eb;
+      --muted:#94a3b8;
+      --line:#334155;
+      --accent:#38bdf8;
+      --accent-2:#22c55e;
+      --shadow: 0 18px 45px rgba(0,0,0,.28);
+      --radius: 18px;
+      --max: 1080px;
+    }
 
-<link rel="canonical" href="https://calc-nest.com/age-calculator/" />
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: linear-gradient(180deg, #0b1220 0%, #111827 100%);
+      color:var(--text);
+      line-height:1.6;
+    }
 
-<style>
+    a{
+      color:var(--accent);
+      text-decoration:none;
+    }
+    a:hover{text-decoration:underline}
 
-body{
-font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial;
-background:#0b1220;
-color:#e5e7eb;
-margin:0;
-line-height:1.6;
-}
+    .container{
+      width:min(var(--max), calc(100% - 32px));
+      margin:0 auto;
+    }
 
-.container{
-max-width:1000px;
-margin:auto;
-padding:40px 20px;
-}
+    .topbar{
+      border-bottom:1px solid rgba(255,255,255,.08);
+      background:rgba(15,23,42,.75);
+      backdrop-filter: blur(8px);
+      position:sticky;
+      top:0;
+      z-index:20;
+    }
 
-h1{
-margin-top:0;
-font-size:42px;
-}
+    .topbar-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:14px 0;
+    }
 
-.card{
-background:#111827;
-padding:30px;
-border-radius:16px;
-border:1px solid rgba(255,255,255,0.08);
-margin-top:20px;
-}
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight:700;
+      color:#fff;
+      letter-spacing:.2px;
+    }
 
-input{
-width:100%;
-padding:14px;
-font-size:16px;
-border-radius:12px;
-border:1px solid #334155;
-background:#0b1220;
-color:#e5e7eb;
-}
+    .brand-badge{
+      width:34px;
+      height:34px;
+      border-radius:12px;
+      background:linear-gradient(135deg, var(--accent), #6366f1);
+      box-shadow:0 10px 24px rgba(56,189,248,.25);
+    }
 
-input:focus{
-outline:none;
-border-color:#38bdf8;
-}
+    .nav{
+      display:flex;
+      gap:18px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
 
-.result{
-margin-top:20px;
-font-size:24px;
-font-weight:700;
-}
+    .nav a{
+      color:var(--text);
+      opacity:.92;
+      font-size:14px;
+    }
 
-.result-extra{
-margin-top:12px;
-font-size:16px;
-color:#94a3b8;
-line-height:1.8;
-}
+    .hero{
+      padding:56px 0 28px;
+    }
 
-.stats-grid{
-display:grid;
-grid-template-columns:repeat(2, minmax(0, 1fr));
-gap:12px;
-margin-top:16px;
-}
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.08fr .92fr;
+      gap:24px;
+      align-items:start;
+    }
 
-.stat-box{
-background:#0b1220;
-border:1px solid rgba(255,255,255,0.08);
-border-radius:14px;
-padding:14px;
-}
+    .hero-copy h1{
+      margin:0 0 12px;
+      font-size:clamp(2rem, 4vw, 3.25rem);
+      line-height:1.08;
+      letter-spacing:-.03em;
+    }
 
-.stat-label{
-display:block;
-font-size:13px;
-color:#94a3b8;
-margin-bottom:6px;
-}
+    .hero-copy p{
+      margin:0 0 16px;
+      color:var(--muted);
+      max-width:64ch;
+      font-size:1.03rem;
+    }
 
-.stat-value{
-display:block;
-font-size:20px;
-font-weight:700;
-color:#e5e7eb;
-word-break:break-word;
-}
+    .eyebrow{
+      display:inline-block;
+      margin-bottom:12px;
+      font-size:12px;
+      font-weight:700;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:var(--accent);
+    }
 
-a{
-color:#38bdf8;
-text-decoration:none;
-}
+    .hero-card,
+    .content-card{
+      background:rgba(17,24,39,.88);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+    }
 
-a:hover{
-text-decoration:underline;
-}
+    .hero-card{
+      padding:22px;
+    }
 
-footer{
-margin-top:50px;
-color:#94a3b8;
-font-size:14px;
-display:flex;
-justify-content:space-between;
-flex-wrap:wrap;
-gap:10px;
-}
+    .tool-title{
+      margin:0 0 8px;
+      font-size:1.25rem;
+    }
 
-@media(max-width:700px){
+    .tool-subtitle{
+      margin:0 0 18px;
+      color:var(--muted);
+      font-size:.95rem;
+    }
 
-h1{
-font-size:32px;
-}
+    .field{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      margin-bottom:14px;
+    }
 
-.stats-grid{
-grid-template-columns:1fr;
-}
+    label{
+      font-size:14px;
+      font-weight:600;
+    }
 
-}
+    input{
+      width:100%;
+      padding:14px 14px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:#0b1220;
+      color:var(--text);
+      font-size:16px;
+      outline:none;
+    }
 
-</style>
+    input:focus{
+      border-color:rgba(56,189,248,.7);
+      box-shadow:0 0 0 4px rgba(56,189,248,.14);
+    }
 
+    .result-box{
+      margin-top:18px;
+      padding:16px;
+      border-radius:16px;
+      background:linear-gradient(180deg, rgba(56,189,248,.10), rgba(34,197,94,.08));
+      border:1px solid rgba(255,255,255,.09);
+    }
+
+    .result-box h3{
+      margin:0 0 6px;
+      font-size:1rem;
+    }
+
+    .result-main{
+      font-size:1.8rem;
+      font-weight:800;
+      line-height:1.15;
+      margin:2px 0 10px;
+      word-break:break-word;
+    }
+
+    .result-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+      margin-top:14px;
+    }
+
+    .result-stat{
+      padding:14px;
+      border-radius:14px;
+      background:rgba(11,18,32,.65);
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .result-stat-label{
+      display:block;
+      color:var(--muted);
+      font-size:13px;
+      margin-bottom:4px;
+    }
+
+    .result-stat-value{
+      display:block;
+      font-size:1rem;
+      font-weight:800;
+    }
+
+    .helper{
+      color:var(--muted);
+      font-size:14px;
+      margin:0;
+    }
+
+    .section{
+      padding:14px 0 0;
+    }
+
+    .content-grid{
+      display:grid;
+      gap:18px;
+      width:100%;
+      max-width:760px;
+      margin:18px auto 0;
+    }
+
+    .content-card{
+      padding:22px;
+    }
+
+    .content-card h2{
+      margin:0 0 12px;
+      font-size:1.35rem;
+    }
+
+    .content-card h3{
+      margin:18px 0 8px;
+      font-size:1.02rem;
+    }
+
+    .content-card p{
+      margin:0 0 12px;
+      color:#d6dbe4;
+    }
+
+    .content-card ul{
+      margin:0 0 12px 20px;
+      color:#d6dbe4;
+    }
+
+    .two-col{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:16px;
+    }
+
+    .mini-card{
+      padding:16px;
+      border-radius:16px;
+      background:#0f172a;
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .mini-card h3{
+      margin-top:0;
+    }
+
+    .faq-item{
+      padding:14px 0;
+      border-top:1px solid rgba(255,255,255,.08);
+    }
+
+    .faq-item:first-of-type{
+      border-top:none;
+      padding-top:0;
+    }
+
+    .related-links{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:12px;
+    }
+
+    .related-links a{
+      display:inline-flex;
+      align-items:center;
+      padding:10px 12px;
+      border-radius:999px;
+      background:#0f172a;
+      border:1px solid rgba(255,255,255,.08);
+      color:#e5e7eb;
+      text-decoration:none;
+      font-size:14px;
+      font-weight:600;
+    }
+
+    .related-links a:hover{
+      border-color:rgba(56,189,248,.4);
+      color:#fff;
+      text-decoration:none;
+    }
+
+    .small-note{
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    .footer{
+      padding:34px 0 48px;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .footer-inner{
+      display:flex;
+      justify-content:space-between;
+      gap:16px;
+      flex-wrap:wrap;
+      border-top:1px solid rgba(255,255,255,.08);
+      padding-top:18px;
+    }
+
+    .footer-links{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+    }
+
+    @media (max-width: 860px){
+      .hero-grid,
+      .two-col,
+      .result-grid{
+        grid-template-columns:1fr;
+      }
+
+      .topbar-inner{
+        align-items:flex-start;
+        flex-direction:column;
+      }
+    }
+
+    @media (max-width: 640px){
+      .hero{
+        padding-top:34px;
+      }
+
+      .result-main{
+        font-size:1.45rem;
+      }
+    }
+  </style>
 </head>
-
 <body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand">
+        <div class="brand-badge" aria-hidden="true"></div>
+        <span>Calc Nest</span>
+      </div>
 
-<div class="container">
+      <nav class="nav" aria-label="Primary">
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/privacy.html">Privacy</a>
+        <a href="mailto:churdomains@gmail.com">Contact</a>
+      </nav>
+    </div>
+  </header>
 
-<h1>Age Calculator</h1>
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">Free Online Calculators</span>
+          <h1>Age Calculator</h1>
+          <p>
+            Use this free Age Calculator to find exact age from a date of birth. The calculator shows age in years, months, and days, along with total days, hours, minutes, seconds, and the number of days until the next birthday.
+          </p>
+          <p>
+            Age calculations can be useful for forms, milestones, planning, registrations, eligibility checks, and simple day-to-day curiosity. This page is designed to make the result easy to read without requiring any manual date math.
+          </p>
+          <p>
+            If you need to compare two custom dates rather than calculate age from birth date to today, you may also want to use the <a href="/days-between-dates/">Days Between Dates Calculator</a>.
+          </p>
+          <p class="small-note">
+            Results are intended for general informational and educational use.
+          </p>
+        </div>
 
-<p>
-Use this free age calculator to determine your exact age based on your birth date. The calculator shows your age in years, months, days, and also the total number of days, hours, minutes, and seconds.
-</p>
+        <aside class="hero-card" aria-label="Age calculator tool">
+          <h2 class="tool-title">Calculate exact age</h2>
+          <p class="tool-subtitle">Enter a date of birth and the result updates automatically.</p>
 
-<p>
-Age calculators are useful for forms, official documents, school requirements, legal age checks, and personal curiosity.
-</p>
+          <div class="field">
+            <label for="birthDate">Date of birth</label>
+            <input id="birthDate" type="date" />
+          </div>
 
-<h2>Enter your birth date</h2>
+          <div class="result-box" aria-live="polite">
+            <h3>Your result</h3>
+            <div class="result-main" id="ageMain">—</div>
+            <p class="helper" id="ageHelper">Select a date of birth to calculate exact age.</p>
 
-<div class="card">
+            <div class="result-grid">
+              <div class="result-stat">
+                <span class="result-stat-label">Total days</span>
+                <span class="result-stat-value" id="totalDays">—</span>
+              </div>
+              <div class="result-stat">
+                <span class="result-stat-label">Total hours</span>
+                <span class="result-stat-value" id="totalHours">—</span>
+              </div>
+              <div class="result-stat">
+                <span class="result-stat-label">Total minutes</span>
+                <span class="result-stat-value" id="totalMinutes">—</span>
+              </div>
+              <div class="result-stat">
+                <span class="result-stat-label">Total seconds</span>
+                <span class="result-stat-value" id="totalSeconds">—</span>
+              </div>
+              <div class="result-stat">
+                <span class="result-stat-label">Next birthday</span>
+                <span class="result-stat-value" id="nextBirthday">—</span>
+              </div>
+              <div class="result-stat">
+                <span class="result-stat-label">Born on</span>
+                <span class="result-stat-value" id="bornWeekday">—</span>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
 
-<label for="birthdate">Birth date</label>
-<input type="date" id="birthdate">
+    <section class="section">
+      <div class="container content-grid">
+        <article class="content-card">
+          <h2>What this Age Calculator shows</h2>
+          <p>
+            This calculator is built to show more than just your age in years. It gives a more complete breakdown of elapsed time from your birth date to today.
+          </p>
+          <ul>
+            <li><strong>Years, months, and days:</strong> useful for the most common way people express age.</li>
+            <li><strong>Total days:</strong> useful for exact elapsed time and date-based planning.</li>
+            <li><strong>Total hours, minutes, and seconds:</strong> useful for curiosity and more precise totals.</li>
+            <li><strong>Days until next birthday:</strong> useful for planning upcoming milestones.</li>
+          </ul>
+        </article>
 
-<div class="result" id="result">—</div>
+        <article class="content-card">
+          <h2>How age is calculated</h2>
+          <p>
+            Exact age is not calculated by simply subtracting birth year from the current year. Months and days matter too. For example, someone born in the same year as another person may still be younger if their birthday has not happened yet this year.
+          </p>
+          <p>
+            This Age Calculator compares the selected date of birth with today’s date and adjusts the result to account for incomplete months and days.
+          </p>
+        </article>
 
-<div class="result-extra" id="resultExtra"></div>
+        <article class="content-card">
+          <h2>Worked age examples</h2>
+          <div class="two-col">
+            <div class="mini-card">
+              <h3>Example 1: standard birthday</h3>
+              <p>
+                If someone was born on <strong>March 15, 2000</strong>, their exact age depends on today’s date. The calculator checks whether the birthday has already occurred this year and then adjusts years, months, and days accordingly.
+              </p>
+            </div>
+            <div class="mini-card">
+              <h3>Example 2: leap year birthday</h3>
+              <p>
+                If someone was born on <strong>February 29</strong>, leap years can affect the exact day count. The total number of days lived may differ slightly from a simple estimate because leap years add extra days over time.
+              </p>
+            </div>
+          </div>
+        </article>
 
-<div class="stats-grid" id="statsGrid" style="display:none;">
-  <div class="stat-box">
-    <span class="stat-label">Total days</span>
-    <span class="stat-value" id="totalDays">—</span>
-  </div>
+        <article class="content-card">
+          <h2>Why exact age can differ from a simple year subtraction</h2>
+          <p>
+            A quick estimate often uses current year minus birth year, but that is only approximate. Exact age depends on whether the birthday has already happened this year and how many full months and days have passed since the last birthday.
+          </p>
+          <p>
+            This is why two people born in the same calendar year can still have different exact ages on the same day.
+          </p>
+        </article>
 
-  <div class="stat-box">
-    <span class="stat-label">Total hours</span>
-    <span class="stat-value" id="totalHours">—</span>
-  </div>
+        <article class="content-card">
+          <h2>Leap years and date accuracy</h2>
+          <p>
+            Leap years add an extra day to the calendar. Over a long time span, those extra days affect total day counts and can also influence how precise age calculations are expressed.
+          </p>
+          <p>
+            That is one reason a proper age calculator is more reliable than trying to estimate age manually using only rough year differences.
+          </p>
+        </article>
 
-  <div class="stat-box">
-    <span class="stat-label">Total minutes</span>
-    <span class="stat-value" id="totalMinutes">—</span>
-  </div>
+        <article class="content-card">
+          <h2>Common uses for an Age Calculator</h2>
+          <ul>
+            <li><strong>Forms and registrations:</strong> confirm exact age for online forms or documents.</li>
+            <li><strong>Eligibility checks:</strong> estimate whether someone meets an age-related requirement.</li>
+            <li><strong>School and milestone planning:</strong> track birthdays, anniversaries, and age-based events.</li>
+            <li><strong>Personal records:</strong> calculate precise age in days or years for family history or personal notes.</li>
+            <li><strong>General curiosity:</strong> see how many days, hours, or minutes have passed since birth.</li>
+          </ul>
+        </article>
 
-  <div class="stat-box">
-    <span class="stat-label">Total seconds</span>
-    <span class="stat-value" id="totalSeconds">—</span>
-  </div>
-</div>
+        <article class="content-card">
+          <h2>Age Calculator vs Days Between Dates</h2>
+          <p>
+            An Age Calculator is mainly designed to measure time from a birth date to today. A <a href="/days-between-dates/">Days Between Dates Calculator</a> is more flexible if you want to compare any two dates, such as project timelines, deadlines, anniversaries, or date ranges.
+          </p>
+          <p>
+            If your goal is exact age from birth date, this page is the better fit. If your goal is a general date comparison, use the related date tool instead.
+          </p>
+        </article>
 
-</div>
+        <article class="content-card">
+          <h2>Related calculators</h2>
+          <p>
+            Explore other Calc Nest tools that pair naturally with this Age Calculator.
+          </p>
+          <div class="related-links">
+            <a href="/days-between-dates/">Days Between Dates</a>
+            <a href="/retirement-calculator/">Retirement Calculator</a>
+            <a href="/">Browse all calculators</a>
+          </div>
+        </article>
 
-<h2>How the age calculation works</h2>
+        <article class="content-card">
+          <h2>Frequently asked questions</h2>
 
-<p>
-This age calculator compares your birth date with the current date and determines the difference in years, months, and days. It also calculates the total amount of time that has passed in days, hours, minutes, and seconds.
-</p>
+          <div class="faq-item">
+            <h3>How do you calculate exact age?</h3>
+            <p>
+              Exact age is calculated by comparing the birth date with today’s date and adjusting for years, months, and days that have not yet fully passed.
+            </p>
+          </div>
 
-<p>
-For example, if someone was born on January 1, 2000 and today is January 1, 2024, their age would be exactly 24 years.
-</p>
+          <div class="faq-item">
+            <h3>Why is age shown in years, months, and days?</h3>
+            <p>
+              That format gives a more precise result than using only years. It reflects the exact time elapsed since the date of birth.
+            </p>
+          </div>
 
-<h2>Common uses for age calculators</h2>
+          <div class="faq-item">
+            <h3>Can this calculator show total days lived?</h3>
+            <p>
+              Yes. In addition to exact age, the calculator shows total days, hours, minutes, and seconds.
+            </p>
+          </div>
 
-<ul>
-<li>Checking eligibility for age-based services</li>
-<li>School registration</li>
-<li>Legal age verification</li>
-<li>Insurance calculations</li>
-<li>Personal curiosity</li>
-</ul>
+          <div class="faq-item">
+            <h3>Does the calculator account for leap years?</h3>
+            <p>
+              Yes. Leap years affect total day counts, and the calculator accounts for the actual dates involved.
+            </p>
+          </div>
 
-<footer>
+          <div class="faq-item">
+            <h3>Can I calculate age from birth date to today instantly?</h3>
+            <p>
+              Yes. Just enter a birth date and the page calculates the result automatically.
+            </p>
+          </div>
 
-<div>© 2026 Calc Nest</div>
+          <div class="faq-item">
+            <h3>Why can two people born in the same year have different ages?</h3>
+            <p>
+              Because exact age depends on the full birth date, not only the birth year. One person may already have had their birthday this year while another has not.
+            </p>
+          </div>
 
-<div>
-<a href="/">Home</a> |
-<a href="/about.html">About</a> |
-<a href="/privacy.html">Privacy</a> |
-<a href="mailto:churdomains@gmail.com">Contact</a>
-</div>
+          <div class="faq-item">
+            <h3>What does “days until next birthday” mean?</h3>
+            <p>
+              It shows how many days remain until the next time your birth month and day occur on the calendar.
+            </p>
+          </div>
 
-</footer>
+          <div class="faq-item">
+            <h3>Can I use this Age Calculator on mobile?</h3>
+            <p>
+              Yes. The page is designed to work on phones, tablets, and desktop devices.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
 
-</div>
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>© 2026 Calc Nest</div>
+      <div class="footer-links">
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/privacy.html">Privacy</a>
+        <a href="mailto:churdomains@gmail.com">Contact</a>
+      </div>
+    </div>
+  </footer>
 
-<script>
+  <script>
+    const birthDateInput = document.getElementById("birthDate");
+    const ageMain = document.getElementById("ageMain");
+    const ageHelper = document.getElementById("ageHelper");
+    const totalDays = document.getElementById("totalDays");
+    const totalHours = document.getElementById("totalHours");
+    const totalMinutes = document.getElementById("totalMinutes");
+    const totalSeconds = document.getElementById("totalSeconds");
+    const nextBirthday = document.getElementById("nextBirthday");
+    const bornWeekday = document.getElementById("bornWeekday");
 
-const birthdateInput = document.getElementById("birthdate");
-const result = document.getElementById("result");
-const resultExtra = document.getElementById("resultExtra");
-const statsGrid = document.getElementById("statsGrid");
+    function formatNumber(value) {
+      if (!isFinite(value)) return "—";
+      return Math.floor(value).toLocaleString();
+    }
 
-const totalDaysEl = document.getElementById("totalDays");
-const totalHoursEl = document.getElementById("totalHours");
-const totalMinutesEl = document.getElementById("totalMinutes");
-const totalSecondsEl = document.getElementById("totalSeconds");
+    function daysInMonth(year, monthIndex) {
+      return new Date(year, monthIndex + 1, 0).getDate();
+    }
 
-let liveTimer = null;
+    function formatDateLong(date) {
+      return date.toLocaleDateString(undefined, {
+        year: "numeric",
+        month: "long",
+        day: "numeric"
+      });
+    }
 
-function formatNumber(num){
-  return num.toLocaleString("en-US");
-}
+    function calculateAge() {
+      const value = birthDateInput.value;
 
-function calculateAgeBreakdown(birthDate, now){
-  let years = now.getFullYear() - birthDate.getFullYear();
-  let months = now.getMonth() - birthDate.getMonth();
-  let days = now.getDate() - birthDate.getDate();
+      if (!value) {
+        resetResults();
+        return;
+      }
 
-  if(days < 0){
-    months--;
-    const previousMonth = new Date(now.getFullYear(), now.getMonth(), 0);
-    days += previousMonth.getDate();
-  }
+      const birthDate = new Date(value + "T00:00:00");
+      const today = new Date();
+      const todayStart = new Date(today.getFullYear(), today.getMonth(), today.getDate());
 
-  if(months < 0){
-    years--;
-    months += 12;
-  }
+      if (birthDate > todayStart || isNaN(birthDate.getTime())) {
+        ageMain.textContent = "—";
+        ageHelper.textContent = "Please enter a valid birth date in the past.";
+        totalDays.textContent = "—";
+        totalHours.textContent = "—";
+        totalMinutes.textContent = "—";
+        totalSeconds.textContent = "—";
+        nextBirthday.textContent = "—";
+        bornWeekday.textContent = "—";
+        return;
+      }
 
-  return { years, months, days };
-}
+      let years = todayStart.getFullYear() - birthDate.getFullYear();
+      let months = todayStart.getMonth() - birthDate.getMonth();
+      let days = todayStart.getDate() - birthDate.getDate();
 
-function updateAge(){
-  if(!birthdateInput.value){
-    result.textContent = "—";
-    resultExtra.textContent = "";
-    statsGrid.style.display = "none";
-    return;
-  }
+      if (days < 0) {
+        months -= 1;
+        const prevMonthIndex = (todayStart.getMonth() - 1 + 12) % 12;
+        const prevMonthYear = prevMonthIndex === 11 ? todayStart.getFullYear() - 1 : todayStart.getFullYear();
+        days += daysInMonth(prevMonthYear, prevMonthIndex);
+      }
 
-  const birthDate = new Date(birthdateInput.value + "T00:00:00");
-  const now = new Date();
+      if (months < 0) {
+        years -= 1;
+        months += 12;
+      }
 
-  if(isNaN(birthDate.getTime()) || birthDate > now){
-    result.textContent = "Please enter a valid birth date";
-    resultExtra.textContent = "";
-    statsGrid.style.display = "none";
-    return;
-  }
+      const diffMs = todayStart.getTime() - birthDate.getTime();
+      const dayMs = 24 * 60 * 60 * 1000;
+      const totalDaysValue = Math.floor(diffMs / dayMs);
+      const totalHoursValue = totalDaysValue * 24;
+      const totalMinutesValue = totalHoursValue * 60;
+      const totalSecondsValue = totalMinutesValue * 60;
 
-  const { years, months, days } = calculateAgeBreakdown(birthDate, now);
-  result.textContent = years + " years, " + months + " months, " + days + " days";
-  resultExtra.textContent = "Updated in real time";
+      let nextBirthdayDate = new Date(todayStart.getFullYear(), birthDate.getMonth(), birthDate.getDate());
 
-  const diffMs = now - birthDate;
-  const totalSeconds = Math.floor(diffMs / 1000);
-  const totalMinutes = Math.floor(totalSeconds / 60);
-  const totalHours = Math.floor(totalMinutes / 60);
-  const totalDays = Math.floor(totalHours / 24);
+      if (
+        birthDate.getMonth() === 1 &&
+        birthDate.getDate() === 29 &&
+        daysInMonth(todayStart.getFullYear(), 1) < 29
+      ) {
+        nextBirthdayDate = new Date(todayStart.getFullYear(), 1, 28);
+      }
 
-  totalDaysEl.textContent = formatNumber(totalDays);
-  totalHoursEl.textContent = formatNumber(totalHours);
-  totalMinutesEl.textContent = formatNumber(totalMinutes);
-  totalSecondsEl.textContent = formatNumber(totalSeconds);
+      if (nextBirthdayDate < todayStart) {
+        let nextYear = todayStart.getFullYear() + 1;
+        nextBirthdayDate = new Date(nextYear, birthDate.getMonth(), birthDate.getDate());
 
-  statsGrid.style.display = "grid";
-}
+        if (
+          birthDate.getMonth() === 1 &&
+          birthDate.getDate() === 29 &&
+          daysInMonth(nextYear, 1) < 29
+        ) {
+          nextBirthdayDate = new Date(nextYear, 1, 28);
+        }
+      }
 
-function startLiveUpdate(){
-  if(liveTimer){
-    clearInterval(liveTimer);
-  }
+      const daysUntilBirthday = Math.ceil((nextBirthdayDate.getTime() - todayStart.getTime()) / dayMs);
+      const weekday = birthDate.toLocaleDateString(undefined, { weekday: "long" });
 
-  updateAge();
+      ageMain.textContent = `${years} year${years !== 1 ? "s" : ""}, ${months} month${months !== 1 ? "s" : ""}, ${days} day${days !== 1 ? "s" : ""}`;
+      ageHelper.textContent = `Born on ${formatDateLong(birthDate)}.`;
+      totalDays.textContent = formatNumber(totalDaysValue);
+      totalHours.textContent = formatNumber(totalHoursValue);
+      totalMinutes.textContent = formatNumber(totalMinutesValue);
+      totalSeconds.textContent = formatNumber(totalSecondsValue);
+      nextBirthday.textContent = `${formatNumber(daysUntilBirthday)} day${daysUntilBirthday !== 1 ? "s" : ""}`;
+      bornWeekday.textContent = weekday;
+    }
 
-  liveTimer = setInterval(() => {
-    updateAge();
-  }, 1000);
-}
+    function resetResults() {
+      ageMain.textContent = "—";
+      ageHelper.textContent = "Select a date of birth to calculate exact age.";
+      totalDays.textContent = "—";
+      totalHours.textContent = "—";
+      totalMinutes.textContent = "—";
+      totalSeconds.textContent = "—";
+      nextBirthday.textContent = "—";
+      bornWeekday.textContent = "—";
+    }
 
-birthdateInput.addEventListener("input", startLiveUpdate);
-
-</script>
-
+    birthDateInput.addEventListener("input", calculateAge);
+    resetResults();
+  </script>
 </body>
-
 </html>
