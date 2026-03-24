@@ -6,12 +6,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Loan Calculator | Calc Nest</title>
-  <meta name="description" content="Free online Loan Calculator. Estimate payments, total interest, total repayment, and first payment breakdown for monthly, biweekly, or weekly loans." />
+  <meta name="description" content="Free online Loan Calculator. Estimate monthly, biweekly, or weekly loan payments, total interest, total paid, number of payments, and first payment breakdown." />
   <link rel="canonical" href="https://calc-nest.com/loan-calculator/" />
   <meta name="theme-color" content="#0f172a" />
 
   <meta property="og:title" content="Loan Calculator | Calc Nest" />
-  <meta property="og:description" content="Estimate payments, total interest, total repayment, and first payment breakdown for monthly, biweekly, or weekly loans." />
+  <meta property="og:description" content="Free online Loan Calculator for payment estimates, total interest, total paid, and first payment breakdown." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://calc-nest.com/loan-calculator/" />
 
@@ -19,10 +19,12 @@
     :root{
       --bg:#0b1220;
       --panel:#111827;
+      --panel-2:#1f2937;
       --text:#e5e7eb;
       --muted:#94a3b8;
       --line:#334155;
       --accent:#38bdf8;
+      --accent-2:#22c55e;
       --shadow: 0 18px 45px rgba(0,0,0,.28);
       --radius: 18px;
       --max: 1080px;
@@ -109,7 +111,7 @@
 
     .hero-copy h1{
       margin:0 0 12px;
-      font-size:clamp(2rem, 4vw, 3.2rem);
+      font-size:clamp(2rem, 4vw, 3.25rem);
       line-height:1.08;
       letter-spacing:-.03em;
     }
@@ -119,6 +121,16 @@
       color:var(--muted);
       max-width:64ch;
       font-size:1.03rem;
+    }
+
+    .eyebrow{
+      display:inline-block;
+      margin-bottom:12px;
+      font-size:12px;
+      font-weight:700;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:var(--accent);
     }
 
     .hero-card,
@@ -133,16 +145,6 @@
       padding:22px;
     }
 
-    .eyebrow{
-      display:inline-block;
-      margin-bottom:12px;
-      font-size:12px;
-      font-weight:700;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-      color:var(--accent);
-    }
-
     .tool-title{
       margin:0 0 8px;
       font-size:1.25rem;
@@ -154,15 +156,17 @@
       font-size:.95rem;
     }
 
-    .form-grid{
-      display:grid;
-      gap:14px;
-    }
-
     .field{
       display:flex;
       flex-direction:column;
       gap:8px;
+      margin-bottom:14px;
+    }
+
+    .field-row{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
     }
 
     label{
@@ -192,51 +196,54 @@
       margin-top:18px;
       padding:16px;
       border-radius:16px;
-      background:linear-gradient(180deg, rgba(56,189,248,.10), rgba(99,102,241,.08));
+      background:linear-gradient(180deg, rgba(56,189,248,.10), rgba(34,197,94,.08));
       border:1px solid rgba(255,255,255,.09);
     }
 
     .result-box h3{
-      margin:0 0 10px;
+      margin:0 0 6px;
       font-size:1rem;
+    }
+
+    .result-main{
+      font-size:1.8rem;
+      font-weight:800;
+      line-height:1.15;
+      margin:2px 0 10px;
+      word-break:break-word;
     }
 
     .result-grid{
       display:grid;
+      grid-template-columns:1fr 1fr;
       gap:12px;
-      margin-top:8px;
+      margin-top:14px;
     }
 
-    .result-card{
+    .result-stat{
       padding:14px;
       border-radius:14px;
       background:rgba(11,18,32,.65);
       border:1px solid rgba(255,255,255,.08);
     }
 
-    .result-label{
+    .result-stat-label{
       display:block;
-      font-size:13px;
       color:var(--muted);
+      font-size:13px;
       margin-bottom:4px;
     }
 
-    .result-value{
+    .result-stat-value{
       display:block;
-      font-size:1.35rem;
+      font-size:1rem;
       font-weight:800;
-      line-height:1.1;
     }
 
     .helper{
-      margin-top:10px;
       color:var(--muted);
       font-size:14px;
-    }
-
-    .small-note{
-      color:var(--muted);
-      font-size:13px;
+      margin:0;
     }
 
     .section{
@@ -251,12 +258,7 @@
       margin:18px auto 0;
     }
 
-    .content-grid > *{
-      width:100%;
-    }
-
     .content-card{
-      width:100%;
       padding:22px;
     }
 
@@ -280,6 +282,23 @@
       color:#d6dbe4;
     }
 
+    .two-col{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:16px;
+    }
+
+    .mini-card{
+      padding:16px;
+      border-radius:16px;
+      background:#0f172a;
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .mini-card h3{
+      margin-top:0;
+    }
+
     .faq-item{
       padding:14px 0;
       border-top:1px solid rgba(255,255,255,.08);
@@ -288,6 +307,37 @@
     .faq-item:first-of-type{
       border-top:none;
       padding-top:0;
+    }
+
+    .related-links{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:12px;
+    }
+
+    .related-links a{
+      display:inline-flex;
+      align-items:center;
+      padding:10px 12px;
+      border-radius:999px;
+      background:#0f172a;
+      border:1px solid rgba(255,255,255,.08);
+      color:#e5e7eb;
+      text-decoration:none;
+      font-size:14px;
+      font-weight:600;
+    }
+
+    .related-links a:hover{
+      border-color:rgba(56,189,248,.4);
+      color:#fff;
+      text-decoration:none;
+    }
+
+    .small-note{
+      color:var(--muted);
+      font-size:13px;
     }
 
     .footer{
@@ -312,13 +362,26 @@
     }
 
     @media (max-width: 860px){
-      .hero-grid{
+      .hero-grid,
+      .two-col,
+      .field-row,
+      .result-grid{
         grid-template-columns:1fr;
       }
 
       .topbar-inner{
         align-items:flex-start;
         flex-direction:column;
+      }
+    }
+
+    @media (max-width: 640px){
+      .hero{
+        padding-top:34px;
+      }
+
+      .result-main{
+        font-size:1.45rem;
       }
     }
   </style>
@@ -335,6 +398,7 @@
         <a href="/">Home</a>
         <a href="/about.html">About</a>
         <a href="/privacy.html">Privacy</a>
+        <a href="mailto:churdomains@gmail.com">Contact</a>
       </nav>
     </div>
   </header>
@@ -346,72 +410,71 @@
           <span class="eyebrow">Free Online Calculators</span>
           <h1>Loan Calculator</h1>
           <p>
-            Use this free Loan Calculator to estimate your payment amount, total interest, total repayment, and first payment breakdown. You can compare monthly, biweekly, and weekly payment schedules.
+            Use this free Loan Calculator to estimate loan payments for monthly, biweekly, or weekly repayment schedules. The calculator also shows total interest, total amount paid, total number of payments, and a first payment breakdown between principal and interest.
           </p>
           <p>
-            This tool is useful for personal loans, car loans, and other fixed-rate borrowing scenarios. Enter the loan amount, annual interest rate, loan term, and payment frequency to see your estimated repayment figures instantly.
+            A loan payment calculator is useful when you want to understand how borrowing amount, rate, term, and payment frequency affect affordability and total cost over time.
+          </p>
+          <p>
+            If you want to compare borrowing cost including fees, you may also want to use the <a href="/apr-calculator/">APR Calculator</a>. For home loans specifically, see the <a href="/mortgage-calculator/">Mortgage Calculator</a>.
           </p>
           <p class="small-note">
-            Results are estimates for general informational use and do not replace official lender calculations.
+            Results are intended as practical estimates for fixed-rate, fixed-payment style loans.
           </p>
         </div>
 
         <aside class="hero-card" aria-label="Loan calculator tool">
-          <h2 class="tool-title">Calculate your loan</h2>
-          <p class="tool-subtitle">Enter your loan details and review the repayment estimate instantly.</p>
+          <h2 class="tool-title">Estimate loan payments</h2>
+          <p class="tool-subtitle">Enter the loan details and the result updates automatically.</p>
 
-          <div class="form-grid">
+          <div class="field">
+            <label for="loanAmount">Loan amount</label>
+            <input id="loanAmount" type="number" min="0" step="0.01" placeholder="e.g. 15000" />
+          </div>
+
+          <div class="field-row">
             <div class="field">
-              <label for="loanAmount">Loan amount</label>
-              <input id="loanAmount" type="number" min="0" step="0.01" placeholder="e.g. 10000" />
+              <label for="interestRate">Interest rate (%)</label>
+              <input id="interestRate" type="number" min="0" step="0.01" placeholder="e.g. 7.5" />
             </div>
-
-            <div class="field">
-              <label for="interestRate">Annual interest rate (%)</label>
-              <input id="interestRate" type="number" min="0" step="0.01" placeholder="e.g. 5" />
-            </div>
-
             <div class="field">
               <label for="loanTerm">Loan term (years)</label>
               <input id="loanTerm" type="number" min="0" step="0.1" placeholder="e.g. 5" />
             </div>
+          </div>
 
-            <div class="field">
-              <label for="paymentFrequency">Payment frequency</label>
-              <select id="paymentFrequency">
-                <option value="12">Monthly</option>
-                <option value="26">Biweekly</option>
-                <option value="52">Weekly</option>
-              </select>
-            </div>
+          <div class="field">
+            <label for="paymentFrequency">Payment frequency</label>
+            <select id="paymentFrequency">
+              <option value="12">Monthly</option>
+              <option value="26">Biweekly</option>
+              <option value="52">Weekly</option>
+            </select>
           </div>
 
           <div class="result-box" aria-live="polite">
-            <h3>Your loan estimate</h3>
+            <h3>Your result</h3>
+            <div class="result-main" id="paymentMain">—</div>
+            <p class="helper" id="loanHelper">Enter loan details to estimate payments and borrowing cost.</p>
 
             <div class="result-grid">
-              <div class="result-card">
-                <span class="result-label">Payment per period</span>
-                <span class="result-value" id="paymentValue">—</span>
+              <div class="result-stat">
+                <span class="result-stat-label">Total interest</span>
+                <span class="result-stat-value" id="totalInterest">—</span>
               </div>
-
-              <div class="result-card">
-                <span class="result-label">Total interest</span>
-                <span class="result-value" id="interestValue">—</span>
+              <div class="result-stat">
+                <span class="result-stat-label">Total paid</span>
+                <span class="result-stat-value" id="totalPaid">—</span>
               </div>
-
-              <div class="result-card">
-                <span class="result-label">Total paid</span>
-                <span class="result-value" id="totalPaidValue">—</span>
+              <div class="result-stat">
+                <span class="result-stat-label">Number of payments</span>
+                <span class="result-stat-value" id="numberOfPayments">—</span>
               </div>
-
-              <div class="result-card">
-                <span class="result-label">First payment breakdown</span>
-                <span class="result-value" id="firstBreakdownValue">—</span>
+              <div class="result-stat">
+                <span class="result-stat-label">First payment breakdown</span>
+                <span class="result-stat-value" id="firstPaymentBreakdown">—</span>
               </div>
             </div>
-
-            <p class="helper" id="loanHelper">Your loan estimate will be calculated automatically as you type.</p>
           </div>
         </aside>
       </div>
@@ -420,72 +483,182 @@
     <section class="section">
       <div class="container content-grid">
         <article class="content-card">
-          <h2>What is a loan calculator?</h2>
+          <h2>What this calculator shows</h2>
           <p>
-            A loan calculator estimates how much you may need to pay on a loan over time. It uses the loan amount, interest rate, repayment term, and payment frequency to estimate the repayment schedule.
+            This Loan Calculator is designed to help you understand the most important parts of a fixed-rate loan estimate.
           </p>
-          <p>
-            This type of calculator is useful for understanding affordability before applying for financing.
-          </p>
-
-          <h3>How loan payments are calculated</h3>
-          <p>
-            This calculator uses a standard amortizing loan formula. Each payment typically includes both principal and interest. Early payments usually include more interest, while later payments shift more toward principal.
-          </p>
+          <ul>
+            <li><strong>Payment per period:</strong> the amount paid each month, biweekly period, or week.</li>
+            <li><strong>Total interest:</strong> the total borrowing cost from interest alone over the full term.</li>
+            <li><strong>Total paid:</strong> the sum of principal and total interest.</li>
+            <li><strong>Number of payments:</strong> the total count of payment periods in the schedule.</li>
+            <li><strong>First payment breakdown:</strong> how much of the first payment goes to interest versus principal.</li>
+          </ul>
         </article>
 
         <article class="content-card">
-          <h2>How to use this loan calculator</h2>
+          <h2>Why loan term matters</h2>
+          <p>
+            Loan term has a major effect on both payment size and total borrowing cost.
+          </p>
           <ul>
-            <li>Enter the total loan amount.</li>
-            <li>Enter the annual interest rate.</li>
-            <li>Choose the loan term in years.</li>
-            <li>Select monthly, biweekly, or weekly payments.</li>
-            <li>Review the payment estimate, total interest, and repayment totals.</li>
+            <li><strong>Shorter term:</strong> usually means higher payments but lower total interest.</li>
+            <li><strong>Longer term:</strong> usually means lower payments but higher total interest over time.</li>
           </ul>
           <p>
-            This calculator is designed to be fast, simple, and easy to use on desktop or mobile devices.
+            This tradeoff is one of the most important things to understand before borrowing.
           </p>
         </article>
 
         <article class="content-card">
-          <h2>Why payment frequency matters</h2>
+          <h2>How payment frequency affects results</h2>
+          <div class="two-col">
+            <div class="mini-card">
+              <h3>Monthly</h3>
+              <p>
+                Monthly payments are common for many installment loans and are often easiest for broad budgeting.
+              </p>
+            </div>
+            <div class="mini-card">
+              <h3>Biweekly</h3>
+              <p>
+                Biweekly payments divide the cost into more frequent chunks and can be useful for comparing repayment rhythm with pay schedules.
+              </p>
+            </div>
+            <div class="mini-card">
+              <h3>Weekly</h3>
+              <p>
+                Weekly payments are smaller per payment, but there are many more payment periods in the schedule.
+              </p>
+            </div>
+            <div class="mini-card">
+              <h3>Important note</h3>
+              <p>
+                Actual lenders may structure repayment timing differently, so this tool is best used as an estimate rather than an exact lender schedule.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <article class="content-card">
+          <h2>Worked examples</h2>
+          <div class="two-col">
+            <div class="mini-card">
+              <h3>Example 1: personal loan</h3>
+              <p>
+                A borrower considering a <strong>$15,000</strong> personal loan at <strong>7.5%</strong> over <strong>5 years</strong> can use this page to estimate the periodic payment and total interest before applying.
+              </p>
+            </div>
+            <div class="mini-card">
+              <h3>Example 2: auto loan</h3>
+              <p>
+                For a fixed-rate auto loan, comparing a shorter term with a longer term can show how much payment size changes and how much extra interest a longer term may add.
+              </p>
+            </div>
+            <div class="mini-card">
+              <h3>Example 3: monthly vs biweekly</h3>
+              <p>
+                Running the same loan with monthly and biweekly schedules can help compare cash-flow rhythm, even if lender payment conventions vary in practice.
+              </p>
+            </div>
+            <div class="mini-card">
+              <h3>Example 4: zero-interest case</h3>
+              <p>
+                If the interest rate is <strong>0%</strong>, the payment becomes a simple division of principal by number of payments, with no interest cost added.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <article class="content-card">
+          <h2>Common uses for a Loan Calculator</h2>
+          <ul>
+            <li><strong>Personal loans:</strong> estimate cost before applying.</li>
+            <li><strong>Auto loans:</strong> compare terms and payment affordability.</li>
+            <li><strong>Budget planning:</strong> see whether a payment fits within expected monthly cash flow.</li>
+            <li><strong>Loan comparisons:</strong> compare shorter and longer repayment structures.</li>
+            <li><strong>Affordability checks:</strong> understand how borrowing amount and rate affect payment size.</li>
+          </ul>
+        </article>
+
+        <article class="content-card">
+          <h2>Important assumptions and limitations</h2>
           <p>
-            Payment frequency affects how often you make repayments and can slightly change total repayment timing. Monthly, biweekly, and weekly schedules are common depending on the lender and loan type.
+            This Loan Calculator is intended for fixed-rate, fixed-payment style estimates. It does not include lender fees, APR-specific charges, taxes, insurance, late fees, penalties, or product-specific costs.
           </p>
           <p>
-            This calculator allows you to compare different repayment frequencies more easily.
+            Actual lender amortization methods and payment timing may vary. This page is most useful as a practical planning tool rather than a formal loan disclosure.
           </p>
+        </article>
+
+        <article class="content-card">
+          <h2>Related calculators</h2>
+          <p>
+            Explore other Calc Nest tools often used alongside this Loan Calculator.
+          </p>
+          <div class="related-links">
+            <a href="/apr-calculator/">APR Calculator</a>
+            <a href="/mortgage-calculator/">Mortgage Calculator</a>
+            <a href="/">Browse all calculators</a>
+          </div>
         </article>
 
         <article class="content-card">
           <h2>Frequently asked questions</h2>
 
           <div class="faq-item">
-            <h3>Does this loan calculator include fees?</h3>
+            <h3>How is the loan payment calculated?</h3>
             <p>
-              No. This calculator focuses on the principal, interest rate, and repayment term. It does not include lender fees, insurance, or taxes.
+              The calculator uses a standard amortizing loan formula based on loan amount, interest rate, payment frequency, and loan term.
             </p>
           </div>
 
           <div class="faq-item">
-            <h3>What does “first payment breakdown” mean?</h3>
+            <h3>Is a shorter loan term always better?</h3>
             <p>
-              It shows how much of your first payment goes toward principal and how much goes toward interest.
+              A shorter term often reduces total interest, but it also increases the payment size. The better option depends on affordability and borrowing goals.
             </p>
           </div>
 
           <div class="faq-item">
-            <h3>Can I use this for any currency?</h3>
+            <h3>Why is total interest so high on long terms?</h3>
             <p>
-              Yes. The calculator uses plain numbers, so it can work with dollars, euros, pounds, pesos, or other currencies.
+              Longer terms keep the balance outstanding for more time, which allows interest to accumulate over more payment periods.
             </p>
           </div>
 
           <div class="faq-item">
-            <h3>Does this calculator store my data?</h3>
+            <h3>What happens if interest rate is 0%?</h3>
             <p>
-              No. The values you enter are processed directly in your browser and are not stored on a server.
+              If the interest rate is zero, the payment is just the loan amount divided by the total number of payments.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>Can I compare monthly and biweekly payments?</h3>
+            <p>
+              Yes. This page allows you to switch payment frequency so you can compare how repayment rhythm affects the payment amount.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>Does this calculator include APR or fees?</h3>
+            <p>
+              No. This tool focuses on payment and amortization estimates. For borrowing cost that includes fees, use the related APR Calculator.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>Is this calculator good for car loans and personal loans?</h3>
+            <p>
+              Yes. It is useful for many fixed-rate installment loans, including common personal and auto loan scenarios.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>Can I use this Loan Calculator on mobile?</h3>
+            <p>
+              Yes. The page is designed to work on phones, tablets, and desktop devices.
             </p>
           </div>
         </article>
@@ -506,68 +679,99 @@
   </footer>
 
   <script>
-    const loanAmount = document.getElementById("loanAmount");
-    const interestRate = document.getElementById("interestRate");
-    const loanTerm = document.getElementById("loanTerm");
-    const paymentFrequency = document.getElementById("paymentFrequency");
+    const loanAmountInput = document.getElementById("loanAmount");
+    const interestRateInput = document.getElementById("interestRate");
+    const loanTermInput = document.getElementById("loanTerm");
+    const paymentFrequencyInput = document.getElementById("paymentFrequency");
 
-    const paymentValue = document.getElementById("paymentValue");
-    const interestValue = document.getElementById("interestValue");
-    const totalPaidValue = document.getElementById("totalPaidValue");
-    const firstBreakdownValue = document.getElementById("firstBreakdownValue");
+    const paymentMain = document.getElementById("paymentMain");
     const loanHelper = document.getElementById("loanHelper");
+    const totalInterestEl = document.getElementById("totalInterest");
+    const totalPaidEl = document.getElementById("totalPaid");
+    const numberOfPaymentsEl = document.getElementById("numberOfPayments");
+    const firstPaymentBreakdownEl = document.getElementById("firstPaymentBreakdown");
 
-    function formatMoney(value) {
-      return Number(value).toLocaleString("en-US", {
+    function formatCurrency(value) {
+      if (!isFinite(value)) return "—";
+      return value.toLocaleString(undefined, {
+        style: "currency",
+        currency: "USD",
         minimumFractionDigits: 2,
         maximumFractionDigits: 2
       });
     }
 
-    function calculateLoan() {
-      const principal = parseFloat(loanAmount.value);
-      const annualRate = parseFloat(interestRate.value);
-      const years = parseFloat(loanTerm.value);
-      const paymentsPerYear = parseInt(paymentFrequency.value, 10);
-
-      if (principal > 0 && years > 0 && annualRate >= 0 && paymentsPerYear > 0) {
-        const totalPayments = years * paymentsPerYear;
-        const periodicRate = (annualRate / 100) / paymentsPerYear;
-
-        let payment;
-
-        if (periodicRate === 0) {
-          payment = principal / totalPayments;
-        } else {
-          payment = principal * (periodicRate * Math.pow(1 + periodicRate, totalPayments)) /
-            (Math.pow(1 + periodicRate, totalPayments) - 1);
-        }
-
-        const totalPaid = payment * totalPayments;
-        const totalInterest = totalPaid - principal;
-
-        const firstInterest = principal * periodicRate;
-        const firstPrincipal = payment - firstInterest;
-
-        paymentValue.textContent = formatMoney(payment);
-        interestValue.textContent = formatMoney(totalInterest);
-        totalPaidValue.textContent = formatMoney(totalPaid);
-        firstBreakdownValue.textContent = `Principal: ${formatMoney(firstPrincipal)} · Interest: ${formatMoney(firstInterest)}`;
-
-        loanHelper.textContent = "Loan payments and totals are estimated automatically from your inputs.";
-      } else {
-        paymentValue.textContent = "—";
-        interestValue.textContent = "—";
-        totalPaidValue.textContent = "—";
-        firstBreakdownValue.textContent = "—";
-        loanHelper.textContent = "Your loan estimate will be calculated automatically as you type.";
-      }
+    function formatNumber(value, decimals = 0) {
+      if (!isFinite(value)) return "—";
+      return value.toLocaleString(undefined, {
+        minimumFractionDigits: decimals,
+        maximumFractionDigits: decimals
+      });
     }
 
-    [loanAmount, interestRate, loanTerm, paymentFrequency].forEach(input => {
+    function calculateLoan() {
+      const principal = parseFloat(loanAmountInput.value);
+      const annualRate = parseFloat(interestRateInput.value);
+      const termYears = parseFloat(loanTermInput.value);
+      const paymentsPerYear = parseFloat(paymentFrequencyInput.value);
+
+      if (
+        !isFinite(principal) || principal <= 0 ||
+        !isFinite(annualRate) || annualRate < 0 ||
+        !isFinite(termYears) || termYears <= 0 ||
+        !isFinite(paymentsPerYear) || paymentsPerYear <= 0
+      ) {
+        resetResults();
+        return;
+      }
+
+      const totalPaymentsExact = termYears * paymentsPerYear;
+      const totalPayments = Math.round(totalPaymentsExact);
+      const periodicRate = annualRate / 100 / paymentsPerYear;
+
+      let payment;
+
+      if (periodicRate === 0) {
+        payment = principal / totalPayments;
+      } else {
+        payment = principal * periodicRate / (1 - Math.pow(1 + periodicRate, -totalPayments));
+      }
+
+      const totalPaid = payment * totalPayments;
+      const totalInterest = totalPaid - principal;
+
+      const firstInterest = periodicRate === 0 ? 0 : principal * periodicRate;
+      const firstPrincipal = payment - firstInterest;
+
+      const frequencyLabel =
+        paymentsPerYear === 12 ? "month" :
+        paymentsPerYear === 26 ? "biweekly period" :
+        "week";
+
+      paymentMain.textContent = `${formatCurrency(payment)} per ${frequencyLabel}`;
+      loanHelper.textContent = "Estimate based on a fixed-rate amortizing loan structure.";
+
+      totalInterestEl.textContent = formatCurrency(totalInterest);
+      totalPaidEl.textContent = formatCurrency(totalPaid);
+      numberOfPaymentsEl.textContent = formatNumber(totalPayments);
+      firstPaymentBreakdownEl.textContent = `${formatCurrency(firstPrincipal)} principal / ${formatCurrency(firstInterest)} interest`;
+    }
+
+    function resetResults() {
+      paymentMain.textContent = "—";
+      loanHelper.textContent = "Enter loan details to estimate payments and borrowing cost.";
+      totalInterestEl.textContent = "—";
+      totalPaidEl.textContent = "—";
+      numberOfPaymentsEl.textContent = "—";
+      firstPaymentBreakdownEl.textContent = "—";
+    }
+
+    [loanAmountInput, interestRateInput, loanTermInput, paymentFrequencyInput].forEach(input => {
       input.addEventListener("input", calculateLoan);
       input.addEventListener("change", calculateLoan);
     });
+
+    resetResults();
   </script>
 </body>
 </html>
