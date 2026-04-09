@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9145068700780289"
+     crossorigin="anonymous"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Extra Payment Calculator | Calc Nest</title>
+  <meta name="description" content="Free online Extra Payment Calculator. Compare original vs accelerated loan payoff, estimate interest saved, time saved, and preview a loan schedule with extra payments." />
+  <link rel="canonical" href="https://calc-nest.com/extra-payment-calculator/" />
+  <meta name="theme-color" content="#0f172a" />
+
+  <meta property="og:title" content="Extra Payment Calculator | Calc Nest" />
+  <meta property="og:description" content="Free online Extra Payment Calculator for recurring extra payments, annual lump sums, one-time extra payments, interest saved, and faster payoff." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://calc-nest.com/extra-payment-calculator/" />
+
+  <style>
+    :root{
+      --bg:#0b1220;
+      --panel:#111827;
+      --panel-2:#1f2937;
+      --text:#e5e7eb;
+      --muted:#94a3b8;
+      --line:#334155;
+      --accent:#38bdf8;
+      --accent-2:#22c55e;
+      --shadow: 0 18px 45px rgba(0,0,0,.28);
+      --radius: 18px;
+      --max: 1120px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: linear-gradient(180deg, #0b1220 0%, #111827 100%);
+      color:var(--text);
+      line-height:1.6;
+    }
+
+    a{
+      color:var(--accent);
+      text-decoration:none;
+    }
+    a:hover{text-decoration:underline}
+
+    .container{
+      width:min(var(--max), calc(100% - 32px));
+      margin:0 auto;
+    }
+
+    .topbar{
+      border-bottom:1px solid rgba(255,255,255,.08);
+      background:rgba(15,23,42,.75);
+      backdrop-filter: blur(8px);
+      position:sticky;
+      top:0;
+      z-index:20;
+    }
+
+    .topbar-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:14px 0;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight:700;
+      color:#fff;
+      letter-spacing:.2px;
+    }
+
+    .brand-badge{
+      width:34px;
+      height:34px;
+      border-radius:12px;
+      background:linear-gradient(135deg, var(--accent), #6366f1);
+      box-shadow:0 10px 24px rgba(56,189,248,.25);
+    }
+
+    .nav{
+      display:flex;
+      gap:18px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .nav a{
+      color:var(--text);
+      opacity:.92;
+      font-size:14px;
+    }
+
+    .hero{
+      padding:56px 0 28px;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.04fr .96fr;
+      gap:24px;
+      align-items:start;
+    }
+
+    .hero-copy h1{
+      margin:0 0 12px;
+      font-size:clamp(2rem, 4vw, 3.2rem);
+      line-height:1.08;
+      letter-spacing:-.03em;
+    }
+
+    .hero-copy p{
+      margin:0 0 16px;
+      color:var(--muted);
+      max-width:66ch;
+      font-size:1.03rem;
+    }
+
+    .eyebrow{
+      display:inline-block;
+      margin-bottom:12px;
+      font-size:12px;
+      font-weight:700;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:var(--accent);
+    }
+
+    .hero-card,
+    .content-card,
+    .table-card{
+      background:rgba(17,24,39,.88);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:22px;
+    }
+
+    .tool-title{
+      margin:0 0 8px;
+      font-size:1.25rem;
+    }
+
+    .tool-subtitle{
+      margin:0 0 18px;
+      color:var(--muted);
+      font-size:.95rem;
+    }
+
+    .mode-toggle{
+      display:grid;
+      grid-template-columns:1fr 1fr 1fr;
+      gap:10px;
+      margin-bottom:18px;
+    }
+
+    .mode-btn{
+      border:1px solid var(--line);
+      background:#0f172a;
+      color:var(--text);
+      border-radius:14px;
+      padding:12px 14px;
+      font-weight:700;
+      cursor:pointer;
+      text-align:center;
+    }
+
+    .mode-btn.active{
+      border-color:rgba(56,189,248,.55);
+      background:rgba(56,189,248,.12);
+      color:#fff;
+    }
+
+    .field{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      margin-bottom:14px;
+    }
+
+    .field-row{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+    }
+
+    label{
+      font-size:14px;
+      font-weight:600;
+    }
+
+    input,
+    select,
+    button{
+      font:inherit;
+    }
+
+    input,
+    select{
+      width:100%;
+      padding:14px 14px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:#0b1220;
+      color:var(--text);
+      font-size:16px;
+      outline:none;
+    }
+
+    input:focus,
+    select:focus{
+      border-color:rgba(56,189,248,.7);
+      box-shadow:0 0 0 4px rgba(56,189,248,.14);
+    }
+
+    .result-box{
+      margin-top:18px;
+      padding:16px;
+      border-radius:16px;
+      background:linear-gradient(180deg, rgba(56,189,248,.10), rgba(34,197,94,.08));
+      border:1px solid rgba(255,255,255,.09);
+    }
+
+    .result-box h3{
+      margin:0 0 6px;
+      font-size:1rem;
+    }
+
+    .result-main{
+      font-size:1.8rem;
+      font-weight:800;
+      line-height:1.15;
+      margin:2px 0 10px;
+      word-break:break-word;
+    }
+
+    .helper{
+      color:var(--muted);
+      font-size:14px;
+      margin:0;
+    }
+
+    .result-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+      margin-top:14px;
+    }
+
+    .result-stat{
+      padding:14px;
+      border-radius:14px;
+      background:rgba(11,18,32,.65);
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .result-stat-label{
+      display:block;
+      color:var(--muted);
+      font-size:13px;
+      margin-bottom:4px;
+    }
+
+    .result-stat-value{
+      display:block;
+      font-size:1rem;
+      font-weight:800;
+    }
+
+    .section{
+      padding:14px 0 0;
+    }
+
+    .content-grid{
+      display:grid;
+      gap:18px;
+      width:100%;
+      max-width:760px;
+      margin:18px auto 0;
+    }
+
+    .content-card h2,
+    .table-card h2{
+      margin:0 0 12px;
+      font-size:1.35rem;
+    }
+
+    .content-card h3{
+      margin:18px 0 8px;
+      font-size:1.02rem;
+    }
+
+    .content-card p,
+    .table-card p{
+      margin:0 0 12px;
+      color:#d6dbe4;
+    }
+
+    .content-card ul{
+      margin:0 0 12px 20px;
+      color:#d6dbe4;
+    }
+
+    .two-col{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:16px;
+    }
+
+    .mini-card{
+      padding:16px;
+      border-radius:16px;
+      background:#0f172a;
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .mini-card h3{
+      margin-top:0;
+    }
+
+    .faq-item{
+      padding:14px 0;
+      border-top:1px solid rgba(255,255,255,.08);
+    }
+
+    .faq-item:first-of-type{
+      border-top:none;
+      padding-top:0;
+    }
+
+    .related-links{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:12px;
+    }
+
+    .related-links a{
+      display:inline-flex;
+      align-items:center;
+      padding:10px 12px;
+      border-radius:999px;
+      background:#0f172a;
+      border:1px solid rgba(255,255,255,.08);
+      color:#e5e7eb;
+      text-decoration:none;
+      font-size:14px;
+      font-weight:600;
+    }
+
+    .related-links a:hover{
+      border-color:rgba(56,189,248,.4);
+      color:#fff;
+      text-decoration:none;
+    }
+
+    .table-wrap{
+      overflow:auto;
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:16px;
+      background:#0f172a;
+    }
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+      min-width:820px;
+    }
+
+    th, td{
+      padding:12px 14px;
+      border-bottom:1px solid rgba(255,255,255,.07);
+      text-align:left;
+      font-size:14px;
+    }
+
+    th{
+      background:#111827;
+      color:#fff;
+      position:sticky;
+      top:0;
+    }
+
+    .table-actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:14px;
+    }
+
+    .btn{
+      border:1px solid rgba(255,255,255,.1);
+      background:rgba(255,255,255,.06);
+      color:#fff;
+      border-radius:14px;
+      padding:10px 14px;
+      cursor:pointer;
+      font-weight:700;
+      min-height:46px;
+    }
+
+    .btn:hover{
+      background:rgba(255,255,255,.1);
+    }
+
+    .small-note{
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    .footer{
+      padding:34px 0 48px;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .footer-inner{
+      display:flex;
+      justify-content:space-between;
+      gap:16px;
+      flex-wrap:wrap;
+      border-top:1px solid rgba(255,255,255,.08);
+      padding-top:18px;
+    }
+
+    .footer-links{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+    }
+
+    @media (max-width: 980px){
+      .mode-toggle{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width: 900px){
+      .hero-grid,
+      .field-row,
+      .result-grid,
+      .two-col{
+        grid-template-columns:1fr;
+      }
+
+      .topbar-inner{
+        align-items:flex-start;
+        flex-direction:column;
+      }
+    }
+
+    @media (max-width: 640px){
+      .hero{
+        padding-top:34px;
+      }
+
+      .result-main{
+        font-size:1.45rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand">
+        <div class="brand-badge" aria-hidden="true"></div>
+        <span>Calc Nest</span>
+      </div>
+
+      <nav class="nav" aria-label="Primary">
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/privacy.html">Privacy</a>
+        <a href="mailto:churdomains@gmail.com">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">Free Online Calculators</span>
+          <h1>Extra Payment Calculator</h1>
+          <p>
+            Use this free Extra Payment Calculator to compare your original loan payoff plan against an accelerated payoff plan with extra payments. The calculator estimates interest saved, time saved, and shows how extra payments can reduce your remaining balance faster.
+          </p>
+          <p>
+            This page supports three common extra-payment styles: recurring extra payment, annual lump sum, and one-time extra payment. That makes it useful for planning monthly prepayments, using an annual bonus or refund, or testing a one-time principal reduction.
+          </p>
+          <p>
+            It pairs naturally with the <a href="/mortgage-calculator/">Mortgage Calculator</a>, <a href="/loan-calculator/">Loan Calculator</a>, <a href="/amortization-calculator/">Amortization Calculator</a>, and <a href="/debt-payoff-calculator/">Debt Payoff Calculator</a>.
+          </p>
+          <p class="small-note">
+            Results are intended as practical estimates for fixed-rate amortizing loans and may differ from lender servicing details.
+          </p>
+        </div>
+
+        <aside class="hero-card" aria-label="Extra payment calculator tool">
+          <h2 class="tool-title">Compare original vs accelerated payoff</h2>
+          <p class="tool-subtitle">Enter loan details and test how paying more can change interest and payoff time.</p>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="loanAmount">Loan amount</label>
+              <input id="loanAmount" type="number" min="0" step="0.01" placeholder="e.g. 250000" />
+            </div>
+            <div class="field">
+              <label for="interestRate">Interest rate (%)</label>
+              <input id="interestRate" type="number" min="0" step="0.01" placeholder="e.g. 6.5" />
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="loanTerm">Loan term (years)</label>
+              <input id="loanTerm" type="number" min="0" step="0.1" placeholder="e.g. 30" />
+            </div>
+            <div class="field">
+              <label for="paymentFrequency">Payment frequency</label>
+              <select id="paymentFrequency">
+                <option value="12">Monthly</option>
+                <option value="26">Biweekly</option>
+                <option value="52">Weekly</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="mode-toggle" role="tablist" aria-label="Extra payment type">
+            <button class="mode-btn active" id="recurringBtn" type="button">Recurring extra</button>
+            <button class="mode-btn" id="annualBtn" type="button">Annual lump sum</button>
+            <button class="mode-btn" id="oneTimeBtn" type="button">One-time extra</button>
+          </div>
+
+          <div id="recurringFields">
+            <div class="field">
+              <label for="recurringExtra">Extra payment every period</label>
+              <input id="recurringExtra" type="number" min="0" step="0.01" placeholder="e.g. 100" />
+            </div>
+          </div>
+
+          <div id="annualFields" hidden>
+            <div class="field">
+              <label for="annualExtra">Extra amount once per year</label>
+              <input id="annualExtra" type="number" min="0" step="0.01" placeholder="e.g. 1000" />
+            </div>
+          </div>
+
+          <div id="oneTimeFields" hidden>
+            <div class="field-row">
+              <div class="field">
+                <label for="oneTimeExtra">One-time extra payment</label>
+                <input id="oneTimeExtra" type="number" min="0" step="0.01" placeholder="e.g. 5000" />
+              </div>
+              <div class="field">
+                <label for="oneTimePeriod">Payment number</label>
+                <input id="oneTimePeriod" type="number" min="1" step="1" placeholder="e.g. 12" />
+              </div>
+            </div>
+          </div>
+
+          <div class="result-box" aria-live="polite">
+            <h3>Your result</h3>
+            <div class="result-main" id="mainResult">—</div>
+            <p class="helper" id="resultHelper">Enter values to compare the original plan with an extra-payment strategy.</p>
+
+            <div class="result-grid">
+              <div class="result-stat">
+                <span class="result-stat-label">Base payment</span>
+                <span class="result-stat-value" id="basePayment">—</span>
+              </div>
+              <div class="result-stat">
+                <span class="result-stat-label">Original payoff</span>
+                <span class="result-stat-value" id="originalPayoff">—</span>
+              </div>
+              <div class="result-stat">
+                <span class="result-stat-label">Accelerated payoff</span>
+                <span class="result-stat-value" id="newPayoff">—</span>
+              </div>
+              <div class="result-stat">
+                <span class="result-stat-label">Original total interest</span>
+                <span class="result-stat-value" id="originalInterest">—</span>
+              </div>
+              <div class="result-stat">
+                <span class="result-stat-label">New total interest</span>
+                <span class="result-stat-value" id="newInterest">—</span>
+              </div>
+              <div class="result-stat">
+                <span class="result-stat-label">Interest saved</span>
+                <span class="result-stat-value" id="interestSaved">—</span>
+              </div>
+              <div class="result-stat">
+                <span class="result-stat-label">Time saved</span>
+                <span class="result-stat-value" id="timeSaved">—</span>
+              </div>
+              <div class="result-stat">
+                <span class="result-stat-label">Payoff date estimate</span>
+                <span class="result-stat-value" id="payoffDate">—</span>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container" style="max-width:980px;">
+        <div class="table-card">
+          <h2>Original vs accelerated schedule preview</h2>
+          <p>
+            The table below compares the original plan against the accelerated plan. By default, it shows the first 12 rows so you can see how extra payments change the balance trajectory early in the loan.
+          </p>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Payment #</th>
+                  <th>Original Balance</th>
+                  <th>Accelerated Balance</th>
+                  <th>Original Interest</th>
+                  <th>Accelerated Interest</th>
+                  <th>Extra Payment</th>
+                </tr>
+              </thead>
+              <tbody id="scheduleBody">
+                <tr>
+                  <td colspan="6">Enter values to generate the comparison schedule.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="table-actions">
+            <button class="btn" id="showMoreBtn" type="button">Show more rows</button>
+            <button class="btn" id="showLessBtn" type="button">Show fewer rows</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container content-grid">
+        <article class="content-card">
+          <h2>What an Extra Payment Calculator does</h2>
+          <p>
+            An extra payment calculator estimates how adding money beyond the scheduled payment may change payoff time and total interest. Instead of only showing a normal amortization path, it compares that path against an accelerated version of the same loan.
+          </p>
+        </article>
+
+        <article class="content-card">
+          <h2>Why extra payments matter</h2>
+          <p>
+            Extra payments usually reduce principal directly. Lower principal means less interest can accrue in future periods, which can shorten the loan and reduce total interest paid.
+          </p>
+          <p>
+            That is why even relatively small recurring extra payments can have a meaningful effect over time.
+          </p>
+        </article>
+
+        <article class="content-card">
+          <h2>Monthly extra vs annual lump sum vs one-time payment</h2>
+          <div class="two-col">
+            <div class="mini-card">
+              <h3>Recurring extra payment</h3>
+              <p>
+                Best when you want a steady, repeatable extra amount every payment period, such as adding $100 every month.
+              </p>
+            </div>
+            <div class="mini-card">
+              <h3>Annual lump sum</h3>
+              <p>
+                Useful when you expect a bonus, refund, or yearly cash event and want to apply one larger extra payment each year.
+              </p>
+            </div>
+            <div class="mini-card">
+              <h3>One-time extra payment</h3>
+              <p>
+                Useful when you want to test the effect of a single lump-sum principal reduction, such as paying extra in the 12th payment period.
+              </p>
+            </div>
+            <div class="mini-card">
+              <h3>Why timing matters</h3>
+              <p>
+                Earlier extra payments often save more interest than the same amount paid later because the principal is reduced sooner.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <article class="content-card">
+          <h2>Worked examples</h2>
+          <div class="two-col">
+            <div class="mini-card">
+              <h3>Example 1: $100 extra monthly</h3>
+              <p>
+                A borrower adding <strong>$100 extra every month</strong> to a mortgage or loan may see a shorter payoff time and lower total interest.
+              </p>
+            </div>
+            <div class="mini-card">
+              <h3>Example 2: $1,000 annual lump sum</h3>
+              <p>
+                Someone using a yearly refund or bonus to make an extra <strong>$1,000</strong> payment can compare that approach to smaller recurring extra payments.
+              </p>
+            </div>
+            <div class="mini-card">
+              <h3>Example 3: one-time extra in year 1</h3>
+              <p>
+                A one-time extra payment early in the loan can sometimes save more interest than the same amount paid much later.
+              </p>
+            </div>
+            <div class="mini-card">
+              <h3>Example 4: original vs accelerated</h3>
+              <p>
+                Comparing the original plan against the accelerated plan makes it easier to see whether the extra payment strategy is worth it.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <article class="content-card">
+          <h2>Common uses for an Extra Payment Calculator</h2>
+          <ul>
+            <li><strong>Mortgage prepayment planning:</strong> estimate how extra payments may reduce interest and shorten the term.</li>
+            <li><strong>Personal loan acceleration:</strong> test whether adding extra each month helps meaningfully.</li>
+            <li><strong>Bonus or refund planning:</strong> compare annual lump sums against recurring extra payments.</li>
+            <li><strong>Budgeting:</strong> decide whether small regular overpayments fit your plan.</li>
+            <li><strong>Debt reduction strategy:</strong> see how faster principal reduction changes payoff timing.</li>
+          </ul>
+        </article>
+
+        <article class="content-card">
+          <h2>How this differs from an Amortization Calculator</h2>
+          <p>
+            An amortization calculator is mainly focused on showing how a standard loan schedule works over time. This page is focused on comparing the standard schedule with an accelerated payoff strategy.
+          </p>
+          <p>
+            In other words, amortization shows how the loan behaves normally, while this page helps answer the question: <strong>what if I pay more?</strong>
+          </p>
+        </article>
+
+        <article class="content-card">
+          <h2>Important assumptions and limitations</h2>
+          <p>
+            This Extra Payment Calculator assumes a fixed-rate amortizing loan and does not include prepayment penalties, lender-specific servicing rules, changing rates, or product-specific repayment constraints.
+          </p>
+          <p>
+            Actual lenders may apply extra payments differently, so this page is intended as a practical estimate rather than an official payoff quote.
+          </p>
+        </article>
+
+        <article class="content-card">
+          <h2>Related calculators</h2>
+          <p>
+            Explore other Calc Nest tools that pair naturally with this Extra Payment Calculator.
+          </p>
+          <div class="related-links">
+            <a href="/mortgage-calculator/">Mortgage Calculator</a>
+            <a href="/loan-calculator/">Loan Calculator</a>
+            <a href="/amortization-calculator/">Amortization Calculator</a>
+            <a href="/debt-payoff-calculator/">Debt Payoff Calculator</a>
+            <a href="/apr-calculator/">APR Calculator</a>
+            <a href="/savings-calculator/">Savings Calculator</a>
+            <a href="/">Browse all calculators</a>
+          </div>
+        </article>
+
+        <article class="content-card">
+          <h2>Frequently asked questions</h2>
+
+          <div class="faq-item">
+            <h3>What happens if I make extra payments?</h3>
+            <p>
+              Extra payments usually reduce principal faster, which can shorten payoff time and reduce total interest.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>Do extra payments reduce principal?</h3>
+            <p>
+              In many standard loan structures, extra payments are applied toward principal, which lowers the balance faster.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>Can extra payments lower total interest?</h3>
+            <p>
+              Yes. By reducing the principal earlier, extra payments can reduce future interest accrual.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>Is it better to pay extra monthly or make a lump sum?</h3>
+            <p>
+              That depends on timing and amount. Earlier payments often have a stronger effect, but the best approach depends on your cash flow and available funds.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>Why do earlier extra payments save more?</h3>
+            <p>
+              Because they reduce principal sooner, which lowers the balance on which future interest is calculated.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>Can I use this for mortgages and loans?</h3>
+            <p>
+              Yes. It is useful for many fixed-rate amortizing loans, including common mortgage and installment loan scenarios.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>Does this calculator include penalties or lender restrictions?</h3>
+            <p>
+              No. This page does not include prepayment penalties or lender-specific rules unless you factor them into your planning separately.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>Is this the same as an amortization calculator?</h3>
+            <p>
+              No. This page is focused on the effect of paying more than scheduled, while an amortization calculator mainly shows the standard loan schedule.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>Can I use this Extra Payment Calculator on mobile?</h3>
+            <p>
+              Yes. The page is designed to work on phones, tablets, and desktop devices.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>© 2026 Calc Nest</div>
+      <div class="footer-links">
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/privacy.html">Privacy</a>
+        <a href="mailto:churdomains@gmail.com">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const loanAmountInput = document.getElementById("loanAmount");
+    const interestRateInput = document.getElementById("interestRate");
+    const loanTermInput = document.getElementById("loanTerm");
+    const paymentFrequencyInput = document.getElementById("paymentFrequency");
+
+    const recurringBtn = document.getElementById("recurringBtn");
+    const annualBtn = document.getElementById("annualBtn");
+    const oneTimeBtn = document.getElementById("oneTimeBtn");
+
+    const recurringFields = document.getElementById("recurringFields");
+    const annualFields = document.getElementById("annualFields");
+    const oneTimeFields = document.getElementById("oneTimeFields");
+
+    const recurringExtraInput = document.getElementById("recurringExtra");
+    const annualExtraInput = document.getElementById("annualExtra");
+    const oneTimeExtraInput = document.getElementById("oneTimeExtra");
+    const oneTimePeriodInput = document.getElementById("oneTimePeriod");
+
+    const mainResult = document.getElementById("mainResult");
+    const resultHelper = document.getElementById("resultHelper");
+    const basePaymentEl = document.getElementById("basePayment");
+    const originalPayoffEl = document.getElementById("originalPayoff");
+    const newPayoffEl = document.getElementById("newPayoff");
+    const originalInterestEl = document.getElementById("originalInterest");
+    const newInterestEl = document.getElementById("newInterest");
+    const interestSavedEl = document.getElementById("interestSaved");
+    const timeSavedEl = document.getElementById("timeSaved");
+    const payoffDateEl = document.getElementById("payoffDate");
+
+    const scheduleBody = document.getElementById("scheduleBody");
+    const showMoreBtn = document.getElementById("showMoreBtn");
+    const showLessBtn = document.getElementById("showLessBtn");
+
+    let mode = "recurring";
+    let currentRows = [];
+    let visibleRows = 12;
+
+    function formatCurrency(value) {
+      if (!isFinite(value)) return "—";
+      return value.toLocaleString(undefined, {
+        style: "currency",
+        currency: "USD",
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+    }
+
+    function formatPercent(value) {
+      if (!isFinite(value)) return "—";
+      return value.toLocaleString(undefined, {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      }) + "%";
+    }
+
+    function formatNumber(value, decimals = 0) {
+      if (!isFinite(value)) return "—";
+      return value.toLocaleString(undefined, {
+        minimumFractionDigits: decimals,
+        maximumFractionDigits: decimals
+      });
+    }
+
+    function setMode(newMode) {
+      mode = newMode;
+
+      recurringBtn.classList.toggle("active", mode === "recurring");
+      annualBtn.classList.toggle("active", mode === "annual");
+      oneTimeBtn.classList.toggle("active", mode === "oneTime");
+
+      recurringFields.hidden = mode !== "recurring";
+      annualFields.hidden = mode !== "annual";
+      oneTimeFields.hidden = mode !== "oneTime";
+
+      calculateComparison();
+    }
+
+    function basePayment(principal, annualRate, totalPayments, paymentsPerYear) {
+      const periodicRate = annualRate / 100 / paymentsPerYear;
+
+      if (periodicRate === 0) {
+        return principal / totalPayments;
+      }
+
+      return principal * periodicRate / (1 - Math.pow(1 + periodicRate, -totalPayments));
+    }
+
+    function getExtraForPeriod(period, paymentsPerYear) {
+      if (mode === "recurring") {
+        return parseFloat(recurringExtraInput.value) || 0;
+      }
+
+      if (mode === "annual") {
+        const annualExtra = parseFloat(annualExtraInput.value) || 0;
+        return period % paymentsPerYear === 0 ? annualExtra : 0;
+      }
+
+      const oneTimeExtra = parseFloat(oneTimeExtraInput.value) || 0;
+      const oneTimePeriod = parseInt(oneTimePeriodInput.value, 10);
+
+      if (isFinite(oneTimePeriod) && oneTimePeriod > 0 && period === oneTimePeriod) {
+        return oneTimeExtra;
+      }
+
+      return 0;
+    }
+
+    function buildSchedule(principal, annualRate, termYears, paymentsPerYear, accelerated = false) {
+      const totalPaymentsTarget = Math.round(termYears * paymentsPerYear);
+      const payment = basePayment(principal, annualRate, totalPaymentsTarget, paymentsPerYear);
+      const periodicRate = annualRate / 100 / paymentsPerYear;
+
+      let balance = principal;
+      let totalInterest = 0;
+      const rows = [];
+      let period = 0;
+
+      while (balance > 0.01 && period < 10000) {
+        period += 1;
+
+        const interest = periodicRate === 0 ? 0 : balance * periodicRate;
+        let scheduledPayment = payment;
+        let principalPaid = scheduledPayment - interest;
+
+        if (principalPaid < 0) {
+          principalPaid = 0;
+        }
+
+        let extra = accelerated ? getExtraForPeriod(period, paymentsPerYear) : 0;
+
+        if (principalPaid > balance) {
+          principalPaid = balance;
+          scheduledPayment = balance + interest;
+          extra = 0;
+        }
+
+        if (principalPaid + extra > balance) {
+          extra = Math.max(0, balance - principalPaid);
+        }
+
+        balance -= (principalPaid + extra);
+        if (balance < 0.01) balance = 0;
+
+        totalInterest += interest;
+
+        rows.push({
+          period,
+          payment: scheduledPayment + extra,
+          interest,
+          principal: principalPaid,
+          extra,
+          balance
+        });
+      }
+
+      return {
+        payment,
+        totalInterest,
+        periods: rows.length,
+        rows
+      };
+    }
+
+    function periodsToReadable(periods, paymentsPerYear) {
+      if (!isFinite(periods)) return "—";
+
+      const years = Math.floor(periods / paymentsPerYear);
+      const remaining = periods % paymentsPerYear;
+
+      let label = paymentsPerYear === 12
+        ? (remaining === 1 ? "month" : "months")
+        : paymentsPerYear === 26
+          ? (remaining === 1 ? "biweekly payment" : "biweekly payments")
+          : (remaining === 1 ? "weekly payment" : "weekly payments");
+
+      const parts = [];
+      if (years > 0) parts.push(`${years} year${years !== 1 ? "s" : ""}`);
+      if (remaining > 0) parts.push(`${remaining} ${label}`);
+      if (!parts.length) parts.push("0 periods");
+      return parts.join(", ");
+    }
+
+    function payoffDateFromNow(periods, paymentsPerYear) {
+      if (!isFinite(periods)) return "—";
+
+      const now = new Date();
+
+      if (paymentsPerYear === 12) {
+        const payoff = new Date(now.getFullYear(), now.getMonth() + periods, 1);
+        return payoff.toLocaleDateString(undefined, { year: "numeric", month: "long" });
+      }
+
+      const daysPerPeriod = paymentsPerYear === 26 ? 14 : 7;
+      const payoff = new Date(now.getTime() + periods * daysPerPeriod * 24 * 60 * 60 * 1000);
+      return payoff.toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" });
+    }
+
+    function renderSchedule() {
+      if (!currentRows.length) {
+        scheduleBody.innerHTML = '<tr><td colspan="6">Enter values to generate the comparison schedule.</td></tr>';
+        return;
+      }
+
+      const html = currentRows.slice(0, visibleRows).map(row => `
+        <tr>
+          <td>${row.period}</td>
+          <td>${formatCurrency(row.originalBalance)}</td>
+          <td>${formatCurrency(row.acceleratedBalance)}</td>
+          <td>${formatCurrency(row.originalInterest)}</td>
+          <td>${formatCurrency(row.acceleratedInterest)}</td>
+          <td>${formatCurrency(row.extra)}</td>
+        </tr>
+      `).join("");
+
+      scheduleBody.innerHTML = html;
+    }
+
+    function resetResults() {
+      mainResult.textContent = "—";
+      resultHelper.textContent = "Enter values to compare the original plan with an extra-payment strategy.";
+      basePaymentEl.textContent = "—";
+      originalPayoffEl.textContent = "—";
+      newPayoffEl.textContent = "—";
+      originalInterestEl.textContent = "—";
+      newInterestEl.textContent = "—";
+      interestSavedEl.textContent = "—";
+      timeSavedEl.textContent = "—";
+      payoffDateEl.textContent = "—";
+      currentRows = [];
+      renderSchedule();
+    }
+
+    function calculateComparison() {
+      const principal = parseFloat(loanAmountInput.value);
+      const annualRate = parseFloat(interestRateInput.value);
+      const termYears = parseFloat(loanTermInput.value);
+      const paymentsPerYear = parseFloat(paymentFrequencyInput.value);
+
+      if (
+        !isFinite(principal) || principal <= 0 ||
+        !isFinite(annualRate) || annualRate < 0 ||
+        !isFinite(termYears) || termYears <= 0 ||
+        !isFinite(paymentsPerYear) || paymentsPerYear <= 0
+      ) {
+        resetResults();
+        return;
+      }
+
+      if (mode === "oneTime") {
+        const oneTimePeriod = parseInt(oneTimePeriodInput.value, 10);
+        const oneTimeExtra = parseFloat(oneTimeExtraInput.value) || 0;
+
+        if ((oneTimeExtra > 0 && (!isFinite(oneTimePeriod) || oneTimePeriod <= 0))) {
+          resetResults();
+          resultHelper.textContent = "For one-time extra payments, enter a valid payment number.";
+          return;
+        }
+      }
+
+      const original = buildSchedule(principal, annualRate, termYears, paymentsPerYear, false);
+      const accelerated = buildSchedule(principal, annualRate, termYears, paymentsPerYear, true);
+
+      const periodsMax = Math.max(original.rows.length, accelerated.rows.length);
+      currentRows = [];
+
+      for (let i = 0; i < periodsMax; i++) {
+        const originalRow = original.rows[i];
+        const acceleratedRow = accelerated.rows[i];
+
+        currentRows.push({
+          period: i + 1,
+          originalBalance: originalRow ? originalRow.balance : 0,
+          acceleratedBalance: acceleratedRow ? acceleratedRow.balance : 0,
+          originalInterest: originalRow ? originalRow.interest : 0,
+          acceleratedInterest: acceleratedRow ? acceleratedRow.interest : 0,
+          extra: acceleratedRow ? acceleratedRow.extra : 0
+        });
+      }
+
+      renderSchedule();
+
+      const savedInterest = original.totalInterest - accelerated.totalInterest;
+      const savedPeriods = original.periods - accelerated.periods;
+
+      mainResult.textContent = savedInterest > 0
+        ? `${formatCurrency(savedInterest)} interest saved`
+        : "No savings difference";
+
+      resultHelper.textContent = "Comparison between the original payoff plan and the accelerated plan with extra payments.";
+      basePaymentEl.textContent = formatCurrency(original.payment);
+      originalPayoffEl.textContent = periodsToReadable(original.periods, paymentsPerYear);
+      newPayoffEl.textContent = periodsToReadable(accelerated.periods, paymentsPerYear);
+      originalInterestEl.textContent = formatCurrency(original.totalInterest);
+      newInterestEl.textContent = formatCurrency(accelerated.totalInterest);
+      interestSavedEl.textContent = savedInterest > 0 ? formatCurrency(savedInterest) : formatCurrency(0);
+      timeSavedEl.textContent = savedPeriods > 0 ? periodsToReadable(savedPeriods, paymentsPerYear) : "0 periods";
+      payoffDateEl.textContent = payoffDateFromNow(accelerated.periods, paymentsPerYear);
+    }
+
+    recurringBtn.addEventListener("click", () => setMode("recurring"));
+    annualBtn.addEventListener("click", () => setMode("annual"));
+    oneTimeBtn.addEventListener("click", () => setMode("oneTime"));
+
+    [
+      loanAmountInput,
+      interestRateInput,
+      loanTermInput,
+      paymentFrequencyInput,
+      recurringExtraInput,
+      annualExtraInput,
+      oneTimeExtraInput,
+      oneTimePeriodInput
+    ].forEach(input => {
+      input.addEventListener("input", calculateComparison);
+      input.addEventListener("change", calculateComparison);
+    });
+
+    showMoreBtn.addEventListener("click", () => {
+      visibleRows += 12;
+      renderSchedule();
+    });
+
+    showLessBtn.addEventListener("click", () => {
+      visibleRows = Math.max(12, visibleRows - 12);
+      renderSchedule();
+    });
+
+    setMode("recurring");
+  </script>
+</body>
+</html>
