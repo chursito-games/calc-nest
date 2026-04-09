@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9145068700780289"
+     crossorigin="anonymous"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Interest Rate Calculator | Calc Nest</title>
+  <meta name="description" content="Free online Interest Rate Calculator. Find the required rate to reach a target, calculate implied annual growth rate, and convert nominal rate to effective annual rate." />
+  <link rel="canonical" href="https://calc-nest.com/interest-rate-calculator/" />
+  <meta name="theme-color" content="#0f172a" />
+
+  <meta property="og:title" content="Interest Rate Calculator | Calc Nest" />
+  <meta property="og:description" content="Free online Interest Rate Calculator to solve for required rate, implied annual growth rate, and effective annual rate." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://calc-nest.com/interest-rate-calculator/" />
+
+  <style>
+    :root{
+      --bg:#0b1220;
+      --panel:#111827;
+      --panel-2:#1f2937;
+      --text:#e5e7eb;
+      --muted:#94a3b8;
+      --line:#334155;
+      --accent:#38bdf8;
+      --accent-2:#22c55e;
+      --shadow: 0 18px 45px rgba(0,0,0,.28);
+      --radius: 18px;
+      --max: 1080px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: linear-gradient(180deg, #0b1220 0%, #111827 100%);
+      color:var(--text);
+      line-height:1.6;
+    }
+
+    a{
+      color:var(--accent);
+      text-decoration:none;
+    }
+    a:hover{text-decoration:underline}
+
+    .container{
+      width:min(var(--max), calc(100% - 32px));
+      margin:0 auto;
+    }
+
+    .topbar{
+      border-bottom:1px solid rgba(255,255,255,.08);
+      background:rgba(15,23,42,.75);
+      backdrop-filter: blur(8px);
+      position:sticky;
+      top:0;
+      z-index:20;
+    }
+
+    .topbar-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:14px 0;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight:700;
+      color:#fff;
+      letter-spacing:.2px;
+    }
+
+    .brand-badge{
+      width:34px;
+      height:34px;
+      border-radius:12px;
+      background:linear-gradient(135deg, var(--accent), #6366f1);
+      box-shadow:0 10px 24px rgba(56,189,248,.25);
+    }
+
+    .nav{
+      display:flex;
+      gap:18px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .nav a{
+      color:var(--text);
+      opacity:.92;
+      font-size:14px;
+    }
+
+    .hero{
+      padding:56px 0 28px;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.06fr .94fr;
+      gap:24px;
+      align-items:start;
+    }
+
+    .hero-copy h1{
+      margin:0 0 12px;
+      font-size:clamp(2rem, 4vw, 3.2rem);
+      line-height:1.08;
+      letter-spacing:-.03em;
+    }
+
+    .hero-copy p{
+      margin:0 0 16px;
+      color:var(--muted);
+      max-width:66ch;
+      font-size:1.03rem;
+    }
+
+    .eyebrow{
+      display:inline-block;
+      margin-bottom:12px;
+      font-size:12px;
+      font-weight:700;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:var(--accent);
+    }
+
+    .hero-card,
+    .content-card{
+      background:rgba(17,24,39,.88);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:22px;
+    }
+
+    .tool-title{
+      margin:0 0 8px;
+      font-size:1.25rem;
+    }
+
+    .tool-subtitle{
+      margin:0 0 18px;
+      color:var(--muted);
+      font-size:.95rem;
+    }
+
+    .mode-toggle{
+      display:grid;
+      grid-template-columns:1fr 1fr 1fr;
+      gap:10px;
+      margin-bottom:18px;
+    }
+
+    .mode-btn{
+      border:1px solid var(--line);
+      background:#0f172a;
+      color:var(--text);
+      border-radius:14px;
+      padding:12px 14px;
+      font-weight:700;
+      cursor:pointer;
+      text-align:center;
+    }
+
+    .mode-btn.active{
+      border-color:rgba(56,189,248,.55);
+      background:rgba(56,189,248,.12);
+      color:#fff;
+    }
+
+    .field{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      margin-bottom:14px;
+    }
+
+    .field-row{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+    }
+
+    label{
+      font-size:14px;
+      font-weight:600;
+    }
+
+    input,
+    select,
+    button{
+      font:inherit;
+    }
+
+    input,
+    select{
+      width:100%;
+      padding:14px 14px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:#0b1220;
+      color:var(--text);
+      font-size:16px;
+      outline:none;
+    }
+
+    input:focus,
+    select:focus{
+      border-color:rgba(56,189,248,.7);
+      box-shadow:0 0 0 4px rgba(56,189,248,.14);
+    }
+
+    .result-box{
+      margin-top:18px;
+      padding:16px;
+      border-radius:16px;
+      background:linear-gradient(180deg, rgba(56,189,248,.10), rgba(34,197,94,.08));
+      border:1px solid rgba(255,255,255,.09);
+    }
+
+    .result-box h3{
+      margin:0 0 6px;
+      font-size:1rem;
+    }
+
+    .result-main{
+      font-size:1.8rem;
+      font-weight:800;
+      line-height:1.15;
+      margin:2px 0 10px;
+      word-break:break-word;
+    }
+
+    .helper{
+      color:var(--muted);
+      font-size:14px;
+      margin:0;
+    }
+
+    .result-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+      margin-top:14px;
+    }
+
+    .result-stat{
+      padding:14px;
+      border-radius:14px;
+      background:rgba(11,18,32,.65);
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .result-stat-label{
+      display:block;
+      color:var(--muted);
+      font-size:13px;
+      margin-bottom:4px;
+    }
+
+    .result-stat-value{
+      display:block;
+      font-size:1rem;
+      font-weight:800;
+    }
+
+    .section{
+      padding:14px 0 0;
+    }
+
+    .content-grid{
+      display:grid;
+      gap:18px;
+      width:100%;
+      max-width:760px;
+      margin:18px auto 0;
+    }
+
+    .content-card h2{
+      margin:0 0 12px;
+      font-size:1.35rem;
+    }
+
+    .content-card h3{
+      margin:18px 0 8px;
+      font-size:1.02rem;
+    }
+
+    .content-card p{
+      margin:0 0 12px;
+      color:#d6dbe4;
+    }
+
+    .content-card ul{
+      margin:0 0 12px 20px;
+      color:#d6dbe4;
+    }
+
+    .two-col{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:16px;
+    }
+
+    .mini-card{
+      padding:16px;
+      border-radius:16px;
+      background:#0f172a;
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .mini-card h3{
+      margin-top:0;
+    }
+
+    .faq-item{
+      padding:14px 0;
+      border-top:1px solid rgba(255,255,255,.08);
+    }
+
+    .faq-item:first-of-type{
+      border-top:none;
+      padding-top:0;
+    }
+
+    .related-links{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:12px;
+    }
+
+    .related-links a{
+      display:inline-flex;
+      align-items:center;
+      padding:10px 12px;
+      border-radius:999px;
+      background:#0f172a;
+      border:1px solid rgba(255,255,255,.08);
+      color:#e5e7eb;
+      text-decoration:none;
+      font-size:14px;
+      font-weight:600;
+    }
+
+    .related-links a:hover{
+      border-color:rgba(56,189,248,.4);
+      color:#fff;
+      text-decoration:none;
+    }
+
+    .small-note{
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    .footer{
+      padding:34px 0 48px;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .footer-inner{
+      display:flex;
+      justify-content:space-between;
+      gap:16px;
+      flex-wrap:wrap;
+      border-top:1px solid rgba(255,255,255,.08);
+      padding-top:18px;
+    }
+
+    .footer-links{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+    }
+
+    @media (max-width: 980px){
+      .mode-toggle{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width: 900px){
+      .hero-grid,
+      .field-row,
+      .result-grid,
+      .two-col{
+        grid-template-columns:1fr;
+      }
+
+      .topbar-inner{
+        align-items:flex-start;
+        flex-direction:column;
+      }
+    }
+
+    @media (max-width: 640px){
+      .hero{
+        padding-top:34px;
+      }
+
+      .result-main{
+        font-size:1.45rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand">
+        <div class="brand-badge" aria-hidden="true"></div>
+        <span>Calc Nest</span>
+      </div>
+
+      <nav class="nav" aria-label="Primary">
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/privacy.html">Privacy</a>
+        <a href="mailto:churdomains@gmail.com">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">Free Online Calculators</span>
+          <h1>Interest Rate Calculator</h1>
+          <p>
+            Use this free Interest Rate Calculator to solve for the rate rather than just project results with a known rate. This page includes three practical modes: required rate to reach a target, implied annual growth rate, and nominal rate to effective annual rate.
+          </p>
+          <p>
+            That makes this tool different from a typical <a href="/compound-interest-calculator/">Compound Interest Calculator</a>. Compound interest tools usually assume the rate is already known. This page helps when the rate is the missing piece you want to find.
+          </p>
+          <p>
+            This can be useful for savings goals, retirement planning, investment review, long-term budgeting, and comparing how compounding changes the effective annual result.
+          </p>
+          <p class="small-note">
+            Results are intended as practical estimates based on fixed-rate assumptions.
+          </p>
+        </div>
+
+        <aside class="hero-card" aria-label="Interest rate calculator tool">
+          <h2 class="tool-title">Find the rate</h2>
+          <p class="tool-subtitle">Choose a mode and enter your values to solve for the rate or effective annual effect.</p>
+
+          <div class="mode-toggle" role="tablist" aria-label="Interest rate mode">
+            <button class="mode-btn active" id="targetModeBtn" type="button">Required rate</button>
+            <button class="mode-btn" id="growthModeBtn" type="button">Implied growth rate</button>
+            <button class="mode-btn" id="effectiveModeBtn" type="button">Nominal to effective</button>
+          </div>
+
+          <div id="targetModeFields">
+            <div class="field">
+              <label for="targetStartAmount">Starting amount</label>
+              <input id="targetStartAmount" type="number" min="0" step="0.01" placeholder="e.g. 10000" />
+            </div>
+
+            <div class="field">
+              <label for="targetAmount">Target amount</label>
+              <input id="targetAmount" type="number" min="0" step="0.01" placeholder="e.g. 25000" />
+            </div>
+
+            <div class="field-row">
+              <div class="field">
+                <label for="targetYears">Years</label>
+                <input id="targetYears" type="number" min="0" step="0.1" placeholder="e.g. 12" />
+              </div>
+              <div class="field">
+                <label for="targetCompounding">Compounding frequency</label>
+                <select id="targetCompounding">
+                  <option value="1">Annually</option>
+                  <option value="4">Quarterly</option>
+                  <option value="12" selected>Monthly</option>
+                  <option value="365">Daily</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="targetContribution">Contribution per compounding period (optional)</label>
+              <input id="targetContribution" type="number" min="0" step="0.01" placeholder="e.g. 100" />
+            </div>
+          </div>
+
+          <div id="growthModeFields" hidden>
+            <div class="field-row">
+              <div class="field">
+                <label for="growthStartAmount">Beginning amount</label>
+                <input id="growthStartAmount" type="number" min="0" step="0.01" placeholder="e.g. 5000" />
+              </div>
+              <div class="field">
+                <label for="growthEndAmount">Ending amount</label>
+                <input id="growthEndAmount" type="number" min="0" step="0.01" placeholder="e.g. 8000" />
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="growthYears">Years</label>
+              <input id="growthYears" type="number" min="0" step="0.1" placeholder="e.g. 6" />
+            </div>
+          </div>
+
+          <div id="effectiveModeFields" hidden>
+            <div class="field-row">
+              <div class="field">
+                <label for="nominalRate">Nominal annual rate (%)</label>
+                <input id="nominalRate" type="number" min="0" step="0.01" placeholder="e.g. 8" />
+              </div>
+              <div class="field">
+                <label for="effectiveCompounding">Compounding frequency</label>
+                <select id="effectiveCompounding">
+                  <option value="1">Annually</option>
+                  <option value="2">Semiannually</option>
+                  <option value="4">Quarterly</option>
+                  <option value="12" selected>Monthly</option>
+                  <option value="365">Daily</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="result-box" aria-live="polite">
+            <h3>Your result</h3>
+            <div class="result-main" id="rateMain">—</div>
+            <p class="helper" id="rateHelper">Enter values to solve for the required, implied, or effective rate.</p>
+
+            <div class="result-grid">
+              <div class="result-stat">
+                <span class="result-stat-label">Starting / nominal input</span>
+                <span class="result-stat-value" id="rateInputA">—</span>
+              </div>
+              <div class="result-stat">
+                <span class="result-stat-label">Target / ending / compounding</span>
+                <span class="result-stat-value" id="rateInputB">—</span>
+              </div>
+              <div class="result-stat">
+                <span class="result-stat-label">Years</span>
+                <span class="result-stat-value" id="rateYears">—</span>
+              </div>
+              <div class="result-stat">
+                <span class="result-stat-label">Interpretation</span>
+                <span class="result-stat-value" id="rateInterpretation">—</span>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container content-grid">
+        <article class="content-card">
+          <h2>What this Interest Rate Calculator does</h2>
+          <p>
+            This page is designed to solve for the rate when the rate is unknown. Instead of asking “what will my money become at a known rate?”, it helps answer questions like “what rate do I need to reach my goal?” or “what annual growth rate actually happened between these two values?”
+          </p>
+        </article>
+
+        <article class="content-card">
+          <h2>When to use this instead of a Compound Interest Calculator</h2>
+          <div class="two-col">
+            <div class="mini-card">
+              <h3>Use Compound Interest Calculator when…</h3>
+              <p>
+                You already know the interest rate and want to project future balance, interest earned, or growth over time.
+              </p>
+            </div>
+            <div class="mini-card">
+              <h3>Use Interest Rate Calculator when…</h3>
+              <p>
+                You want to solve for the rate itself, such as the required rate to hit a target or the implied annual growth rate from past values.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <article class="content-card">
+          <h2>Why compounding matters</h2>
+          <p>
+            Compounding affects how often interest is applied within a year. A nominal annual rate compounded monthly usually produces a higher effective annual result than the same nominal rate compounded only once per year.
+          </p>
+          <p>
+            That is why this page includes a separate mode for converting nominal annual rate to effective annual rate.
+          </p>
+        </article>
+
+        <article class="content-card">
+          <h2>Worked examples</h2>
+          <div class="two-col">
+            <div class="mini-card">
+              <h3>Example 1: required rate for a goal</h3>
+              <p>
+                If you start with <strong>$10,000</strong> and want to reach <strong>$25,000</strong> in <strong>12 years</strong>, this calculator can estimate the annual rate required to get there.
+              </p>
+            </div>
+            <div class="mini-card">
+              <h3>Example 2: required rate with contributions</h3>
+              <p>
+                If you also add regular contributions each period, the required rate may be lower because the target is being supported by both growth and contributions.
+              </p>
+            </div>
+            <div class="mini-card">
+              <h3>Example 3: implied annual growth rate</h3>
+              <p>
+                If an amount grew from <strong>$5,000</strong> to <strong>$8,000</strong> over <strong>6 years</strong>, this page can estimate the annualized growth rate implied by that change.
+              </p>
+            </div>
+            <div class="mini-card">
+              <h3>Example 4: nominal vs effective</h3>
+              <p>
+                A nominal rate of <strong>8%</strong> compounded monthly is not the same as a simple 8% annual effect. The effective annual rate will be slightly higher.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <article class="content-card">
+          <h2>Common uses for an Interest Rate Calculator</h2>
+          <ul>
+            <li><strong>Savings goals:</strong> estimate the rate needed to reach a target balance.</li>
+            <li><strong>Retirement planning:</strong> test what return assumptions may be needed over time.</li>
+            <li><strong>Investment review:</strong> estimate the annual growth rate implied by past performance.</li>
+            <li><strong>Comparing scenarios:</strong> see how compounding frequency changes the effective annual result.</li>
+            <li><strong>Planning and education:</strong> understand the relationship between time, growth, and target outcomes.</li>
+          </ul>
+        </article>
+
+        <article class="content-card">
+          <h2>What this result means</h2>
+          <p>
+            In required rate mode, the result estimates the annual nominal rate needed to reach the chosen target under the assumptions entered. In implied growth mode, the result estimates the annualized rate that links the beginning and ending values over time.
+          </p>
+          <p>
+            In nominal-to-effective mode, the result shows the effective annual rate created by the nominal rate and compounding frequency.
+          </p>
+        </article>
+
+        <article class="content-card">
+          <h2>Important assumptions and limitations</h2>
+          <p>
+            This Interest Rate Calculator assumes a fixed rate over time and does not predict market returns, interest rate changes, or future performance. If contributions are used, they are assumed to occur once per compounding period.
+          </p>
+          <p>
+            The page is most useful for planning estimates and scenario testing, not for guaranteeing actual investment or lending outcomes.
+          </p>
+        </article>
+
+        <article class="content-card">
+          <h2>Related calculators</h2>
+          <p>
+            Explore other Calc Nest tools that pair naturally with this Interest Rate Calculator.
+          </p>
+          <div class="related-links">
+            <a href="/compound-interest-calculator/">Compound Interest Calculator</a>
+            <a href="/savings-calculator/">Savings Calculator</a>
+            <a href="/retirement-calculator/">Retirement Calculator</a>
+            <a href="/roi-calculator/">ROI Calculator</a>
+            <a href="/inflation-calculator/">Inflation Calculator</a>
+            <a href="/amortization-calculator/">Amortization Calculator</a>
+            <a href="/debt-payoff-calculator/">Debt Payoff Calculator</a>
+            <a href="/">Browse all calculators</a>
+          </div>
+        </article>
+
+        <article class="content-card">
+          <h2>Frequently asked questions</h2>
+
+          <div class="faq-item">
+            <h3>What is the difference between this and a Compound Interest Calculator?</h3>
+            <p>
+              A compound interest calculator usually assumes the rate is already known. This page is for solving for the rate when the rate is the unknown part of the problem.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>What interest rate do I need to reach my goal?</h3>
+            <p>
+              Use the required rate mode, enter your starting amount, target amount, years, and any regular contributions. The calculator estimates the annual rate needed.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>What is implied annual growth rate?</h3>
+            <p>
+              It is the annualized rate that explains how a beginning amount became an ending amount over a given number of years.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>What is the difference between nominal and effective annual rate?</h3>
+            <p>
+              Nominal rate is the stated annual rate. Effective annual rate reflects the impact of compounding within the year and is often slightly higher.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>Why does compounding frequency matter?</h3>
+            <p>
+              More frequent compounding can increase the effective annual result even when the nominal annual rate stays the same.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>Can I use this for investment planning?</h3>
+            <p>
+              Yes. It is useful for scenario planning, target testing, and reviewing implied growth rates, but it does not predict actual future investment returns.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>Does this calculator guarantee future results?</h3>
+            <p>
+              No. It provides estimates based on fixed assumptions and does not guarantee actual returns or future rates.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>Can I use this Interest Rate Calculator on mobile?</h3>
+            <p>
+              Yes. The page is designed to work on phones, tablets, and desktop devices.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>© 2026 Calc Nest</div>
+      <div class="footer-links">
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/privacy.html">Privacy</a>
+        <a href="mailto:churdomains@gmail.com">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const targetModeBtn = document.getElementById("targetModeBtn");
+    const growthModeBtn = document.getElementById("growthModeBtn");
+    const effectiveModeBtn = document.getElementById("effectiveModeBtn");
+
+    const targetModeFields = document.getElementById("targetModeFields");
+    const growthModeFields = document.getElementById("growthModeFields");
+    const effectiveModeFields = document.getElementById("effectiveModeFields");
+
+    const targetStartAmountInput = document.getElementById("targetStartAmount");
+    const targetAmountInput = document.getElementById("targetAmount");
+    const targetYearsInput = document.getElementById("targetYears");
+    const targetCompoundingInput = document.getElementById("targetCompounding");
+    const targetContributionInput = document.getElementById("targetContribution");
+
+    const growthStartAmountInput = document.getElementById("growthStartAmount");
+    const growthEndAmountInput = document.getElementById("growthEndAmount");
+    const growthYearsInput = document.getElementById("growthYears");
+
+    const nominalRateInput = document.getElementById("nominalRate");
+    const effectiveCompoundingInput = document.getElementById("effectiveCompounding");
+
+    const rateMain = document.getElementById("rateMain");
+    const rateHelper = document.getElementById("rateHelper");
+    const rateInputA = document.getElementById("rateInputA");
+    const rateInputB = document.getElementById("rateInputB");
+    const rateYears = document.getElementById("rateYears");
+    const rateInterpretation = document.getElementById("rateInterpretation");
+
+    let mode = "target";
+
+    function formatCurrency(value) {
+      if (!isFinite(value)) return "—";
+      return value.toLocaleString(undefined, {
+        style: "currency",
+        currency: "USD",
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+    }
+
+    function formatPercent(value) {
+      if (!isFinite(value)) return "—";
+      return value.toLocaleString(undefined, {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      }) + "%";
+    }
+
+    function formatNumber(value, decimals = 1) {
+      if (!isFinite(value)) return "—";
+      return value.toLocaleString(undefined, {
+        minimumFractionDigits: value % 1 === 0 ? 0 : decimals,
+        maximumFractionDigits: decimals
+      });
+    }
+
+    function setMode(newMode) {
+      mode = newMode;
+
+      targetModeBtn.classList.toggle("active", mode === "target");
+      growthModeBtn.classList.toggle("active", mode === "growth");
+      effectiveModeBtn.classList.toggle("active", mode === "effective");
+
+      targetModeFields.hidden = mode !== "target";
+      growthModeFields.hidden = mode !== "growth";
+      effectiveModeFields.hidden = mode !== "effective";
+
+      calculateRate();
+    }
+
+    function futureValueWithRate(startAmount, contributionPerPeriod, annualRatePercent, years, compoundingPerYear) {
+      const n = compoundingPerYear;
+      const totalPeriods = years * n;
+      const periodicRate = annualRatePercent / 100 / n;
+
+      if (periodicRate === 0) {
+        return startAmount + contributionPerPeriod * totalPeriods;
+      }
+
+      const growthFactor = Math.pow(1 + periodicRate, totalPeriods);
+      const futurePrincipal = startAmount * growthFactor;
+      const futureContributions = contributionPerPeriod * ((growthFactor - 1) / periodicRate);
+      return futurePrincipal + futureContributions;
+    }
+
+    function solveRequiredRate(startAmount, targetAmount, years, compoundingPerYear, contributionPerPeriod) {
+      const zeroRateFV = futureValueWithRate(startAmount, contributionPerPeriod, 0, years, compoundingPerYear);
+
+      if (targetAmount <= zeroRateFV) {
+        return 0;
+      }
+
+      let low = 0;
+      let high = 100;
+
+      while (futureValueWithRate(startAmount, contributionPerPeriod, high, years, compoundingPerYear) < targetAmount && high < 1000) {
+        high *= 2;
+      }
+
+      for (let i = 0; i < 80; i++) {
+        const mid = (low + high) / 2;
+        const fv = futureValueWithRate(startAmount, contributionPerPeriod, mid, years, compoundingPerYear);
+
+        if (fv >= targetAmount) {
+          high = mid;
+        } else {
+          low = mid;
+        }
+      }
+
+      return high;
+    }
+
+    function calculateRate() {
+      if (mode === "target") {
+        const startAmount = parseFloat(targetStartAmountInput.value);
+        const targetAmount = parseFloat(targetAmountInput.value);
+        const years = parseFloat(targetYearsInput.value);
+        const compounding = parseFloat(targetCompoundingInput.value);
+        const contribution = parseFloat(targetContributionInput.value) || 0;
+
+        if (
+          !isFinite(startAmount) || startAmount < 0 ||
+          !isFinite(targetAmount) || targetAmount < 0 ||
+          !isFinite(years) || years <= 0 ||
+          !isFinite(compounding) || compounding <= 0 ||
+          !isFinite(contribution) || contribution < 0
+        ) {
+          resetResults();
+          return;
+        }
+
+        const requiredRate = solveRequiredRate(startAmount, targetAmount, years, compounding, contribution);
+
+        rateMain.textContent = formatPercent(requiredRate);
+        rateHelper.textContent = "Estimated nominal annual rate required to reach the target under the assumptions entered.";
+        rateInputA.textContent = formatCurrency(startAmount);
+        rateInputB.textContent = `${formatCurrency(targetAmount)} target`;
+        rateYears.textContent = formatNumber(years, 1);
+        rateInterpretation.textContent = contribution > 0
+          ? `${formatCurrency(contribution)} added each compounding period`
+          : "No recurring contribution";
+
+      } else if (mode === "growth") {
+        const startAmount = parseFloat(growthStartAmountInput.value);
+        const endAmount = parseFloat(growthEndAmountInput.value);
+        const years = parseFloat(growthYearsInput.value);
+
+        if (
+          !isFinite(startAmount) || startAmount <= 0 ||
+          !isFinite(endAmount) || endAmount <= 0 ||
+          !isFinite(years) || years <= 0
+        ) {
+          resetResults();
+          return;
+        }
+
+        const impliedRate = (Math.pow(endAmount / startAmount, 1 / years) - 1) * 100;
+
+        rateMain.textContent = formatPercent(impliedRate);
+        rateHelper.textContent = "Estimated annualized growth rate implied by the beginning and ending amounts.";
+        rateInputA.textContent = formatCurrency(startAmount);
+        rateInputB.textContent = formatCurrency(endAmount);
+        rateYears.textContent = formatNumber(years, 1);
+        rateInterpretation.textContent = impliedRate >= 0 ? "Positive annualized growth" : "Negative annualized growth";
+
+      } else {
+        const nominalRate = parseFloat(nominalRateInput.value);
+        const compounding = parseFloat(effectiveCompoundingInput.value);
+
+        if (
+          !isFinite(nominalRate) || nominalRate < 0 ||
+          !isFinite(compounding) || compounding <= 0
+        ) {
+          resetResults();
+          return;
+        }
+
+        const effectiveRate = (Math.pow(1 + (nominalRate / 100 / compounding), compounding) - 1) * 100;
+
+        rateMain.textContent = formatPercent(effectiveRate);
+        rateHelper.textContent = "Estimated effective annual rate based on the nominal rate and compounding frequency.";
+        rateInputA.textContent = formatPercent(nominalRate);
+        rateInputB.textContent = `${formatNumber(compounding, 0)} compounding periods/year`;
+        rateYears.textContent = "1";
+        rateInterpretation.textContent = "Effective annual result after compounding";
+      }
+    }
+
+    function resetResults() {
+      rateMain.textContent = "—";
+      rateHelper.textContent = "Enter values to solve for the required, implied, or effective rate.";
+      rateInputA.textContent = "—";
+      rateInputB.textContent = "—";
+      rateYears.textContent = "—";
+      rateInterpretation.textContent = "—";
+    }
+
+    targetModeBtn.addEventListener("click", () => setMode("target"));
+    growthModeBtn.addEventListener("click", () => setMode("growth"));
+    effectiveModeBtn.addEventListener("click", () => setMode("effective"));
+
+    [
+      targetStartAmountInput,
+      targetAmountInput,
+      targetYearsInput,
+      targetCompoundingInput,
+      targetContributionInput,
+      growthStartAmountInput,
+      growthEndAmountInput,
+      growthYearsInput,
+      nominalRateInput,
+      effectiveCompoundingInput
+    ].forEach(input => {
+      input.addEventListener("input", calculateRate);
+      input.addEventListener("change", calculateRate);
+    });
+
+    setMode("target");
+  </script>
+</body>
+</html>
