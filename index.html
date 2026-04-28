@@ -7,13 +7,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="google-site-verification" content="KSnhTQ18m0SxohtG9_eMRCv-2JHes0CxC7X5ODbj1jU" />
   <link rel="icon" href="/favicon-96.png" type="image/png" sizes="96x96" />
-  <title>Calc Nest | Free Online Calculators for Finance, Health, Dates, and Everyday Math</title>
-  <meta name="description" content="Calc Nest offers free online calculators for loans, mortgages, APR, amortization, debt payoff, inflation, savings, retirement, health, dates, percentages, taxes, and everyday calculations." />
+  <title>Calc Nest | Free Online Calculators and Practical Guides</title>
+  <meta name="description" content="Calc Nest offers free online calculators and practical guides for borrowing, savings, retirement, inflation, health, dates, percentages, taxes, and everyday calculations." />
   <link rel="canonical" href="https://calc-nest.com/" />
   <meta name="theme-color" content="#0f172a" />
 
-  <meta property="og:title" content="Calc Nest | Free Online Calculators" />
-  <meta property="og:description" content="Free online calculators for finance, health, dates, percentages, savings, loans, retirement, inflation, amortization, debt payoff, taxes, and everyday calculations." />
+  <meta property="og:title" content="Calc Nest | Free Online Calculators and Practical Guides" />
+  <meta property="og:description" content="Free online calculators and practical guides for finance, health, dates, percentages, savings, loans, retirement, inflation, taxes, and everyday calculations." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://calc-nest.com/" />
 
@@ -26,17 +26,17 @@
       --muted:#94a3b8;
       --line:#334155;
       --accent:#38bdf8;
-      --shadow: 0 18px 45px rgba(0,0,0,.28);
-      --radius: 18px;
-      --max: 1160px;
+      --shadow:0 18px 45px rgba(0,0,0,.28);
+      --radius:18px;
+      --max:1160px;
     }
 
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{
       margin:0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: linear-gradient(180deg, #0b1220 0%, #111827 100%);
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:linear-gradient(180deg, #0b1220 0%, #111827 100%);
       color:var(--text);
       line-height:1.6;
     }
@@ -58,7 +58,7 @@
     .topbar{
       border-bottom:1px solid rgba(255,255,255,.08);
       background:rgba(15,23,42,.78);
-      backdrop-filter: blur(8px);
+      backdrop-filter:blur(8px);
       position:sticky;
       top:0;
       z-index:20;
@@ -109,7 +109,7 @@
 
     .hero-grid{
       display:grid;
-      grid-template-columns: 1.1fr .9fr;
+      grid-template-columns:1.08fr .92fr;
       gap:24px;
       align-items:start;
     }
@@ -134,7 +134,7 @@
     .hero p{
       margin:0 0 16px;
       color:var(--muted);
-      max-width:68ch;
+      max-width:69ch;
       font-size:1.03rem;
     }
 
@@ -172,7 +172,9 @@
     .hero-card,
     .section-card,
     .calc-card,
-    .category-link-card{
+    .category-link-card,
+    .guide-card,
+    .faq-item{
       background:rgba(17,24,39,.88);
       border:1px solid rgba(255,255,255,.08);
       border-radius:var(--radius);
@@ -236,13 +238,14 @@
 
     .quick-links-grid,
     .grid,
-    .info-grid{
+    .info-grid,
+    .guide-grid{
       display:grid;
       gap:18px;
     }
 
     .quick-links-grid{
-      grid-template-columns:repeat(4, minmax(0, 1fr));
+      grid-template-columns:repeat(5, minmax(0, 1fr));
       margin-top:18px;
     }
 
@@ -251,26 +254,64 @@
       padding:18px;
       color:inherit;
       text-decoration:none;
-      transition: transform .12s ease, border-color .12s ease, background .12s ease;
+      transition:transform .12s ease, border-color .12s ease, background .12s ease;
     }
 
-    .category-link-card:hover{
+    .category-link-card:hover,
+    .guide-card:hover,
+    .calc-card:hover{
       text-decoration:none;
       transform:translateY(-2px);
       border-color:rgba(56,189,248,.28);
       background:rgba(17,24,39,.96);
     }
 
-    .category-link-card h3{
+    .category-link-card h3,
+    .guide-card h3{
       margin:0 0 6px;
       font-size:1rem;
       color:#fff;
     }
 
-    .category-link-card p{
+    .category-link-card p,
+    .guide-card p{
       margin:0;
       color:var(--muted);
       font-size:.94rem;
+    }
+
+    .guide-grid{
+      grid-template-columns:repeat(3, minmax(0, 1fr));
+      margin-top:18px;
+    }
+
+    .guide-card{
+      display:block;
+      padding:18px;
+      color:inherit;
+      text-decoration:none;
+      transition:transform .12s ease, border-color .12s ease, background .12s ease;
+    }
+
+    .guide-tag{
+      display:inline-flex;
+      align-items:center;
+      padding:6px 10px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:700;
+      color:#cbd5e1;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.08);
+      margin-bottom:12px;
+    }
+
+    .guide-open{
+      display:inline-block;
+      margin-top:12px;
+      color:var(--accent);
+      font-size:.92rem;
+      font-weight:700;
     }
 
     .category-block{
@@ -292,14 +333,7 @@
       color:inherit;
       text-decoration:none;
       overflow:hidden;
-      transition: transform .12s ease, border-color .12s ease, background .12s ease;
-    }
-
-    .calc-card:hover{
-      text-decoration:none;
-      transform:translateY(-2px);
-      border-color:rgba(56,189,248,.28);
-      background:rgba(17,24,39,.96);
+      transition:transform .12s ease, border-color .12s ease, background .12s ease;
     }
 
     .calc-preview{
@@ -429,10 +463,6 @@
 
     .faq-item{
       padding:18px 20px;
-      border-radius:16px;
-      background:rgba(17,24,39,.88);
-      border:1px solid rgba(255,255,255,.08);
-      box-shadow:var(--shadow);
     }
 
     .faq-item h3{
@@ -472,7 +502,8 @@
         grid-template-columns:repeat(2, minmax(0, 1fr));
       }
 
-      .grid{
+      .grid,
+      .guide-grid{
         grid-template-columns:repeat(2, minmax(0, 1fr));
       }
 
@@ -494,7 +525,8 @@
 
     @media (max-width: 640px){
       .quick-links-grid,
-      .grid{
+      .grid,
+      .guide-grid{
         grid-template-columns:1fr;
       }
 
@@ -519,10 +551,11 @@
       <nav class="nav" aria-label="Primary navigation">
         <a href="/">Home</a>
         <a href="#categories">Categories</a>
+        <a href="#guides">Guides</a>
         <a href="#calculators">Calculators</a>
-        <a href="#about-calc-nest">About</a>
+        <a href="#methodology">Methodology</a>
         <a href="#faq">FAQ</a>
-        <a href="/about.html">About Page</a>
+        <a href="/about.html">About</a>
         <a href="/privacy.html">Privacy</a>
         <a href="mailto:churdomains@gmail.com">Contact</a>
       </nav>
@@ -533,37 +566,37 @@
     <section class="hero">
       <div class="container hero-grid">
         <div>
-          <span class="eyebrow">Free Online Calculators</span>
-          <h1>Free online calculators for finance, health, dates, and everyday math</h1>
+          <span class="eyebrow">Free Online Calculators and Practical Guides</span>
+          <h1>Tools to calculate faster. Guides to understand better.</h1>
           <p>
-            Calc Nest is an independently built collection of free online calculators designed for practical everyday use. The site focuses on tools people actually need, from budgeting and borrowing to percentages, savings, inflation, BMI, age, and date calculations.
+            Calc Nest is an independently built portal of free online calculators and practical guides. The goal is not only to help you get a number quickly, but also to help you understand the key concepts behind borrowing, savings, retirement, inflation, health estimates, dates, and everyday math.
           </p>
           <p>
-            Each calculator is built to be quick to load, easy to understand, and simple to use on desktop or mobile. No sign-up is required, and calculations run directly in your browser.
+            You can use Calc Nest to estimate a <a href="/mortgage-calculator/">mortgage payment</a>, compare borrowing costs with the <a href="/apr-calculator/">APR Calculator</a>, review a full <a href="/amortization-calculator/">Amortization Calculator</a> schedule, plan debt reduction with the <a href="/debt-payoff-calculator/">Debt Payoff Calculator</a>, or estimate purchasing power with the <a href="/inflation-calculator/">Inflation Calculator</a>.
           </p>
           <p>
-            Whether you want to estimate a <a href="/mortgage-calculator/">mortgage payment</a>, compare borrowing costs with the <a href="/apr-calculator/">APR Calculator</a>, review a full <a href="/amortization-calculator/">Amortization Calculator</a> schedule, plan debt reduction with the <a href="/debt-payoff-calculator/">Debt Payoff Calculator</a>, or estimate long-term purchasing power with the <a href="/inflation-calculator/">Inflation Calculator</a>, Calc Nest is designed to keep the process straightforward.
+            Beyond calculators, Calc Nest now includes practical guides that explain concepts like APR vs interest rate, debt snowball vs avalanche, extra payments, amortization, inflation, loan comparisons, affordability, percentage change, and retirement goals in real-world terms.
           </p>
           <div class="hero-actions">
             <a class="btn btn-primary" href="#calculators">Browse calculators</a>
-            <a class="btn" href="/about.html">Learn more</a>
+            <a class="btn" href="#guides">Read guides</a>
           </div>
         </div>
 
         <aside class="hero-card" aria-label="Calc Nest overview">
           <h2>What you’ll find in Calc Nest</h2>
           <p style="margin:0;color:var(--muted);">
-            A growing library of browser-based calculators organized around useful categories such as finance, health, dates, and everyday calculations.
+            A growing library of browser-based calculators plus practical concept guides designed to make common decisions easier to understand.
           </p>
 
           <div class="quick-stats">
             <div class="stat">
-              <span class="stat-label">Built for</span>
-              <span class="stat-value">Everyday practical use</span>
+              <span class="stat-label">Calculator focus</span>
+              <span class="stat-value">Finance, health, dates, math</span>
             </div>
             <div class="stat">
-              <span class="stat-label">Main focus</span>
-              <span class="stat-value">Fast, simple tools</span>
+              <span class="stat-label">Guide focus</span>
+              <span class="stat-value">Borrowing, savings, inflation, retirement</span>
             </div>
             <div class="stat">
               <span class="stat-label">Works on mobile</span>
@@ -587,9 +620,9 @@
     <section class="section" id="categories">
       <div class="container">
         <div class="section-header">
-          <h2>Explore calculators by category</h2>
+          <h2>Explore Calc Nest by category</h2>
           <p>
-            Use the quick links below to jump into the most useful parts of the site and find the right calculator faster.
+            Jump into calculators, concept guides, and the sections that are most relevant to what you want to solve.
           </p>
         </div>
 
@@ -597,6 +630,11 @@
           <a class="category-link-card" href="#financial-calculators">
             <h3>Finance calculators</h3>
             <p>Loans, APR, mortgages, amortization, debt payoff, inflation, savings, retirement, tax, discounts, and more.</p>
+          </a>
+
+          <a class="category-link-card" href="#guides">
+            <h3>Practical guides</h3>
+            <p>Understand core ideas like APR, extra payments, inflation, affordability, and retirement planning.</p>
           </a>
 
           <a class="category-link-card" href="#health-calculators">
@@ -620,27 +658,134 @@
     <section class="section">
       <div class="container">
         <div class="section-header">
-          <h2>How to use Calc Nest</h2>
+          <h2>How Calc Nest helps</h2>
           <p>
-            Calc Nest is designed for people who want a quick answer without digging through bloated tools or unnecessary steps.
+            The site is built to help you do more than plug numbers into a form.
+          </p>
+        </div>
+
+        <div class="info-grid">
+          <div class="section-card">
+            <h3>Calculate quickly</h3>
+            <p>
+              Use focused calculators that are fast to load, easy to use, and built for common real-world scenarios like loans, mortgages, inflation, savings, age, calorie needs, percentages, taxes, and tips.
+            </p>
+          </div>
+
+          <div class="section-card">
+            <h3>Understand the concept</h3>
+            <p>
+              Read practical guides that explain what the numbers actually mean, why certain tradeoffs matter, and what common mistakes people make when comparing options or interpreting results.
+            </p>
+          </div>
+
+          <div class="section-card">
+            <h3>Compare scenarios better</h3>
+            <p>
+              Use calculators and guides together. For example, compare a mortgage with the calculator, then read about affordability, APR, amortization, or extra payments to understand the bigger picture.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="guides">
+      <div class="container">
+        <div class="section-header">
+          <h2>Learn the key concepts</h2>
+          <p>
+            Calc Nest is not only a calculator portal. It also includes practical guides that explain the ideas behind the numbers so the results are easier to interpret and use.
+          </p>
+        </div>
+
+        <div class="guide-grid">
+          <a class="guide-card" href="/apr-vs-interest-rate/">
+            <span class="guide-tag">Guide</span>
+            <h3>APR vs Interest Rate: What’s the Difference?</h3>
+            <p>Understand why the headline rate is not always enough when comparing borrowing offers.</p>
+            <span class="guide-open">Read guide →</span>
+          </a>
+
+          <a class="guide-card" href="/debt-snowball-vs-debt-avalanche/">
+            <span class="guide-tag">Guide</span>
+            <h3>Debt Snowball vs Debt Avalanche</h3>
+            <p>See how the two payoff strategies differ and why math and motivation do not always point to the same choice.</p>
+            <span class="guide-open">Read guide →</span>
+          </a>
+
+          <a class="guide-card" href="/how-extra-payments-reduce-loan-interest/">
+            <span class="guide-tag">Guide</span>
+            <h3>How Extra Payments Reduce Loan Interest</h3>
+            <p>Learn why overpaying principal can shorten payoff time and lower total interest.</p>
+            <span class="guide-open">Read guide →</span>
+          </a>
+
+          <a class="guide-card" href="/how-to-read-an-amortization-schedule/">
+            <span class="guide-tag">Guide</span>
+            <h3>How to Read an Amortization Schedule</h3>
+            <p>Understand what each payment actually does and why early payments often look interest-heavy.</p>
+            <span class="guide-open">Read guide →</span>
+          </a>
+
+          <a class="guide-card" href="/how-inflation-affects-savings-retirement-and-long-term-costs/">
+            <span class="guide-tag">Guide</span>
+            <h3>How Inflation Affects Savings, Retirement, and Long-Term Costs</h3>
+            <p>See why purchasing power matters more than nominal balances alone in long-term planning.</p>
+            <span class="guide-open">Read guide →</span>
+          </a>
+
+          <a class="guide-card" href="/how-to-compare-loan-offers-properly/">
+            <span class="guide-tag">Guide</span>
+            <h3>How to Compare Loan Offers Properly</h3>
+            <p>Look beyond the headline number and compare APR, fees, payment, term, and total cost more clearly.</p>
+            <span class="guide-open">Read guide →</span>
+          </a>
+
+          <a class="guide-card" href="/how-much-house-can-you-really-afford/">
+            <span class="guide-tag">Guide</span>
+            <h3>How Much House Can You Really Afford?</h3>
+            <p>Think about affordability in terms of total monthly housing cost, not just purchase price.</p>
+            <span class="guide-open">Read guide →</span>
+          </a>
+
+          <a class="guide-card" href="/what-percentage-change-actually-means/">
+            <span class="guide-tag">Guide</span>
+            <h3>What Percentage Change Actually Means</h3>
+            <p>Understand how percentage movement works, why the starting value matters, and where interpretation often goes wrong.</p>
+            <span class="guide-open">Read guide →</span>
+          </a>
+
+          <a class="guide-card" href="/how-to-estimate-a-retirement-goal-in-todays-dollars/">
+            <span class="guide-tag">Guide</span>
+            <h3>How to Estimate a Retirement Goal in Today’s Dollars</h3>
+            <p>Start retirement planning from real purchasing power instead of a random future balance target.</p>
+            <span class="guide-open">Read guide →</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2>How to use calculators and guides together</h2>
+          <p>
+            A number is more useful when you also understand the concept behind it.
           </p>
         </div>
 
         <div class="section-card">
           <p>
-            Start by choosing the category that matches your goal. For borrowing and repayment decisions, tools like the <a href="/loan-calculator/">Loan Calculator</a>, <a href="/mortgage-calculator/">Mortgage Calculator</a>, <a href="/apr-calculator/">APR Calculator</a>, and <a href="/amortization-calculator/">Amortization Calculator</a> can help compare options and understand how debt behaves over time.
+            For borrowing and repayment decisions, tools like the <a href="/loan-calculator/">Loan Calculator</a>, <a href="/mortgage-calculator/">Mortgage Calculator</a>, <a href="/apr-calculator/">APR Calculator</a>, and <a href="/amortization-calculator/">Amortization Calculator</a> help compare scenarios and estimate payments.
           </p>
           <p>
-            If you are planning longer-term finances, the <a href="/savings-calculator/">Savings Calculator</a>, <a href="/compound-interest-calculator/">Compound Interest Calculator</a>, <a href="/retirement-calculator/">Retirement Calculator</a>, <a href="/inflation-calculator/">Inflation Calculator</a>, and <a href="/interest-rate-calculator/">Interest Rate Calculator</a> are useful for modeling growth, targets, and real-world purchasing power.
+            The guides then add context. For example, you can calculate an offer and then read about <a href="/apr-vs-interest-rate/">APR vs interest rate</a>, <a href="/how-to-compare-loan-offers-properly/">how to compare loan offers</a>, <a href="/how-to-read-an-amortization-schedule/">how to read an amortization schedule</a>, or <a href="/how-extra-payments-reduce-loan-interest/">how extra payments affect payoff</a>.
           </p>
           <p>
-            For debt reduction and payoff planning, you can compare different approaches with the <a href="/debt-payoff-calculator/">Debt Payoff Calculator</a> and test how faster repayment changes the outcome using the <a href="/extra-payment-calculator/">Extra Payment Calculator</a>.
+            If you are planning longer-term finances, the <a href="/savings-calculator/">Savings Calculator</a>, <a href="/compound-interest-calculator/">Compound Interest Calculator</a>, <a href="/retirement-calculator/">Retirement Calculator</a>, and <a href="/inflation-calculator/">Inflation Calculator</a> work especially well alongside guides about inflation and retirement goals in today’s dollars.
           </p>
           <p>
-            If you are looking for health-related estimates, the <a href="/bmi-calculator/">BMI Calculator</a> and <a href="/calorie-calculator/">Calorie Calculator</a> cover two of the most common use cases. For scheduling and personal timelines, the <a href="/age-calculator/">Age Calculator</a> and <a href="/days-between-dates/">Days Between Dates Calculator</a> make date-based calculations easier.
-          </p>
-          <p>
-            For simple day-to-day math, tools like the <a href="/percentage-calculator/">Percentage Calculator</a>, <a href="/discount-calculator/">Discount Calculator</a>, <a href="/sales-tax-calculator/">Sales Tax Calculator</a>, and <a href="/tip-calculator/">Tip Calculator</a> help with common shopping and bill-splitting scenarios.
+            For everyday calculations, tools like the <a href="/percentage-calculator/">Percentage Calculator</a>, <a href="/discount-calculator/">Discount Calculator</a>, <a href="/sales-tax-calculator/">Sales Tax Calculator</a>, and <a href="/tip-calculator/">Tip Calculator</a> are supported by guide content that makes common percentage logic easier to interpret correctly.
           </p>
         </div>
       </div>
@@ -791,7 +936,7 @@
             </a>
 
             <a class="calc-card" href="/retirement-calculator/">
-              <div class="fake-preview calc-preview">
+              <div class="calc-preview">
                 <div class="fake-line md"></div>
                 <div class="fake-line md"></div>
                 <div class="fake-result">Retirement balance: 842,000</div>
@@ -944,81 +1089,64 @@
       </div>
     </section>
 
-    <section class="section" id="about-calc-nest">
+    <section class="section" id="methodology">
       <div class="container">
         <div class="section-header">
-          <h2>Why use Calc Nest?</h2>
+          <h2>How Calc Nest calculators and guides are built</h2>
           <p>
-            Calc Nest is built around practical calculators that are fast to load, simple to use, and designed to help with real-world decisions.
+            The goal of Calc Nest is not only to show a result, but also to make the result easier to understand and use.
           </p>
         </div>
 
         <div class="info-grid">
           <div class="section-card">
-            <h3>Fast and simple</h3>
+            <h3>Calculator pages</h3>
             <p>
-              Every calculator is designed to work quickly without unnecessary clutter. You can open a tool, enter your numbers, and get a result immediately.
+              Each calculator page is designed to include the tool itself plus supporting content such as short explanations, formulas when relevant, worked examples, related tools, and FAQs.
             </p>
           </div>
 
           <div class="section-card">
-            <h3>Built for common use cases</h3>
+            <h3>Guide pages</h3>
             <p>
-              The site focuses on practical topics such as borrowing, debt payoff, amortization, inflation, budgeting, savings, retirement planning, taxes, BMI, calorie estimates, dates, and percentages.
+              Guide pages explain key concepts, tradeoffs, interpretation issues, and common mistakes so users can better understand what their calculator results mean in practice.
             </p>
           </div>
 
           <div class="section-card">
-            <h3>Works across devices</h3>
+            <h3>Method and limitations</h3>
             <p>
-              Calc Nest is mobile-friendly and designed to work on phones, tablets, and desktop devices without requiring an account.
+              Whenever appropriate, Calc Nest treats results as practical estimates for educational use. Real-world outcomes can vary depending on fees, rules, assumptions, timing, and personal circumstances.
             </p>
           </div>
         </div>
-      </div>
-    </section>
 
-    <section class="section">
-      <div class="container">
-        <div class="section-header">
-          <h2>How Calc Nest calculators are built</h2>
+        <div class="callout">
           <p>
-            The goal of Calc Nest is not just to show a number, but to make each tool easier to understand and easier to use.
-          </p>
-        </div>
-
-        <div class="section-card">
-          <p>
-            Each calculator page is structured to include the tool itself plus supporting information such as short explanations, formulas when relevant, examples, and FAQs. This helps users understand what the result means and when a calculator is useful.
-          </p>
-          <p>
-            Whenever appropriate, the calculators are intended as practical estimates for educational and informational use. For topics like loans, mortgages, debt payoff, inflation, taxes, BMI, calorie targets, or retirement planning, real-world results can vary depending on fees, rules, assumptions, and personal circumstances.
-          </p>
-          <p>
-            Calc Nest is being expanded over time with more categories, more calculator pages, and clearer internal links between related tools so users can move easily from one calculation to the next.
+            Calc Nest is independently maintained and continues to expand with new calculators, stronger internal linking, and more practical guides around the concepts people most often need to understand.
           </p>
         </div>
       </div>
     </section>
 
-    <section class="section">
+    <section class="section" id="about-calc-nest">
       <div class="container">
         <div class="section-header">
           <h2>About Calc Nest</h2>
           <p>
-            Calc Nest is a growing collection of free online calculators built to keep common calculations accessible, understandable, and easy to use.
+            Calc Nest is a growing collection of free online calculators and practical guides built to keep common calculations accessible, understandable, and easy to use.
           </p>
         </div>
 
         <div class="section-card">
           <p>
-            Many calculators online are either too basic, too cluttered, or too thin to be genuinely helpful. Calc Nest aims for a better balance: practical tools, clear outputs, and enough supporting content to explain what each calculator does.
+            Many calculators online are either too basic, too cluttered, or too thin to be genuinely helpful. Calc Nest aims for a better balance: practical tools, clear outputs, and enough supporting explanation to make the result more useful.
           </p>
           <p>
-            Whether you need to estimate a mortgage payment, compare loan costs, analyze an amortization schedule, find the impact of inflation, calculate your age, compare debt payoff strategies, or work out a quick percentage, the site is built to make those tasks simpler.
+            The site is especially strong around borrowing, repayment, amortization, inflation, savings, retirement, and percentage logic, while also offering health, date, and everyday math tools for common use cases.
           </p>
           <p>
-            All tools are free to use, and no sign-up is required. Calculations happen directly in your browser for a faster and lighter experience.
+            All tools and guides are free to use, no sign-up is required, and calculations run directly in your browser for a faster and lighter experience.
           </p>
         </div>
       </div>
@@ -1029,7 +1157,7 @@
         <div class="section-header">
           <h2>Frequently asked questions</h2>
           <p>
-            Common questions about Calc Nest and how the calculators work.
+            Common questions about Calc Nest, calculators, and guides.
           </p>
         </div>
 
@@ -1037,28 +1165,35 @@
           <div class="faq-item">
             <h3>What is Calc Nest?</h3>
             <p>
-              Calc Nest is a website of free online calculators covering finance, health, date calculations, percentages, taxes, savings, loans, mortgages, debt payoff, inflation, retirement planning, and other everyday use cases.
+              Calc Nest is a website of free online calculators and practical guides covering finance, health, date calculations, percentages, taxes, savings, loans, mortgages, debt payoff, inflation, retirement planning, and other everyday use cases.
             </p>
           </div>
 
           <div class="faq-item">
-            <h3>Are the calculators free to use?</h3>
+            <h3>Does Calc Nest only include calculators?</h3>
             <p>
-              Yes. All calculators on Calc Nest are free to use and do not require registration or a paid subscription.
+              No. In addition to calculators, Calc Nest also includes guides that explain key concepts such as APR, extra payments, inflation, affordability, amortization, percentage change, and retirement planning.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>Are the calculators and guides free to use?</h3>
+            <p>
+              Yes. All calculators and guides on Calc Nest are free to use and do not require registration or a paid subscription.
             </p>
           </div>
 
           <div class="faq-item">
             <h3>Do I need to create an account?</h3>
             <p>
-              No. The calculators are designed to work directly in your browser without requiring an account.
+              No. The site is designed to work directly in your browser without requiring an account.
             </p>
           </div>
 
           <div class="faq-item">
-            <h3>Can I use these calculators on my phone?</h3>
+            <h3>Can I use Calc Nest on my phone?</h3>
             <p>
-              Yes. Calc Nest is designed to be mobile-friendly, so the calculators work on phones, tablets, and desktop devices.
+              Yes. Calc Nest is designed to be mobile-friendly, so calculators and guides work on phones, tablets, and desktop devices.
             </p>
           </div>
 
@@ -1077,14 +1212,7 @@
           </div>
 
           <div class="faq-item">
-            <h3>What kinds of calculators are included?</h3>
-            <p>
-              The site includes calculators for APR, amortization, debt payoff, extra payments, inflation, interest rate analysis, BMI, calories, age, days between dates, percentages, discounts, taxes, tips, loans, mortgages, retirement, ROI, savings, and compound interest.
-            </p>
-          </div>
-
-          <div class="faq-item">
-            <h3>How can I suggest a new calculator?</h3>
+            <h3>How can I suggest a new calculator or guide?</h3>
             <p>
               You can send suggestions or feedback by email at <a href="mailto:churdomains@gmail.com">churdomains@gmail.com</a>.
             </p>
@@ -1100,6 +1228,7 @@
       <div class="footer-links">
         <a href="/">Home</a>
         <a href="#categories">Categories</a>
+        <a href="#guides">Guides</a>
         <a href="#calculators">Calculators</a>
         <a href="/about.html">About</a>
         <a href="/privacy.html">Privacy</a>
