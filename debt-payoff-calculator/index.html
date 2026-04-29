@@ -5,6 +5,7 @@
      crossorigin="anonymous"></script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/favicon-96.png" type="image/png" sizes="96x96" />
   <title>Debt Payoff Calculator | Calc Nest</title>
   <meta name="description" content="Free online Debt Payoff Calculator. Compare debt snowball and debt avalanche strategies, estimate payoff time, total interest, and see a payoff schedule preview." />
   <link rel="canonical" href="https://calc-nest.com/debt-payoff-calculator/" />
@@ -439,6 +440,19 @@
       font-size:13px;
     }
 
+    .callout{
+      margin-top:14px;
+      padding:16px;
+      border-radius:16px;
+      background:rgba(11,18,32,.65);
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .callout p{
+      margin:0;
+      color:#d6dbe4;
+    }
+
     .footer{
       padding:34px 0 48px;
       color:var(--muted);
@@ -534,7 +548,7 @@
             It pairs naturally with the <a href="/loan-calculator/">Loan Calculator</a>, <a href="/amortization-calculator/">Amortization Calculator</a>, <a href="/apr-calculator/">APR Calculator</a>, and <a href="/interest-rate-calculator/">Interest Rate Calculator</a>.
           </p>
           <p class="small-note">
-            Results are intended as practical estimates based on fixed-rate, minimum-payment style assumptions.
+            Results are intended as practical estimates based on fixed-rate, minimum-payment style assumptions. For broader context, see <a href="/debt-snowball-vs-debt-avalanche/">Debt Snowball vs Debt Avalanche</a> and <a href="/how-extra-payments-reduce-loan-interest/">How Extra Payments Reduce Loan Interest</a>.
           </p>
         </div>
 
@@ -663,6 +677,45 @@
     <section class="section">
       <div class="container content-grid">
         <article class="content-card">
+          <h2>What this debt payoff calculator helps you estimate</h2>
+          <p>
+            This calculator is built for people paying down multiple debts at the same time and wanting to compare strategies instead of looking at one loan in isolation.
+          </p>
+
+          <div class="two-col">
+            <div class="mini-card">
+              <h3>What this calculator includes</h3>
+              <ul>
+                <li>Multiple debts</li>
+                <li>Balance, rate, and minimum payment inputs</li>
+                <li>Snowball and avalanche strategy comparison</li>
+                <li>Optional extra monthly payment</li>
+                <li>Estimated payoff order</li>
+                <li>Simplified payoff schedule preview</li>
+              </ul>
+            </div>
+
+            <div class="mini-card">
+              <h3>What this calculator does not include</h3>
+              <ul>
+                <li>Balance transfers</li>
+                <li>Promotional rates</li>
+                <li>Changing variable rates</li>
+                <li>Late fees or penalties</li>
+                <li>Creditor-specific payment rules</li>
+                <li>Formal lender or issuer disclosures</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="callout">
+            <p>
+              This makes the calculator useful for practical planning and strategy comparison, but not a substitute for the exact terms of each creditor account.
+            </p>
+          </div>
+        </article>
+
+        <article class="content-card">
           <h2>What a debt payoff calculator does</h2>
           <p>
             A debt payoff calculator helps estimate how long it may take to eliminate multiple debts and how much interest may be paid along the way. It is different from a single loan calculator because it focuses on how several balances interact under a broader payoff strategy.
@@ -684,6 +737,22 @@
                 The avalanche method targets the highest interest rate first. It is often preferred when the goal is to reduce total interest cost as efficiently as possible.
               </p>
             </div>
+          </div>
+        </article>
+
+        <article class="content-card">
+          <h2>How to interpret your payoff result</h2>
+          <p>
+            The payoff timeline shows how long the full plan may take under the selected strategy. Total interest shows the cost of carrying the debts over that period. Debt-free date helps translate the timeline into a more concrete target.
+          </p>
+          <p>
+            “Interest saved vs no extra” and “Time saved vs no extra” are especially useful when you want to test whether adding even a modest amount each month is worth it. In many cases, small extra payments create a meaningful difference over time.
+          </p>
+
+          <div class="callout">
+            <p>
+              Snowball and avalanche do not always produce the same emotional experience or the same total interest result. That is why comparing both can be useful.
+            </p>
           </div>
         </article>
 
@@ -746,6 +815,17 @@
         </article>
 
         <article class="content-card">
+          <h2>Common debt payoff mistakes this calculator can help highlight</h2>
+          <ul>
+            <li><strong>Switching strategy constantly:</strong> inconsistency can make repayment harder to follow and stick to.</li>
+            <li><strong>Looking only at motivation or only at math:</strong> snowball and avalanche each solve a different problem.</li>
+            <li><strong>Ignoring high rates completely:</strong> this can increase total interest materially.</li>
+            <li><strong>Assuming small extra payments do not matter:</strong> over time, they often do.</li>
+            <li><strong>Viewing each debt in isolation:</strong> the real challenge is often how the debts interact within one payoff plan.</li>
+          </ul>
+        </article>
+
+        <article class="content-card">
           <h2>Important assumptions and limitations</h2>
           <p>
             This Debt Payoff Calculator assumes fixed annual interest rates and fixed minimum monthly payments. It does not include balance transfers, changing rates, penalties, late fees, promotional periods, or lender-specific repayment rules.
@@ -753,6 +833,19 @@
           <p>
             The results are intended as practical estimates. Real repayment outcomes may differ depending on actual creditor terms and changing balances over time.
           </p>
+        </article>
+
+        <article class="content-card">
+          <h2>Related guides</h2>
+          <p>
+            These guides help explain payoff strategy, extra payments, and borrowing tradeoffs more clearly.
+          </p>
+          <div class="related-links">
+            <a href="/debt-snowball-vs-debt-avalanche/">Debt Snowball vs Debt Avalanche</a>
+            <a href="/how-extra-payments-reduce-loan-interest/">How Extra Payments Reduce Loan Interest</a>
+            <a href="/how-to-compare-loan-offers-properly/">How to Compare Loan Offers Properly</a>
+            <a href="/apr-vs-interest-rate/">APR vs Interest Rate</a>
+          </div>
         </article>
 
         <article class="content-card">
@@ -799,6 +892,13 @@
             <h3>What happens if I add extra monthly payment?</h3>
             <p>
               Extra monthly payment can shorten payoff time and reduce total interest by accelerating principal reduction.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>What does “interest saved vs no extra” mean?</h3>
+            <p>
+              It compares the selected plan against the same debt setup without any extra monthly payment, showing how much interest the added payment may reduce.
             </p>
           </div>
 
