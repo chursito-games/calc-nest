@@ -5,6 +5,7 @@
      crossorigin="anonymous"></script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/favicon-96.png" type="image/png" sizes="96x96" />
   <title>Amortization Calculator | Calc Nest</title>
   <meta name="description" content="Free online Amortization Calculator. Estimate payment amount, total interest, payoff time, and view an amortization schedule with optional extra payments." />
   <link rel="canonical" href="https://calc-nest.com/amortization-calculator/" />
@@ -201,24 +202,6 @@
       box-shadow:0 0 0 4px rgba(56,189,248,.14);
     }
 
-    .checkbox-row{
-      display:flex;
-      align-items:flex-start;
-      gap:10px;
-      margin:2px 0 12px;
-    }
-
-    .checkbox-row input{
-      width:auto;
-      margin-top:4px;
-      transform:scale(1.1);
-    }
-
-    .checkbox-row label{
-      font-weight:500;
-      color:#d6dbe4;
-    }
-
     .result-box{
       margin-top:18px;
       padding:16px;
@@ -413,6 +396,19 @@
       background:rgba(255,255,255,.1);
     }
 
+    .callout{
+      margin-top:14px;
+      padding:16px;
+      border-radius:16px;
+      background:rgba(11,18,32,.65);
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .callout p{
+      margin:0;
+      color:#d6dbe4;
+    }
+
     .footer{
       padding:34px 0 48px;
       color:var(--muted);
@@ -492,7 +488,7 @@
             This calculator works well for installment-style borrowing and pairs naturally with the <a href="/loan-calculator/">Loan Calculator</a>, <a href="/apr-calculator/">APR Calculator</a>, and <a href="/mortgage-calculator/">Mortgage Calculator</a>.
           </p>
           <p class="small-note">
-            Results are intended as practical estimates for fixed-rate amortizing loans.
+            Results are intended as practical estimates for fixed-rate amortizing loans. For broader context, see <a href="/how-to-read-an-amortization-schedule/">How to Read an Amortization Schedule</a> and <a href="/how-extra-payments-reduce-loan-interest/">How Extra Payments Reduce Loan Interest</a>.
           </p>
         </div>
 
@@ -606,6 +602,45 @@
     <section class="section">
       <div class="container content-grid">
         <article class="content-card">
+          <h2>What this amortization calculator helps you estimate</h2>
+          <p>
+            This calculator is designed to help you understand not just the payment amount, but the structure of repayment over time.
+          </p>
+
+          <div class="two-col">
+            <div class="mini-card">
+              <h3>What this calculator includes</h3>
+              <ul>
+                <li>Loan amount</li>
+                <li>Interest rate</li>
+                <li>Loan term</li>
+                <li>Payment frequency</li>
+                <li>Optional extra payment</li>
+                <li>Schedule preview and payoff timing</li>
+              </ul>
+            </div>
+
+            <div class="mini-card">
+              <h3>What this calculator does not include</h3>
+              <ul>
+                <li>Lender fees</li>
+                <li>Taxes or insurance</li>
+                <li>Changing interest rates</li>
+                <li>Late fees or penalties</li>
+                <li>Product-specific lender rules</li>
+                <li>Official lender disclosures</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="callout">
+            <p>
+              This makes the calculator useful for planning and schedule interpretation, but not a substitute for an official statement from a lender.
+            </p>
+          </div>
+        </article>
+
+        <article class="content-card">
           <h2>What amortization means</h2>
           <p>
             Amortization is the process of paying down a loan through regular payments over time. Each payment usually includes two parts: interest and principal.
@@ -627,6 +662,22 @@
           <p>
             Looking at a full schedule can help borrowers understand where their money is going and how long repayment will take.
           </p>
+        </article>
+
+        <article class="content-card">
+          <h2>How to interpret your schedule and results</h2>
+          <p>
+            The base payment shows the scheduled amortizing payment. The total payment with extra shows what happens when you deliberately accelerate repayment. The table then lets you see how that decision changes the balance path row by row.
+          </p>
+          <p>
+            One of the most useful insights from an amortization schedule is that early payments can feel “slow” because interest still takes a relatively large share. Later in the schedule, the same payment usually pushes the balance down faster because less interest is due each period.
+          </p>
+
+          <div class="callout">
+            <p>
+              This is why an amortization schedule is often more informative than a payment amount alone. It shows how the loan actually behaves over time.
+            </p>
+          </div>
         </article>
 
         <article class="content-card">
@@ -681,6 +732,17 @@
         </article>
 
         <article class="content-card">
+          <h2>Common amortization mistakes this calculator can help highlight</h2>
+          <ul>
+            <li><strong>Assuming the full payment reduces balance equally every period:</strong> the interest and principal split changes over time.</li>
+            <li><strong>Thinking early interest-heavy payments are unusual:</strong> for many amortizing loans, that pattern is normal.</li>
+            <li><strong>Ignoring the ending balance trend:</strong> the schedule often explains the payoff story better than the payment alone.</li>
+            <li><strong>Underestimating the effect of extra payments:</strong> even relatively small extra amounts can materially change total interest and payoff timing.</li>
+            <li><strong>Confusing this page with APR or fee comparison:</strong> amortization structure and fee-adjusted borrowing cost are related, but not the same thing.</li>
+          </ul>
+        </article>
+
+        <article class="content-card">
           <h2>Important assumptions and limitations</h2>
           <p>
             This Amortization Calculator is intended for fixed-rate, fixed-payment style loans. It does not include lender fees, taxes, insurance, changing rates, penalties, or product-specific repayment rules.
@@ -688,6 +750,19 @@
           <p>
             Actual lender amortization methods can vary. Use this page as a practical planning tool rather than a formal loan disclosure.
           </p>
+        </article>
+
+        <article class="content-card">
+          <h2>Related guides</h2>
+          <p>
+            These guides help explain schedule interpretation, extra payments, and repayment structure more clearly.
+          </p>
+          <div class="related-links">
+            <a href="/how-to-read-an-amortization-schedule/">How to Read an Amortization Schedule</a>
+            <a href="/how-extra-payments-reduce-loan-interest/">How Extra Payments Reduce Loan Interest</a>
+            <a href="/apr-vs-interest-rate/">APR vs Interest Rate</a>
+            <a href="/how-to-compare-loan-offers-properly/">How to Compare Loan Offers Properly</a>
+          </div>
         </article>
 
         <article class="content-card">
@@ -699,13 +774,9 @@
             <a href="/loan-calculator/">Loan Calculator</a>
             <a href="/apr-calculator/">APR Calculator</a>
             <a href="/mortgage-calculator/">Mortgage Calculator</a>
-            <a href="/savings-calculator/">Savings Calculator</a>
-            <a href="/compound-interest-calculator/">Compound Interest Calculator</a>
-            <a href="/retirement-calculator/">Retirement Calculator</a>
+            <a href="/extra-payment-calculator/">Extra Payment Calculator</a>
             <a href="/interest-rate-calculator/">Interest Rate Calculator</a>
             <a href="/debt-payoff-calculator/">Debt Payoff Calculator</a>
-            <a href="/extra-payment-calculator/">Extra Payment Calculator</a>
-            <a href="/inflation-calculator/">Inflation Calculator</a>
             <a href="/">Browse all calculators</a>
           </div>
         </article>
@@ -731,6 +802,13 @@
             <h3>What happens when I add extra payments?</h3>
             <p>
               Extra payments usually reduce principal faster, which can shorten payoff time and reduce total interest.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>What is the difference between base payment and total payment with extra?</h3>
+            <p>
+              Base payment is the scheduled amortizing payment. Total payment with extra includes any additional amount you choose to apply on top of the scheduled payment.
             </p>
           </div>
 
@@ -823,6 +901,22 @@
         minimumFractionDigits: decimals,
         maximumFractionDigits: decimals
       });
+    }
+
+    function formatPayoffTime(totalPayments, paymentsPerYear) {
+      if (!isFinite(totalPayments) || totalPayments <= 0) return "—";
+
+      const totalYears = totalPayments / paymentsPerYear;
+
+      if (paymentsPerYear === 12) {
+        const years = Math.floor(totalPayments / 12);
+        const months = totalPayments % 12;
+        if (years === 0) return `${months} month${months === 1 ? "" : "s"}`;
+        if (months === 0) return `${years} year${years === 1 ? "" : "s"}`;
+        return `${years} year${years === 1 ? "" : "s"}, ${months} month${months === 1 ? "" : "s"}`;
+      }
+
+      return `${formatNumber(totalYears, 2)} years`;
     }
 
     function calculateBasePayment(principal, annualRate, totalPayments, paymentsPerYear) {
@@ -955,7 +1049,7 @@
       totalInterestEl.textContent = formatCurrency(results.totalInterest);
       totalPaymentsEl.textContent = formatNumber(results.totalPayments);
       firstPaymentBreakdownEl.textContent = `${formatCurrency(firstRow.principal)} principal / ${formatCurrency(firstRow.interest)} interest`;
-      payoffTimeEl.textContent = `${formatNumber(results.totalPayments)} ${results.totalPayments === 1 ? "payment" : "payments"}`;
+      payoffTimeEl.textContent = formatPayoffTime(results.totalPayments, paymentsPerYear);
     }
 
     function resetResults() {
@@ -968,6 +1062,7 @@
       firstPaymentBreakdownEl.textContent = "—";
       payoffTimeEl.textContent = "—";
       fullSchedule = [];
+      visibleRows = 12;
       renderSchedule();
     }
 
