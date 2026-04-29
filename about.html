@@ -3,113 +3,648 @@
 <head>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9145068700780289"
      crossorigin="anonymous"></script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About Calc Nest</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/favicon-96.png" type="image/png" sizes="96x96" />
+  <title>About Calc Nest | Free Online Calculators and Practical Guides</title>
+  <meta name="description" content="Learn more about Calc Nest, a growing collection of free online calculators and practical guides for finance, health, dates, percentages, and everyday calculations." />
+  <link rel="canonical" href="https://calc-nest.com/about.html" />
+  <meta name="theme-color" content="#0f172a" />
 
-<meta name="description" content="Learn about Calc Nest, a collection of free online calculators designed to be simple, fast, and easy to use." />
+  <meta property="og:title" content="About Calc Nest | Free Online Calculators and Practical Guides" />
+  <meta property="og:description" content="Calc Nest combines free online calculators with practical guides to help users calculate faster and understand key concepts more clearly." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://calc-nest.com/about.html" />
 
-<style>
+  <style>
+    :root{
+      --bg:#0b1220;
+      --panel:#111827;
+      --panel-2:#0f172a;
+      --text:#e5e7eb;
+      --muted:#94a3b8;
+      --line:#334155;
+      --accent:#38bdf8;
+      --shadow:0 18px 45px rgba(0,0,0,.28);
+      --radius:18px;
+      --max:1080px;
+    }
 
-body{
-font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
-background:#0b1220;
-color:#e5e7eb;
-margin:0;
-line-height:1.6;
-}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:linear-gradient(180deg, #0b1220 0%, #111827 100%);
+      color:var(--text);
+      line-height:1.6;
+    }
 
-.container{
-max-width:900px;
-margin:auto;
-padding:40px 20px;
-}
+    a{
+      color:var(--accent);
+      text-decoration:none;
+    }
 
-h1{
-margin-top:0;
-}
+    a:hover{
+      text-decoration:underline;
+    }
 
-a{
-color:#38bdf8;
-text-decoration:none;
-}
+    .container{
+      width:min(var(--max), calc(100% - 32px));
+      margin:0 auto;
+    }
 
-a:hover{
-text-decoration:underline;
-}
+    .topbar{
+      border-bottom:1px solid rgba(255,255,255,.08);
+      background:rgba(15,23,42,.78);
+      backdrop-filter:blur(8px);
+      position:sticky;
+      top:0;
+      z-index:20;
+    }
 
-.card{
-background:#111827;
-padding:30px;
-border-radius:16px;
-border:1px solid rgba(255,255,255,0.08);
-}
+    .topbar-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:14px 0;
+    }
 
-footer{
-margin-top:40px;
-color:#94a3b8;
-font-size:14px;
-display:flex;
-justify-content:space-between;
-flex-wrap:wrap;
-gap:10px;
-}
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight:700;
+      color:#fff;
+      letter-spacing:.2px;
+    }
 
-</style>
+    .brand-badge{
+      width:34px;
+      height:34px;
+      border-radius:12px;
+      background:linear-gradient(135deg, var(--accent), #6366f1);
+      box-shadow:0 10px 24px rgba(56,189,248,.25);
+      flex:none;
+    }
+
+    .nav{
+      display:flex;
+      gap:18px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .nav a{
+      color:var(--text);
+      opacity:.94;
+      font-size:14px;
+    }
+
+    .hero{
+      padding:56px 0 24px;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.08fr .92fr;
+      gap:24px;
+      align-items:start;
+    }
+
+    .eyebrow{
+      display:inline-block;
+      margin-bottom:12px;
+      font-size:12px;
+      font-weight:700;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:var(--accent);
+    }
+
+    .hero h1{
+      margin:0 0 12px;
+      font-size:clamp(2.1rem, 4vw, 3.4rem);
+      line-height:1.05;
+      letter-spacing:-.03em;
+    }
+
+    .hero p{
+      margin:0 0 16px;
+      color:var(--muted);
+      max-width:68ch;
+      font-size:1.03rem;
+    }
+
+    .hero-card,
+    .section-card,
+    .faq-item{
+      background:rgba(17,24,39,.88);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+    }
+
+    .hero-card{
+      padding:22px;
+    }
+
+    .hero-card h2{
+      margin:0 0 12px;
+      font-size:1.15rem;
+    }
+
+    .quick-stats{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+      margin-top:12px;
+    }
+
+    .stat{
+      padding:14px;
+      border-radius:14px;
+      background:rgba(11,18,32,.65);
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .stat-label{
+      display:block;
+      color:var(--muted);
+      font-size:13px;
+      margin-bottom:4px;
+    }
+
+    .stat-value{
+      display:block;
+      font-size:1.02rem;
+      font-weight:800;
+      color:#fff;
+    }
+
+    .section{
+      padding:20px 0 0;
+    }
+
+    .section-header{
+      margin-bottom:14px;
+    }
+
+    .section-header h2{
+      margin:0 0 8px;
+      font-size:1.55rem;
+      letter-spacing:-.02em;
+    }
+
+    .section-header p{
+      margin:0;
+      color:var(--muted);
+    }
+
+    .section-card{
+      padding:22px;
+    }
+
+    .section-card h3{
+      margin:0 0 10px;
+      font-size:1.08rem;
+    }
+
+    .section-card p,
+    .section-card li{
+      color:#d6dbe4;
+    }
+
+    .section-card ul{
+      margin:0;
+      padding-left:20px;
+    }
+
+    .info-grid{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0, 1fr));
+      gap:18px;
+      margin-top:18px;
+    }
+
+    .two-col{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:18px;
+      margin-top:18px;
+    }
+
+    .callout{
+      margin-top:18px;
+      padding:18px 20px;
+      border-radius:16px;
+      background:rgba(11,18,32,.65);
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .callout p{
+      margin:0;
+      color:#d6dbe4;
+    }
+
+    .faq-list{
+      display:grid;
+      gap:14px;
+      margin-top:16px;
+    }
+
+    .faq-item{
+      padding:18px 20px;
+    }
+
+    .faq-item h3{
+      margin:0 0 8px;
+      font-size:1rem;
+    }
+
+    .faq-item p{
+      margin:0;
+      color:#d6dbe4;
+    }
+
+    .footer{
+      padding:34px 0 48px;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .footer-inner{
+      display:flex;
+      justify-content:space-between;
+      gap:16px;
+      flex-wrap:wrap;
+      border-top:1px solid rgba(255,255,255,.08);
+      padding-top:18px;
+      margin-top:28px;
+    }
+
+    .footer-links{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+    }
+
+    @media (max-width: 980px){
+      .info-grid,
+      .two-col{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width: 860px){
+      .hero-grid{
+        grid-template-columns:1fr;
+      }
+
+      .topbar-inner{
+        align-items:flex-start;
+        flex-direction:column;
+      }
+    }
+
+    @media (max-width: 640px){
+      .quick-stats{
+        grid-template-columns:1fr;
+      }
+
+      .hero{
+        padding-top:34px;
+      }
+    }
+  </style>
 </head>
-
 <body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand">
+        <div class="brand-badge" aria-hidden="true"></div>
+        <span>Calc Nest</span>
+      </div>
 
-<div class="container">
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/privacy.html">Privacy</a>
+        <a href="mailto:churdomains@gmail.com">Contact</a>
+      </nav>
+    </div>
+  </header>
 
-<div class="card">
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">About Calc Nest</span>
+          <h1>More than calculators. A practical resource built to help people understand the numbers.</h1>
+          <p>
+            Calc Nest is an independently built collection of free online calculators and practical guides designed to make common calculations easier to use and easier to understand.
+          </p>
+          <p>
+            The site started with a simple idea: many online calculators are either too thin, too cluttered, or too confusing to be genuinely useful. Calc Nest aims for a better balance by combining fast browser-based tools with clear supporting content that helps users understand what the results actually mean.
+          </p>
+          <p>
+            Today, Calc Nest covers a growing set of topics across finance, health, dates, percentages, taxes, savings, loans, mortgages, inflation, retirement planning, and everyday math.
+          </p>
+        </div>
 
-<h1>About Calc Nest</h1>
+        <aside class="hero-card" aria-label="Calc Nest overview">
+          <h2>What Calc Nest includes</h2>
+          <div class="quick-stats">
+            <div class="stat">
+              <span class="stat-label">Main format</span>
+              <span class="stat-value">Calculators + practical guides</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">Main themes</span>
+              <span class="stat-value">Finance, health, dates, everyday math</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">Built for</span>
+              <span class="stat-value">Fast use and clear interpretation</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">Access</span>
+              <span class="stat-value">Free, browser-based, no account required</span>
+            </div>
+          </div>
 
-<p>
-<strong>Calc Nest</strong> is a collection of free online calculators designed to help people perform everyday calculations quickly and easily.
-</p>
+          <div class="callout">
+            <p>
+              Calc Nest is designed to help users not only calculate results faster, but also understand the concepts behind borrowing, repayment, inflation, retirement, affordability, percentage change, and other everyday topics.
+            </p>
+          </div>
+        </aside>
+      </div>
+    </section>
 
-<p>
-The goal of Calc Nest is simple: create tools that are fast, clear, and accessible on any device. Each calculator is designed to work instantly in your browser without requiring downloads, accounts, or subscriptions.
-</p>
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2>What Calc Nest is trying to do</h2>
+          <p>
+            The goal is simple: create tools and guides that are practical, clear, and useful without unnecessary friction.
+          </p>
+        </div>
 
-<p>
-Many calculators online are overloaded with ads or unnecessary complexity. Calc Nest focuses on a cleaner experience so users can get the result they need in seconds.
-</p>
+        <div class="section-card">
+          <p>
+            Many people do not just need a result. They also need context. A monthly payment, APR, inflation-adjusted amount, or retirement target becomes much more useful when the person using it understands how that number works and what it represents.
+          </p>
+          <p>
+            That is why Calc Nest is structured around two parts:
+          </p>
+          <ul>
+            <li><strong>Calculators</strong> for fast, browser-based estimates</li>
+            <li><strong>Practical guides</strong> that explain the key concepts behind those estimates</li>
+          </ul>
+          <p>
+            This approach is especially important for areas like loans, mortgages, debt payoff, extra payments, inflation, retirement planning, affordability, and percentage logic, where a raw number alone often does not tell the full story.
+          </p>
+        </div>
+      </div>
+    </section>
 
-<p>
-Current tools include calculators for health, math, dates, and everyday financial or practical calculations. New tools may be added over time as the site grows.
-</p>
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2>What you can find on the site</h2>
+          <p>
+            Calc Nest is organized around practical categories and common real-world questions.
+          </p>
+        </div>
 
-<h2>Our approach</h2>
+        <div class="info-grid">
+          <div class="section-card">
+            <h3>Financial calculators</h3>
+            <p>
+              Tools for loans, mortgages, APR, amortization, debt payoff, extra payments, inflation, interest rates, savings, retirement, ROI, taxes, and other borrowing or planning decisions.
+            </p>
+          </div>
 
-<ul>
-<li>Simple and easy-to-use tools</li>
-<li>Fast loading pages</li>
-<li>Mobile-friendly design</li>
-<li>No account required</li>
-</ul>
+          <div class="section-card">
+            <h3>Health and date tools</h3>
+            <p>
+              Tools like BMI, calorie, age, and date difference calculators for everyday informational use.
+            </p>
+          </div>
 
-<p>
-Calc Nest is intended for general informational purposes only. Results provided by the calculators should not replace professional advice in areas such as health, finance, or legal matters.
-</p>
+          <div class="section-card">
+            <h3>Concept guides</h3>
+            <p>
+              Practical guides covering topics such as APR vs interest rate, debt snowball vs avalanche, extra payments, amortization, inflation, affordability, percentage change, and retirement planning.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-</div>
+    <section class="section" id="methodology">
+      <div class="container">
+        <div class="section-header">
+          <h2>How Calc Nest calculators and guides are built</h2>
+          <p>
+            The site is designed around clarity, practical use, and transparency about what the tools can and cannot do.
+          </p>
+        </div>
 
-<footer>
+        <div class="info-grid">
+          <div class="section-card">
+            <h3>Calculator pages</h3>
+            <p>
+              Calculator pages are built to include not only the interactive tool, but also supporting text such as short explanations, formulas when relevant, examples, related tools, and FAQs.
+            </p>
+          </div>
 
-<div>© 2026 Calc Nest</div>
+          <div class="section-card">
+            <h3>Guide pages</h3>
+            <p>
+              Guide pages are written to explain concepts, interpretation issues, common mistakes, and tradeoffs that often matter more than the raw calculation itself.
+            </p>
+          </div>
 
-<div>
-<a href="/">Home</a> |
-<a href="/privacy.html">Privacy</a> |
-<a href="mailto:churdomains@gmail.com">Contact</a>
-</div>
+          <div class="section-card">
+            <h3>Practical estimates</h3>
+            <p>
+              Whenever appropriate, Calc Nest treats results as practical estimates for educational and informational use. Real-world outcomes can vary depending on fees, assumptions, timing, rules, and personal circumstances.
+            </p>
+          </div>
+        </div>
 
-</footer>
+        <div class="two-col">
+          <div class="section-card">
+            <h3>What the site tries to do well</h3>
+            <ul>
+              <li>Load quickly and work directly in the browser</li>
+              <li>Stay simple enough for everyday users</li>
+              <li>Reduce unnecessary clutter</li>
+              <li>Explain the meaning behind results</li>
+              <li>Connect related tools and concepts clearly</li>
+            </ul>
+          </div>
 
-</div>
+          <div class="section-card">
+            <h3>What the site does not try to be</h3>
+            <ul>
+              <li>Professional financial, legal, tax, or medical advice</li>
+              <li>An official lender or government disclosure source</li>
+              <li>A substitute for personalized expert guidance</li>
+              <li>A news portal or opinion site</li>
+              <li>A replacement for product-specific documentation or professional review</li>
+            </ul>
+          </div>
+        </div>
 
+        <div class="callout">
+          <p>
+            In practice, the most useful workflow is often: use a calculator to estimate the scenario, then read a related guide to better understand the result and its limitations.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Design principles behind Calc Nest</h2>
+          <p>
+            The site is built around a few simple principles that guide how new pages are added.
+          </p>
+        </div>
+
+        <div class="section-card">
+          <ul>
+            <li><strong>Simple and easy to use:</strong> tools should be understandable without unnecessary complexity.</li>
+            <li><strong>Fast loading pages:</strong> calculators should be lightweight and accessible.</li>
+            <li><strong>Mobile-friendly design:</strong> the site should work well across phones, tablets, and desktops.</li>
+            <li><strong>No account required:</strong> users should be able to open a page and use it immediately.</li>
+            <li><strong>Practical interpretation:</strong> whenever possible, pages should help explain what the result means, not just display it.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2>How Calc Nest is evolving</h2>
+          <p>
+            Calc Nest is still growing, and the direction of growth matters.
+          </p>
+        </div>
+
+        <div class="section-card">
+          <p>
+            The site is gradually expanding with more calculators, stronger internal linking, more practical guides, and clearer coverage of the concepts people most often need to understand before making everyday decisions.
+          </p>
+          <p>
+            The strongest current focus is on finance-related tools and educational support around borrowing, repayment, inflation, savings, retirement, and affordability, while still keeping useful health, date, and everyday math calculators available.
+          </p>
+          <p>
+            The long-term goal is to keep building a resource that feels both practical and trustworthy: fast enough to use in seconds, but informative enough to still be helpful after the result appears.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2>General informational use</h2>
+          <p>
+            A clear note on how Calc Nest should be used.
+          </p>
+        </div>
+
+        <div class="section-card">
+          <p>
+            Calc Nest is intended for general informational and educational purposes only. Results provided by calculators and interpretations provided in guides should not replace professional advice in areas such as health, finance, tax, legal matters, lending decisions, or retirement planning.
+          </p>
+          <p>
+            Users should always evaluate important decisions in the context of their own circumstances and, when necessary, consult qualified professionals or official sources.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="container">
+        <div class="section-header">
+          <h2>Frequently asked questions</h2>
+          <p>
+            Common questions about Calc Nest as a site.
+          </p>
+        </div>
+
+        <div class="faq-list">
+          <div class="faq-item">
+            <h3>Is Calc Nest only a calculator website?</h3>
+            <p>
+              No. Calc Nest includes both calculators and practical guides. The calculators are built to help users estimate results quickly, while the guides help explain the concepts behind those results.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>Are the tools free to use?</h3>
+            <p>
+              Yes. The calculators and guides on Calc Nest are free to use and do not require registration.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>Do I need to download anything?</h3>
+            <p>
+              No. The site is designed to work directly in your browser.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>What kinds of topics does Calc Nest cover?</h3>
+            <p>
+              The site currently focuses on finance, health, dates, percentages, taxes, loans, mortgages, savings, retirement, inflation, debt payoff, and everyday practical calculations.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>Can I trust the calculators as exact official answers?</h3>
+            <p>
+              They are designed as practical estimates for informational use. Real-world outcomes can vary depending on the rules, assumptions, fees, and circumstances involved.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>Why does Calc Nest include guides now?</h3>
+            <p>
+              Because many topics are not fully useful as raw outputs alone. Users often need help understanding the concepts, tradeoffs, and common interpretation mistakes behind the calculation.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>How can I contact Calc Nest?</h3>
+            <p>
+              Questions, suggestions, and feedback can be sent to <a href="mailto:churdomains@gmail.com">churdomains@gmail.com</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>© 2026 Calc Nest</div>
+      <div class="footer-links">
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/privacy.html">Privacy</a>
+        <a href="mailto:churdomains@gmail.com">Contact</a>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
