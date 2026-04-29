@@ -5,6 +5,7 @@
      crossorigin="anonymous"></script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/favicon-96.png" type="image/png" sizes="96x96" />
   <title>Mortgage Calculator | Calc Nest</title>
   <meta name="description" content="Free online Mortgage Calculator. Estimate home loan amount, principal and interest, taxes, insurance, and total monthly mortgage payment." />
   <link rel="canonical" href="https://calc-nest.com/mortgage-calculator/" />
@@ -326,6 +327,63 @@
       color:#d6dbe4;
     }
 
+    .split-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:16px;
+      margin-top:8px;
+    }
+
+    .mini-card{
+      padding:16px;
+      border-radius:16px;
+      background:#0f172a;
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .mini-card h3{
+      margin-top:0;
+    }
+
+    .pill-links{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:12px;
+    }
+
+    .pill-links a{
+      display:inline-flex;
+      align-items:center;
+      padding:10px 12px;
+      border-radius:999px;
+      background:#0f172a;
+      border:1px solid rgba(255,255,255,.08);
+      color:#e5e7eb;
+      text-decoration:none;
+      font-size:14px;
+      font-weight:600;
+    }
+
+    .pill-links a:hover{
+      border-color:rgba(56,189,248,.45);
+      color:#fff;
+      text-decoration:none;
+    }
+
+    .callout{
+      margin-top:14px;
+      padding:16px;
+      border-radius:16px;
+      background:rgba(11,18,32,.65);
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .callout p{
+      margin:0;
+      color:#d6dbe4;
+    }
+
     .faq-item{
       padding:14px 0;
       border-top:1px solid rgba(255,255,255,.08);
@@ -358,7 +416,8 @@
     }
 
     @media (max-width: 860px){
-      .hero-grid{
+      .hero-grid,
+      .split-grid{
         grid-template-columns:1fr;
       }
 
@@ -381,6 +440,7 @@
         <a href="/">Home</a>
         <a href="/about.html">About</a>
         <a href="/privacy.html">Privacy</a>
+        <a href="/contact.html">Contact</a>
       </nav>
     </div>
   </header>
@@ -398,7 +458,7 @@
             Enter your home price, down payment, loan term, interest rate, annual property tax, and annual home insurance to see your monthly breakdown instantly.
           </p>
           <p class="small-note">
-            Results are estimates for general informational use and do not replace official lender calculations.
+            Results are estimates for general informational use and do not replace official lender calculations. For broader context, see guides like <a href="/how-much-house-can-you-really-afford/">How Much House Can You Really Afford?</a> and <a href="/apr-vs-interest-rate/">APR vs Interest Rate</a>.
           </p>
         </div>
 
@@ -486,6 +546,45 @@
     <section class="section">
       <div class="container content-grid">
         <article class="content-card">
+          <h2>What this mortgage calculator helps you estimate</h2>
+          <p>
+            This mortgage calculator is designed to estimate the parts of a monthly housing payment that most users care about first: the loan amount, principal and interest, monthly property tax, monthly home insurance, and the estimated combined monthly total.
+          </p>
+
+          <div class="split-grid">
+            <div class="mini-card">
+              <h3>What this calculator includes</h3>
+              <ul>
+                <li>Home price</li>
+                <li>Down payment as amount or percent</li>
+                <li>Loan term</li>
+                <li>Interest rate</li>
+                <li>Estimated property tax</li>
+                <li>Estimated homeowners insurance</li>
+              </ul>
+            </div>
+
+            <div class="mini-card">
+              <h3>What this calculator does not include</h3>
+              <ul>
+                <li>Lender-specific fees</li>
+                <li>Official APR disclosures</li>
+                <li>PMI or mortgage insurance variations</li>
+                <li>HOA fees</li>
+                <li>Escrow differences across lenders</li>
+                <li>Closing costs or cash-to-close detail</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="callout">
+            <p>
+              This makes the calculator useful for early planning and comparison, but not a substitute for lender-specific disclosures or a final mortgage offer.
+            </p>
+          </div>
+        </article>
+
+        <article class="content-card">
           <h2>What is a mortgage calculator?</h2>
           <p>
             A mortgage calculator estimates the monthly cost of buying a home based on the property price, down payment, mortgage term, and interest rate. A more complete mortgage calculator can also include property tax and homeowners insurance.
@@ -498,6 +597,22 @@
           <p>
             This calculator first determines the loan amount by subtracting the down payment from the home price. It then estimates the monthly principal and interest payment using a standard amortizing loan formula. Property tax and insurance are divided into monthly amounts and added to the result.
           </p>
+        </article>
+
+        <article class="content-card">
+          <h2>How to interpret your mortgage result</h2>
+          <p>
+            The most important number on the page is often not just the principal-and-interest payment, but the full estimated monthly total once tax and insurance are added. That fuller number is usually much closer to what borrowers need to think about when comparing homes.
+          </p>
+          <p>
+            A mortgage can look manageable when only principal and interest are viewed in isolation, but feel much heavier once housing-related extras are considered. That is why this calculator is more useful than a basic loan payment tool for home-buying scenarios.
+          </p>
+
+          <div class="callout">
+            <p>
+              A lower mortgage payment is not always the same thing as better affordability. Total housing cost still has to fit the rest of your budget.
+            </p>
+          </div>
         </article>
 
         <article class="content-card">
@@ -515,10 +630,66 @@
         </article>
 
         <article class="content-card">
+          <h2>When this calculator is especially useful</h2>
+          <ul>
+            <li>Comparing homes at different price points</li>
+            <li>Testing different down payment assumptions</li>
+            <li>Seeing how rate changes affect the monthly total</li>
+            <li>Comparing 15-, 20-, and 30-year mortgage scenarios</li>
+            <li>Adding tax and insurance to get a more realistic monthly number</li>
+          </ul>
+          <p>
+            It is especially useful in the early planning phase, before you have formal lender paperwork but want to understand what a house may really cost each month.
+          </p>
+        </article>
+
+        <article class="content-card">
           <h2>What is included in a monthly mortgage payment?</h2>
           <p>
             A monthly mortgage payment can include several parts: principal, interest, property taxes, and homeowners insurance. Some borrowers may also pay private mortgage insurance or HOA fees, but those are not included in this version of the calculator.
           </p>
+        </article>
+
+        <article class="content-card">
+          <h2>Common mortgage comparison mistakes</h2>
+          <ul>
+            <li><strong>Focusing only on home price:</strong> the monthly total matters more than the headline listing number alone.</li>
+            <li><strong>Ignoring tax and insurance:</strong> these can materially change real affordability.</li>
+            <li><strong>Looking only at monthly payment:</strong> a lower payment can come from a longer term, which may increase total interest.</li>
+            <li><strong>Confusing rate with total borrowing cost:</strong> lender fees and APR can still matter.</li>
+            <li><strong>Assuming approval equals affordability:</strong> a lender decision and your own budget comfort are not the same thing.</li>
+          </ul>
+        </article>
+
+        <article class="content-card">
+          <h2>Related guides</h2>
+          <p>
+            These guides help explain the concepts behind mortgage affordability and loan structure more clearly.
+          </p>
+
+          <div class="pill-links">
+            <a href="/how-much-house-can-you-really-afford/">How Much House Can You Really Afford?</a>
+            <a href="/apr-vs-interest-rate/">APR vs Interest Rate</a>
+            <a href="/how-to-compare-loan-offers-properly/">How to Compare Loan Offers Properly</a>
+            <a href="/how-to-read-an-amortization-schedule/">How to Read an Amortization Schedule</a>
+            <a href="/how-extra-payments-reduce-loan-interest/">How Extra Payments Reduce Loan Interest</a>
+          </div>
+        </article>
+
+        <article class="content-card">
+          <h2>Related calculators</h2>
+          <p>
+            If you want to keep exploring the same decision from different angles, these calculators pair well with the Mortgage Calculator.
+          </p>
+
+          <div class="pill-links">
+            <a href="/loan-calculator/">Loan Calculator</a>
+            <a href="/apr-calculator/">APR Calculator</a>
+            <a href="/amortization-calculator/">Amortization Calculator</a>
+            <a href="/extra-payment-calculator/">Extra Payment Calculator</a>
+            <a href="/interest-rate-calculator/">Interest Rate Calculator</a>
+            <a href="/savings-calculator/">Savings Calculator</a>
+          </div>
         </article>
 
         <article class="content-card">
@@ -532,6 +703,13 @@
           </div>
 
           <div class="faq-item">
+            <h3>What is the difference between principal and interest and total monthly payment?</h3>
+            <p>
+              Principal and interest reflect the core loan payment. Total monthly payment adds estimated property tax and insurance, which often makes the number more realistic for budgeting.
+            </p>
+          </div>
+
+          <div class="faq-item">
             <h3>Does this calculator include PMI or HOA fees?</h3>
             <p>
               No. This version includes principal, interest, property tax, and homeowners insurance only.
@@ -539,9 +717,23 @@
           </div>
 
           <div class="faq-item">
+            <h3>Can I use this calculator for affordability decisions?</h3>
+            <p>
+              Yes, as an early planning estimate. But affordability should still be considered in the context of the rest of your budget, not only the mortgage payment itself.
+            </p>
+          </div>
+
+          <div class="faq-item">
             <h3>Can I use this for any currency?</h3>
             <p>
               Yes. The calculator uses plain numbers, so it can work with dollars, euros, pounds, pesos, or other currencies.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>Is this the same as an official lender quote?</h3>
+            <p>
+              No. This calculator is designed for practical estimation and planning, not as an official lender disclosure or formal mortgage quote.
             </p>
           </div>
 
