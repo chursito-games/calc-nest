@@ -5,6 +5,7 @@
      crossorigin="anonymous"></script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/favicon-96.png" type="image/png" sizes="96x96" />
   <title>APR Calculator | Calc Nest</title>
   <meta name="description" content="Free online APR Calculator. Estimate annual percentage rate, monthly payment, total interest, and effective funds received based on loan amount, rate, term, and fees." />
   <link rel="canonical" href="https://calc-nest.com/apr-calculator/" />
@@ -333,6 +334,19 @@
       text-decoration:none;
     }
 
+    .callout{
+      margin-top:14px;
+      padding:16px;
+      border-radius:16px;
+      background:rgba(11,18,32,.65);
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .callout p{
+      margin:0;
+      color:#d6dbe4;
+    }
+
     .small-note{
       color:var(--muted);
       font-size:13px;
@@ -417,7 +431,7 @@
             If you want to estimate payments without focusing on APR specifically, you may also want to use the <a href="/loan-calculator/">Loan Calculator</a> or <a href="/mortgage-calculator/">Mortgage Calculator</a>.
           </p>
           <p class="small-note">
-            Results are intended as practical estimates and may differ from official lender disclosures.
+            Results are intended as practical estimates and may differ from official lender disclosures. For broader context, see <a href="/apr-vs-interest-rate/">APR vs Interest Rate</a> and <a href="/how-to-compare-loan-offers-properly/">How to Compare Loan Offers Properly</a>.
           </p>
         </div>
 
@@ -477,6 +491,45 @@
     <section class="section">
       <div class="container content-grid">
         <article class="content-card">
+          <h2>What this APR calculator helps you estimate</h2>
+          <p>
+            This APR Calculator is designed to help you compare the stated loan rate with a broader borrowing-cost estimate once upfront fees are taken into account.
+          </p>
+
+          <div class="two-col">
+            <div class="mini-card">
+              <h3>What this calculator includes</h3>
+              <ul>
+                <li>Loan amount</li>
+                <li>Stated interest rate</li>
+                <li>Loan term in months</li>
+                <li>Upfront fees</li>
+                <li>Monthly payment estimate</li>
+                <li>Net amount received after fees</li>
+              </ul>
+            </div>
+
+            <div class="mini-card">
+              <h3>What this calculator does not include</h3>
+              <ul>
+                <li>Every possible lender charge</li>
+                <li>Jurisdiction-specific disclosure rules</li>
+                <li>Variable-rate loan behavior</li>
+                <li>Taxes or insurance</li>
+                <li>Late fees or penalties</li>
+                <li>Product-specific lender conventions</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="callout">
+            <p>
+              This makes the calculator useful for comparison and planning, but not a substitute for an official lender APR disclosure or formal loan documentation.
+            </p>
+          </div>
+        </article>
+
+        <article class="content-card">
           <h2>Why APR matters</h2>
           <p>
             APR stands for <strong>Annual Percentage Rate</strong>. It is designed to give a broader picture of borrowing cost than the stated interest rate alone. While the interest rate focuses on the cost applied to the loan balance, APR also reflects certain fees and charges that increase the effective cost of borrowing.
@@ -501,6 +554,22 @@
                 APR includes the effect of interest plus certain upfront fees, making it more useful for comparing loans that may look similar on the surface but differ in total cost.
               </p>
             </div>
+          </div>
+        </article>
+
+        <article class="content-card">
+          <h2>How to interpret your APR result</h2>
+          <p>
+            The stated interest rate tells you the base financing rate. The APR estimate helps show what the loan may feel like once upfront fees reduce the effective funds you actually receive.
+          </p>
+          <p>
+            If the APR is noticeably higher than the stated interest rate, that usually means fees are having a meaningful impact on total borrowing cost. That difference often matters most when comparing multiple offers that look similar on the surface.
+          </p>
+
+          <div class="callout">
+            <p>
+              A “low-rate” loan can still be expensive once fees are considered. That is exactly why APR can be more useful than interest rate alone in comparison shopping.
+            </p>
           </div>
         </article>
 
@@ -557,6 +626,17 @@
         </article>
 
         <article class="content-card">
+          <h2>Common APR mistakes this calculator can help highlight</h2>
+          <ul>
+            <li><strong>Assuming APR and interest rate are always the same:</strong> they often are not once fees exist.</li>
+            <li><strong>Looking only at the advertised rate:</strong> this can hide meaningful fee-driven cost differences.</li>
+            <li><strong>Ignoring the net amount received:</strong> upfront fees reduce the value actually received by the borrower.</li>
+            <li><strong>Comparing offers without checking fees:</strong> similar-looking loans may still differ materially in total cost.</li>
+            <li><strong>Assuming APR is a perfect all-in measure:</strong> official APR treatment can vary by product and regulation.</li>
+          </ul>
+        </article>
+
+        <article class="content-card">
           <h2>Important assumptions and limitations</h2>
           <p>
             This APR Calculator is intended as a simplified estimate. Official lender APR disclosures may follow specific regulatory rules and may include or exclude charges differently depending on the product and jurisdiction.
@@ -567,6 +647,19 @@
         </article>
 
         <article class="content-card">
+          <h2>Related guides</h2>
+          <p>
+            These guides help explain APR, borrowing cost, and loan comparisons more clearly.
+          </p>
+          <div class="related-links">
+            <a href="/apr-vs-interest-rate/">APR vs Interest Rate</a>
+            <a href="/how-to-compare-loan-offers-properly/">How to Compare Loan Offers Properly</a>
+            <a href="/how-much-house-can-you-really-afford/">How Much House Can You Really Afford?</a>
+            <a href="/how-to-read-an-amortization-schedule/">How to Read an Amortization Schedule</a>
+          </div>
+        </article>
+
+        <article class="content-card">
           <h2>Related calculators</h2>
           <p>
             Explore other Calc Nest tools often used alongside this APR Calculator.
@@ -574,6 +667,8 @@
           <div class="related-links">
             <a href="/loan-calculator/">Loan Calculator</a>
             <a href="/mortgage-calculator/">Mortgage Calculator</a>
+            <a href="/amortization-calculator/">Amortization Calculator</a>
+            <a href="/interest-rate-calculator/">Interest Rate Calculator</a>
             <a href="/">Browse all calculators</a>
           </div>
         </article>
@@ -599,6 +694,13 @@
             <h3>Can two loans have the same interest rate but different APR?</h3>
             <p>
               Yes. If their fees are different, their APR can differ even when the nominal interest rate is the same.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>What does “effective amount received” mean?</h3>
+            <p>
+              It means the net amount of money the borrower actually receives after upfront fees are subtracted from the loan proceeds.
             </p>
           </div>
 
