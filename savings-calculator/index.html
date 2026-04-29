@@ -24,17 +24,17 @@
       --muted:#94a3b8;
       --line:#334155;
       --accent:#38bdf8;
-      --shadow: 0 18px 45px rgba(0,0,0,.28);
-      --radius: 18px;
-      --max: 1080px;
+      --shadow:0 18px 45px rgba(0,0,0,.28);
+      --radius:18px;
+      --max:1080px;
     }
 
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{
       margin:0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: linear-gradient(180deg, #0b1220 0%, #111827 100%);
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:linear-gradient(180deg, #0b1220 0%, #111827 100%);
       color:var(--text);
       line-height:1.6;
     }
@@ -103,7 +103,7 @@
 
     .hero-grid{
       display:grid;
-      grid-template-columns: 1.08fr .92fr;
+      grid-template-columns:1.08fr .92fr;
       gap:24px;
       align-items:start;
     }
@@ -118,7 +118,7 @@
     .hero-copy p{
       margin:0 0 16px;
       color:var(--muted);
-      max-width:64ch;
+      max-width:66ch;
       font-size:1.03rem;
     }
 
@@ -261,10 +261,6 @@
       margin:18px auto 0;
     }
 
-    .content-grid > *{
-      width:100%;
-    }
-
     .content-card{
       width:100%;
       padding:22px;
@@ -382,7 +378,7 @@
       gap:14px;
     }
 
-    @media (max-width: 860px){
+    @media (max-width:860px){
       .hero-grid,
       .two-col{
         grid-template-columns:1fr;
@@ -426,6 +422,9 @@
           </p>
           <p>
             A savings growth calculator is useful for emergency funds, medium-term goals, down payment planning, travel funds, tuition targets, or any situation where you want to combine regular saving with compounding.
+          </p>
+          <p>
+            It also pairs naturally with broader planning topics like inflation, retirement goals, and long-term purchasing power.
           </p>
           <p class="small-note">
             Results are estimates for general informational use and do not replace financial advice or official savings projections.
@@ -568,6 +567,16 @@
         </article>
 
         <article class="content-card">
+          <h2>Why time matters so much in savings growth</h2>
+          <p>
+            Time is one of the most important variables in long-term savings. Smaller balances may grow slowly at first, but over longer periods the effect of compounding becomes more visible.
+          </p>
+          <p>
+            This is why long-term planning often benefits from reviewing savings together with inflation and retirement assumptions, not only nominal balances.
+          </p>
+        </article>
+
+        <article class="content-card">
           <h2>Goal tracking</h2>
           <p>
             If you enter a savings goal, this calculator compares your projected final balance with that target and shows whether you are on track, below goal, or above goal.
@@ -667,7 +676,7 @@
         <article class="content-card">
           <h2>Related guides</h2>
           <p>
-            These guides help explain long-term growth, purchasing power, and saving goals in broader terms.
+            These guides are the most relevant Calc Nest guides for savings growth, purchasing power, and long-term planning:
           </p>
           <div class="related-links">
             <a href="/how-inflation-affects-savings-retirement-and-long-term-costs/">How Inflation Affects Savings, Retirement, and Long-Term Costs</a>
@@ -795,7 +804,6 @@
     function futureSavings(initial, monthly, annualRate, totalYears) {
       const monthlyRate = (annualRate / 100) / 12;
       const totalMonths = Math.floor(totalYears * 12);
-
       let balance = initial;
 
       for (let i = 0; i < totalMonths; i++) {
