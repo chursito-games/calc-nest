@@ -5,6 +5,7 @@
      crossorigin="anonymous"></script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/favicon-96.png" type="image/png" sizes="96x96" />
   <title>Savings Calculator | Calc Nest</title>
   <meta name="description" content="Free online Savings Calculator. Estimate final savings balance, total contributions, interest earned, milestones, and progress toward your savings goal." />
   <link rel="canonical" href="https://calc-nest.com/savings-calculator/" />
@@ -224,6 +225,7 @@
       font-size:1.35rem;
       font-weight:800;
       line-height:1.1;
+      word-break:break-word;
     }
 
     .status-pill{
@@ -303,6 +305,62 @@
       color:#d6dbe4;
     }
 
+    .two-col{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:16px;
+    }
+
+    .mini-card{
+      padding:16px;
+      border-radius:16px;
+      background:#0f172a;
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .mini-card h3{
+      margin-top:0;
+    }
+
+    .related-links{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:12px;
+    }
+
+    .related-links a{
+      display:inline-flex;
+      align-items:center;
+      padding:10px 12px;
+      border-radius:999px;
+      background:#0f172a;
+      border:1px solid rgba(255,255,255,.08);
+      color:#e5e7eb;
+      text-decoration:none;
+      font-size:14px;
+      font-weight:600;
+    }
+
+    .related-links a:hover{
+      border-color:rgba(56,189,248,.4);
+      color:#fff;
+      text-decoration:none;
+    }
+
+    .callout{
+      margin-top:14px;
+      padding:16px;
+      border-radius:16px;
+      background:rgba(11,18,32,.65);
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .callout p{
+      margin:0;
+      color:#d6dbe4;
+    }
+
     .footer{
       padding:34px 0 48px;
       color:var(--muted);
@@ -325,7 +383,8 @@
     }
 
     @media (max-width: 860px){
-      .hero-grid{
+      .hero-grid,
+      .two-col{
         grid-template-columns:1fr;
       }
 
@@ -348,6 +407,7 @@
         <a href="/">Home</a>
         <a href="/about.html">About</a>
         <a href="/privacy.html">Privacy</a>
+        <a href="/contact.html">Contact</a>
       </nav>
     </div>
   </header>
@@ -363,6 +423,9 @@
           </p>
           <p>
             This tool also compares your projected balance against an optional savings goal and shows simple savings milestones to help you track long-term progress.
+          </p>
+          <p>
+            A savings growth calculator is useful for emergency funds, medium-term goals, down payment planning, travel funds, tuition targets, or any situation where you want to combine regular saving with compounding.
           </p>
           <p class="small-note">
             Results are estimates for general informational use and do not replace financial advice or official savings projections.
@@ -418,6 +481,11 @@
                 <span class="result-label">Interest earned</span>
                 <span class="result-value" id="interestEarnedValue">—</span>
               </div>
+
+              <div class="result-card">
+                <span class="result-label">Goal progress</span>
+                <span class="result-value" id="goalProgressValue">—</span>
+              </div>
             </div>
 
             <div class="status-pill" id="goalStatusPill">Enter values</div>
@@ -429,6 +497,45 @@
 
     <section class="section">
       <div class="container content-grid">
+        <article class="content-card">
+          <h2>What this savings calculator helps you estimate</h2>
+          <p>
+            This calculator is designed to estimate how savings may grow when you combine a starting balance, regular monthly contributions, and compounding over time.
+          </p>
+
+          <div class="two-col">
+            <div class="mini-card">
+              <h3>What this calculator includes</h3>
+              <ul>
+                <li>Initial savings balance</li>
+                <li>Monthly contributions</li>
+                <li>Annual interest rate</li>
+                <li>Compounded growth over time</li>
+                <li>Optional savings goal comparison</li>
+                <li>Simple milestone estimates</li>
+              </ul>
+            </div>
+
+            <div class="mini-card">
+              <h3>What this calculator does not include</h3>
+              <ul>
+                <li>Taxes</li>
+                <li>Account fees</li>
+                <li>Inflation adjustment</li>
+                <li>Changing contribution amounts</li>
+                <li>Changing interest rates</li>
+                <li>Market volatility or investment risk</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="callout">
+            <p>
+              This makes the calculator useful for planning and habit-building, but not a substitute for a full financial plan or official account projection.
+            </p>
+          </div>
+        </article>
+
         <article class="content-card">
           <h2>What is a savings calculator?</h2>
           <p>
@@ -442,6 +549,22 @@
           <p>
             This calculator combines your initial savings with your monthly contributions and applies monthly compounding based on the annual interest rate you provide. It then estimates how much of the final balance comes from your own contributions and how much comes from interest.
           </p>
+        </article>
+
+        <article class="content-card">
+          <h2>How to interpret your savings result</h2>
+          <p>
+            The final balance is the estimated total after your selected time horizon. Total contributions show how much of that ending amount came from money you added directly. Interest earned shows the portion generated by growth rather than by direct deposits.
+          </p>
+          <p>
+            When people look only at the final balance, they often miss the difference between disciplined saving and compounding. Reading all three numbers together makes the result much more meaningful.
+          </p>
+
+          <div class="callout">
+            <p>
+              Savings growth is usually driven by two engines together: contribution consistency and time.
+            </p>
+          </div>
         </article>
 
         <article class="content-card">
@@ -465,6 +588,36 @@
         </article>
 
         <article class="content-card">
+          <h2>Worked examples</h2>
+          <div class="two-col">
+            <div class="mini-card">
+              <h3>Example 1: emergency fund</h3>
+              <p>
+                Someone starting with <strong>1,000</strong> and adding <strong>200 per month</strong> can use this page to estimate when a more comfortable emergency cushion might be reached.
+              </p>
+            </div>
+            <div class="mini-card">
+              <h3>Example 2: medium-term goal</h3>
+              <p>
+                A saver planning for a travel fund or tuition target can compare the projected balance against a specific goal and see whether the current plan is on track.
+              </p>
+            </div>
+            <div class="mini-card">
+              <h3>Example 3: interest sensitivity</h3>
+              <p>
+                Running the same savings plan with different interest assumptions can help show how much the rate matters relative to regular contributions.
+              </p>
+            </div>
+            <div class="mini-card">
+              <h3>Example 4: long-term habit building</h3>
+              <p>
+                Even modest monthly deposits can produce a meaningful long-term result when enough time is involved.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <article class="content-card">
           <h2>How to use this calculator</h2>
           <ul>
             <li>Enter your starting savings balance.</li>
@@ -477,6 +630,65 @@
           <p>
             This tool is designed to be fast, simple, and easy to use on desktop or mobile devices.
           </p>
+        </article>
+
+        <article class="content-card">
+          <h2>Common uses for a savings calculator</h2>
+          <ul>
+            <li><strong>Emergency fund planning:</strong> estimate how quickly a reserve may grow.</li>
+            <li><strong>Down payment planning:</strong> compare current saving pace with a future target.</li>
+            <li><strong>Travel or education goals:</strong> estimate whether a savings plan is enough.</li>
+            <li><strong>Long-term saving habits:</strong> visualize the effect of monthly contributions over time.</li>
+            <li><strong>Rate comparison:</strong> compare how interest assumptions affect total growth.</li>
+          </ul>
+        </article>
+
+        <article class="content-card">
+          <h2>Common savings mistakes this calculator can help highlight</h2>
+          <ul>
+            <li><strong>Focusing only on interest rate:</strong> regular contributions often matter just as much, or more.</li>
+            <li><strong>Ignoring time horizon:</strong> compounding usually becomes more visible over longer periods.</li>
+            <li><strong>Confusing final balance with personal contributions:</strong> interest earned and direct deposits are not the same thing.</li>
+            <li><strong>Using a goal without checking progress:</strong> target amounts are more useful when compared against a realistic saving path.</li>
+            <li><strong>Forgetting inflation:</strong> nominal balances may look strong while real purchasing power changes over time.</li>
+          </ul>
+        </article>
+
+        <article class="content-card">
+          <h2>Important assumptions and limitations</h2>
+          <p>
+            This calculator assumes a constant annual interest rate and steady monthly contributions across the full time horizon. It does not account for taxes, fees, inflation, changing contribution patterns, or changing rates.
+          </p>
+          <p>
+            Real-world savings outcomes can differ from simplified projections, especially if contribution behavior or interest conditions change over time.
+          </p>
+        </article>
+
+        <article class="content-card">
+          <h2>Related guides</h2>
+          <p>
+            These guides help explain long-term growth, purchasing power, and saving goals in broader terms.
+          </p>
+          <div class="related-links">
+            <a href="/how-inflation-affects-savings-retirement-and-long-term-costs/">How Inflation Affects Savings, Retirement, and Long-Term Costs</a>
+            <a href="/how-to-estimate-a-retirement-goal-in-todays-dollars/">How to Estimate a Retirement Goal in Today’s Dollars</a>
+            <a href="/what-percentage-change-actually-means/">What Percentage Change Actually Means</a>
+          </div>
+        </article>
+
+        <article class="content-card">
+          <h2>Related calculators</h2>
+          <p>
+            Explore other Calc Nest tools that pair naturally with this Savings Calculator.
+          </p>
+          <div class="related-links">
+            <a href="/compound-interest-calculator/">Compound Interest Calculator</a>
+            <a href="/retirement-calculator/">Retirement Calculator</a>
+            <a href="/inflation-calculator/">Inflation Calculator</a>
+            <a href="/interest-rate-calculator/">Interest Rate Calculator</a>
+            <a href="/roi-calculator/">ROI Calculator</a>
+            <a href="/">Browse all calculators</a>
+          </div>
         </article>
 
         <article class="content-card">
@@ -509,6 +721,34 @@
               Yes. The calculator uses plain numbers, so it can work with dollars, euros, pounds, pesos, or other currencies.
             </p>
           </div>
+
+          <div class="faq-item">
+            <h3>Why is my final balance so much higher than my contributions?</h3>
+            <p>
+              Over longer periods, compound growth can generate a meaningful portion of the ending balance in addition to your direct deposits.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>Why is my interest earned still low?</h3>
+            <p>
+              In shorter time horizons, savings growth often comes mostly from contributions. Interest becomes more visible with more time, larger balances, or higher rates.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>Can I use this for long-term planning?</h3>
+            <p>
+              Yes, as a simplified projection. For more detailed long-term planning, it often helps to review this together with inflation and retirement assumptions.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>Can I use this Savings Calculator on mobile?</h3>
+            <p>
+              Yes. The page is designed to work on phones, tablets, and desktop devices.
+            </p>
+          </div>
         </article>
       </div>
     </section>
@@ -536,6 +776,7 @@
     const finalBalanceValue = document.getElementById("finalBalanceValue");
     const totalContributionsValue = document.getElementById("totalContributionsValue");
     const interestEarnedValue = document.getElementById("interestEarnedValue");
+    const goalProgressValue = document.getElementById("goalProgressValue");
     const goalStatusPill = document.getElementById("goalStatusPill");
     const savingsHelper = document.getElementById("savingsHelper");
     const milestonesList = document.getElementById("milestonesList");
@@ -545,6 +786,10 @@
         minimumFractionDigits: 2,
         maximumFractionDigits: 2
       });
+    }
+
+    function formatPercent(value) {
+      return `${value.toFixed(2)}%`;
     }
 
     function futureSavings(initial, monthly, annualRate, totalYears) {
@@ -569,7 +814,8 @@
 
       if (rate >= 0 && totalYears > 0 && (initial > 0 || monthly > 0)) {
         const finalBalance = futureSavings(initial, monthly, rate, totalYears);
-        const contributions = initial + (monthly * Math.floor(totalYears * 12));
+        const totalMonths = Math.floor(totalYears * 12);
+        const contributions = initial + (monthly * totalMonths);
         const interestEarned = finalBalance - contributions;
 
         finalBalanceValue.textContent = formatMoney(finalBalance);
@@ -577,6 +823,9 @@
         interestEarnedValue.textContent = formatMoney(interestEarned);
 
         if (!isNaN(goal) && goal > 0) {
+          const progress = (finalBalance / goal) * 100;
+          goalProgressValue.textContent = formatPercent(progress);
+
           if (finalBalance > goal) {
             goalStatusPill.textContent = `Above goal by ${formatMoney(finalBalance - goal)}`;
           } else if (finalBalance < goal) {
@@ -585,10 +834,11 @@
             goalStatusPill.textContent = "Goal reached";
           }
         } else {
+          goalProgressValue.textContent = "—";
           goalStatusPill.textContent = "No goal entered";
         }
 
-        const milestoneYears = [1, 5, 10];
+        const milestoneYears = [1, 3, 5, 10];
         milestonesList.innerHTML = "";
 
         milestoneYears.forEach(yearMark => {
@@ -599,6 +849,16 @@
             milestonesList.appendChild(li);
           }
         });
+
+        if (totalYears > 0 && !milestoneYears.includes(Math.floor(totalYears)) && totalYears !== Math.floor(totalYears)) {
+          const li = document.createElement("li");
+          li.textContent = `Balance after ${totalYears} years: ${formatMoney(finalBalance)}`;
+          milestonesList.appendChild(li);
+        } else if (totalYears > 10 && Number.isInteger(totalYears) && !milestoneYears.includes(totalYears)) {
+          const li = document.createElement("li");
+          li.textContent = `Balance after ${totalYears} years: ${formatMoney(finalBalance)}`;
+          milestonesList.appendChild(li);
+        }
 
         if (milestonesList.innerHTML.trim() === "") {
           const li = document.createElement("li");
@@ -611,6 +871,7 @@
         finalBalanceValue.textContent = "—";
         totalContributionsValue.textContent = "—";
         interestEarnedValue.textContent = "—";
+        goalProgressValue.textContent = "—";
         goalStatusPill.textContent = "Enter values";
         milestonesList.innerHTML = "<li>Enter values to see milestones.</li>";
         savingsHelper.textContent = "Your savings estimate will be calculated automatically as you type.";
