@@ -5,6 +5,7 @@
      crossorigin="anonymous"></script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/favicon-96.png" type="image/png" sizes="96x96" />
   <title>Loan Calculator | Calc Nest</title>
   <meta name="description" content="Free online Loan Calculator. Estimate monthly, biweekly, or weekly loan payments, total interest, total paid, number of payments, and first payment breakdown." />
   <link rel="canonical" href="https://calc-nest.com/loan-calculator/" />
@@ -335,6 +336,19 @@
       text-decoration:none;
     }
 
+    .callout{
+      margin-top:14px;
+      padding:16px;
+      border-radius:16px;
+      background:rgba(11,18,32,.65);
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .callout p{
+      margin:0;
+      color:#d6dbe4;
+    }
+
     .small-note{
       color:var(--muted);
       font-size:13px;
@@ -419,7 +433,7 @@
             If you want to compare borrowing cost including fees, you may also want to use the <a href="/apr-calculator/">APR Calculator</a>. For home loans specifically, see the <a href="/mortgage-calculator/">Mortgage Calculator</a>.
           </p>
           <p class="small-note">
-            Results are intended as practical estimates for fixed-rate, fixed-payment style loans.
+            Results are intended as practical estimates for fixed-rate, fixed-payment style loans. For broader context, see guides like <a href="/apr-vs-interest-rate/">APR vs Interest Rate</a> and <a href="/how-to-compare-loan-offers-properly/">How to Compare Loan Offers Properly</a>.
           </p>
         </div>
 
@@ -483,6 +497,45 @@
     <section class="section">
       <div class="container content-grid">
         <article class="content-card">
+          <h2>What this loan calculator helps you estimate</h2>
+          <p>
+            This Loan Calculator is designed to help you understand the most important parts of a fixed-rate loan estimate.
+          </p>
+
+          <div class="two-col">
+            <div class="mini-card">
+              <h3>What this calculator includes</h3>
+              <ul>
+                <li>Loan amount</li>
+                <li>Interest rate</li>
+                <li>Loan term</li>
+                <li>Payment frequency</li>
+                <li>Total interest estimate</li>
+                <li>First payment principal and interest split</li>
+              </ul>
+            </div>
+
+            <div class="mini-card">
+              <h3>What this calculator does not include</h3>
+              <ul>
+                <li>Lender fees</li>
+                <li>APR-specific charges</li>
+                <li>Late fees or penalties</li>
+                <li>Taxes or insurance</li>
+                <li>Variable-rate behavior</li>
+                <li>Product-specific lender rules</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="callout">
+            <p>
+              This makes the calculator useful for planning and comparison, but not a substitute for an official lender disclosure or final loan agreement.
+            </p>
+          </div>
+        </article>
+
+        <article class="content-card">
           <h2>What this calculator shows</h2>
           <p>
             This Loan Calculator is designed to help you understand the most important parts of a fixed-rate loan estimate.
@@ -494,6 +547,22 @@
             <li><strong>Number of payments:</strong> the total count of payment periods in the schedule.</li>
             <li><strong>First payment breakdown:</strong> how much of the first payment goes to interest versus principal.</li>
           </ul>
+        </article>
+
+        <article class="content-card">
+          <h2>How to interpret your loan result</h2>
+          <p>
+            The payment amount tells you what the loan may feel like period by period. The total interest tells you what the loan may cost over time. These two numbers should usually be read together.
+          </p>
+          <p>
+            A lower periodic payment can look attractive, but it often comes from a longer term, which may increase total interest substantially. That is why a loan should not be judged only by whether the payment “looks affordable” at first glance.
+          </p>
+
+          <div class="callout">
+            <p>
+              A lower payment is not always the cheaper loan. Sometimes it is simply the slower and more expensive payoff path.
+            </p>
+          </div>
         </article>
 
         <article class="content-card">
@@ -582,6 +651,17 @@
         </article>
 
         <article class="content-card">
+          <h2>Common borrowing mistakes this calculator can help highlight</h2>
+          <ul>
+            <li><strong>Looking only at monthly payment:</strong> total interest may tell a very different story.</li>
+            <li><strong>Ignoring term length:</strong> longer terms can feel easier monthly but cost more overall.</li>
+            <li><strong>Confusing interest rate with total borrowing cost:</strong> fees and APR may still matter.</li>
+            <li><strong>Assuming all loans with similar payments are equally good:</strong> structure and total cost can still vary.</li>
+            <li><strong>Skipping affordability context:</strong> a payment can look manageable on paper and still be too heavy in a real budget.</li>
+          </ul>
+        </article>
+
+        <article class="content-card">
           <h2>Important assumptions and limitations</h2>
           <p>
             This Loan Calculator is intended for fixed-rate, fixed-payment style estimates. It does not include lender fees, APR-specific charges, taxes, insurance, late fees, penalties, or product-specific costs.
@@ -592,6 +672,19 @@
         </article>
 
         <article class="content-card">
+          <h2>Related guides</h2>
+          <p>
+            These guides help explain the concepts behind loan comparisons, borrowing cost, and repayment structure more clearly.
+          </p>
+          <div class="related-links">
+            <a href="/apr-vs-interest-rate/">APR vs Interest Rate</a>
+            <a href="/how-to-compare-loan-offers-properly/">How to Compare Loan Offers Properly</a>
+            <a href="/how-extra-payments-reduce-loan-interest/">How Extra Payments Reduce Loan Interest</a>
+            <a href="/how-to-read-an-amortization-schedule/">How to Read an Amortization Schedule</a>
+          </div>
+        </article>
+
+        <article class="content-card">
           <h2>Related calculators</h2>
           <p>
             Explore other Calc Nest tools often used alongside this Loan Calculator.
@@ -599,6 +692,9 @@
           <div class="related-links">
             <a href="/apr-calculator/">APR Calculator</a>
             <a href="/mortgage-calculator/">Mortgage Calculator</a>
+            <a href="/amortization-calculator/">Amortization Calculator</a>
+            <a href="/extra-payment-calculator/">Extra Payment Calculator</a>
+            <a href="/interest-rate-calculator/">Interest Rate Calculator</a>
             <a href="/">Browse all calculators</a>
           </div>
         </article>
@@ -610,6 +706,13 @@
             <h3>How is the loan payment calculated?</h3>
             <p>
               The calculator uses a standard amortizing loan formula based on loan amount, interest rate, payment frequency, and loan term.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>What is the difference between payment amount and total loan cost?</h3>
+            <p>
+              The payment amount shows what you pay each period. Total loan cost reflects how much you may pay overall once interest across the full term is included.
             </p>
           </div>
 
