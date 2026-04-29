@@ -1,138 +1,603 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9145068700780289"
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9145068700780289"
      crossorigin="anonymous"></script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/favicon-96.png" type="image/png" sizes="96x96" />
+  <title>Privacy Policy | Calc Nest</title>
+  <meta name="description" content="Read the Calc Nest Privacy Policy to learn how calculator inputs, cookies, advertising technologies, and third-party services may be handled on this website." />
+  <link rel="canonical" href="https://calc-nest.com/privacy.html" />
+  <meta name="theme-color" content="#0f172a" />
 
-<title>Privacy Policy | Calc Nest</title>
+  <meta property="og:title" content="Privacy Policy | Calc Nest" />
+  <meta property="og:description" content="Learn how Calc Nest handles calculator inputs, cookies, advertising technologies, and third-party services." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://calc-nest.com/privacy.html" />
 
-<meta name="description" content="Privacy Policy for Calc Nest." />
+  <style>
+    :root{
+      --bg:#0b1220;
+      --panel:#111827;
+      --panel-2:#0f172a;
+      --text:#e5e7eb;
+      --muted:#94a3b8;
+      --line:#334155;
+      --accent:#38bdf8;
+      --shadow:0 18px 45px rgba(0,0,0,.28);
+      --radius:18px;
+      --max:1080px;
+    }
 
-<style>
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:linear-gradient(180deg, #0b1220 0%, #111827 100%);
+      color:var(--text);
+      line-height:1.6;
+    }
 
-body{
-font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
-background:#0b1220;
-color:#e5e7eb;
-margin:0;
-line-height:1.6;
-}
+    a{
+      color:var(--accent);
+      text-decoration:none;
+    }
 
-.container{
-max-width:900px;
-margin:auto;
-padding:40px 20px;
-}
+    a:hover{
+      text-decoration:underline;
+    }
 
-.card{
-background:#111827;
-padding:30px;
-border-radius:16px;
-border:1px solid rgba(255,255,255,0.08);
-}
+    .container{
+      width:min(var(--max), calc(100% - 32px));
+      margin:0 auto;
+    }
 
-h1{
-margin-top:0;
-}
+    .topbar{
+      border-bottom:1px solid rgba(255,255,255,.08);
+      background:rgba(15,23,42,.78);
+      backdrop-filter:blur(8px);
+      position:sticky;
+      top:0;
+      z-index:20;
+    }
 
-a{
-color:#38bdf8;
-text-decoration:none;
-}
+    .topbar-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:14px 0;
+    }
 
-a:hover{
-text-decoration:underline;
-}
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight:700;
+      color:#fff;
+      letter-spacing:.2px;
+    }
 
-footer{
-margin-top:40px;
-color:#94a3b8;
-font-size:14px;
-display:flex;
-justify-content:space-between;
-flex-wrap:wrap;
-gap:10px;
-}
+    .brand-badge{
+      width:34px;
+      height:34px;
+      border-radius:12px;
+      background:linear-gradient(135deg, var(--accent), #6366f1);
+      box-shadow:0 10px 24px rgba(56,189,248,.25);
+      flex:none;
+    }
 
-</style>
+    .nav{
+      display:flex;
+      gap:18px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
 
+    .nav a{
+      color:var(--text);
+      opacity:.94;
+      font-size:14px;
+    }
+
+    .hero{
+      padding:56px 0 24px;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.08fr .92fr;
+      gap:24px;
+      align-items:start;
+    }
+
+    .eyebrow{
+      display:inline-block;
+      margin-bottom:12px;
+      font-size:12px;
+      font-weight:700;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:var(--accent);
+    }
+
+    .hero h1{
+      margin:0 0 12px;
+      font-size:clamp(2.1rem, 4vw, 3.35rem);
+      line-height:1.05;
+      letter-spacing:-.03em;
+    }
+
+    .hero p{
+      margin:0 0 16px;
+      color:var(--muted);
+      max-width:68ch;
+      font-size:1.03rem;
+    }
+
+    .hero-card,
+    .section-card,
+    .faq-item{
+      background:rgba(17,24,39,.88);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+    }
+
+    .hero-card{
+      padding:22px;
+    }
+
+    .hero-card h2{
+      margin:0 0 12px;
+      font-size:1.15rem;
+    }
+
+    .quick-list{
+      display:grid;
+      gap:12px;
+      margin-top:12px;
+    }
+
+    .quick-item{
+      padding:14px;
+      border-radius:14px;
+      background:rgba(11,18,32,.65);
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .quick-item strong{
+      display:block;
+      margin-bottom:4px;
+      color:#fff;
+    }
+
+    .section{
+      padding:20px 0 0;
+    }
+
+    .section-header{
+      margin-bottom:14px;
+    }
+
+    .section-header h2{
+      margin:0 0 8px;
+      font-size:1.55rem;
+      letter-spacing:-.02em;
+    }
+
+    .section-header p{
+      margin:0;
+      color:var(--muted);
+    }
+
+    .section-card{
+      padding:22px;
+    }
+
+    .section-card h3{
+      margin:0 0 10px;
+      font-size:1.08rem;
+    }
+
+    .section-card p,
+    .section-card li{
+      color:#d6dbe4;
+    }
+
+    .section-card ul{
+      margin:0;
+      padding-left:20px;
+    }
+
+    .info-grid{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0, 1fr));
+      gap:18px;
+      margin-top:18px;
+    }
+
+    .callout{
+      margin-top:18px;
+      padding:18px 20px;
+      border-radius:16px;
+      background:rgba(11,18,32,.65);
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .callout p{
+      margin:0;
+      color:#d6dbe4;
+    }
+
+    .faq-list{
+      display:grid;
+      gap:14px;
+      margin-top:16px;
+    }
+
+    .faq-item{
+      padding:18px 20px;
+    }
+
+    .faq-item h3{
+      margin:0 0 8px;
+      font-size:1rem;
+    }
+
+    .faq-item p{
+      margin:0;
+      color:#d6dbe4;
+    }
+
+    .small-note{
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    .footer{
+      padding:34px 0 48px;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .footer-inner{
+      display:flex;
+      justify-content:space-between;
+      gap:16px;
+      flex-wrap:wrap;
+      border-top:1px solid rgba(255,255,255,.08);
+      padding-top:18px;
+      margin-top:28px;
+    }
+
+    .footer-links{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+    }
+
+    @media (max-width: 980px){
+      .info-grid{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width: 860px){
+      .hero-grid{
+        grid-template-columns:1fr;
+      }
+
+      .topbar-inner{
+        align-items:flex-start;
+        flex-direction:column;
+      }
+    }
+
+    @media (max-width: 640px){
+      .hero{
+        padding-top:34px;
+      }
+    }
+  </style>
 </head>
-
 <body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand">
+        <div class="brand-badge" aria-hidden="true"></div>
+        <span>Calc Nest</span>
+      </div>
 
-<div class="container">
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/privacy.html">Privacy</a>
+        <a href="/contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
 
-<div class="card">
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">Privacy Policy</span>
+          <h1>How Calc Nest handles calculator inputs, cookies, and third-party services</h1>
+          <p>
+            This Privacy Policy explains, in general terms, how information may be handled when you visit Calc Nest and use its calculators or guides.
+          </p>
+          <p>
+            Calc Nest is designed to be simple to use. The site does not require users to create an account in order to access calculators or read guide pages, and the goal is to keep usage as lightweight as possible.
+          </p>
+          <p class="small-note">
+            Last updated: April 2026
+          </p>
+        </div>
 
-<h1>Privacy Policy</h1>
+        <aside class="hero-card" aria-label="Privacy summary">
+          <h2>Privacy summary</h2>
 
-<p>
-This Privacy Policy describes how information may be collected and used when you visit <strong>Calc Nest</strong>.
-</p>
+          <div class="quick-list">
+            <div class="quick-item">
+              <strong>No account required</strong>
+              Calc Nest does not require account creation to use the site.
+            </div>
 
-<h2>Information We Collect</h2>
+            <div class="quick-item">
+              <strong>Calculator inputs</strong>
+              Calculator values are intended to be processed directly in your browser for normal use.
+            </div>
 
-<p>
-Calc Nest does not require users to create an account or submit personal information in order to use the calculators.
-</p>
+            <div class="quick-item">
+              <strong>Advertising and cookies</strong>
+              Third-party services such as Google may use cookies and related technologies for advertising and measurement.
+            </div>
 
-<p>
-Any values entered into calculators are processed directly in your browser and are not stored on our servers.
-</p>
+            <div class="quick-item">
+              <strong>Questions</strong>
+              You can contact Calc Nest through the <a href="/contact.html">Contact page</a>.
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
 
-<h2>Cookies</h2>
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Information users provide directly</h2>
+          <p>
+            Calc Nest is designed so most visitors can use the site without submitting personal information directly.
+          </p>
+        </div>
 
-<p>
-Third-party vendors, including Google, may use cookies to serve ads based on a user's prior visits to this or other websites.
-</p>
+        <div class="section-card">
+          <p>
+            Calc Nest does not require users to create an account or sign in to use calculators or read guide pages.
+          </p>
+          <p>
+            If you choose to contact Calc Nest, any information you include in your message—such as your email address, name, or the contents of your message—may be received and used to respond to your inquiry, review feedback, or improve the site.
+          </p>
+        </div>
+      </div>
+    </section>
 
-<p>
-Google’s use of advertising cookies enables it and its partners to serve ads to users based on their visit to this site and/or other sites on the Internet.
-</p>
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Calculator inputs</h2>
+          <p>
+            A core goal of Calc Nest is to keep calculator usage lightweight and browser-based.
+          </p>
+        </div>
 
-<p>
-Users may opt out of personalized advertising by visiting:
-</p>
+        <div class="section-card">
+          <p>
+            Under normal use, values entered into calculators are intended to be processed directly in your browser so results can be displayed on the page.
+          </p>
+          <p>
+            Calc Nest does not require users to create profiles or save calculator histories in order to use the site.
+          </p>
+          <p>
+            Users should still avoid entering highly sensitive personal information into general-purpose calculators unless they are comfortable doing so.
+          </p>
+        </div>
+      </div>
+    </section>
 
-<p>
-https://www.google.com/settings/ads
-</p>
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Cookies and similar technologies</h2>
+          <p>
+            Like many websites, Calc Nest and third-party services used on the site may rely on cookies or similar technologies.
+          </p>
+        </div>
 
-<h2>Third-Party Advertising</h2>
+        <div class="section-card">
+          <p>
+            Cookies and related technologies may be used for functions such as remembering preferences, supporting site functionality, measuring usage, protecting against fraud or abuse, and serving or measuring advertising. Google explains that websites and apps using its services may share information with Google so that Google can provide and improve services, measure advertising effectiveness, protect against fraud and abuse, and personalize content and ads. :contentReference[oaicite:1]{index=1}
+          </p>
+          <p>
+            Google also explains that information such as IP address, cookie data, general location derived from IP, browser type, and other technical information may be used in connection with ads, measurement, and related services. :contentReference[oaicite:2]{index=2}
+          </p>
+        </div>
+      </div>
+    </section>
 
-<p>
-In the future, Calc Nest may display advertisements through services such as Google AdSense. These services may use cookies or similar technologies to deliver relevant advertising.
-</p>
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Advertising and third-party advertising services</h2>
+          <p>
+            Calc Nest may display advertising provided by third-party advertising partners such as Google AdSense.
+          </p>
+        </div>
 
-<h2>External Links</h2>
+        <div class="section-card">
+          <p>
+            Google’s publisher policies state that a site privacy policy should disclose that third parties may place and read cookies on users’ browsers, or use web beacons or IP addresses to collect information as a result of ad serving on the site. :contentReference[oaicite:3]{index=3}
+          </p>
+          <p>
+            If advertising is shown on Calc Nest, third-party vendors, including Google, may use cookies and similar technologies to serve ads, measure ad performance, and help determine which ads may be more relevant to users. Google states that even when personalized ads are turned off, ads may still be based on factors such as general location derived from IP address, browser type, or search terms. :contentReference[oaicite:4]{index=4}
+          </p>
+          <p>
+            Depending on region and applicable law, users may also be shown consent choices or privacy-related messaging in connection with advertising technologies and data processing. Google provides privacy and messaging tools for certain European regulatory requirements, while also stating that publishers remain responsible for meeting legal requirements that apply to them. :contentReference[oaicite:5]{index=5}
+          </p>
+        </div>
 
-<p>
-Calc Nest may contain links to external websites. We are not responsible for the privacy practices or content of those sites.
-</p>
+        <div class="callout">
+          <p>
+            To learn more about how Google uses information from sites or apps that use its services, see Google’s page at <a href="https://policies.google.com/technologies/partner-sites?hl=en-US" rel="nofollow noopener noreferrer">How Google uses information from sites or apps that use our services</a>.
+          </p>
+        </div>
+      </div>
+    </section>
 
-<h2>Changes to This Policy</h2>
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Ad personalization choices</h2>
+          <p>
+            Users may have options to review or adjust ad personalization settings.
+          </p>
+        </div>
 
-<p>
-This Privacy Policy may be updated periodically. Any changes will be posted on this page.
-</p>
+        <div class="section-card">
+          <p>
+            Google states that users can manage the Google ads they see through Ad Settings / My Ad Center and can turn off personalized ads there. Google also explains that turning off personalized ads does not necessarily eliminate ads entirely. :contentReference[oaicite:6]{index=6}
+          </p>
+          <p>
+            You can learn more or manage settings through Google resources such as:
+          </p>
+          <ul>
+            <li><a href="https://myadcenter.google.com/" rel="nofollow noopener noreferrer">My Ad Center</a></li>
+            <li><a href="https://policies.google.com/technologies/ads?hl=en-US" rel="nofollow noopener noreferrer">Google advertising technologies information</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
-</div>
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2>External links</h2>
+          <p>
+            Some pages on Calc Nest may include links to other websites.
+          </p>
+        </div>
 
-<footer>
+        <div class="section-card">
+          <p>
+            If you follow a link to an external site, that site may have its own privacy practices, terms, cookies, and tracking technologies. Calc Nest is not responsible for the privacy practices or content of third-party websites.
+          </p>
+        </div>
+      </div>
+    </section>
 
-<div>© 2026 Calc Nest</div>
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Children’s privacy</h2>
+          <p>
+            A general note on audience and usage.
+          </p>
+        </div>
 
-<div>
-<a href="/">Home</a> |
-<a href="/about.html">About</a> |
-<a href="mailto:churdomains@gmail.com">Contact</a>
-</div>
+        <div class="section-card">
+          <p>
+            Calc Nest is intended as a general informational website and is not designed specifically for children. If you are a parent or guardian and believe a child has provided personal information through direct contact with the site, you may use the <a href="/contact.html">Contact page</a> to reach out.
+          </p>
+        </div>
+      </div>
+    </section>
 
-</footer>
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Changes to this Privacy Policy</h2>
+          <p>
+            This policy may change over time as the site evolves.
+          </p>
+        </div>
 
-</div>
+        <div class="section-card">
+          <p>
+            Calc Nest may update this Privacy Policy periodically to reflect site changes, advertising changes, legal or operational updates, or other improvements. When changes are made, the updated version will be posted on this page.
+          </p>
+        </div>
+      </div>
+    </section>
 
+    <section class="section" id="faq">
+      <div class="container">
+        <div class="section-header">
+          <h2>Frequently asked questions</h2>
+          <p>
+            Common privacy-related questions about Calc Nest.
+          </p>
+        </div>
+
+        <div class="faq-list">
+          <div class="faq-item">
+            <h3>Do I need an account to use Calc Nest?</h3>
+            <p>
+              No. Calc Nest does not require users to create an account in order to use the calculators or read the guides.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>Are calculator values stored in an account?</h3>
+            <p>
+              Calc Nest does not require account-based storage for normal calculator use. Calculator values are intended to be processed directly in the browser for general use.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>Does Calc Nest use cookies?</h3>
+            <p>
+              The site and third-party services used on the site may use cookies or similar technologies for functionality, advertising, measurement, and related purposes.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>Can third parties use cookies on this site?</h3>
+            <p>
+              Yes. Where third-party advertising or related services are used, those third parties may place or read cookies or use similar technologies in connection with ad serving and measurement. :contentReference[oaicite:7]{index=7}
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>Can I turn off personalized ads?</h3>
+            <p>
+              Google says users can manage ad personalization through Ad Settings / My Ad Center, although ads may still appear even when personalized ads are turned off. :contentReference[oaicite:8]{index=8}
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>How can I contact Calc Nest about privacy questions?</h3>
+            <p>
+              You can use the <a href="/contact.html">Contact page</a> to get in touch regarding site-related questions or feedback.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>© 2026 Calc Nest</div>
+      <div class="footer-links">
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/privacy.html">Privacy</a>
+        <a href="/contact.html">Contact</a>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
