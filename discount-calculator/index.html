@@ -103,7 +103,7 @@
 
     .hero-grid{
       display:grid;
-      grid-template-columns: 1.08fr .92fr;
+      grid-template-columns:1.08fr .92fr;
       gap:24px;
       align-items:start;
     }
@@ -401,7 +401,7 @@
       gap:14px;
     }
 
-    @media (max-width: 860px){
+    @media (max-width:860px){
       .hero-grid,
       .two-col{
         grid-template-columns:1fr;
@@ -438,7 +438,7 @@
           <span class="eyebrow">Free Online Calculators</span>
           <h1>Discount Calculator</h1>
           <p>
-            Use this free Discount Calculator to estimate the discount amount, price after discount, and final price after optional sales tax. It works instantly and is designed for quick everyday calculations.
+            Use this free Discount Calculator to estimate the discount amount, price after discount, tax amount, and final price after optional sales tax. It works instantly and is designed for quick everyday calculations.
           </p>
           <p>
             This tool can help with sale prices, shopping comparisons, tax-inclusive totals, and budgeting. Enter a price, discount percentage, and optionally a sales tax rate to see the final amount.
@@ -592,7 +592,7 @@
             <li>Enter the original price.</li>
             <li>Enter the discount percentage.</li>
             <li>Optionally enter a sales tax percentage.</li>
-            <li>Review how much you save, the discounted price, and the final price after tax.</li>
+            <li>Review how much you save, the discounted price, tax amount, and the final price after tax.</li>
           </ul>
           <p>
             This tool is designed to be fast, simple, and easy to use on desktop or mobile devices.
@@ -618,6 +618,48 @@
         </article>
 
         <article class="content-card">
+          <h2>Multiple discounts do not simply add together</h2>
+          <p>
+            One of the most common shopping mistakes is assuming that two discounts can just be added. In reality, sequential discounts are applied one after the other.
+          </p>
+          <p>
+            For example, 20% off followed by 10% off is not the same as 30% off the original price. After the first discount, the second percentage applies to a smaller number.
+          </p>
+
+          <div class="two-col">
+            <div class="mini-card">
+              <h3>Wrong assumption</h3>
+              <p>
+                20% off + 10% off = 30% off
+              </p>
+            </div>
+
+            <div class="mini-card">
+              <h3>What actually happens</h3>
+              <p>
+                Start at 100 → after 20% off = 80 → after another 10% off = 72, which is a total discount of 28%, not 30%.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <article class="content-card">
+          <h2>Why comparing offers is not only about percent off</h2>
+          <p>
+            A larger percentage discount does not automatically mean a better deal. The original price still matters.
+          </p>
+          <p>
+            For example, 25% off a 200 item gives a final pre-tax price of 150. A different item with 15% off from 150 ends at 127.50. The bigger discount percentage looks better, but the final price can still be higher.
+          </p>
+
+          <div class="callout">
+            <p>
+              When comparing offers, the most useful number is usually the final price, not just the sale percentage.
+            </p>
+          </div>
+        </article>
+
+        <article class="content-card">
           <h2>Common uses for a discount calculator</h2>
           <ul>
             <li><strong>Shopping comparisons:</strong> compare sale prices across items or stores.</li>
@@ -635,6 +677,7 @@
             <li><strong>Ignoring tax:</strong> tax can materially change the final amount paid.</li>
             <li><strong>Confusing amount saved with final price:</strong> these are different numbers that answer different questions.</li>
             <li><strong>Assuming a bigger percent always means a better deal:</strong> offer comparison still depends on the original price.</li>
+            <li><strong>Adding sequential discounts incorrectly:</strong> stacked discounts usually do not sum in a simple way.</li>
             <li><strong>Doing mental math too fast:</strong> quick estimates often miss the true checkout total.</li>
           </ul>
         </article>
@@ -650,9 +693,9 @@
         </article>
 
         <article class="content-card">
-          <h2>Related guides</h2>
+          <h2>Related guide</h2>
           <p>
-            These guides help explain percentages and comparisons more clearly.
+            The most directly relevant Calc Nest guide for this topic is:
           </p>
           <div class="related-links">
             <a href="/what-percentage-change-actually-means/">What Percentage Change Actually Means</a>
