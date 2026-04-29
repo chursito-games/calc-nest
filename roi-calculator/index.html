@@ -5,6 +5,7 @@
      crossorigin="anonymous"></script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/favicon-96.png" type="image/png" sizes="96x96" />
   <title>ROI Calculator | Calc Nest</title>
   <meta name="description" content="Free online ROI Calculator. Calculate return on investment, profit or loss, and annualized ROI instantly." />
   <link rel="canonical" href="https://calc-nest.com/roi-calculator/" />
@@ -23,17 +24,17 @@
       --muted:#94a3b8;
       --line:#334155;
       --accent:#38bdf8;
-      --shadow: 0 18px 45px rgba(0,0,0,.28);
-      --radius: 18px;
-      --max: 1080px;
+      --shadow:0 18px 45px rgba(0,0,0,.28);
+      --radius:18px;
+      --max:1080px;
     }
 
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{
       margin:0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: linear-gradient(180deg, #0b1220 0%, #111827 100%);
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:linear-gradient(180deg, #0b1220 0%, #111827 100%);
       color:var(--text);
       line-height:1.6;
     }
@@ -52,7 +53,7 @@
     .topbar{
       border-bottom:1px solid rgba(255,255,255,.08);
       background:rgba(15,23,42,.75);
-      backdrop-filter: blur(8px);
+      backdrop-filter:blur(8px);
       position:sticky;
       top:0;
       z-index:20;
@@ -102,7 +103,7 @@
 
     .hero-grid{
       display:grid;
-      grid-template-columns: 1.08fr .92fr;
+      grid-template-columns:1.08fr .92fr;
       gap:24px;
       align-items:start;
     }
@@ -224,6 +225,7 @@
       font-size:1.35rem;
       font-weight:800;
       line-height:1.1;
+      word-break:break-word;
     }
 
     .status-pill{
@@ -259,10 +261,6 @@
       margin:18px auto 0;
     }
 
-    .content-grid > *{
-      width:100%;
-    }
-
     .content-card{
       width:100%;
       padding:22px;
@@ -288,6 +286,23 @@
       color:#d6dbe4;
     }
 
+    .two-col{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:16px;
+    }
+
+    .mini-card{
+      padding:16px;
+      border-radius:16px;
+      background:#0f172a;
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .mini-card h3{
+      margin-top:0;
+    }
+
     .faq-item{
       padding:14px 0;
       border-top:1px solid rgba(255,255,255,.08);
@@ -296,6 +311,45 @@
     .faq-item:first-of-type{
       border-top:none;
       padding-top:0;
+    }
+
+    .related-links{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:12px;
+    }
+
+    .related-links a{
+      display:inline-flex;
+      align-items:center;
+      padding:10px 12px;
+      border-radius:999px;
+      background:#0f172a;
+      border:1px solid rgba(255,255,255,.08);
+      color:#e5e7eb;
+      text-decoration:none;
+      font-size:14px;
+      font-weight:600;
+    }
+
+    .related-links a:hover{
+      border-color:rgba(56,189,248,.4);
+      color:#fff;
+      text-decoration:none;
+    }
+
+    .callout{
+      margin-top:14px;
+      padding:16px;
+      border-radius:16px;
+      background:rgba(11,18,32,.65);
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .callout p{
+      margin:0;
+      color:#d6dbe4;
     }
 
     .footer{
@@ -319,8 +373,9 @@
       gap:14px;
     }
 
-    @media (max-width: 860px){
-      .hero-grid{
+    @media (max-width:860px){
+      .hero-grid,
+      .two-col{
         grid-template-columns:1fr;
       }
 
@@ -343,6 +398,7 @@
         <a href="/">Home</a>
         <a href="/about.html">About</a>
         <a href="/privacy.html">Privacy</a>
+        <a href="/contact.html">Contact</a>
       </nav>
     </div>
   </header>
@@ -358,6 +414,9 @@
           </p>
           <p>
             Enter your initial investment cost, final value, and optional time period in years. The calculator will estimate profit, ROI percentage, and an annualized return when time is provided.
+          </p>
+          <p>
+            ROI is useful when comparing investments, projects, marketing campaigns, equipment purchases, or other decisions where you want to understand return relative to the original cost.
           </p>
           <p class="small-note">
             Results are estimates for general informational use and do not replace professional financial analysis or advice.
@@ -420,6 +479,44 @@
     <section class="section">
       <div class="container content-grid">
         <article class="content-card">
+          <h2>What this ROI calculator helps you estimate</h2>
+          <p>
+            This calculator is designed to help you estimate the most common return metrics from a simple investment-style scenario.
+          </p>
+
+          <div class="two-col">
+            <div class="mini-card">
+              <h3>What this calculator includes</h3>
+              <ul>
+                <li>Original investment cost</li>
+                <li>Final value</li>
+                <li>Profit or loss</li>
+                <li>Basic ROI percentage</li>
+                <li>Annualized ROI when time is entered</li>
+              </ul>
+            </div>
+
+            <div class="mini-card">
+              <h3>What this calculator does not include</h3>
+              <ul>
+                <li>Taxes</li>
+                <li>Fees or commissions</li>
+                <li>Dividends not included in final value</li>
+                <li>Cash flows added over time</li>
+                <li>Risk or volatility</li>
+                <li>Inflation adjustment</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="callout">
+            <p>
+              This makes the calculator useful for fast comparison and simple return estimates, but not a substitute for a full investment analysis model.
+            </p>
+          </div>
+        </article>
+
+        <article class="content-card">
           <h2>What is ROI?</h2>
           <p>
             ROI stands for <strong>Return on Investment</strong>. It is a simple metric used to measure how much profit or loss was generated relative to the original cost of an investment.
@@ -429,13 +526,26 @@
           </p>
 
           <h3>How ROI is calculated</h3>
-          <p>
-            The basic formula is:
-          </p>
           <p><strong>ROI = (Profit ÷ Investment Cost) × 100</strong></p>
           <p>
             Profit is calculated as the final value minus the original investment cost.
           </p>
+        </article>
+
+        <article class="content-card">
+          <h2>How to interpret your ROI result</h2>
+          <p>
+            Basic ROI tells you how large the profit or loss is relative to the original amount invested. A positive ROI means the final value is higher than the cost. A negative ROI means the investment lost money relative to the starting amount.
+          </p>
+          <p>
+            ROI is a useful first comparison tool, but it does not tell the full story by itself. Two investments can have the same ROI while taking very different amounts of time or carrying very different levels of risk.
+          </p>
+
+          <div class="callout">
+            <p>
+              ROI is often best used as a quick comparison metric, not as the only decision metric.
+            </p>
+          </div>
         </article>
 
         <article class="content-card">
@@ -459,6 +569,95 @@
           <p>
             This tool is designed to be fast, simple, and easy to use on desktop or mobile devices.
           </p>
+        </article>
+
+        <article class="content-card">
+          <h2>Worked examples</h2>
+          <div class="two-col">
+            <div class="mini-card">
+              <h3>Example 1: positive return</h3>
+              <p>
+                If you invest <strong>$1,000</strong> and the final value becomes <strong>$1,500</strong>, the profit is <strong>$500</strong> and the basic ROI is <strong>50%</strong>.
+              </p>
+            </div>
+            <div class="mini-card">
+              <h3>Example 2: negative return</h3>
+              <p>
+                If you invest <strong>$1,000</strong> and the final value falls to <strong>$800</strong>, the profit is <strong>- $200</strong> and the ROI is <strong>-20%</strong>.
+              </p>
+            </div>
+            <div class="mini-card">
+              <h3>Example 3: comparing time periods</h3>
+              <p>
+                Two investments can both show <strong>50% ROI</strong>, but if one took 1 year and the other took 5 years, the annualized return tells a very different story.
+              </p>
+            </div>
+            <div class="mini-card">
+              <h3>Example 4: campaign or project ROI</h3>
+              <p>
+                ROI is not only for investing. It can also be used for simple business cases like advertising spend, equipment purchases, or project returns where cost and final value can be estimated clearly.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <article class="content-card">
+          <h2>Common uses for an ROI calculator</h2>
+          <ul>
+            <li><strong>Investment review:</strong> estimate profit and percentage return.</li>
+            <li><strong>Project evaluation:</strong> compare whether a project generated value relative to cost.</li>
+            <li><strong>Marketing analysis:</strong> estimate return from campaign spend.</li>
+            <li><strong>Equipment or purchase evaluation:</strong> compare benefit versus initial cost.</li>
+            <li><strong>Time-normalized comparison:</strong> use annualized ROI when holding periods differ.</li>
+          </ul>
+        </article>
+
+        <article class="content-card">
+          <h2>Common ROI mistakes this calculator can help highlight</h2>
+          <ul>
+            <li><strong>Ignoring time period:</strong> a strong ROI over a very long period may be less attractive than it first looks.</li>
+            <li><strong>Comparing only basic ROI:</strong> annualized return can tell a more useful story when timelines differ.</li>
+            <li><strong>Ignoring fees and taxes:</strong> real returns may be lower than simple ROI suggests.</li>
+            <li><strong>Using ROI as a complete decision tool:</strong> risk, volatility, liquidity, and cash-flow timing can still matter.</li>
+            <li><strong>Assuming a positive ROI is automatically “good”:</strong> context and alternatives still matter.</li>
+          </ul>
+        </article>
+
+        <article class="content-card">
+          <h2>Important assumptions and limitations</h2>
+          <p>
+            This ROI Calculator is intended for simplified return estimates. It assumes a basic initial cost and final value structure and does not model taxes, fees, dividends omitted from final value, staged cash flows, inflation, or risk.
+          </p>
+          <p>
+            For more complex investing or business analysis, a fuller financial model may be more appropriate than simple ROI alone.
+          </p>
+        </article>
+
+        <article class="content-card">
+          <h2>Related guides</h2>
+          <p>
+            These guides help explain return, growth, and long-term value in broader terms.
+          </p>
+          <div class="related-links">
+            <a href="/how-inflation-affects-savings-retirement-and-long-term-costs/">How Inflation Affects Savings, Retirement, and Long-Term Costs</a>
+            <a href="/how-to-estimate-a-retirement-goal-in-todays-dollars/">How to Estimate a Retirement Goal in Today’s Dollars</a>
+            <a href="/what-percentage-change-actually-means/">What Percentage Change Actually Means</a>
+          </div>
+        </article>
+
+        <article class="content-card">
+          <h2>Related calculators</h2>
+          <p>
+            Explore other Calc Nest tools that pair naturally with this ROI Calculator.
+          </p>
+          <div class="related-links">
+            <a href="/compound-interest-calculator/">Compound Interest Calculator</a>
+            <a href="/savings-calculator/">Savings Calculator</a>
+            <a href="/interest-rate-calculator/">Interest Rate Calculator</a>
+            <a href="/inflation-calculator/">Inflation Calculator</a>
+            <a href="/percentage-calculator/">Percentage Calculator</a>
+            <a href="/">Browse all calculators</a>
+          </div>
         </article>
 
         <article class="content-card">
@@ -489,6 +688,34 @@
             <h3>Can I use this calculator for any currency?</h3>
             <p>
               Yes. The calculator uses plain numbers, so it can work with dollars, euros, pounds, pesos, or other currencies.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>Does ROI include fees or taxes automatically?</h3>
+            <p>
+              No. This simplified calculator uses only the cost and final value you enter. If you want those costs reflected, they need to be incorporated into the numbers you input.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>Can I use this for business projects and campaigns?</h3>
+            <p>
+              Yes. ROI can be used for simple business or marketing comparisons when the cost and resulting value can be estimated reasonably.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>What is the difference between ROI and annualized ROI?</h3>
+            <p>
+              ROI measures total return relative to cost, while annualized ROI adjusts that return into an average yearly rate.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>Can I use this ROI Calculator on mobile?</h3>
+            <p>
+              Yes. The page is designed to work on phones, tablets, and desktop devices.
             </p>
           </div>
         </article>
