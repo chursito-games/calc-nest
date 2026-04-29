@@ -5,13 +5,14 @@
      crossorigin="anonymous"></script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/favicon-96.png" type="image/png" sizes="96x96" />
   <title>Discount Calculator | Calc Nest</title>
-  <meta name="description" content="Free online Discount Calculator. Calculate discount amount, final price, and optional sales tax instantly." />
+  <meta name="description" content="Free online Discount Calculator. Calculate discount amount, price after discount, tax amount, and final price instantly." />
   <link rel="canonical" href="https://calc-nest.com/discount-calculator/" />
   <meta name="theme-color" content="#0f172a" />
 
   <meta property="og:title" content="Discount Calculator | Calc Nest" />
-  <meta property="og:description" content="Calculate discount amount, final price, and optional sales tax instantly." />
+  <meta property="og:description" content="Calculate discount amount, price after discount, tax amount, and final price instantly." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://calc-nest.com/discount-calculator/" />
 
@@ -23,17 +24,17 @@
       --muted:#94a3b8;
       --line:#334155;
       --accent:#38bdf8;
-      --shadow: 0 18px 45px rgba(0,0,0,.28);
-      --radius: 18px;
-      --max: 1080px;
+      --shadow:0 18px 45px rgba(0,0,0,.28);
+      --radius:18px;
+      --max:1080px;
     }
 
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{
       margin:0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: linear-gradient(180deg, #0b1220 0%, #111827 100%);
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:linear-gradient(180deg, #0b1220 0%, #111827 100%);
       color:var(--text);
       line-height:1.6;
     }
@@ -247,6 +248,17 @@
       font-size:1.35rem;
       font-weight:800;
       line-height:1.1;
+      word-break:break-word;
+    }
+
+    .status-pill{
+      display:inline-block;
+      margin-top:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(255,255,255,.09);
+      font-size:14px;
+      font-weight:700;
     }
 
     .helper{
@@ -270,10 +282,6 @@
       width:100%;
       max-width:760px;
       margin:18px auto 0;
-    }
-
-    .content-grid > *{
-      width:100%;
     }
 
     .content-card{
@@ -311,9 +319,65 @@
       padding-top:0;
     }
 
+    .two-col{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:16px;
+    }
+
+    .mini-card{
+      padding:16px;
+      border-radius:16px;
+      background:#0f172a;
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .mini-card h3{
+      margin-top:0;
+    }
+
     .example-list{
       margin-top:8px;
       padding-left:20px;
+    }
+
+    .related-links{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:12px;
+    }
+
+    .related-links a{
+      display:inline-flex;
+      align-items:center;
+      padding:10px 12px;
+      border-radius:999px;
+      background:#0f172a;
+      border:1px solid rgba(255,255,255,.08);
+      color:#e5e7eb;
+      text-decoration:none;
+      font-size:14px;
+      font-weight:600;
+    }
+
+    .related-links a:hover{
+      border-color:rgba(56,189,248,.4);
+      color:#fff;
+      text-decoration:none;
+    }
+
+    .callout{
+      margin-top:14px;
+      padding:16px;
+      border-radius:16px;
+      background:rgba(11,18,32,.65);
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .callout p{
+      margin:0;
+      color:#d6dbe4;
     }
 
     .footer{
@@ -338,7 +402,8 @@
     }
 
     @media (max-width: 860px){
-      .hero-grid{
+      .hero-grid,
+      .two-col{
         grid-template-columns:1fr;
       }
 
@@ -361,6 +426,7 @@
         <a href="/">Home</a>
         <a href="/about.html">About</a>
         <a href="/privacy.html">Privacy</a>
+        <a href="/contact.html">Contact</a>
       </nav>
     </div>
   </header>
@@ -376,6 +442,9 @@
           </p>
           <p>
             This tool can help with sale prices, shopping comparisons, tax-inclusive totals, and budgeting. Enter a price, discount percentage, and optionally a sales tax rate to see the final amount.
+          </p>
+          <p>
+            Discount math looks simple, but people often misread the real savings, especially when tax is involved or when comparing several offers at once.
           </p>
           <p class="small-note">
             Results are calculated instantly in your browser and are intended for general informational use.
@@ -394,7 +463,7 @@
 
             <div class="field">
               <label for="discountPercent">Discount (%)</label>
-              <input id="discountPercent" type="number" min="0" step="0.01" placeholder="e.g. 20" />
+              <input id="discountPercent" type="number" min="0" max="100" step="0.01" placeholder="e.g. 20" />
             </div>
 
             <div class="quick-buttons" aria-label="Quick discount buttons">
@@ -427,11 +496,17 @@
               </div>
 
               <div class="result-card">
+                <span class="result-label">Tax amount</span>
+                <span class="result-value" id="taxValue">—</span>
+              </div>
+
+              <div class="result-card">
                 <span class="result-label">Final price after tax</span>
                 <span class="result-value" id="finalValue">—</span>
               </div>
             </div>
 
+            <div class="status-pill" id="statusPill">Enter values</div>
             <p class="helper" id="discountHelper">Your discount estimate will be calculated automatically as you type.</p>
           </div>
         </aside>
@@ -440,6 +515,43 @@
 
     <section class="section">
       <div class="container content-grid">
+        <article class="content-card">
+          <h2>What this discount calculator helps you estimate</h2>
+          <p>
+            This calculator is designed to estimate the most useful numbers people usually want when they see a sale or promotion.
+          </p>
+
+          <div class="two-col">
+            <div class="mini-card">
+              <h3>What this calculator includes</h3>
+              <ul>
+                <li>Original price</li>
+                <li>Discount amount</li>
+                <li>Price after discount</li>
+                <li>Optional sales tax</li>
+                <li>Final after-tax price</li>
+              </ul>
+            </div>
+
+            <div class="mini-card">
+              <h3>What this calculator does not include</h3>
+              <ul>
+                <li>Stacked coupons</li>
+                <li>Buy-one-get-one offers</li>
+                <li>Shipping cost</li>
+                <li>Store fees or service charges</li>
+                <li>Regional tax rules beyond a simple percentage</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="callout">
+            <p>
+              This makes the calculator useful for quick shopping math and budgeting, but not a substitute for a store’s exact checkout system.
+            </p>
+          </div>
+        </article>
+
         <article class="content-card">
           <h2>What is a discount calculator?</h2>
           <p>
@@ -459,6 +571,22 @@
         </article>
 
         <article class="content-card">
+          <h2>How to interpret your discount result</h2>
+          <p>
+            “You save” tells you the direct reduction from the original price. “Price after discount” shows the pre-tax sale price. “Final price after tax” shows the amount that may matter most if tax is added at checkout.
+          </p>
+          <p>
+            This distinction matters because shoppers often focus only on the discount percentage and ignore how tax changes the final out-of-pocket amount.
+          </p>
+
+          <div class="callout">
+            <p>
+              A large discount can still lead to a higher final cost than another offer if the starting price is much higher.
+            </p>
+          </div>
+        </article>
+
+        <article class="content-card">
           <h2>How to use this discount calculator</h2>
           <ul>
             <li>Enter the original price.</li>
@@ -472,7 +600,7 @@
         </article>
 
         <article class="content-card">
-          <h2>Example discount calculations</h2>
+          <h2>Worked examples</h2>
           <p>
             Here are some common discount examples people search for:
           </p>
@@ -487,6 +615,62 @@
           <p>
             These examples help illustrate how discount percentages change the final price.
           </p>
+        </article>
+
+        <article class="content-card">
+          <h2>Common uses for a discount calculator</h2>
+          <ul>
+            <li><strong>Shopping comparisons:</strong> compare sale prices across items or stores.</li>
+            <li><strong>Budgeting:</strong> estimate how much a purchase will really cost after discount and tax.</li>
+            <li><strong>Coupon evaluation:</strong> quickly check the effect of a percent-off offer.</li>
+            <li><strong>Tax awareness:</strong> see how checkout tax changes the final total.</li>
+            <li><strong>Everyday math:</strong> avoid manual percentage mistakes while shopping.</li>
+          </ul>
+        </article>
+
+        <article class="content-card">
+          <h2>Common discount mistakes this calculator can help highlight</h2>
+          <ul>
+            <li><strong>Focusing only on percent off:</strong> the starting price still matters.</li>
+            <li><strong>Ignoring tax:</strong> tax can materially change the final amount paid.</li>
+            <li><strong>Confusing amount saved with final price:</strong> these are different numbers that answer different questions.</li>
+            <li><strong>Assuming a bigger percent always means a better deal:</strong> offer comparison still depends on the original price.</li>
+            <li><strong>Doing mental math too fast:</strong> quick estimates often miss the true checkout total.</li>
+          </ul>
+        </article>
+
+        <article class="content-card">
+          <h2>Important assumptions and limitations</h2>
+          <p>
+            This calculator assumes a straightforward percentage discount and an optional tax applied after the discount. It does not handle stacked coupons, shipping, service fees, or more complex checkout rules.
+          </p>
+          <p>
+            Real checkout totals may differ if the store applies discounts or tax in a different order or includes additional charges.
+          </p>
+        </article>
+
+        <article class="content-card">
+          <h2>Related guides</h2>
+          <p>
+            These guides help explain percentages and comparisons more clearly.
+          </p>
+          <div class="related-links">
+            <a href="/what-percentage-change-actually-means/">What Percentage Change Actually Means</a>
+          </div>
+        </article>
+
+        <article class="content-card">
+          <h2>Related calculators</h2>
+          <p>
+            Explore other Calc Nest tools that pair naturally with this Discount Calculator.
+          </p>
+          <div class="related-links">
+            <a href="/percentage-calculator/">Percentage Calculator</a>
+            <a href="/sales-tax-calculator/">Sales Tax Calculator</a>
+            <a href="/tip-calculator/">Tip Calculator</a>
+            <a href="/roi-calculator/">ROI Calculator</a>
+            <a href="/">Browse all calculators</a>
+          </div>
         </article>
 
         <article class="content-card">
@@ -519,6 +703,34 @@
               No. The values you enter are processed directly in your browser and are not stored on a server.
             </p>
           </div>
+
+          <div class="faq-item">
+            <h3>What happens if I enter 0% tax?</h3>
+            <p>
+              The final price after tax will simply match the discounted price.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>Can I compare different sale percentages with this tool?</h3>
+            <p>
+              Yes. That is one of the main uses of the calculator, especially when several discount offers are being considered.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>Why is the final price still high even with a large discount?</h3>
+            <p>
+              Because the original price may still be high, and tax can increase the final total further.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>Can I use this Discount Calculator on mobile?</h3>
+            <p>
+              Yes. The page is designed to work on phones, tablets, and desktop devices.
+            </p>
+          </div>
         </article>
       </div>
     </section>
@@ -543,8 +755,10 @@
 
     const saveValue = document.getElementById("saveValue");
     const discountedValue = document.getElementById("discountedValue");
+    const taxValue = document.getElementById("taxValue");
     const finalValue = document.getElementById("finalValue");
     const discountHelper = document.getElementById("discountHelper");
+    const statusPill = document.getElementById("statusPill");
 
     const quickButtons = document.querySelectorAll(".quick-btn");
 
@@ -560,19 +774,32 @@
       const discount = parseFloat(discountPercent.value);
       const tax = parseFloat(taxPercent.value) || 0;
 
-      if (price >= 0 && discount >= 0) {
+      if (price >= 0 && discount >= 0 && discount <= 100 && tax >= 0) {
         const discountAmount = price * (discount / 100);
         const afterDiscount = price - discountAmount;
-        const finalAfterTax = afterDiscount * (1 + tax / 100);
+        const taxAmount = afterDiscount * (tax / 100);
+        const finalAfterTax = afterDiscount + taxAmount;
 
         saveValue.textContent = formatMoney(discountAmount);
         discountedValue.textContent = formatMoney(afterDiscount);
+        taxValue.textContent = formatMoney(taxAmount);
         finalValue.textContent = formatMoney(finalAfterTax);
+
+        if (discount === 0) {
+          statusPill.textContent = "No discount";
+        } else if (discount === 100) {
+          statusPill.textContent = "Free before tax";
+        } else {
+          statusPill.textContent = `${discount.toFixed(2)}% off`;
+        }
+
         discountHelper.textContent = "Discount and final price are estimated automatically from your inputs.";
       } else {
         saveValue.textContent = "—";
         discountedValue.textContent = "—";
+        taxValue.textContent = "—";
         finalValue.textContent = "—";
+        statusPill.textContent = "Enter values";
         discountHelper.textContent = "Your discount estimate will be calculated automatically as you type.";
       }
     }
