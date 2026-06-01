@@ -5,6 +5,7 @@
      crossorigin="anonymous"></script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/favicon-96.png" type="image/png" sizes="96x96" />
   <title>Sales Tax Calculator | Calc Nest</title>
   <meta name="description" content="Free online Sales Tax Calculator. Add tax to a price or extract tax from a total amount, with optional quantity support." />
   <link rel="canonical" href="https://calc-nest.com/sales-tax-calculator/" />
@@ -270,6 +271,7 @@
       font-size:1.35rem;
       font-weight:800;
       line-height:1.1;
+      word-break:break-word;
     }
 
     .helper{
@@ -324,6 +326,61 @@
       color:#d6dbe4;
     }
 
+    .two-col{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:16px;
+    }
+
+    .mini-card{
+      padding:16px;
+      border-radius:16px;
+      background:#0f172a;
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .mini-card h3{
+      margin-top:0;
+    }
+
+    .related-links{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:12px;
+    }
+
+    .related-links a{
+      display:inline-flex;
+      align-items:center;
+      padding:10px 12px;
+      border-radius:999px;
+      background:#0f172a;
+      border:1px solid rgba(255,255,255,.08);
+      color:#e5e7eb;
+      text-decoration:none;
+      font-size:14px;
+      font-weight:600;
+    }
+
+    .related-links a:hover{
+      border-color:rgba(56,189,248,.4);
+      color:#fff;
+      text-decoration:none;
+    }
+
+    .callout{
+      margin-top:12px;
+      padding:16px;
+      border-radius:16px;
+      background:rgba(11,18,32,.65);
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .callout p{
+      margin:0;
+    }
+
     .faq-item{
       padding:14px 0;
       border-top:1px solid rgba(255,255,255,.08);
@@ -356,7 +413,8 @@
     }
 
     @media (max-width: 860px){
-      .hero-grid{
+      .hero-grid,
+      .two-col{
         grid-template-columns:1fr;
       }
 
@@ -379,6 +437,7 @@
         <a href="/">Home</a>
         <a href="/about.html">About</a>
         <a href="/privacy.html">Privacy</a>
+        <a href="/contact.html">Contact</a>
       </nav>
     </div>
   </header>
@@ -394,6 +453,9 @@
           </p>
           <p>
             This tool is useful for shopping, invoices, budgeting, retail pricing, and comparing tax-inclusive versus pre-tax prices. Switch between “Add tax” and “Extract tax” depending on what you need.
+          </p>
+          <p>
+            It works especially well when you want a quick answer without doing the percentage math manually, or when you need to check whether a listed price is before or after tax.
           </p>
           <p class="small-note">
             Results are calculated instantly in your browser and are intended for general informational use.
@@ -481,6 +543,24 @@
         </article>
 
         <article class="content-card">
+          <h2>Which mode should you use?</h2>
+          <div class="two-col">
+            <div class="mini-card">
+              <h3>Use Add tax when…</h3>
+              <p>
+                You know the price before tax and want to estimate the tax amount and final total.
+              </p>
+            </div>
+            <div class="mini-card">
+              <h3>Use Extract tax when…</h3>
+              <p>
+                You already know the final price and want to estimate how much of that total was tax and how much was the original pre-tax amount.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <article class="content-card">
           <h2>How to use this sales tax calculator</h2>
           <ul>
             <li>Choose whether to add tax or extract tax.</li>
@@ -495,6 +575,22 @@
         </article>
 
         <article class="content-card">
+          <h2>How to interpret the result</h2>
+          <p>
+            The subtotal is the amount before tax. The tax amount is the portion created by the sales tax rate. The final total is the amount after tax has been added or the amount you started with in extract mode.
+          </p>
+          <p>
+            Quantity can make a big difference because the tax is applied to the full subtotal across all units, not just one item.
+          </p>
+
+          <div class="callout">
+            <p>
+              This page is most useful for quick estimation and comparison. Real checkout totals may still differ if shipping, fees, discounts, or special local rules apply.
+            </p>
+          </div>
+        </article>
+
+        <article class="content-card">
           <h2>Common sales tax examples</h2>
           <ul>
             <li>Add 8% tax to 100 = 108</li>
@@ -505,6 +601,62 @@
           <p>
             These examples show how the same tax rate can be used in either forward or reverse calculations.
           </p>
+        </article>
+
+        <article class="content-card">
+          <h2>Common uses for a Sales Tax Calculator</h2>
+          <ul>
+            <li><strong>Shopping:</strong> estimate checkout totals before buying.</li>
+            <li><strong>Budgeting:</strong> compare pre-tax and after-tax costs more realistically.</li>
+            <li><strong>Invoices:</strong> estimate the tax portion separately from the base price.</li>
+            <li><strong>Retail comparison:</strong> compare listed prices that may or may not already include tax.</li>
+            <li><strong>Quantity planning:</strong> estimate how much tax changes once multiple units are purchased.</li>
+          </ul>
+        </article>
+
+        <article class="content-card">
+          <h2>Common mistakes this calculator can help avoid</h2>
+          <ul>
+            <li><strong>Adding tax twice:</strong> this happens when a total already includes tax but is treated like a pre-tax amount.</li>
+            <li><strong>Confusing subtotal and total:</strong> the before-tax amount and final amount are not the same thing.</li>
+            <li><strong>Ignoring quantity:</strong> buying several items changes both the subtotal and total tax amount.</li>
+            <li><strong>Using the wrong mode:</strong> add-tax and extract-tax calculations are not interchangeable.</li>
+            <li><strong>Assuming every final total is exact:</strong> actual tax at checkout can vary depending on rules, rounding, and location.</li>
+          </ul>
+        </article>
+
+        <article class="content-card">
+          <h2>Important assumptions and limitations</h2>
+          <p>
+            This Sales Tax Calculator assumes a straightforward percentage-based sales tax and does not account for shipping charges, discounts, tax exemptions, special product rules, or location-specific exceptions.
+          </p>
+          <p>
+            It is most useful for practical estimates and quick comparisons, not as a substitute for official tax treatment or checkout totals.
+          </p>
+        </article>
+
+        <article class="content-card">
+          <h2>Related guides</h2>
+          <p>
+            These guides help explain percentage math and comparison logic that often come up in tax and pricing questions.
+          </p>
+          <div class="related-links">
+            <a href="/what-percentage-change-actually-means/">What Percentage Change Actually Means</a>
+          </div>
+        </article>
+
+        <article class="content-card">
+          <h2>Related calculators</h2>
+          <p>
+            Explore other Calc Nest tools that pair naturally with this Sales Tax Calculator.
+          </p>
+          <div class="related-links">
+            <a href="/percentage-calculator/">Percentage Calculator</a>
+            <a href="/discount-calculator/">Discount Calculator</a>
+            <a href="/tip-calculator/">Tip Calculator</a>
+            <a href="/roi-calculator/">ROI Calculator</a>
+            <a href="/">Browse all calculators</a>
+          </div>
         </article>
 
         <article class="content-card">
@@ -532,9 +684,30 @@
           </div>
 
           <div class="faq-item">
+            <h3>Does quantity change the tax result?</h3>
+            <p>
+              Yes. Quantity increases the subtotal, which also increases the total tax amount.
+            </p>
+          </div>
+
+          <div class="faq-item">
             <h3>Does this calculator store my data?</h3>
             <p>
               No. The values you enter are processed directly in your browser and are not stored on a server.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>Can I use this to estimate checkout totals?</h3>
+            <p>
+              Yes, for basic planning. But actual checkout totals may still differ depending on rounding, shipping, discounts, or local tax treatment.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>Can I use this Sales Tax Calculator on mobile?</h3>
+            <p>
+              Yes. The page is designed to work on phones, tablets, and desktop devices.
             </p>
           </div>
         </article>
