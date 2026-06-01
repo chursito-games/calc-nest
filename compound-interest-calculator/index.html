@@ -5,13 +5,14 @@
      crossorigin="anonymous"></script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/favicon-96.png" type="image/png" sizes="96x96" />
   <title>Compound Interest Calculator | Calc Nest</title>
-  <meta name="description" content="Free online Compound Interest Calculator. Estimate investment growth, total contributions, interest earned, doubling time, and balance milestones." />
+  <meta name="description" content="Free online Compound Interest Calculator. Estimate investment growth, total contributions, interest earned, doubling time, balance milestones, and progress toward a long-term savings goal." />
   <link rel="canonical" href="https://calc-nest.com/compound-interest-calculator/" />
   <meta name="theme-color" content="#0f172a" />
 
   <meta property="og:title" content="Compound Interest Calculator | Calc Nest" />
-  <meta property="og:description" content="Estimate investment growth, total contributions, interest earned, doubling time, and balance milestones." />
+  <meta property="og:description" content="Estimate investment growth, total contributions, interest earned, doubling time, milestones, and long-term goal progress." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://calc-nest.com/compound-interest-calculator/" />
 
@@ -23,17 +24,17 @@
       --muted:#94a3b8;
       --line:#334155;
       --accent:#38bdf8;
-      --shadow: 0 18px 45px rgba(0,0,0,.28);
-      --radius: 18px;
-      --max: 1080px;
+      --shadow:0 18px 45px rgba(0,0,0,.28);
+      --radius:18px;
+      --max:1080px;
     }
 
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{
       margin:0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: linear-gradient(180deg, #0b1220 0%, #111827 100%);
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:linear-gradient(180deg, #0b1220 0%, #111827 100%);
       color:var(--text);
       line-height:1.6;
     }
@@ -52,7 +53,7 @@
     .topbar{
       border-bottom:1px solid rgba(255,255,255,.08);
       background:rgba(15,23,42,.75);
-      backdrop-filter: blur(8px);
+      backdrop-filter:blur(8px);
       position:sticky;
       top:0;
       z-index:20;
@@ -102,7 +103,7 @@
 
     .hero-grid{
       display:grid;
-      grid-template-columns: 1.08fr .92fr;
+      grid-template-columns:1.08fr .92fr;
       gap:24px;
       align-items:start;
     }
@@ -117,7 +118,7 @@
     .hero-copy p{
       margin:0 0 16px;
       color:var(--muted);
-      max-width:64ch;
+      max-width:66ch;
       font-size:1.03rem;
     }
 
@@ -226,6 +227,17 @@
       font-size:1.35rem;
       font-weight:800;
       line-height:1.1;
+      word-break:break-word;
+    }
+
+    .status-pill{
+      display:inline-block;
+      margin-top:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(255,255,255,.09);
+      font-size:14px;
+      font-weight:700;
     }
 
     .helper{
@@ -249,10 +261,6 @@
       width:100%;
       max-width:760px;
       margin:18px auto 0;
-    }
-
-    .content-grid > *{
-      width:100%;
     }
 
     .content-card{
@@ -280,6 +288,67 @@
       color:#d6dbe4;
     }
 
+    .two-col{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:16px;
+    }
+
+    .mini-card{
+      padding:16px;
+      border-radius:16px;
+      background:#0f172a;
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .mini-card h3{
+      margin-top:0;
+    }
+
+    .milestones-list{
+      margin:10px 0 0 20px;
+      color:#d6dbe4;
+    }
+
+    .related-links{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:12px;
+    }
+
+    .related-links a{
+      display:inline-flex;
+      align-items:center;
+      padding:10px 12px;
+      border-radius:999px;
+      background:#0f172a;
+      border:1px solid rgba(255,255,255,.08);
+      color:#e5e7eb;
+      text-decoration:none;
+      font-size:14px;
+      font-weight:600;
+    }
+
+    .related-links a:hover{
+      border-color:rgba(56,189,248,.4);
+      color:#fff;
+      text-decoration:none;
+    }
+
+    .callout{
+      margin-top:14px;
+      padding:16px;
+      border-radius:16px;
+      background:rgba(11,18,32,.65);
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .callout p{
+      margin:0;
+      color:#d6dbe4;
+    }
+
     .faq-item{
       padding:14px 0;
       border-top:1px solid rgba(255,255,255,.08);
@@ -288,11 +357,6 @@
     .faq-item:first-of-type{
       border-top:none;
       padding-top:0;
-    }
-
-    .milestones-list{
-      margin:10px 0 0 20px;
-      color:#d6dbe4;
     }
 
     .footer{
@@ -316,8 +380,9 @@
       gap:14px;
     }
 
-    @media (max-width: 860px){
-      .hero-grid{
+    @media (max-width:860px){
+      .hero-grid,
+      .two-col{
         grid-template-columns:1fr;
       }
 
@@ -340,6 +405,7 @@
         <a href="/">Home</a>
         <a href="/about.html">About</a>
         <a href="/privacy.html">Privacy</a>
+        <a href="/contact.html">Contact</a>
       </nav>
     </div>
   </header>
@@ -354,10 +420,13 @@
             Use this free Compound Interest Calculator to estimate long-term investment growth. Enter your initial investment, monthly contribution, annual interest rate, number of years, and compounding frequency to see how your money could grow over time.
           </p>
           <p>
-            This tool also shows your total contributions, total interest earned, approximate doubling time using the Rule of 72, and a few balance milestones to help you understand how compounding works.
+            This tool also shows your total contributions, total interest earned, approximate doubling time using the Rule of 72, balance milestones, and progress toward an optional long-term goal.
+          </p>
+          <p>
+            It works especially well alongside the <a href="/savings-calculator/">Savings Calculator</a>, <a href="/retirement-calculator/">Retirement Calculator</a>, and <a href="/inflation-calculator/">Inflation Calculator</a>, because long-term growth is usually easier to understand when it is connected to real goals and purchasing power.
           </p>
           <p class="small-note">
-            Results are estimates for general informational use and do not replace financial advice or official investment projections.
+            Results are simplified estimates for general informational use and do not replace financial advice or official investment projections.
           </p>
         </div>
 
@@ -395,6 +464,11 @@
                 <option value="365">Daily</option>
               </select>
             </div>
+
+            <div class="field">
+              <label for="investmentGoal">Long-term goal (optional)</label>
+              <input id="investmentGoal" type="number" min="0" step="0.01" placeholder="e.g. 100000" />
+            </div>
           </div>
 
           <div class="result-box" aria-live="polite">
@@ -420,8 +494,14 @@
                 <span class="result-label">Approx. doubling time</span>
                 <span class="result-value" id="doublingTimeValue">—</span>
               </div>
+
+              <div class="result-card">
+                <span class="result-label">Goal progress</span>
+                <span class="result-value" id="goalProgressValue">—</span>
+              </div>
             </div>
 
+            <div class="status-pill" id="goalStatusPill">Enter values</div>
             <p class="helper" id="compoundHelper">Your investment estimate will be calculated automatically as you type.</p>
           </div>
         </aside>
@@ -431,17 +511,92 @@
     <section class="section">
       <div class="container content-grid">
         <article class="content-card">
+          <h2>What this compound interest calculator helps you estimate</h2>
+          <p>
+            This calculator is designed to estimate the most common long-term growth questions people usually want to answer first.
+          </p>
+
+          <div class="two-col">
+            <div class="mini-card">
+              <h3>What this calculator includes</h3>
+              <ul>
+                <li>Initial investment</li>
+                <li>Monthly contributions</li>
+                <li>Annual rate assumption</li>
+                <li>Compounding frequency</li>
+                <li>Estimated final balance</li>
+                <li>Goal comparison and milestones</li>
+              </ul>
+            </div>
+
+            <div class="mini-card">
+              <h3>What this calculator does not include</h3>
+              <ul>
+                <li>Taxes</li>
+                <li>Fees or fund expenses</li>
+                <li>Inflation adjustment</li>
+                <li>Changing return assumptions</li>
+                <li>Market volatility or drawdowns</li>
+                <li>Irregular contribution timing</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="callout">
+            <p>
+              This makes the calculator useful for long-term planning and comparison, but not a substitute for a full investment or retirement plan.
+            </p>
+          </div>
+        </article>
+
+        <article class="content-card">
           <h2>What is compound interest?</h2>
           <p>
-            Compound interest is the process of earning returns not only on your original investment but also on the interest that has already been added over time. This can lead to significantly higher growth compared with simple interest.
+            Compound interest is the process of earning returns not only on your original investment but also on the interest that has already been added over time. This can lead to much stronger long-term growth compared with simple interest.
           </p>
           <p>
-            Compound growth becomes more powerful the longer your investment remains invested and the more frequently it compounds.
+            Compound growth becomes more powerful the longer your money remains invested and the more consistently contributions continue.
           </p>
 
           <h3>How this calculator works</h3>
           <p>
             This calculator estimates future value using an initial investment, recurring monthly contributions, an annual interest rate, and the selected compounding frequency. It then compares your total contributions with the final balance to estimate how much growth came from interest.
+          </p>
+        </article>
+
+        <article class="content-card">
+          <h2>How to interpret your result</h2>
+          <p>
+            The final balance is the projected total after the selected time horizon. Total contributions show how much of that final amount came directly from money you put in. Total interest earned shows the portion that came from growth instead of direct saving.
+          </p>
+          <p>
+            These numbers are most useful when read together. A large ending balance may still be contribution-heavy, while a smaller balance may still reflect efficient long-term compounding if the interest share is meaningful.
+          </p>
+
+          <div class="callout">
+            <p>
+              In long-term growth planning, time and consistency often matter as much as the annual rate assumption.
+            </p>
+          </div>
+        </article>
+
+        <article class="content-card">
+          <h2>Why time matters so much in compounding</h2>
+          <p>
+            Compound growth tends to feel slow early and much more powerful later. That is one reason long-term saving and investing decisions are often easier to understand across 10, 20, or 30 years than across only 1 or 2 years.
+          </p>
+          <p>
+            This is also why delaying contributions can reduce long-term growth more than people expect: later money has less time to compound.
+          </p>
+        </article>
+
+        <article class="content-card">
+          <h2>Compounding frequency</h2>
+          <p>
+            Compounding frequency affects how often returns are added to the balance. In general, more frequent compounding can slightly improve the final result, although the difference is usually less important than the overall rate, time horizon, and contribution pattern.
+          </p>
+          <p>
+            For most practical long-term planning, the biggest drivers are still rate, time, and consistency.
           </p>
         </article>
 
@@ -453,16 +608,55 @@
           <p>
             For example, at 8% annual growth, an investment may roughly double in about 9 years.
           </p>
+
+          <div class="callout">
+            <p>
+              The Rule of 72 is a quick planning shortcut, not a precise projection method.
+            </p>
+          </div>
         </article>
 
         <article class="content-card">
           <h2>Balance milestones</h2>
           <p>
-            This calculator also estimates how your balance may grow at different points in time:
+            This calculator also estimates how your balance may grow at selected points in time:
           </p>
           <ul class="milestones-list" id="milestonesList">
             <li>Enter values to see milestones.</li>
           </ul>
+        </article>
+
+        <article class="content-card">
+          <h2>Worked examples</h2>
+          <div class="two-col">
+            <div class="mini-card">
+              <h3>Example 1: starting with a lump sum</h3>
+              <p>
+                Someone investing 5,000 with no ongoing contribution can use this page to see how much time and return assumptions alone may change the result.
+              </p>
+            </div>
+
+            <div class="mini-card">
+              <h3>Example 2: small monthly investing habit</h3>
+              <p>
+                Someone starting with 1,000 and adding 200 per month can compare how much of the future balance comes from contributions versus compounded growth.
+              </p>
+            </div>
+
+            <div class="mini-card">
+              <h3>Example 3: changing the rate assumption</h3>
+              <p>
+                Running the same scenario at 5%, 7%, and 9% can show how sensitive long-term projections are to rate assumptions.
+              </p>
+            </div>
+
+            <div class="mini-card">
+              <h3>Example 4: checking a future goal</h3>
+              <p>
+                Adding an optional goal makes it easier to see whether the current plan appears below, near, or above the target.
+              </p>
+            </div>
+          </div>
         </article>
 
         <article class="content-card">
@@ -473,8 +667,68 @@
             <li>Enter the annual interest rate.</li>
             <li>Enter the number of years.</li>
             <li>Select the compounding frequency.</li>
-            <li>Review the final balance, contributions, interest earned, and doubling time.</li>
+            <li>Optionally enter a long-term goal.</li>
+            <li>Review the final balance, contributions, interest earned, doubling time, and milestones.</li>
           </ul>
+        </article>
+
+        <article class="content-card">
+          <h2>Common uses for a compound interest calculator</h2>
+          <ul>
+            <li><strong>Long-term investing estimates:</strong> project how money may grow over time.</li>
+            <li><strong>Savings habit planning:</strong> compare the long-term effect of monthly contributions.</li>
+            <li><strong>Goal setting:</strong> see whether a current plan appears on pace toward a future target.</li>
+            <li><strong>Rate sensitivity checks:</strong> test how much return assumptions matter in long-term scenarios.</li>
+            <li><strong>Retirement prep support:</strong> understand growth assumptions before moving into retirement planning.</li>
+          </ul>
+        </article>
+
+        <article class="content-card">
+          <h2>Common compound interest mistakes this calculator can help highlight</h2>
+          <ul>
+            <li><strong>Ignoring time:</strong> compounding is usually much weaker over short periods than over long ones.</li>
+            <li><strong>Using unrealistic return assumptions:</strong> even small changes in annual return can materially change long-term projections.</li>
+            <li><strong>Confusing contributions with growth:</strong> the final balance alone does not show where the result came from.</li>
+            <li><strong>Overvaluing compounding frequency:</strong> rate, time, and contribution consistency usually matter more.</li>
+            <li><strong>Ignoring inflation:</strong> nominal growth can still overstate future purchasing power.</li>
+          </ul>
+        </article>
+
+        <article class="content-card">
+          <h2>Important assumptions and limitations</h2>
+          <p>
+            This calculator assumes a constant annual return, steady monthly contributions, and a simplified compounding path based on the selected frequency. It does not account for taxes, fees, inflation, volatility, changing return assumptions, or irregular contribution timing.
+          </p>
+          <p>
+            Real-world investment outcomes can differ materially from simplified projections, especially over long time horizons.
+          </p>
+        </article>
+
+        <article class="content-card">
+          <h2>Related guides</h2>
+          <p>
+            These guides help explain long-term growth, inflation, and planning tradeoffs more clearly.
+          </p>
+          <div class="related-links">
+            <a href="/how-inflation-affects-savings-retirement-and-long-term-costs/">How Inflation Affects Savings, Retirement, and Long-Term Costs</a>
+            <a href="/how-to-estimate-a-retirement-goal-in-todays-dollars/">How to Estimate a Retirement Goal in Today’s Dollars</a>
+            <a href="/what-percentage-change-actually-means/">What Percentage Change Actually Means</a>
+          </div>
+        </article>
+
+        <article class="content-card">
+          <h2>Related calculators</h2>
+          <p>
+            Explore other Calc Nest tools that pair naturally with this Compound Interest Calculator.
+          </p>
+          <div class="related-links">
+            <a href="/savings-calculator/">Savings Calculator</a>
+            <a href="/retirement-calculator/">Retirement Calculator</a>
+            <a href="/inflation-calculator/">Inflation Calculator</a>
+            <a href="/interest-rate-calculator/">Interest Rate Calculator</a>
+            <a href="/roi-calculator/">ROI Calculator</a>
+            <a href="/">Browse all calculators</a>
+          </div>
         </article>
 
         <article class="content-card">
@@ -490,7 +744,7 @@
           <div class="faq-item">
             <h3>Why does compounding frequency matter?</h3>
             <p>
-              More frequent compounding can slightly increase the final balance because interest is added more often.
+              More frequent compounding can slightly increase the final balance because returns are added more often, although the difference is usually smaller than people expect.
             </p>
           </div>
 
@@ -505,6 +759,27 @@
             <h3>Can I use this for any currency?</h3>
             <p>
               Yes. The calculator uses plain numbers, so it can work with dollars, euros, pounds, pesos, or other currencies.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>What happens if I enter a long-term goal?</h3>
+            <p>
+              The calculator compares your projected final balance with the goal and shows whether the current plan appears below, at, or above that target.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>Is the Rule of 72 exact?</h3>
+            <p>
+              No. It is a useful shortcut for rough planning, but the full projection still depends on the underlying assumptions.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>Can I use this Compound Interest Calculator on mobile?</h3>
+            <p>
+              Yes. The page is designed to work on phones, tablets, and desktop devices.
             </p>
           </div>
         </article>
@@ -530,11 +805,14 @@
     const interestRate = document.getElementById("interestRate");
     const years = document.getElementById("years");
     const compoundFrequency = document.getElementById("compoundFrequency");
+    const investmentGoal = document.getElementById("investmentGoal");
 
     const finalBalanceValue = document.getElementById("finalBalanceValue");
     const totalContributionsValue = document.getElementById("totalContributionsValue");
     const interestEarnedValue = document.getElementById("interestEarnedValue");
     const doublingTimeValue = document.getElementById("doublingTimeValue");
+    const goalProgressValue = document.getElementById("goalProgressValue");
+    const goalStatusPill = document.getElementById("goalStatusPill");
     const compoundHelper = document.getElementById("compoundHelper");
     const milestonesList = document.getElementById("milestonesList");
 
@@ -545,25 +823,24 @@
       });
     }
 
+    function formatPercent(value) {
+      return `${value.toFixed(2)}%`;
+    }
+
     function futureValue(principal, monthlyAdd, annualRate, totalYears, compoundsPerYear) {
       const r = annualRate / 100;
       const n = compoundsPerYear;
-      const t = totalYears;
+      const totalMonths = Math.floor(totalYears * 12);
+      const monthlyRate = Math.pow(1 + r / n, n / 12) - 1;
 
-      let balance = principal * Math.pow(1 + r / n, n * t);
-
-      if (monthlyAdd > 0) {
-        const monthlyRate = Math.pow(1 + r / n, n / 12) - 1;
-        const totalMonths = Math.floor(t * 12);
-
-        if (monthlyRate === 0) {
-          balance += monthlyAdd * totalMonths;
-        } else {
-          balance += monthlyAdd * ((Math.pow(1 + monthlyRate, totalMonths) - 1) / monthlyRate);
-        }
+      if (monthlyRate === 0) {
+        return principal + (monthlyAdd * totalMonths);
       }
 
-      return balance;
+      const grownPrincipal = principal * Math.pow(1 + monthlyRate, totalMonths);
+      const grownContributions = monthlyAdd * ((Math.pow(1 + monthlyRate, totalMonths) - 1) / monthlyRate);
+
+      return grownPrincipal + grownContributions;
     }
 
     function calculateCompoundInterest() {
@@ -572,6 +849,7 @@
       const rate = parseFloat(interestRate.value);
       const totalYears = parseFloat(years.value);
       const freq = parseInt(compoundFrequency.value, 10);
+      const goal = parseFloat(investmentGoal.value);
 
       if (rate >= 0 && totalYears > 0 && freq > 0 && (principal > 0 || monthlyAdd > 0)) {
         const finalBalance = futureValue(principal, monthlyAdd, rate, totalYears, freq);
@@ -589,17 +867,43 @@
           doublingTimeValue.textContent = "N/A";
         }
 
-        const milestoneYears = [5, 10, 20];
+        if (!isNaN(goal) && goal > 0) {
+          const progress = (finalBalance / goal) * 100;
+          goalProgressValue.textContent = formatPercent(progress);
+
+          if (finalBalance > goal) {
+            goalStatusPill.textContent = `Above goal by ${formatMoney(finalBalance - goal)}`;
+          } else if (finalBalance < goal) {
+            goalStatusPill.textContent = `Below goal by ${formatMoney(goal - finalBalance)}`;
+          } else {
+            goalStatusPill.textContent = "Goal reached";
+          }
+        } else {
+          goalProgressValue.textContent = "—";
+          goalStatusPill.textContent = "No goal entered";
+        }
+
+        const milestoneYears = [1, 3, 5, 10, 20];
         milestonesList.innerHTML = "";
 
         milestoneYears.forEach(yearMark => {
           if (yearMark <= totalYears) {
             const milestoneBalance = futureValue(principal, monthlyAdd, rate, yearMark, freq);
             const li = document.createElement("li");
-            li.textContent = `Balance after ${yearMark} years: ${formatMoney(milestoneBalance)}`;
+            li.textContent = `Balance after ${yearMark} year${yearMark > 1 ? "s" : ""}: ${formatMoney(milestoneBalance)}`;
             milestonesList.appendChild(li);
           }
         });
+
+        if (totalYears > 0 && !milestoneYears.includes(Math.floor(totalYears)) && totalYears !== Math.floor(totalYears)) {
+          const li = document.createElement("li");
+          li.textContent = `Balance after ${totalYears} years: ${formatMoney(finalBalance)}`;
+          milestonesList.appendChild(li);
+        } else if (totalYears > 20 && Number.isInteger(totalYears) && !milestoneYears.includes(totalYears)) {
+          const li = document.createElement("li");
+          li.textContent = `Balance after ${totalYears} years: ${formatMoney(finalBalance)}`;
+          milestonesList.appendChild(li);
+        }
 
         if (milestonesList.innerHTML.trim() === "") {
           const li = document.createElement("li");
@@ -613,12 +917,14 @@
         totalContributionsValue.textContent = "—";
         interestEarnedValue.textContent = "—";
         doublingTimeValue.textContent = "—";
+        goalProgressValue.textContent = "—";
+        goalStatusPill.textContent = "Enter values";
         milestonesList.innerHTML = "<li>Enter values to see milestones.</li>";
         compoundHelper.textContent = "Your investment estimate will be calculated automatically as you type.";
       }
     }
 
-    [initialInvestment, monthlyContribution, interestRate, years, compoundFrequency].forEach(input => {
+    [initialInvestment, monthlyContribution, interestRate, years, compoundFrequency, investmentGoal].forEach(input => {
       input.addEventListener("input", calculateCompoundInterest);
       input.addEventListener("change", calculateCompoundInterest);
     });
