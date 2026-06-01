@@ -7,12 +7,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" href="/favicon-96.png" type="image/png" sizes="96x96" />
   <title>Mortgage Calculator | Calc Nest</title>
-  <meta name="description" content="Free online Mortgage Calculator. Estimate home loan amount, principal and interest, taxes, insurance, and total monthly mortgage payment." />
+  <meta name="description" content="Free online Mortgage Calculator. Estimate home loan amount, principal and interest, taxes, insurance, total monthly mortgage payment, and review a current mortgage rate snapshot." />
   <link rel="canonical" href="https://calc-nest.com/mortgage-calculator/" />
   <meta name="theme-color" content="#0f172a" />
 
   <meta property="og:title" content="Mortgage Calculator | Calc Nest" />
-  <meta property="og:description" content="Estimate home loan amount, principal and interest, taxes, insurance, and total monthly mortgage payment." />
+  <meta property="og:description" content="Estimate home loan amount, principal and interest, taxes, insurance, total monthly mortgage payment, and review a current mortgage rate snapshot." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://calc-nest.com/mortgage-calculator/" />
 
@@ -273,6 +273,7 @@
       font-size:1.35rem;
       font-weight:800;
       line-height:1.1;
+      word-break:break-word;
     }
 
     .helper{
@@ -457,6 +458,9 @@
           <p>
             Enter your home price, down payment, loan term, interest rate, annual property tax, and annual home insurance to see your monthly breakdown instantly.
           </p>
+          <p>
+            This page also includes a current mortgage-rate snapshot so you can connect your estimate to a real market context rather than using the calculator in isolation.
+          </p>
           <p class="small-note">
             Results are estimates for general informational use and do not replace official lender calculations. For broader context, see guides like <a href="/how-much-house-can-you-really-afford/">How Much House Can You Really Afford?</a> and <a href="/apr-vs-interest-rate/">APR vs Interest Rate</a>.
           </p>
@@ -546,6 +550,38 @@
     <section class="section">
       <div class="container content-grid">
         <article class="content-card">
+          <h2>Current U.S. mortgage snapshot</h2>
+          <p>
+            As of May 28, 2026, Freddie Mac’s weekly Primary Mortgage Market Survey reported an average <strong>30-year fixed-rate mortgage of 6.53%</strong> and an average <strong>15-year fixed-rate mortgage of 5.87%</strong>.
+          </p>
+
+          <div class="split-grid">
+            <div class="mini-card">
+              <h3>Latest weekly average</h3>
+              <ul>
+                <li>30-year fixed: <strong>6.53%</strong></li>
+                <li>15-year fixed: <strong>5.87%</strong></li>
+              </ul>
+            </div>
+
+            <div class="mini-card">
+              <h3>What changed</h3>
+              <ul>
+                <li>30-year fixed was <strong>6.51%</strong> the previous week</li>
+                <li>15-year fixed was <strong>5.85%</strong> the previous week</li>
+                <li>Freddie Mac publishes this survey weekly</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="callout">
+            <p>
+              This block gives current market context, but the calculator itself remains a planning tool. Your actual quoted rate can still vary based on credit profile, loan structure, lender fees, and timing.
+            </p>
+          </div>
+        </article>
+
+        <article class="content-card">
           <h2>What this mortgage calculator helps you estimate</h2>
           <p>
             This mortgage calculator is designed to estimate the parts of a monthly housing payment that most users care about first: the loan amount, principal and interest, monthly property tax, monthly home insurance, and the estimated combined monthly total.
@@ -613,6 +649,21 @@
               A lower mortgage payment is not always the same thing as better affordability. Total housing cost still has to fit the rest of your budget.
             </p>
           </div>
+        </article>
+
+        <article class="content-card">
+          <h2>How to use the current mortgage snapshot with this calculator</h2>
+          <p>
+            The weekly Freddie Mac average can help you choose a more realistic starting interest-rate assumption when testing home-buying scenarios.
+          </p>
+          <ul>
+            <li>Use the latest weekly average as a rough baseline for scenario testing.</li>
+            <li>Run a second scenario above and below that rate to see payment sensitivity.</li>
+            <li>Compare the result with your broader affordability target, not only the mortgage number alone.</li>
+          </ul>
+          <p>
+            This makes the page more useful as a decision-support tool rather than only as a payment formula.
+          </p>
         </article>
 
         <article class="content-card">
@@ -741,6 +792,13 @@
             <h3>Does this calculator store my data?</h3>
             <p>
               No. The values you enter are processed directly in your browser and are not stored on a server.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>Does the rate snapshot update automatically?</h3>
+            <p>
+              No. The snapshot is a static editorial block until the page is manually updated with a new weekly Freddie Mac figure.
             </p>
           </div>
         </article>
