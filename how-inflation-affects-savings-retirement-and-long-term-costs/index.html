@@ -5,6 +5,7 @@
      crossorigin="anonymous"></script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/favicon-96.png" type="image/png" sizes="96x96" />
   <title>How Inflation Affects Savings, Retirement, and Long-Term Costs | Calc Nest</title>
   <meta name="description" content="Learn how inflation affects savings goals, retirement planning, and long-term costs, and why purchasing power matters more than nominal dollars alone." />
   <link rel="canonical" href="https://calc-nest.com/how-inflation-affects-savings-retirement-and-long-term-costs/" />
@@ -417,6 +418,33 @@
 
     <section class="section">
       <div class="container content-grid">
+        <article class="content-card" id="snapshotCard">
+          <h2>Current U.S. inflation snapshot</h2>
+          <p id="snapshotIntro">
+            Loading the latest CPI snapshot...
+          </p>
+
+          <div class="two-col">
+            <div class="mini-card">
+              <h3>Latest official context</h3>
+              <ul id="snapshotFacts">
+                <li>Loading latest official CPI values...</li>
+              </ul>
+            </div>
+
+            <div class="mini-card">
+              <h3>Next release</h3>
+              <ul id="snapshotNextRelease">
+                <li>Loading next scheduled CPI release...</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="callout" id="snapshotEditorial">
+            <p>Loading editorial summary...</p>
+          </div>
+        </article>
+
         <article class="content-card">
           <h2>What inflation does in practical terms</h2>
           <p>
@@ -424,6 +452,21 @@
           </p>
           <p>
             For short periods, inflation may not feel dramatic. Over longer periods, even moderate inflation can significantly change what a future savings balance or retirement income can actually support.
+          </p>
+        </article>
+
+        <article class="content-card">
+          <h2>How to use the current CPI snapshot with this guide</h2>
+          <p>
+            The current CPI snapshot gives this guide a real reference point instead of treating inflation as a purely abstract concept.
+          </p>
+          <ul>
+            <li>Use the latest 12-month CPI figure as a practical baseline when thinking about long-term savings or retirement assumptions.</li>
+            <li>Use the monthly change as a reminder that inflation moves over time rather than staying perfectly stable.</li>
+            <li>Use the editorial summary as a quick interpretation, then run your own scenarios in the <a href="/inflation-calculator/">Inflation Calculator</a>.</li>
+          </ul>
+          <p>
+            This makes the guide more useful as a planning page instead of only a general explanation.
           </p>
         </article>
 
@@ -647,6 +690,13 @@
             </div>
 
             <div class="faq-item">
+              <h3>Does this guide use the same automatic snapshot as the Inflation Calculator?</h3>
+              <p>
+                Yes. This guide is designed to read the same inflation snapshot JSON file, so both pages stay aligned when the automated CPI update runs.
+              </p>
+            </div>
+
+            <div class="faq-item">
               <h3>Can I use this guide on mobile while planning savings or retirement?</h3>
               <p>
                 Yes. This page and the related Calc Nest calculators are designed to work on phones, tablets, and desktop devices.
@@ -676,5 +726,43 @@
       </div>
     </div>
   </footer>
+
+  <script>
+    async function loadInflationSnapshot() {
+      const intro = document.getElementById("snapshotIntro");
+      const facts = document.getElementById("snapshotFacts");
+      const nextRelease = document.getElementById("snapshotNextRelease");
+      const editorial = document.getElementById("snapshotEditorial");
+
+      try {
+        const response = await fetch("/data/inflation_snapshot.json", { cache: "no-store" });
+        if (!response.ok) throw new Error("snapshot fetch failed");
+        const data = await response.json();
+
+        intro.textContent = `The latest available CPI snapshot is for ${data.reference_month}. This guide reads the same inflation snapshot as the Inflation Calculator, so both pages stay aligned when the automated update runs.`;
+
+        facts.innerHTML = `
+          <li>Monthly CPI change: <strong>${data.monthly_cpi_change}</strong></li>
+          <li>12-month CPI change: <strong>${data.annual_cpi_change}</strong></li>
+          <li>Updated from release: <strong>${data.reference_month}</strong></li>
+        `;
+
+        nextRelease.innerHTML = `
+          <li>Reference month: <strong>${data.next_release_reference_month}</strong></li>
+          <li>Scheduled release: <strong>${data.next_release_date}</strong></li>
+          <li>Time: <strong>${data.next_release_time}</strong></li>
+        `;
+
+        editorial.innerHTML = `<p>${data.editorial_summary}</p>`;
+      } catch (error) {
+        intro.textContent = "Current CPI snapshot unavailable. The guide still works normally, but this block appears once the inflation snapshot JSON is available.";
+        facts.innerHTML = "<li>Snapshot data is not available yet.</li>";
+        nextRelease.innerHTML = "<li>Add /data/inflation_snapshot.json to enable this block.</li>";
+        editorial.innerHTML = "<p>This editorial block appears automatically once the shared inflation snapshot file exists and is published.</p>";
+      }
+    }
+
+    loadInflationSnapshot();
+  </script>
 </body>
 </html>
