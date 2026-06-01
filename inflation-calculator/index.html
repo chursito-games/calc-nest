@@ -5,13 +5,14 @@
      crossorigin="anonymous"></script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/favicon-96.png" type="image/png" sizes="96x96" />
   <title>Inflation Calculator | Calc Nest</title>
-  <meta name="description" content="Free online Inflation Calculator. Estimate future cost after inflation, present value, and purchasing power using a fixed annual inflation rate." />
+  <meta name="description" content="Free online Inflation Calculator. Estimate future cost after inflation, present value, purchasing power, and review a current inflation snapshot based on official CPI data." />
   <link rel="canonical" href="https://calc-nest.com/inflation-calculator/" />
   <meta name="theme-color" content="#0f172a" />
 
   <meta property="og:title" content="Inflation Calculator | Calc Nest" />
-  <meta property="og:description" content="Free online Inflation Calculator to estimate future value, present value, and purchasing power under inflation." />
+  <meta property="og:description" content="Estimate future value, present value, purchasing power, and review a current CPI-based inflation snapshot." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://calc-nest.com/inflation-calculator/" />
 
@@ -29,7 +30,6 @@
       --radius: 18px;
       --max: 1080px;
     }
-
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{
@@ -39,384 +39,139 @@
       color:var(--text);
       line-height:1.6;
     }
-
-    a{
-      color:var(--accent);
-      text-decoration:none;
-    }
+    a{ color:var(--accent); text-decoration:none; }
     a:hover{text-decoration:underline}
-
-    .container{
-      width:min(var(--max), calc(100% - 32px));
-      margin:0 auto;
-    }
-
+    .container{ width:min(var(--max), calc(100% - 32px)); margin:0 auto; }
     .topbar{
       border-bottom:1px solid rgba(255,255,255,.08);
       background:rgba(15,23,42,.75);
       backdrop-filter: blur(8px);
-      position:sticky;
-      top:0;
-      z-index:20;
+      position:sticky; top:0; z-index:20;
     }
-
     .topbar-inner{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-      padding:14px 0;
+      display:flex; align-items:center; justify-content:space-between;
+      gap:16px; padding:14px 0;
     }
-
     .brand{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      font-weight:700;
-      color:#fff;
-      letter-spacing:.2px;
+      display:flex; align-items:center; gap:10px;
+      font-weight:700; color:#fff; letter-spacing:.2px;
     }
-
     .brand-badge{
-      width:34px;
-      height:34px;
-      border-radius:12px;
+      width:34px; height:34px; border-radius:12px;
       background:linear-gradient(135deg, var(--accent), #6366f1);
       box-shadow:0 10px 24px rgba(56,189,248,.25);
     }
-
-    .nav{
-      display:flex;
-      gap:18px;
-      flex-wrap:wrap;
-      align-items:center;
-    }
-
-    .nav a{
-      color:var(--text);
-      opacity:.92;
-      font-size:14px;
-    }
-
-    .hero{
-      padding:56px 0 28px;
-    }
-
+    .nav{ display:flex; gap:18px; flex-wrap:wrap; align-items:center; }
+    .nav a{ color:var(--text); opacity:.92; font-size:14px; }
+    .hero{ padding:56px 0 28px; }
     .hero-grid{
-      display:grid;
-      grid-template-columns: 1.06fr .94fr;
-      gap:24px;
-      align-items:start;
+      display:grid; grid-template-columns: 1.06fr .94fr;
+      gap:24px; align-items:start;
     }
-
     .hero-copy h1{
-      margin:0 0 12px;
-      font-size:clamp(2rem, 4vw, 3.2rem);
-      line-height:1.08;
-      letter-spacing:-.03em;
+      margin:0 0 12px; font-size:clamp(2rem, 4vw, 3.2rem);
+      line-height:1.08; letter-spacing:-.03em;
     }
-
     .hero-copy p{
-      margin:0 0 16px;
-      color:var(--muted);
-      max-width:66ch;
-      font-size:1.03rem;
+      margin:0 0 16px; color:var(--muted); max-width:66ch; font-size:1.03rem;
     }
-
     .eyebrow{
-      display:inline-block;
-      margin-bottom:12px;
-      font-size:12px;
-      font-weight:700;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-      color:var(--accent);
+      display:inline-block; margin-bottom:12px; font-size:12px;
+      font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--accent);
     }
-
-    .hero-card,
-    .content-card{
-      background:rgba(17,24,39,.88);
-      border:1px solid rgba(255,255,255,.08);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-      padding:22px;
+    .hero-card, .content-card{
+      background:rgba(17,24,39,.88); border:1px solid rgba(255,255,255,.08);
+      border-radius:var(--radius); box-shadow:var(--shadow); padding:22px;
     }
-
-    .tool-title{
-      margin:0 0 8px;
-      font-size:1.25rem;
-    }
-
-    .tool-subtitle{
-      margin:0 0 18px;
-      color:var(--muted);
-      font-size:.95rem;
-    }
-
-    .mode-toggle{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:10px;
-      margin-bottom:18px;
-    }
-
+    .tool-title{ margin:0 0 8px; font-size:1.25rem; }
+    .tool-subtitle{ margin:0 0 18px; color:var(--muted); font-size:.95rem; }
+    .mode-toggle{ display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:18px; }
     .mode-btn{
-      border:1px solid var(--line);
-      background:#0f172a;
-      color:var(--text);
-      border-radius:14px;
-      padding:12px 14px;
-      font-weight:700;
-      cursor:pointer;
+      border:1px solid var(--line); background:#0f172a; color:var(--text);
+      border-radius:14px; padding:12px 14px; font-weight:700; cursor:pointer;
     }
-
     .mode-btn.active{
-      border-color:rgba(56,189,248,.55);
-      background:rgba(56,189,248,.12);
-      color:#fff;
+      border-color:rgba(56,189,248,.55); background:rgba(56,189,248,.12); color:#fff;
     }
-
-    .field{
-      display:flex;
-      flex-direction:column;
-      gap:8px;
-      margin-bottom:14px;
-    }
-
-    .field-row{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:12px;
-    }
-
-    label{
-      font-size:14px;
-      font-weight:600;
-    }
-
+    .field{ display:flex; flex-direction:column; gap:8px; margin-bottom:14px; }
+    .field-row{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    label{ font-size:14px; font-weight:600; }
     input{
-      width:100%;
-      padding:14px 14px;
-      border-radius:14px;
-      border:1px solid var(--line);
-      background:#0b1220;
-      color:var(--text);
-      font-size:16px;
-      outline:none;
+      width:100%; padding:14px 14px; border-radius:14px; border:1px solid var(--line);
+      background:#0b1220; color:var(--text); font-size:16px; outline:none;
     }
-
-    input:focus{
-      border-color:rgba(56,189,248,.7);
-      box-shadow:0 0 0 4px rgba(56,189,248,.14);
-    }
-
+    input:focus{ border-color:rgba(56,189,248,.7); box-shadow:0 0 0 4px rgba(56,189,248,.14); }
     .result-box{
-      margin-top:18px;
-      padding:16px;
-      border-radius:16px;
+      margin-top:18px; padding:16px; border-radius:16px;
       background:linear-gradient(180deg, rgba(56,189,248,.10), rgba(34,197,94,.08));
       border:1px solid rgba(255,255,255,.09);
     }
-
-    .result-box h3{
-      margin:0 0 6px;
-      font-size:1rem;
-    }
-
+    .result-box h3{ margin:0 0 6px; font-size:1rem; }
     .result-main{
-      font-size:1.8rem;
-      font-weight:800;
-      line-height:1.15;
-      margin:2px 0 10px;
-      word-break:break-word;
+      font-size:1.8rem; font-weight:800; line-height:1.15;
+      margin:2px 0 10px; word-break:break-word;
     }
-
-    .helper{
-      color:var(--muted);
-      font-size:14px;
-      margin:0;
-    }
-
-    .result-grid{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:12px;
-      margin-top:14px;
-    }
-
+    .helper{ color:var(--muted); font-size:14px; margin:0; }
+    .result-grid{ display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:14px; }
     .result-stat{
-      padding:14px;
-      border-radius:14px;
-      background:rgba(11,18,32,.65);
+      padding:14px; border-radius:14px; background:rgba(11,18,32,.65);
       border:1px solid rgba(255,255,255,.08);
     }
-
-    .result-stat-label{
-      display:block;
-      color:var(--muted);
-      font-size:13px;
-      margin-bottom:4px;
-    }
-
-    .result-stat-value{
-      display:block;
-      font-size:1rem;
-      font-weight:800;
-    }
-
-    .section{
-      padding:14px 0 0;
-    }
-
+    .result-stat-label{ display:block; color:var(--muted); font-size:13px; margin-bottom:4px; }
+    .result-stat-value{ display:block; font-size:1rem; font-weight:800; word-break:break-word; }
+    .section{ padding:14px 0 0; }
     .content-grid{
-      display:grid;
-      gap:18px;
-      width:100%;
-      max-width:760px;
-      margin:18px auto 0;
+      display:grid; gap:18px; width:100%; max-width:760px; margin:18px auto 0;
     }
-
-    .content-card h2{
-      margin:0 0 12px;
-      font-size:1.35rem;
-    }
-
-    .content-card h3{
-      margin:18px 0 8px;
-      font-size:1.02rem;
-    }
-
-    .content-card p{
-      margin:0 0 12px;
-      color:#d6dbe4;
-    }
-
-    .content-card ul{
-      margin:0 0 12px 20px;
-      color:#d6dbe4;
-    }
-
-    .two-col{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:16px;
-    }
-
+    .content-card h2{ margin:0 0 12px; font-size:1.35rem; }
+    .content-card h3{ margin:18px 0 8px; font-size:1.02rem; }
+    .content-card p{ margin:0 0 12px; color:#d6dbe4; }
+    .content-card ul{ margin:0 0 12px 20px; color:#d6dbe4; }
+    .two-col{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
     .mini-card{
-      padding:16px;
-      border-radius:16px;
-      background:#0f172a;
-      border:1px solid rgba(255,255,255,.08);
+      padding:16px; border-radius:16px; background:#0f172a; border:1px solid rgba(255,255,255,.08);
     }
-
-    .mini-card h3{
-      margin-top:0;
-    }
-
-    .faq-item{
-      padding:14px 0;
-      border-top:1px solid rgba(255,255,255,.08);
-    }
-
-    .faq-item:first-of-type{
-      border-top:none;
-      padding-top:0;
-    }
-
-    .related-links{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      margin-top:12px;
-    }
-
+    .mini-card h3{ margin-top:0; }
+    .faq-item{ padding:14px 0; border-top:1px solid rgba(255,255,255,.08); }
+    .faq-item:first-of-type{ border-top:none; padding-top:0; }
+    .related-links{ display:flex; flex-wrap:wrap; gap:10px; margin-top:12px; }
     .related-links a{
-      display:inline-flex;
-      align-items:center;
-      padding:10px 12px;
-      border-radius:999px;
-      background:#0f172a;
-      border:1px solid rgba(255,255,255,.08);
-      color:#e5e7eb;
-      text-decoration:none;
-      font-size:14px;
-      font-weight:600;
+      display:inline-flex; align-items:center; padding:10px 12px; border-radius:999px;
+      background:#0f172a; border:1px solid rgba(255,255,255,.08); color:#e5e7eb;
+      text-decoration:none; font-size:14px; font-weight:600;
     }
-
     .related-links a:hover{
-      border-color:rgba(56,189,248,.4);
-      color:#fff;
-      text-decoration:none;
+      border-color:rgba(56,189,248,.4); color:#fff; text-decoration:none;
     }
-
-    .small-note{
-      color:var(--muted);
-      font-size:13px;
+    .callout{
+      margin-top:12px; padding:16px; border-radius:16px; background:rgba(11,18,32,.65);
+      border:1px solid rgba(255,255,255,.08);
     }
-
-    .footer{
-      padding:34px 0 48px;
-      color:var(--muted);
-      font-size:14px;
-    }
-
+    .callout p{ margin:0; }
+    .small-note{ color:var(--muted); font-size:13px; }
+    .footer{ padding:34px 0 48px; color:var(--muted); font-size:14px; }
     .footer-inner{
-      display:flex;
-      justify-content:space-between;
-      gap:16px;
-      flex-wrap:wrap;
-      border-top:1px solid rgba(255,255,255,.08);
-      padding-top:18px;
+      display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap;
+      border-top:1px solid rgba(255,255,255,.08); padding-top:18px;
     }
-
-    .footer-links{
-      display:flex;
-      flex-wrap:wrap;
-      gap:14px;
-    }
-
+    .footer-links{ display:flex; flex-wrap:wrap; gap:14px; }
     @media (max-width: 900px){
-      .hero-grid,
-      .field-row,
-      .result-grid,
-      .two-col{
-        grid-template-columns:1fr;
-      }
-
-      .topbar-inner{
-        align-items:flex-start;
-        flex-direction:column;
-      }
+      .hero-grid, .field-row, .result-grid, .two-col{ grid-template-columns:1fr; }
+      .topbar-inner{ align-items:flex-start; flex-direction:column; }
     }
-
     @media (max-width: 640px){
-      .hero{
-        padding-top:34px;
-      }
-
-      .result-main{
-        font-size:1.45rem;
-      }
-
-      .mode-toggle{
-        grid-template-columns:1fr;
-      }
+      .hero{ padding-top:34px; }
+      .result-main{ font-size:1.45rem; }
+      .mode-toggle{ grid-template-columns:1fr; }
     }
   </style>
 </head>
 <body>
   <header class="topbar">
     <div class="container topbar-inner">
-      <div class="brand">
-        <div class="brand-badge" aria-hidden="true"></div>
-        <span>Calc Nest</span>
-      </div>
-
+      <div class="brand"><div class="brand-badge" aria-hidden="true"></div><span>Calc Nest</span></div>
       <nav class="nav" aria-label="Primary">
-        <a href="/">Home</a>
-        <a href="/about.html">About</a>
-        <a href="/privacy.html">Privacy</a>
-        <a href="/contact.html">Contact</a>
+        <a href="/">Home</a><a href="/about.html">About</a><a href="/privacy.html">Privacy</a><a href="/contact.html">Contact</a>
       </nav>
     </div>
   </header>
@@ -427,18 +182,11 @@
         <div class="hero-copy">
           <span class="eyebrow">Free Online Calculators</span>
           <h1>Inflation Calculator</h1>
-          <p>
-            Use this free Inflation Calculator to estimate how inflation may affect future cost, present value, and purchasing power over time. This page includes two practical modes: future value with inflation and present value / purchasing power.
-          </p>
-          <p>
-            Inflation matters because the same amount of money does not always buy the same amount of goods and services over time. Even moderate inflation can meaningfully reduce purchasing power over longer periods.
-          </p>
-          <p>
-            This calculator is especially useful for savings goals, retirement planning, salary comparisons, education costs, and long-term budgeting. It also pairs well with the <a href="/savings-calculator/">Savings Calculator</a>, <a href="/compound-interest-calculator/">Compound Interest Calculator</a>, and <a href="/retirement-calculator/">Retirement Calculator</a>.
-          </p>
-          <p class="small-note">
-            Results are based on a fixed annual inflation rate entered by the user and are intended for planning estimates only.
-          </p>
+          <p>Use this free Inflation Calculator to estimate how inflation may affect future cost, present value, and purchasing power over time. This page includes two practical modes: future value with inflation and present value / purchasing power.</p>
+          <p>Inflation matters because the same amount of money does not always buy the same amount of goods and services over time. Even moderate inflation can meaningfully reduce purchasing power over longer periods.</p>
+          <p>This calculator is especially useful for savings goals, retirement planning, salary comparisons, education costs, and long-term budgeting. It also pairs well with the <a href="/savings-calculator/">Savings Calculator</a>, <a href="/compound-interest-calculator/">Compound Interest Calculator</a>, and <a href="/retirement-calculator/">Retirement Calculator</a>.</p>
+          <p>This page also includes a current CPI-based inflation snapshot so you can connect your assumptions to a real official reference point instead of using a completely abstract rate.</p>
+          <p class="small-note">Results are based on a fixed annual inflation rate entered by the user and are intended for planning estimates only.</p>
         </div>
 
         <aside class="hero-card" aria-label="Inflation calculator tool">
@@ -516,14 +264,46 @@
 
     <section class="section">
       <div class="container content-grid">
+        <article class="content-card" id="snapshotCard">
+          <h2>Current U.S. inflation snapshot</h2>
+          <p id="snapshotIntro">Loading the latest CPI snapshot...</p>
+
+          <div class="two-col">
+            <div class="mini-card">
+              <h3>Latest official context</h3>
+              <ul id="snapshotFacts">
+                <li>Loading latest official CPI values...</li>
+              </ul>
+            </div>
+
+            <div class="mini-card">
+              <h3>Next release</h3>
+              <ul id="snapshotNextRelease">
+                <li>Loading next scheduled CPI release...</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="callout" id="snapshotEditorial">
+            <p>Loading editorial summary...</p>
+          </div>
+        </article>
+
         <article class="content-card">
           <h2>What inflation means</h2>
-          <p>
-            Inflation is the general rise in prices over time. When prices increase, the same amount of money usually buys less than it did before. In other words, inflation reduces purchasing power.
-          </p>
-          <p>
-            For short periods, inflation may seem small. But over many years, even a moderate inflation rate can make a meaningful difference in what a given amount of money can actually buy.
-          </p>
+          <p>Inflation is the general rise in prices over time. When prices increase, the same amount of money usually buys less than it did before. In other words, inflation reduces purchasing power.</p>
+          <p>For short periods, inflation may seem small. But over many years, even a moderate inflation rate can make a meaningful difference in what a given amount of money can actually buy.</p>
+        </article>
+
+        <article class="content-card">
+          <h2>How to use the CPI snapshot with this calculator</h2>
+          <p>The official CPI release is useful because it gives you a real current reference point for inflation assumptions instead of forcing you to choose a rate in the abstract.</p>
+          <ul>
+            <li>Use the latest 12-month CPI as a rough baseline assumption.</li>
+            <li>Run a second scenario below that level and another above it.</li>
+            <li>Compare how much your future cost or present purchasing power changes across those cases.</li>
+          </ul>
+          <p>This makes the calculator more useful for scenario planning rather than only one fixed estimate.</p>
         </article>
 
         <article class="content-card">
@@ -539,45 +319,21 @@
 
         <article class="content-card">
           <h2>How to use this Inflation Calculator</h2>
-          <p>
-            This page includes two practical calculation modes:
-          </p>
+          <p>This page includes two practical calculation modes:</p>
           <ul>
             <li><strong>Future value with inflation:</strong> estimates what a current amount may cost in the future after inflation.</li>
             <li><strong>Present value / purchasing power:</strong> estimates what a future amount is worth in today’s money after adjusting for inflation.</li>
           </ul>
-          <p>
-            Choose the mode that matches your question, enter the amount, inflation rate, and time period, and the calculator will update automatically.
-          </p>
+          <p>Choose the mode that matches your question, enter the amount, inflation rate, and time period, and the calculator will update automatically.</p>
         </article>
 
         <article class="content-card">
           <h2>Worked examples</h2>
           <div class="two-col">
-            <div class="mini-card">
-              <h3>Example 1: future cost of $100</h3>
-              <p>
-                If something costs <strong>$100 today</strong> and inflation averages <strong>3%</strong> per year, the future price after <strong>10 years</strong> will be meaningfully higher than $100.
-              </p>
-            </div>
-            <div class="mini-card">
-              <h3>Example 2: long-term cost growth</h3>
-              <p>
-                A cost of <strong>$1,000 today</strong> at <strong>5%</strong> inflation over <strong>20 years</strong> can rise significantly, showing why long-term financial planning should account for inflation.
-              </p>
-            </div>
-            <div class="mini-card">
-              <h3>Example 3: salary purchasing power</h3>
-              <p>
-                If your salary rises over time but prices also rise, inflation-adjusted purchasing power may increase less than the nominal salary suggests.
-              </p>
-            </div>
-            <div class="mini-card">
-              <h3>Example 4: future savings target</h3>
-              <p>
-                A retirement or education savings goal should often be adjusted for inflation, because the future cost may be much higher than the current cost.
-              </p>
-            </div>
+            <div class="mini-card"><h3>Example 1: future cost of 100</h3><p>If something costs <strong>100 today</strong> and inflation averages <strong>3%</strong> per year, the future price after <strong>10 years</strong> will be meaningfully higher than 100.</p></div>
+            <div class="mini-card"><h3>Example 2: long-term cost growth</h3><p>A cost of <strong>1,000 today</strong> at <strong>5%</strong> inflation over <strong>20 years</strong> can rise significantly, showing why long-term financial planning should account for inflation.</p></div>
+            <div class="mini-card"><h3>Example 3: salary purchasing power</h3><p>If your salary rises over time but prices also rise, inflation-adjusted purchasing power may increase less than the nominal salary suggests.</p></div>
+            <div class="mini-card"><h3>Example 4: future savings target</h3><p>A retirement or education savings goal should often be adjusted for inflation, because the future cost may be much higher than the current cost.</p></div>
           </div>
         </article>
 
@@ -594,29 +350,46 @@
 
         <article class="content-card">
           <h2>What this result means</h2>
-          <p>
-            In future value mode, the result estimates how much a current amount may grow in price over time if inflation stays at the chosen rate.
-          </p>
-          <p>
-            In present value mode, the result estimates what a future amount is worth in today’s purchasing power. This can be useful when comparing money across years in more realistic terms.
-          </p>
+          <p>In future value mode, the result estimates how much a current amount may grow in price over time if inflation stays at the chosen rate.</p>
+          <p>In present value mode, the result estimates what a future amount is worth in today’s purchasing power. This can be useful when comparing money across years in more realistic terms.</p>
+        </article>
+
+        <article class="content-card">
+          <h2>Why inflation matters so much for savings and retirement</h2>
+          <p>A future balance can look large in nominal terms and still buy less than expected if inflation has reduced real purchasing power. That is why inflation is one of the most important bridge concepts between simple savings growth and real long-term financial planning.</p>
+          <p>This page is especially useful when used alongside retirement and savings tools, because it helps translate nominal balances into more realistic purchasing-power thinking.</p>
+        </article>
+
+        <article class="content-card">
+          <h2>Common inflation-planning mistakes</h2>
+          <ul>
+            <li><strong>Ignoring inflation completely:</strong> nominal targets can look safer than they really are.</li>
+            <li><strong>Using one rate as a certainty:</strong> real inflation can move higher or lower over time.</li>
+            <li><strong>Confusing nominal and real value:</strong> those are not the same thing.</li>
+            <li><strong>Looking only at short periods:</strong> inflation usually becomes much more visible over long horizons.</li>
+            <li><strong>Separating inflation from savings and retirement planning:</strong> the topics are closely linked.</li>
+          </ul>
         </article>
 
         <article class="content-card">
           <h2>Important assumptions and limitations</h2>
-          <p>
-            This Inflation Calculator uses a fixed annual inflation rate entered by the user. Real-world inflation does not move in a perfectly fixed straight line, and actual inflation may be higher or lower in future years.
-          </p>
-          <p>
-            This page does not replace official CPI history or future inflation forecasting. It is most useful as a practical planning tool for estimates and scenario testing.
-          </p>
+          <p>This Inflation Calculator uses a fixed annual inflation rate entered by the user. Real-world inflation does not move in a perfectly fixed straight line, and actual inflation may be higher or lower in future years.</p>
+          <p>This page does not replace official CPI history or future inflation forecasting. It is most useful as a practical planning tool for estimates and scenario testing.</p>
+        </article>
+
+        <article class="content-card">
+          <h2>Related guides</h2>
+          <p>These guides help explain inflation, retirement targets, and long-term purchasing power more clearly.</p>
+          <div class="related-links">
+            <a href="/how-inflation-affects-savings-retirement-and-long-term-costs/">How Inflation Affects Savings, Retirement, and Long-Term Costs</a>
+            <a href="/how-to-estimate-a-retirement-goal-in-todays-dollars/">How to Estimate a Retirement Goal in Today’s Dollars</a>
+            <a href="/what-percentage-change-actually-means/">What Percentage Change Actually Means</a>
+          </div>
         </article>
 
         <article class="content-card">
           <h2>Related calculators</h2>
-          <p>
-            Explore other Calc Nest tools that pair naturally with this Inflation Calculator.
-          </p>
+          <p>Explore other Calc Nest tools that pair naturally with this Inflation Calculator.</p>
           <div class="related-links">
             <a href="/savings-calculator/">Savings Calculator</a>
             <a href="/compound-interest-calculator/">Compound Interest Calculator</a>
@@ -630,62 +403,15 @@
 
         <article class="content-card">
           <h2>Frequently asked questions</h2>
-
-          <div class="faq-item">
-            <h3>What is inflation?</h3>
-            <p>
-              Inflation is the general increase in prices over time, which tends to reduce purchasing power.
-            </p>
-          </div>
-
-          <div class="faq-item">
-            <h3>How does inflation affect purchasing power?</h3>
-            <p>
-              When inflation rises, the same amount of money usually buys fewer goods and services than before.
-            </p>
-          </div>
-
-          <div class="faq-item">
-            <h3>What inflation rate should I use?</h3>
-            <p>
-              That depends on your planning assumptions. Many people use a simple expected annual rate for rough scenario testing, but real inflation can change over time.
-            </p>
-          </div>
-
-          <div class="faq-item">
-            <h3>Does this calculator predict future inflation?</h3>
-            <p>
-              No. It does not forecast inflation. It only estimates outcomes using the fixed inflation rate you enter.
-            </p>
-          </div>
-
-          <div class="faq-item">
-            <h3>Is this the same as official CPI data?</h3>
-            <p>
-              No. This is a planning calculator, not an official CPI historical database or government inflation report.
-            </p>
-          </div>
-
-          <div class="faq-item">
-            <h3>Can I use this calculator for retirement planning?</h3>
-            <p>
-              Yes. It can be useful for estimating how future living costs may differ from current costs when planning long-term savings.
-            </p>
-          </div>
-
-          <div class="faq-item">
-            <h3>Why does inflation matter for savings goals?</h3>
-            <p>
-              Because the amount you need in the future may be higher than the amount that feels sufficient today.
-            </p>
-          </div>
-
-          <div class="faq-item">
-            <h3>Can I use this Inflation Calculator on mobile?</h3>
-            <p>
-              Yes. The page is designed to work on phones, tablets, and desktop devices.
-            </p>
-          </div>
+          <div class="faq-item"><h3>What is inflation?</h3><p>Inflation is the general increase in prices over time, which tends to reduce purchasing power.</p></div>
+          <div class="faq-item"><h3>How does inflation affect purchasing power?</h3><p>When inflation rises, the same amount of money usually buys fewer goods and services than before.</p></div>
+          <div class="faq-item"><h3>What inflation rate should I use?</h3><p>That depends on your planning assumptions. Many people use a simple expected annual rate for rough scenario testing, and the latest official CPI release can be a useful real-world reference point.</p></div>
+          <div class="faq-item"><h3>Does this calculator predict future inflation?</h3><p>No. It does not forecast inflation. It only estimates outcomes using the fixed inflation rate you enter.</p></div>
+          <div class="faq-item"><h3>Is this the same as official CPI data?</h3><p>No. This is a planning calculator, not an official CPI historical database or government inflation report, although the page includes a current CPI-based context block.</p></div>
+          <div class="faq-item"><h3>Can I use this calculator for retirement planning?</h3><p>Yes. It can be useful for estimating how future living costs may differ from current costs when planning long-term savings.</p></div>
+          <div class="faq-item"><h3>Why does inflation matter for savings goals?</h3><p>Because the amount you need in the future may be higher than the amount that feels sufficient today.</p></div>
+          <div class="faq-item"><h3>Does the CPI snapshot update automatically?</h3><p>Yes, if your site publishes the updated <code>/data/inflation_snapshot.json</code> file generated by the automation workflow.</p></div>
+          <div class="faq-item"><h3>Can I use this Inflation Calculator on mobile?</h3><p>Yes. The page is designed to work on phones, tablets, and desktop devices.</p></div>
         </article>
       </div>
     </section>
@@ -695,10 +421,7 @@
     <div class="container footer-inner">
       <div>© 2026 Calc Nest</div>
       <div class="footer-links">
-        <a href="/">Home</a>
-        <a href="/about.html">About</a>
-        <a href="/privacy.html">Privacy</a>
-        <a href="/contact.html">Contact</a>
+        <a href="/">Home</a><a href="/about.html">About</a><a href="/privacy.html">Privacy</a><a href="/contact.html">Contact</a>
       </div>
     </div>
   </footer>
@@ -727,11 +450,9 @@
 
     let mode = "future";
 
-    function formatCurrency(value) {
+    function formatMoney(value) {
       if (!isFinite(value)) return "—";
-      return value.toLocaleString(undefined, {
-        style: "currency",
-        currency: "USD",
+      return Number(value).toLocaleString(undefined, {
         minimumFractionDigits: 2,
         maximumFractionDigits: 2
       });
@@ -777,11 +498,7 @@
         const rate = parseFloat(futureInflationRateInput.value);
         const years = parseFloat(futureYearsInput.value);
 
-        if (
-          !isFinite(currentAmount) || currentAmount < 0 ||
-          !isFinite(rate) || rate < 0 ||
-          !isFinite(years) || years < 0
-        ) {
+        if (!isFinite(currentAmount) || currentAmount < 0 || !isFinite(rate) || rate < 0 || !isFinite(years) || years < 0) {
           resetResults();
           return;
         }
@@ -789,23 +506,18 @@
         const futureValue = currentAmount * Math.pow(1 + rate / 100, years);
         const inflationEffect = futureValue - currentAmount;
 
-        inflationMain.textContent = formatCurrency(futureValue);
+        inflationMain.textContent = formatMoney(futureValue);
         inflationHelper.textContent = "Estimated future cost after inflation using a fixed annual inflation rate.";
-        startingAmountEl.textContent = formatCurrency(currentAmount);
+        startingAmountEl.textContent = formatMoney(currentAmount);
         inflationRateDisplayEl.textContent = formatPercent(rate);
         yearsDisplayEl.textContent = formatYears(years);
-        inflationEffectEl.textContent = "+" + formatCurrency(inflationEffect);
-
+        inflationEffectEl.textContent = "+" + formatMoney(inflationEffect);
       } else {
         const futureAmount = parseFloat(futureAmountInput.value);
         const rate = parseFloat(presentInflationRateInput.value);
         const years = parseFloat(presentYearsInput.value);
 
-        if (
-          !isFinite(futureAmount) || futureAmount < 0 ||
-          !isFinite(rate) || rate < 0 ||
-          !isFinite(years) || years < 0
-        ) {
+        if (!isFinite(futureAmount) || futureAmount < 0 || !isFinite(rate) || rate < 0 || !isFinite(years) || years < 0) {
           resetResults();
           return;
         }
@@ -813,12 +525,12 @@
         const presentValue = futureAmount / Math.pow(1 + rate / 100, years);
         const purchasingPowerLoss = futureAmount - presentValue;
 
-        inflationMain.textContent = formatCurrency(presentValue);
+        inflationMain.textContent = formatMoney(presentValue);
         inflationHelper.textContent = "Estimated present value in today’s purchasing power using a fixed annual inflation rate.";
-        startingAmountEl.textContent = formatCurrency(futureAmount);
+        startingAmountEl.textContent = formatMoney(futureAmount);
         inflationRateDisplayEl.textContent = formatPercent(rate);
         yearsDisplayEl.textContent = formatYears(years);
-        inflationEffectEl.textContent = "-" + formatCurrency(purchasingPowerLoss);
+        inflationEffectEl.textContent = "-" + formatMoney(purchasingPowerLoss);
       }
     }
 
@@ -829,6 +541,40 @@
       inflationRateDisplayEl.textContent = "—";
       yearsDisplayEl.textContent = "—";
       inflationEffectEl.textContent = "—";
+    }
+
+    async function loadInflationSnapshot() {
+      const intro = document.getElementById("snapshotIntro");
+      const facts = document.getElementById("snapshotFacts");
+      const nextRelease = document.getElementById("snapshotNextRelease");
+      const editorial = document.getElementById("snapshotEditorial");
+
+      try {
+        const response = await fetch("/data/inflation_snapshot.json", { cache: "no-store" });
+        if (!response.ok) throw new Error("snapshot fetch failed");
+        const data = await response.json();
+
+        intro.textContent = `The latest available CPI snapshot is for ${data.reference_month}. This block updates from official BLS data when the automation workflow writes a new snapshot file.`;
+
+        facts.innerHTML = `
+          <li>Monthly CPI change: <strong>${data.monthly_cpi_change}</strong></li>
+          <li>12-month CPI change: <strong>${data.annual_cpi_change}</strong></li>
+          <li>Updated from release: <strong>${data.reference_month}</strong></li>
+        `;
+
+        nextRelease.innerHTML = `
+          <li>Reference month: <strong>${data.next_release_reference_month}</strong></li>
+          <li>Scheduled release: <strong>${data.next_release_date}</strong></li>
+          <li>Time: <strong>${data.next_release_time}</strong></li>
+        `;
+
+        editorial.innerHTML = `<p>${data.editorial_summary}</p>`;
+      } catch (error) {
+        intro.textContent = "Current CPI snapshot unavailable. The calculator still works normally with the inflation rate you enter.";
+        facts.innerHTML = "<li>Snapshot data is not available yet.</li>";
+        nextRelease.innerHTML = "<li>Add /data/inflation_snapshot.json to enable this block.</li>";
+        editorial.innerHTML = "<p>This editorial block appears automatically once the snapshot JSON file exists.</p>";
+      }
     }
 
     futureModeBtn.addEventListener("click", () => setMode("future"));
@@ -846,6 +592,7 @@
     });
 
     setMode("future");
+    loadInflationSnapshot();
   </script>
 </body>
 </html>
