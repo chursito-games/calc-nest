@@ -5,13 +5,14 @@
      crossorigin="anonymous"></script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/favicon-96.png" type="image/png" sizes="96x96" />
   <title>Retirement Calculator | Calc Nest</title>
-  <meta name="description" content="Free online Retirement Calculator. Estimate retirement savings, total contributions, investment growth, years until retirement, and monthly retirement income." />
+  <meta name="description" content="Free online Retirement Calculator. Estimate retirement savings, total contributions, investment growth, years until retirement, monthly retirement income, and progress toward a retirement goal." />
   <link rel="canonical" href="https://calc-nest.com/retirement-calculator/" />
   <meta name="theme-color" content="#0f172a" />
 
   <meta property="og:title" content="Retirement Calculator | Calc Nest" />
-  <meta property="og:description" content="Estimate retirement savings, total contributions, investment growth, years until retirement, and monthly retirement income." />
+  <meta property="og:description" content="Estimate retirement savings, total contributions, investment growth, years until retirement, monthly retirement income, and retirement goal progress." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://calc-nest.com/retirement-calculator/" />
 
@@ -23,17 +24,17 @@
       --muted:#94a3b8;
       --line:#334155;
       --accent:#38bdf8;
-      --shadow: 0 18px 45px rgba(0,0,0,.28);
-      --radius: 18px;
-      --max: 1080px;
+      --shadow:0 18px 45px rgba(0,0,0,.28);
+      --radius:18px;
+      --max:1080px;
     }
 
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{
       margin:0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: linear-gradient(180deg, #0b1220 0%, #111827 100%);
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:linear-gradient(180deg, #0b1220 0%, #111827 100%);
       color:var(--text);
       line-height:1.6;
     }
@@ -52,7 +53,7 @@
     .topbar{
       border-bottom:1px solid rgba(255,255,255,.08);
       background:rgba(15,23,42,.75);
-      backdrop-filter: blur(8px);
+      backdrop-filter:blur(8px);
       position:sticky;
       top:0;
       z-index:20;
@@ -102,7 +103,7 @@
 
     .hero-grid{
       display:grid;
-      grid-template-columns: 1.08fr .92fr;
+      grid-template-columns:1.08fr .92fr;
       gap:24px;
       align-items:start;
     }
@@ -117,7 +118,7 @@
     .hero-copy p{
       margin:0 0 16px;
       color:var(--muted);
-      max-width:64ch;
+      max-width:66ch;
       font-size:1.03rem;
     }
 
@@ -224,6 +225,7 @@
       font-size:1.35rem;
       font-weight:800;
       line-height:1.1;
+      word-break:break-word;
     }
 
     .status-pill{
@@ -259,10 +261,6 @@
       margin:18px auto 0;
     }
 
-    .content-grid > *{
-      width:100%;
-    }
-
     .content-card{
       width:100%;
       padding:22px;
@@ -285,6 +283,62 @@
 
     .content-card ul{
       margin:0 0 12px 20px;
+      color:#d6dbe4;
+    }
+
+    .two-col{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:16px;
+    }
+
+    .mini-card{
+      padding:16px;
+      border-radius:16px;
+      background:#0f172a;
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .mini-card h3{
+      margin-top:0;
+    }
+
+    .related-links{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:12px;
+    }
+
+    .related-links a{
+      display:inline-flex;
+      align-items:center;
+      padding:10px 12px;
+      border-radius:999px;
+      background:#0f172a;
+      border:1px solid rgba(255,255,255,.08);
+      color:#e5e7eb;
+      text-decoration:none;
+      font-size:14px;
+      font-weight:600;
+    }
+
+    .related-links a:hover{
+      border-color:rgba(56,189,248,.4);
+      color:#fff;
+      text-decoration:none;
+    }
+
+    .callout{
+      margin-top:14px;
+      padding:16px;
+      border-radius:16px;
+      background:rgba(11,18,32,.65);
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .callout p{
+      margin:0;
       color:#d6dbe4;
     }
 
@@ -319,8 +373,9 @@
       gap:14px;
     }
 
-    @media (max-width: 860px){
-      .hero-grid{
+    @media (max-width:860px){
+      .hero-grid,
+      .two-col{
         grid-template-columns:1fr;
       }
 
@@ -343,6 +398,7 @@
         <a href="/">Home</a>
         <a href="/about.html">About</a>
         <a href="/privacy.html">Privacy</a>
+        <a href="/contact.html">Contact</a>
       </nav>
     </div>
   </header>
@@ -357,10 +413,13 @@
             Use this free Retirement Calculator to estimate how much money you could have by retirement based on your current age, retirement age, existing savings, monthly contributions, and expected annual return.
           </p>
           <p>
-            This tool also shows total contributions, estimated investment growth, years until retirement, and a simple estimated monthly retirement income based on a 4% withdrawal rule.
+            This tool also shows total contributions, estimated investment growth, years until retirement, progress toward an optional retirement goal, and a simple estimated monthly retirement income based on a 4% withdrawal rule.
+          </p>
+          <p>
+            It works especially well alongside the <a href="/savings-calculator/">Savings Calculator</a>, <a href="/compound-interest-calculator/">Compound Interest Calculator</a>, and <a href="/inflation-calculator/">Inflation Calculator</a>, because retirement planning usually depends on more than one number.
           </p>
           <p class="small-note">
-            Results are estimates for general informational use and do not replace financial advice or retirement planning guidance.
+            Results are simplified estimates for general informational use and do not replace financial advice or retirement planning guidance.
           </p>
         </div>
 
@@ -425,6 +484,11 @@
               </div>
 
               <div class="result-card">
+                <span class="result-label">Goal progress</span>
+                <span class="result-value" id="goalProgressValue">—</span>
+              </div>
+
+              <div class="result-card">
                 <span class="result-label">Estimated monthly retirement income</span>
                 <span class="result-value" id="retirementIncomeValue">—</span>
               </div>
@@ -440,12 +504,83 @@
     <section class="section">
       <div class="container content-grid">
         <article class="content-card">
+          <h2>Current U.S. retirement snapshot</h2>
+          <p>
+            If you are using this page for U.S. retirement planning, these official contribution limits can help add context to your assumptions.
+          </p>
+
+          <div class="two-col">
+            <div class="mini-card">
+              <h3>2026 401(k) limits</h3>
+              <ul>
+                <li>Elective deferral limit: <strong>$24,500</strong></li>
+                <li>General catch-up for age 50+: <strong>$8,000</strong></li>
+                <li>Special catch-up for ages 60–63: <strong>$11,250</strong></li>
+              </ul>
+            </div>
+
+            <div class="mini-card">
+              <h3>2026 IRA limits</h3>
+              <ul>
+                <li>IRA contribution limit: <strong>$7,500</strong></li>
+                <li>IRA limit for age 50+: <strong>$8,600</strong></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="callout">
+            <p>
+              These figures are official U.S. IRS limits for 2026. They are useful as a planning reference, but this calculator itself is still a simplified projection tool rather than a full tax or retirement-planning model.
+            </p>
+          </div>
+        </article>
+
+        <article class="content-card">
+          <h2>What this retirement calculator helps you estimate</h2>
+          <p>
+            This calculator is designed to estimate the most common retirement-planning questions people usually want to answer first.
+          </p>
+
+          <div class="two-col">
+            <div class="mini-card">
+              <h3>What this calculator includes</h3>
+              <ul>
+                <li>Years until retirement</li>
+                <li>Projected retirement balance</li>
+                <li>Total personal contributions</li>
+                <li>Estimated investment growth</li>
+                <li>Optional goal comparison</li>
+                <li>Simple monthly income estimate using 4%</li>
+              </ul>
+            </div>
+
+            <div class="mini-card">
+              <h3>What this calculator does not include</h3>
+              <ul>
+                <li>Taxes</li>
+                <li>Inflation-adjusted spending needs</li>
+                <li>Changing contribution patterns</li>
+                <li>Changing rates of return</li>
+                <li>Social Security</li>
+                <li>Pensions, employer matches, or withdrawal sequencing</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="callout">
+            <p>
+              This makes the calculator useful for early planning and comparison, but not a substitute for a full retirement plan.
+            </p>
+          </div>
+        </article>
+
+        <article class="content-card">
           <h2>What is a retirement calculator?</h2>
           <p>
             A retirement calculator estimates how much savings you may have by the time you retire. It combines your current savings, future monthly contributions, and expected annual growth to project a possible retirement balance.
           </p>
           <p>
-            This can help you understand whether your current savings plan may be enough to support your future retirement goals.
+            This can help you understand whether your current savings pace may be enough to support your future retirement goals.
           </p>
 
           <h3>How this retirement calculator works</h3>
@@ -455,13 +590,78 @@
         </article>
 
         <article class="content-card">
+          <h2>How to interpret your retirement result</h2>
+          <p>
+            The projected retirement balance is the estimated amount available at retirement based on your current assumptions. Total contributions show how much of that balance came directly from money you added yourself. Investment growth shows how much came from compounding over time.
+          </p>
+          <p>
+            These numbers are most useful when read together. A large ending balance may still be contribution-heavy, while a smaller plan can still be efficient if it benefits from enough time and steady growth.
+          </p>
+
+          <div class="callout">
+            <p>
+              Retirement planning is usually about contribution consistency, time horizon, and purchasing power — not just one headline balance.
+            </p>
+          </div>
+        </article>
+
+        <article class="content-card">
+          <h2>Why inflation matters in retirement planning</h2>
+          <p>
+            A future retirement balance can look large in nominal terms but still buy less than expected if inflation has reduced purchasing power over time.
+          </p>
+          <p>
+            That is why retirement planning often works best when paired with inflation-based thinking, not only nominal target numbers.
+          </p>
+        </article>
+
+        <article class="content-card">
           <h2>What is the 4% rule?</h2>
           <p>
-            The 4% rule is a common rule of thumb used in retirement planning. It suggests that withdrawing about 4% of a retirement portfolio per year may provide a sustainable income in some long-term scenarios.
+            The 4% rule is a common retirement rule of thumb. It suggests that withdrawing about 4% of a retirement portfolio per year may be a reasonable starting estimate for sustainable income in some long-term scenarios.
           </p>
           <p>
-            This calculator uses that concept to show a simple estimated monthly retirement income. It is only an educational estimate, not a guarantee.
+            This page uses that concept to show a simple estimated monthly retirement income. It is only an educational estimate, not a guarantee.
           </p>
+
+          <div class="callout">
+            <p>
+              Withdrawal sustainability can vary based on retirement length, market returns, taxes, asset mix, spending flexibility, and many other factors.
+            </p>
+          </div>
+        </article>
+
+        <article class="content-card">
+          <h2>Worked examples</h2>
+          <div class="two-col">
+            <div class="mini-card">
+              <h3>Example 1: mid-career saver</h3>
+              <p>
+                Someone age 35 with existing savings and steady monthly contributions can use this page to estimate how much time and compounding may do before age 65.
+              </p>
+            </div>
+
+            <div class="mini-card">
+              <h3>Example 2: increasing the contribution</h3>
+              <p>
+                Running the same scenario with a higher monthly contribution can show whether the final balance changes mainly because of more contributions or because more money is compounding earlier.
+              </p>
+            </div>
+
+            <div class="mini-card">
+              <h3>Example 3: checking a retirement goal</h3>
+              <p>
+                Adding an optional target balance makes it easier to see whether the current saving path appears below, near, or above goal.
+              </p>
+            </div>
+
+            <div class="mini-card">
+              <h3>Example 4: translating balance into income</h3>
+              <p>
+                A large projected balance can be easier to understand when translated into a simple monthly income estimate, even if that estimate is only a starting point.
+              </p>
+            </div>
+          </div>
         </article>
 
         <article class="content-card">
@@ -472,11 +672,70 @@
             <li>Enter how much you plan to contribute each month.</li>
             <li>Enter your expected annual return.</li>
             <li>Optionally enter a retirement goal.</li>
-            <li>Review the projected balance, growth, and estimated monthly retirement income.</li>
+            <li>Review the projected balance, contributions, growth, and estimated monthly retirement income.</li>
           </ul>
           <p>
             This tool is designed to be fast, simple, and easy to use on desktop or mobile devices.
           </p>
+        </article>
+
+        <article class="content-card">
+          <h2>Common uses for a retirement calculator</h2>
+          <ul>
+            <li><strong>Retirement goal setting:</strong> estimate whether current savings habits may be enough.</li>
+            <li><strong>Contribution planning:</strong> compare what happens when monthly saving changes.</li>
+            <li><strong>Time horizon planning:</strong> see how retiring earlier or later changes the result.</li>
+            <li><strong>Growth awareness:</strong> compare personal contributions against projected investment growth.</li>
+            <li><strong>Income framing:</strong> translate a future balance into a simple monthly income estimate.</li>
+          </ul>
+        </article>
+
+        <article class="content-card">
+          <h2>Common retirement planning mistakes this calculator can help highlight</h2>
+          <ul>
+            <li><strong>Focusing only on the ending balance:</strong> contributions, growth, and years to retirement all matter.</li>
+            <li><strong>Ignoring inflation:</strong> nominal targets can overstate future purchasing power.</li>
+            <li><strong>Assuming the 4% rule is a guarantee:</strong> it is a rule of thumb, not a promise.</li>
+            <li><strong>Using unrealistic return assumptions:</strong> small changes in annual return can materially change long-term projections.</li>
+            <li><strong>Delaying saving too long:</strong> time can matter as much as contribution size.</li>
+          </ul>
+        </article>
+
+        <article class="content-card">
+          <h2>Important assumptions and limitations</h2>
+          <p>
+            This calculator assumes a constant annual return, steady monthly contributions, and a simplified compounding path until retirement age. It does not account for taxes, inflation-adjusted withdrawals, Social Security, pension income, employer matches, or changing savings patterns.
+          </p>
+          <p>
+            Real retirement outcomes can differ materially from simplified projections, especially across long time horizons.
+          </p>
+        </article>
+
+        <article class="content-card">
+          <h2>Related guides</h2>
+          <p>
+            These guides help explain retirement targets, inflation, and long-term planning more clearly.
+          </p>
+          <div class="related-links">
+            <a href="/how-to-estimate-a-retirement-goal-in-todays-dollars/">How to Estimate a Retirement Goal in Today’s Dollars</a>
+            <a href="/how-inflation-affects-savings-retirement-and-long-term-costs/">How Inflation Affects Savings, Retirement, and Long-Term Costs</a>
+            <a href="/what-percentage-change-actually-means/">What Percentage Change Actually Means</a>
+          </div>
+        </article>
+
+        <article class="content-card">
+          <h2>Related calculators</h2>
+          <p>
+            Explore other Calc Nest tools that pair naturally with this Retirement Calculator.
+          </p>
+          <div class="related-links">
+            <a href="/savings-calculator/">Savings Calculator</a>
+            <a href="/compound-interest-calculator/">Compound Interest Calculator</a>
+            <a href="/inflation-calculator/">Inflation Calculator</a>
+            <a href="/roi-calculator/">ROI Calculator</a>
+            <a href="/interest-rate-calculator/">Interest Rate Calculator</a>
+            <a href="/">Browse all calculators</a>
+          </div>
         </article>
 
         <article class="content-card">
@@ -509,6 +768,27 @@
               Yes. The calculator uses plain numbers, so it can work with dollars, euros, pounds, pesos, or other currencies.
             </p>
           </div>
+
+          <div class="faq-item">
+            <h3>Does this retirement calculator include Social Security?</h3>
+            <p>
+              No. This page focuses on projected invested retirement savings and a simplified income estimate from those savings only.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>Does this page adjust for inflation?</h3>
+            <p>
+              No. This calculator projects nominal values. For real purchasing-power context, use the related Inflation Calculator and inflation guide.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>Can I use this calculator on mobile?</h3>
+            <p>
+              Yes. The page is designed to work on phones, tablets, and desktop devices.
+            </p>
+          </div>
         </article>
       </div>
     </section>
@@ -538,6 +818,7 @@
     const totalContributionsValue = document.getElementById("totalContributionsValue");
     const investmentGrowthValue = document.getElementById("investmentGrowthValue");
     const yearsUntilRetirementValue = document.getElementById("yearsUntilRetirementValue");
+    const goalProgressValue = document.getElementById("goalProgressValue");
     const retirementIncomeValue = document.getElementById("retirementIncomeValue");
     const goalStatusPill = document.getElementById("goalStatusPill");
     const retirementHelper = document.getElementById("retirementHelper");
@@ -549,10 +830,13 @@
       });
     }
 
+    function formatPercent(value) {
+      return `${value.toFixed(2)}%`;
+    }
+
     function projectRetirementBalance(initial, monthly, annualRate, years) {
       const monthlyRate = (annualRate / 100) / 12;
       const totalMonths = Math.floor(years * 12);
-
       let balance = initial;
 
       for (let i = 0; i < totalMonths; i++) {
@@ -584,6 +868,9 @@
         retirementIncomeValue.textContent = formatMoney(monthlyRetirementIncome);
 
         if (!isNaN(goal) && goal > 0) {
+          const progress = (projectedBalance / goal) * 100;
+          goalProgressValue.textContent = formatPercent(progress);
+
           if (projectedBalance > goal) {
             goalStatusPill.textContent = `Above goal by ${formatMoney(projectedBalance - goal)}`;
           } else if (projectedBalance < goal) {
@@ -592,6 +879,7 @@
             goalStatusPill.textContent = "Goal reached";
           }
         } else {
+          goalProgressValue.textContent = "—";
           goalStatusPill.textContent = "No goal entered";
         }
 
@@ -601,6 +889,7 @@
         totalContributionsValue.textContent = "—";
         investmentGrowthValue.textContent = "—";
         yearsUntilRetirementValue.textContent = "—";
+        goalProgressValue.textContent = "—";
         retirementIncomeValue.textContent = "—";
         goalStatusPill.textContent = "Enter values";
         retirementHelper.textContent = "Your retirement estimate will be calculated automatically as you type.";
