@@ -50,24 +50,62 @@ def percent_change(new: float, old: float) -> float:
 
 def parse_next_release() -> tuple[str, str, str]:
     html = requests.get(BLS_CPI_SCHEDULE_URL, timeout=30).text
-    text = re.sub(r"<[^>]+>", " ", html)
-    rows = re.findall(r"([A-Za-z]+ \d{4})\s+([A-Za-z]{3,4}\.? \d{1,2}, \d{4})\s+(\d{2}:\d{2} [AP]M)", text)
+    text = re.sub(r"<[^>]+>", "\n", html)
 
-    today = datetime.now(timezone.utc).date()
+    lines = [re.sub(r"\s+", " ", line).strip() for line in text.splitlines()]
+    lines = [line for line in lines if line]
+
+    row_pattern = re.compile(
+        r"^((January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{4})\s+([A-Z][a-z]{2,8}\.?\s+\d{1,2},\s+\d{4})\s+(\d{2}:\d{2}\s+[AP]M)$"
+    )
+
     month_lookup = {
-        "Jan": "January", "Feb": "February", "Mar": "March", "Apr": "April",
-        "May": "May", "Jun": "June", "Jul": "July", "Aug": "August",
-        "Sep": "September", "Oct": "October", "Nov": "November", "Dec": "December"
+        "Jan.": "January",
+        "Feb.": "February",
+        "Mar.": "March",
+        "Apr.": "April",
+        "May": "May",
+        "Jun.": "June",
+        "Jul.": "July",
+        "Aug.": "August",
+        "Sep.": "September",
+        "Oct.": "October",
+        "Nov.": "November",
+        "Dec.": "December",
+        "Jan": "January",
+        "Feb": "February",
+        "Mar": "March",
+        "Apr": "April",
+        "Jun": "June",
+        "Jul": "July",
+        "Aug": "August",
+        "Sep": "September",
+        "Oct": "October",
+        "Nov": "November",
+        "Dec": "December",
     }
 
-    for ref_month, release_date_raw, release_time in rows:
-        cleaned = release_date_raw.replace(".", "")
-        parts = cleaned.split()
-        month = month_lookup.get(parts[0][:3], parts[0])
-        parsed_date = datetime.strptime(f"{month} {parts[1].strip(',')} {parts[2]}", "%B %d %Y").date()
+    today = datetime.now(timezone.utc).date()
+
+    for line in lines:
+        match = row_pattern.match(line)
+        if not match:
+            continue
+
+        ref_month = match.group(1)
+        release_date_raw = match.group(3)
+        release_time = match.group(4)
+
+        normalized_date = release_date_raw
+        for short_month, full_month in month_lookup.items():
+            if normalized_date.startswith(short_month):
+                normalized_date = normalized_date.replace(short_month, full_month, 1)
+                break
+
+        parsed_date = datetime.strptime(normalized_date, "%B %d, %Y").date()
+
         if parsed_date >= today:
-            pretty_date = f"{month} {int(parts[1].strip(','))}, {parts[2]}"
-            return ref_month, pretty_date, release_time
+            return ref_month, normalized_date, release_time
 
     raise RuntimeError("Could not find next CPI release in schedule page.")
 
