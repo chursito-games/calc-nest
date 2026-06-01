@@ -1,0 +1,18 @@
+{
+  "reference_month": "April 2026",
+  "monthly_cpi_change": "0.6%",
+  "annual_cpi_change": "3.8%",
+  "previous_annual_cpi_change": "3.3%",
+  "next_release_reference_month": "May 2026",
+  "next_release_date": "June 10, 2026",
+  "next_release_time": "08:30 AM",
+  "editorial_summary": "The latest CPI snapshot for April 2026 shows a 0.6% month-over-month change and a 3.8% 12-month change. The annual reading is above the prior release, so this can serve as a practical baseline scenario in the calculator while you also test lower and higher assumptions.",
+  "source_name": "U.S. Bureau of Labor Statistics",
+  "source_release_url": "https://www.bls.gov/news.release/cpi.htm",
+  "source_schedule_url": "https://www.bls.gov/schedule/news_release/cpi.htm",
+  "series_ids": {
+    "monthly_seasonally_adjusted_all_items": "CUSR0000SA0",
+    "annual_not_seasonally_adjusted_all_items": "CUUR0000SA0"
+  },
+  "updated_at_utc": "2026-06-01T00:00:00+00:00"
+}
