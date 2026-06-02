@@ -245,7 +245,7 @@
     }
 
     .quick-links-grid{
-      grid-template-columns:repeat(5, minmax(0, 1fr));
+      grid-template-columns:repeat(4, minmax(0, 1fr));
       margin-top:18px;
     }
 
@@ -550,11 +550,10 @@
 
       <nav class="nav" aria-label="Primary navigation">
         <a href="/">Home</a>
-        <a href="#categories">Categories</a>
-        <a href="#guides">Guides</a>
-        <a href="#calculators">Calculators</a>
-        <a href="#methodology">Methodology</a>
-        <a href="#faq">FAQ</a>
+        <a href="/#guides">Guides</a>
+        <a href="/#calculators">Calculators</a>
+        <a href="/#methodology">Methodology</a>
+        <a href="/#faq">FAQ</a>
         <a href="/about.html">About</a>
         <a href="/privacy.html">Privacy</a>
         <a href="/contact.html">Contact</a>
@@ -577,20 +576,17 @@
           <p>
             Beyond calculators, Calc Nest also includes practical guides that explain topics like APR vs interest rate, debt snowball vs avalanche, extra payments, inflation, retirement goals, affordability, and how to compare loan offers more clearly.
           </p>
-          <p>
-            Additional tools for health, dates, percentages, and everyday calculations are still available below, but the main center of gravity of the site is now financial decision support.
-          </p>
 
           <div class="hero-actions">
-            <a class="btn btn-primary" href="#calculators">Browse finance calculators</a>
-            <a class="btn" href="#guides">Read finance guides</a>
+            <a class="btn btn-primary" href="/#calculators">Browse finance calculators</a>
+            <a class="btn" href="/#guides">Read finance guides</a>
           </div>
         </div>
 
         <aside class="hero-card" aria-label="Calc Nest overview">
           <h2>What you’ll find in Calc Nest</h2>
           <p style="margin:0;color:var(--muted);">
-            A growing library of browser-based calculators plus practical concept guides designed to make money decisions easier to estimate and easier to understand.
+            A growing library of browser-based calculators plus practical finance guides designed to make money decisions easier to estimate and easier to understand.
           </p>
 
           <div class="quick-stats">
@@ -603,8 +599,8 @@
               <span class="stat-value">Loans, debt, inflation, savings, retirement</span>
             </div>
             <div class="stat">
-              <span class="stat-label">Additional tools</span>
-              <span class="stat-value">Health, dates, percentages, everyday math</span>
+              <span class="stat-label">Site format</span>
+              <span class="stat-value">Calculators plus practical guides</span>
             </div>
             <div class="stat">
               <span class="stat-label">Account required</span>
@@ -648,12 +644,7 @@
 
           <a class="category-link-card" href="#guides">
             <h3>Finance guides</h3>
-            <p>Read practical explanations for APR, affordability, amortization, inflation, and repayment strategy.</p>
-          </a>
-
-          <a class="category-link-card" href="#other-calculators">
-            <h3>Additional calculators</h3>
-            <p>Health, date, and everyday math tools are still available as secondary categories.</p>
+            <p>Read practical explanations for APR, affordability, amortization, inflation, retirement, and repayment strategy.</p>
           </a>
         </div>
       </div>
@@ -664,7 +655,7 @@
         <div class="section-header">
           <h2>Finance planning starts here</h2>
           <p>
-            These are the three strongest decision areas on Calc Nest today.
+            These are the strongest decision areas on Calc Nest today.
           </p>
         </div>
 
@@ -888,7 +879,7 @@
             </a>
 
             <a class="calc-card" href="/inflation-calculator/">
-              <div class="fake-preview calc-preview">
+              <div class="calc-preview">
                 <div class="fake-line sm"></div>
                 <div class="fake-line lg"></div>
                 <div class="fake-result">$1,000 → $1,344</div>
@@ -992,93 +983,6 @@
                 <span class="calc-open">Open calculator →</span>
               </div>
             </a>
-
-            <a class="calc-card" href="/tip-calculator/">
-              <div class="calc-preview">
-                <div class="fake-row">
-                  <span class="fake-chip">15%</span>
-                  <span class="fake-chip">4 people</span>
-                </div>
-                <div class="fake-result">Total per person: 28.75</div>
-              </div>
-              <div class="calc-body">
-                <h3>Tip Calculator</h3>
-                <p>Calculate tip amount, total bill, and split the bill per person.</p>
-                <span class="calc-open">Open calculator →</span>
-              </div>
-            </a>
-          </div>
-        </div>
-
-        <div class="category-block" id="other-calculators">
-          <h3 class="category-title">Additional calculators</h3>
-
-          <div class="grid">
-            <a class="calc-card" href="/bmi-calculator/">
-              <div class="calc-preview">
-                <div class="fake-line sm"></div>
-                <div class="fake-line sm"></div>
-                <div class="fake-result">BMI: 22.4</div>
-              </div>
-              <div class="calc-body">
-                <h3>BMI Calculator</h3>
-                <p>Calculate body mass index using metric or imperial units.</p>
-                <span class="calc-open">Open calculator →</span>
-              </div>
-            </a>
-
-            <a class="calc-card" href="/calorie-calculator/">
-              <div class="calc-preview">
-                <div class="fake-row">
-                  <span class="fake-chip">Male</span>
-                  <span class="fake-chip">Moderate</span>
-                </div>
-                <div class="fake-result">Maintain: 2,340 kcal</div>
-              </div>
-              <div class="calc-body">
-                <h3>Calorie Calculator</h3>
-                <p>Estimate daily calories for maintenance, weight loss, or gain.</p>
-                <span class="calc-open">Open calculator →</span>
-              </div>
-            </a>
-
-            <a class="calc-card" href="/age-calculator/">
-              <div class="calc-preview">
-                <div class="fake-line md"></div>
-                <div class="fake-result">31 years, 2 months</div>
-              </div>
-              <div class="calc-body">
-                <h3>Age Calculator</h3>
-                <p>Calculate exact age in years, months, days, hours, and seconds.</p>
-                <span class="calc-open">Open calculator →</span>
-              </div>
-            </a>
-
-            <a class="calc-card" href="/days-between-dates/">
-              <div class="calc-preview">
-                <div class="fake-line md"></div>
-                <div class="fake-line md"></div>
-                <div class="fake-result">124 days</div>
-              </div>
-              <div class="calc-body">
-                <h3>Days Between Dates</h3>
-                <p>Find total days, weekdays, weekend days, weeks, and date difference between dates.</p>
-                <span class="calc-open">Open calculator →</span>
-              </div>
-            </a>
-
-            <a class="calc-card" href="/percentage-calculator/">
-              <div class="calc-preview">
-                <div class="fake-line sm"></div>
-                <div class="fake-line sm"></div>
-                <div class="fake-result">20% of 150 = 30</div>
-              </div>
-              <div class="calc-body">
-                <h3>Percentage Calculator</h3>
-                <p>Calculate percentages, increases, decreases, and common percentage changes in one place.</p>
-                <span class="calc-open">Open calculator →</span>
-              </div>
-            </a>
           </div>
         </div>
       </div>
@@ -1118,7 +1022,7 @@
 
         <div class="callout">
           <p>
-            The strongest editorial focus of Calc Nest today is personal finance: borrowing, repayment, inflation, savings, retirement, and affordability.
+            The editorial center of gravity of Calc Nest is personal finance: borrowing, repayment, inflation, savings, retirement, affordability, and percentage-based comparison.
           </p>
         </div>
       </div>
@@ -1129,7 +1033,7 @@
         <div class="section-header">
           <h2>About Calc Nest</h2>
           <p>
-            Calc Nest is a growing collection of free online calculators and practical guides built to keep common calculations accessible, understandable, and easy to use.
+            Calc Nest is a growing collection of free online calculators and practical guides built to keep common financial calculations accessible, understandable, and easy to use.
           </p>
         </div>
 
@@ -1138,7 +1042,7 @@
             Many calculator websites are either too basic, too cluttered, or too thin to be genuinely helpful. Calc Nest aims for a better balance: practical tools, clear outputs, and enough supporting explanation to make the result more useful.
           </p>
           <p>
-            The site is especially focused on personal finance decisions around loans, mortgages, APR, debt payoff, amortization, inflation, savings, retirement, affordability, and percentage-based comparison. Additional tools for health, dates, and everyday math are still available as secondary categories.
+            The site is especially focused on personal finance decisions around loans, mortgages, APR, debt payoff, amortization, inflation, savings, retirement, affordability, taxes, and percentage-based comparison.
           </p>
           <p>
             All tools and guides are free to use, no sign-up is required, and calculations run directly in your browser for a faster and lighter experience.
@@ -1160,7 +1064,7 @@
           <div class="faq-item">
             <h3>What is Calc Nest?</h3>
             <p>
-              Calc Nest is a website of free online calculators and practical guides with a strong focus on personal finance topics like loans, debt payoff, mortgages, inflation, savings, retirement, and financial comparison.
+              Calc Nest is a website of free online calculators and practical guides with a strong focus on personal finance topics like loans, debt payoff, mortgages, inflation, savings, retirement, taxes, and financial comparison.
             </p>
           </div>
 
@@ -1195,7 +1099,7 @@
           <div class="faq-item">
             <h3>How accurate are the calculators?</h3>
             <p>
-              The calculators are designed to provide practical estimates based on the inputs and assumptions shown on each page. Actual results may vary depending on the situation, especially for financial, tax, health, or long-term planning calculations.
+              The calculators are designed to provide practical estimates based on the inputs and assumptions shown on each page. Actual results may vary depending on the situation, especially for financial, tax, or long-term planning calculations.
             </p>
           </div>
 
@@ -1222,9 +1126,8 @@
       <div>© 2026 Calc Nest</div>
       <div class="footer-links">
         <a href="/">Home</a>
-        <a href="#categories">Categories</a>
-        <a href="#guides">Guides</a>
-        <a href="#calculators">Calculators</a>
+        <a href="/#guides">Guides</a>
+        <a href="/#calculators">Calculators</a>
         <a href="/about.html">About</a>
         <a href="/privacy.html">Privacy</a>
         <a href="/contact.html">Contact</a>
