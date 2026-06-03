@@ -86,6 +86,7 @@
       border-radius:12px;
       background:linear-gradient(135deg, var(--accent), #6366f1);
       box-shadow:0 10px 24px rgba(56,189,248,.25);
+      flex:none;
     }
 
     .nav{
@@ -422,36 +423,30 @@
 
     <section class="section">
       <div class="container content-grid">
-        <article class="content-card">
+        <article class="content-card" id="mortgageSnapshotCard">
           <h2>Current U.S. mortgage snapshot</h2>
-          <p>
-            Mortgage affordability changes when weekly market rates move, even if the house price stays the same. That is why the affordability question should not be separated from current mortgage-rate context.
+          <p id="mortgageSnapshotIntro">
+            Loading the latest mortgage snapshot...
           </p>
 
           <div class="two-col">
             <div class="mini-card">
-              <h3>Latest weekly average</h3>
-              <ul>
-                <li>30-year fixed: <strong>6.53%</strong></li>
-                <li>15-year fixed: <strong>5.87%</strong></li>
-                <li>Survey date: <strong>May 28, 2026</strong></li>
+              <h3>Latest weekly averages</h3>
+              <ul id="mortgageSnapshotRates">
+                <li>Loading latest mortgage rate snapshot...</li>
               </ul>
             </div>
 
             <div class="mini-card">
-              <h3>Why it matters</h3>
-              <ul>
-                <li>30-year fixed was <strong>6.51%</strong> the prior week</li>
-                <li>15-year fixed was <strong>5.85%</strong> the prior week</li>
-                <li>Even small rate changes can alter affordability</li>
+              <h3>Weekly change</h3>
+              <ul id="mortgageSnapshotChanges">
+                <li>Loading weekly change context...</li>
               </ul>
             </div>
           </div>
 
-          <div class="callout">
-            <p>
-              This is a static editorial snapshot until manually updated. Use it as current market context, then run your own scenarios in the <a href="/mortgage-calculator/">Mortgage Calculator</a> to test what different rates actually do to the payment.
-            </p>
+          <div class="callout" id="mortgageSnapshotEditorial">
+            <p>Loading editorial summary...</p>
           </div>
         </article>
 
@@ -580,9 +575,9 @@
         </article>
 
         <article class="content-card">
-          <h2>How to use the weekly rate snapshot with the Mortgage Calculator</h2>
+          <h2>How to use the mortgage snapshot with the Mortgage Calculator</h2>
           <ol>
-            <li>Use the latest Freddie Mac average as a practical baseline rate assumption.</li>
+            <li>Use the latest weekly Freddie Mac context as a practical baseline rate assumption.</li>
             <li>Run a second scenario slightly above it and slightly below it.</li>
             <li>Compare not only principal and interest, but the full monthly total once taxes and insurance are added.</li>
             <li>Check whether the resulting payment still leaves room for savings, debt payments, and normal living expenses.</li>
@@ -719,7 +714,7 @@
             <div class="faq-item">
               <h3>Does the mortgage snapshot update automatically?</h3>
               <p>
-                No. The snapshot is a static editorial block until the page is manually updated with a newer weekly Freddie Mac figure.
+                This guide is prepared to read a shared mortgage snapshot file. Once the mortgage automation is live, the snapshot block will update automatically when that shared file is refreshed.
               </p>
             </div>
 
@@ -748,5 +743,51 @@
     </div>
   </div>
 </footer>
+
+<script>
+  async function loadMortgageSnapshot() {
+    const intro = document.getElementById("mortgageSnapshotIntro");
+    const rates = document.getElementById("mortgageSnapshotRates");
+    const changes = document.getElementById("mortgageSnapshotChanges");
+    const editorial = document.getElementById("mortgageSnapshotEditorial");
+
+    try {
+      const response = await fetch("/data/mortgage_snapshot.json", { cache: "no-store" });
+      if (!response.ok) throw new Error("snapshot fetch failed");
+      const data = await response.json();
+
+      intro.textContent = `Mortgage affordability changes when weekly market rates move, even if the home price stays the same. This shared snapshot reflects Freddie Mac weekly market context for ${data.reference_date}.`;
+
+      rates.innerHTML = `
+        <li>30-year fixed: <strong>${data.rate_30y_fixed}</strong></li>
+        <li>15-year fixed: <strong>${data.rate_15y_fixed}</strong></li>
+        <li>Reference date: <strong>${data.reference_date}</strong></li>
+      `;
+
+      changes.innerHTML = `
+        <li>30-year weekly change: <strong>${data.weekly_change_30y}</strong></li>
+        <li>15-year weekly change: <strong>${data.weekly_change_15y}</strong></li>
+        <li>Source cadence: <strong>${data.source_cadence}</strong></li>
+      `;
+
+      editorial.innerHTML = `<p>${data.editorial_summary}</p>`;
+    } catch (error) {
+      intro.textContent = "Mortgage affordability changes when weekly market rates move, even if the home price stays the same. This guide is already prepared to read a shared mortgage snapshot once the automation is live.";
+      rates.innerHTML = `
+        <li>30-year fixed: <strong>Not available yet</strong></li>
+        <li>15-year fixed: <strong>Not available yet</strong></li>
+        <li>Reference date: <strong>Pending snapshot file</strong></li>
+      `;
+      changes.innerHTML = `
+        <li>30-year weekly change: <strong>Pending</strong></li>
+        <li>15-year weekly change: <strong>Pending</strong></li>
+        <li>Source cadence: <strong>Weekly</strong></li>
+      `;
+      editorial.innerHTML = `<p>This page is already prepared to read the same shared mortgage snapshot as the Mortgage Calculator. Once the automation is added, this block will update automatically with weekly Freddie Mac market context.</p>`;
+    }
+  }
+
+  loadMortgageSnapshot();
+</script>
 </body>
 </html>
