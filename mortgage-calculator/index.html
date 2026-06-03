@@ -82,6 +82,7 @@
       border-radius:12px;
       background:linear-gradient(135deg, var(--accent), #6366f1);
       box-shadow:0 10px 24px rgba(56,189,248,.25);
+      flex:none;
     }
 
     .nav{
@@ -437,8 +438,12 @@
         <span>Calc Nest</span>
       </div>
 
-      <nav class="nav" aria-label="Primary">
+      <nav class="nav" aria-label="Primary navigation">
         <a href="/">Home</a>
+        <a href="/#guides">Guides</a>
+        <a href="/#calculators">Calculators</a>
+        <a href="/#methodology">Methodology</a>
+        <a href="/#faq">FAQ</a>
         <a href="/about.html">About</a>
         <a href="/privacy.html">Privacy</a>
         <a href="/contact.html">Contact</a>
@@ -459,7 +464,7 @@
             Enter your home price, down payment, loan term, interest rate, annual property tax, and annual home insurance to see your monthly breakdown instantly.
           </p>
           <p>
-            This page also includes a current mortgage-rate snapshot so you can connect your estimate to a real market context rather than using the calculator in isolation.
+            This page is designed to pair a mortgage payment estimate with a shared mortgage-rate snapshot, so you can connect your scenario to current market context rather than using the calculator in isolation.
           </p>
           <p class="small-note">
             Results are estimates for general informational use and do not replace official lender calculations. For broader context, see guides like <a href="/how-much-house-can-you-really-afford/">How Much House Can You Really Afford?</a> and <a href="/apr-vs-interest-rate/">APR vs Interest Rate</a>.
@@ -549,35 +554,30 @@
 
     <section class="section">
       <div class="container content-grid">
-        <article class="content-card">
+        <article class="content-card" id="mortgageSnapshotCard">
           <h2>Current U.S. mortgage snapshot</h2>
-          <p>
-            As of May 28, 2026, Freddie Mac’s weekly Primary Mortgage Market Survey reported an average <strong>30-year fixed-rate mortgage of 6.53%</strong> and an average <strong>15-year fixed-rate mortgage of 5.87%</strong>.
+          <p id="mortgageSnapshotIntro">
+            Loading the latest mortgage snapshot...
           </p>
 
           <div class="split-grid">
             <div class="mini-card">
-              <h3>Latest weekly average</h3>
-              <ul>
-                <li>30-year fixed: <strong>6.53%</strong></li>
-                <li>15-year fixed: <strong>5.87%</strong></li>
+              <h3>Latest weekly averages</h3>
+              <ul id="mortgageSnapshotRates">
+                <li>Loading latest mortgage rate snapshot...</li>
               </ul>
             </div>
 
             <div class="mini-card">
-              <h3>What changed</h3>
-              <ul>
-                <li>30-year fixed was <strong>6.51%</strong> the previous week</li>
-                <li>15-year fixed was <strong>5.85%</strong> the previous week</li>
-                <li>Freddie Mac publishes this survey weekly</li>
+              <h3>Weekly change</h3>
+              <ul id="mortgageSnapshotChanges">
+                <li>Loading weekly change context...</li>
               </ul>
             </div>
           </div>
 
-          <div class="callout">
-            <p>
-              This block gives current market context, but the calculator itself remains a planning tool. Your actual quoted rate can still vary based on credit profile, loan structure, lender fees, and timing.
-            </p>
+          <div class="callout" id="mortgageSnapshotEditorial">
+            <p>Loading editorial summary...</p>
           </div>
         </article>
 
@@ -652,9 +652,9 @@
         </article>
 
         <article class="content-card">
-          <h2>How to use the current mortgage snapshot with this calculator</h2>
+          <h2>How to use the mortgage snapshot with this calculator</h2>
           <p>
-            The weekly Freddie Mac average can help you choose a more realistic starting interest-rate assumption when testing home-buying scenarios.
+            The weekly mortgage snapshot can help you choose a more realistic starting rate assumption when testing home-buying scenarios.
           </p>
           <ul>
             <li>Use the latest weekly average as a rough baseline for scenario testing.</li>
@@ -796,9 +796,9 @@
           </div>
 
           <div class="faq-item">
-            <h3>Does the rate snapshot update automatically?</h3>
+            <h3>Does the mortgage snapshot update automatically?</h3>
             <p>
-              No. The snapshot is a static editorial block until the page is manually updated with a new weekly Freddie Mac figure.
+              This page is prepared to read a shared mortgage snapshot file. Once the mortgage automation is live, the snapshot block will update automatically when that shared file is refreshed.
             </p>
           </div>
         </article>
@@ -811,6 +811,8 @@
       <div>© 2026 Calc Nest</div>
       <div class="footer-links">
         <a href="/">Home</a>
+        <a href="/#guides">Guides</a>
+        <a href="/#calculators">Calculators</a>
         <a href="/about.html">About</a>
         <a href="/privacy.html">Privacy</a>
         <a href="/contact.html">Contact</a>
@@ -915,6 +917,48 @@
       }
     }
 
+    async function loadMortgageSnapshot() {
+      const intro = document.getElementById("mortgageSnapshotIntro");
+      const rates = document.getElementById("mortgageSnapshotRates");
+      const changes = document.getElementById("mortgageSnapshotChanges");
+      const editorial = document.getElementById("mortgageSnapshotEditorial");
+
+      try {
+        const response = await fetch("/data/mortgage_snapshot.json", { cache: "no-store" });
+        if (!response.ok) throw new Error("snapshot fetch failed");
+        const data = await response.json();
+
+        intro.textContent = `The latest shared mortgage snapshot reflects Freddie Mac weekly market context for ${data.reference_date}. This page can use that shared file so the calculator and related mortgage guide stay aligned.`;
+
+        rates.innerHTML = `
+          <li>30-year fixed: <strong>${data.rate_30y_fixed}</strong></li>
+          <li>15-year fixed: <strong>${data.rate_15y_fixed}</strong></li>
+          <li>Reference date: <strong>${data.reference_date}</strong></li>
+        `;
+
+        changes.innerHTML = `
+          <li>30-year weekly change: <strong>${data.weekly_change_30y}</strong></li>
+          <li>15-year weekly change: <strong>${data.weekly_change_15y}</strong></li>
+          <li>Source cadence: <strong>${data.source_cadence}</strong></li>
+        `;
+
+        editorial.innerHTML = `<p>${data.editorial_summary}</p>`;
+      } catch (error) {
+        intro.textContent = "Mortgage snapshot unavailable for now. The calculator still works normally, and this block will populate automatically once the shared mortgage snapshot file is published.";
+        rates.innerHTML = `
+          <li>30-year fixed: <strong>Not available yet</strong></li>
+          <li>15-year fixed: <strong>Not available yet</strong></li>
+          <li>Reference date: <strong>Pending snapshot file</strong></li>
+        `;
+        changes.innerHTML = `
+          <li>30-year weekly change: <strong>Pending</strong></li>
+          <li>15-year weekly change: <strong>Pending</strong></li>
+          <li>Source cadence: <strong>Weekly</strong></li>
+        `;
+        editorial.innerHTML = `<p>This page is already prepared to read a shared mortgage snapshot. Once the automation is added, the latest weekly mortgage-rate context will appear here automatically.</p>`;
+      }
+    }
+
     downAmountBtn.addEventListener("click", () => setDownMode("amount"));
     downPercentBtn.addEventListener("click", () => setDownMode("percent"));
 
@@ -931,6 +975,7 @@
     });
 
     setDownMode("amount");
+    loadMortgageSnapshot();
   </script>
 </body>
 </html>
