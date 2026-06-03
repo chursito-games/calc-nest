@@ -1,0 +1,13 @@
+{
+  "source": "Freddie Mac PMMS",
+  "source_url": "https://www.freddiemac.com/pmms/pmms_archives",
+  "source_csv_url": "https://www.freddiemac.com/pmms/docs/PMMS_history.csv",
+  "reference_date": "May 28, 2026",
+  "rate_30y_fixed": "6.53%",
+  "rate_15y_fixed": "5.87%",
+  "weekly_change_30y": "+0.02 pts vs previous week",
+  "weekly_change_15y": "+0.02 pts vs previous week",
+  "source_cadence": "Weekly",
+  "editorial_summary": "Freddie Mac's latest weekly survey shows 30-year fixed mortgage rates at 6.53% and 15-year fixed mortgage rates at 5.87%. Weekly movement was modest versus the prior survey, but even small rate changes can still affect monthly payment estimates on larger loan balances.",
+  "updated_at_utc": "2026-06-03T00:00:00+00:00"
+}
