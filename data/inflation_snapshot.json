@@ -1,12 +1,12 @@
 {
-  "reference_month": "May 2026",
-  "monthly_cpi_change": "0.5%",
-  "annual_cpi_change": "4.2%",
-  "previous_annual_cpi_change": "3.8%",
+  "reference_month": "June 2026",
+  "monthly_cpi_change": "-0.4%",
+  "annual_cpi_change": "3.5%",
+  "previous_annual_cpi_change": "4.2%",
   "next_release_reference_month": "See BLS schedule",
   "next_release_date": "Check BLS CPI release calendar",
   "next_release_time": "08:30 AM ET",
-  "editorial_summary": "The latest CPI snapshot for May 2026 shows a 0.5% month-over-month change and a 4.2% 12-month change. The annual reading is above the prior release, so this can serve as a practical baseline scenario in the calculator while you also test lower and higher assumptions.",
+  "editorial_summary": "The latest CPI snapshot for June 2026 shows a -0.4% month-over-month change and a 3.5% 12-month change. The annual reading is below the prior release, so this can serve as a practical baseline scenario in the calculator while you also test lower and higher assumptions.",
   "source_name": "U.S. Bureau of Labor Statistics",
   "source_release_url": "https://www.bls.gov/news.release/cpi.htm",
   "source_schedule_url": "https://www.bls.gov/schedule/news_release/cpi.htm",
@@ -14,5 +14,5 @@
     "monthly_seasonally_adjusted_all_items": "CUSR0000SA0",
     "annual_not_seasonally_adjusted_all_items": "CUUR0000SA0"
   },
-  "updated_at_utc": "2026-07-13T16:56:45.496166+00:00"
+  "updated_at_utc": "2026-07-14T15:58:17.649917+00:00"
 }
