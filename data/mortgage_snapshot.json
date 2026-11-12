@@ -2,12 +2,12 @@
   "source": "Freddie Mac PMMS",
   "source_url": "https://www.freddiemac.com/pmms/pmms_archives",
   "source_csv_url": "https://www.freddiemac.com/pmms/docs/PMMS_history.csv",
-  "reference_date": "November 5, 2026",
-  "rate_30y_fixed": "7.18%",
-  "rate_15y_fixed": "6.57%",
-  "weekly_change_30y": "-0.06 pts vs previous week",
-  "weekly_change_15y": "-0.03 pts vs previous week",
+  "reference_date": "November 12, 2026",
+  "rate_30y_fixed": "7.11%",
+  "rate_15y_fixed": "6.45%",
+  "weekly_change_30y": "-0.07 pts vs previous week",
+  "weekly_change_15y": "-0.12 pts vs previous week",
   "source_cadence": "Weekly",
-  "editorial_summary": "Freddie Mac's latest weekly survey shows 30-year fixed mortgage rates at 7.18% and 15-year fixed mortgage rates at 6.57%. Both major fixed-rate averages moved lower versus the prior survey, but even small rate changes can still affect monthly payment estimates on larger loan balances.",
-  "updated_at_utc": "2026-11-05T23:38:06.597541+00:00"
+  "editorial_summary": "Freddie Mac's latest weekly survey shows 30-year fixed mortgage rates at 7.11% and 15-year fixed mortgage rates at 6.45%. Both major fixed-rate averages moved lower versus the prior survey, but even small rate changes can still affect monthly payment estimates on larger loan balances.",
+  "updated_at_utc": "2026-11-12T23:38:38.302549+00:00"
 }
